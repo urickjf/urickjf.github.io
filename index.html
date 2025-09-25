@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sua Landing Page Incrível</title>
+    <style>
+        /* Estilos básicos para a página */
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+            color: #333;
+        }
+
+        .hero {
+            background: #007bff;
+            color: white;
+            padding: 100px 20px;
+            text-align: center;
+        }
+
+        .hero h1 {
+            font-size: 3em;
+            margin-bottom: 10px;
+        }
+
+        .hero p {
+            font-size: 1.2em;
+        }
+
+        .cta-button {
+            background-color: #ffc107;
+            color: #333;
+            padding: 15px 30px;
+            text-decoration: none;
+            border-radius: 5px;
+            font-weight: bold;
+            display: inline-block;
+            margin-top: 20px;
+        }
+
+        .container {
+            max-width: 960px;
+            margin: 40px auto;
+            padding: 20px;
+            background: white;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .features {
+            display: flex;
+            justify-content: space-around;
+            text-align: center;
+            margin-top: 40px;
+        }
+
+        .feature-item {
+            width: 30%;
+            padding: 20px;
+        }
+
+        .footer {
+            text-align: center;
+            padding: 20px;
+            background-color: #333;
+            color: white;
+            margin-top: 40px;
+        }
+
+        /* Responsividade básica */
+        @media (max-width: 768px) {
+            .features {
+                flex-direction: column;
+            }
+            .feature-item {
+                width: 100%;
+                margin-bottom: 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <header class="hero">
+        <h1>Título Chamativo da Sua Landing Page</h1>
+        <p>Subtítulo que descreve o produto ou serviço de forma clara e concisa.</p>
+        <a href="#formulario" class="cta-button">Chamada para Ação!</a>
+    </header>
+
+    <section class="container">
+        <h2>Por que nos escolher?</h2>
+        <div class="features">
+            <div class="feature-item">
+                <h3>Recurso 1</h3>
+                <p>Descreva o primeiro benefício de forma detalhada e atraente para o usuário.</p>
+            </div>
+            <div class="feature-item">
+                <h3>Recurso 2</h3>
+                <p>Explique o segundo benefício, focando no valor que ele agrega ao cliente.</p>
+            </div>
+            <div class="feature-item">
+                <h3>Recurso 3</h3>
+                <p>Apresente o terceiro benefício, reforçando o motivo pelo qual ele é importante.</p>
+            </div>
+        </div>
+    </section>
+
+    <section class="container">
+        <h2>O que nossos clientes dizem</h2>
+        <blockquote>
+            <p>"Essa é a melhor solução que já encontrei! O serviço é incrível e superou todas as minhas expectativas."</p>
+            <cite>— Nome do Cliente</cite>
+        </blockquote>
+    </section>
+
+    <section class="container" id="formulario">
+        <h2>Entre em Contato</h2>
+        <p>Preencha o formulário abaixo para saber mais ou agendar uma demonstração.</p>
+        <form action="#" method="post">
+            <label for="nome">Nome:</label><br>
+            <input type="text" id="nome" name="nome" required><br><br>
+            
+            <label for="email">E-mail:</label><br>
+            <input type="email" id="email" name="email" required><br><br>
+
+            <label for="mensagem">Mensagem:</label><br>
+            <textarea id="mensagem" name="mensagem" rows="4"></textarea><br><br>
+            
+            <button type="submit" class="cta-button">Enviar</button>
+        </form>
+    </section>
+
+    <footer class="footer">
+        <p>&copy; 2025 Sua Empresa. Todos os direitos reservados.</p>
+    </footer>
+
+</body>
+</html>
