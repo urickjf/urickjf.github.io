@@ -17,14 +17,15 @@
         /* Estilo base para a fonte e cores */
         body {
             font-family: 'Inter', sans-serif;
-            background-color: #111827; /* Fundo cinza escuro */
+            background-color: #0f172a; /* Fallback para navegadores antigos */
+            background-image: linear-gradient(to bottom, #0f172a, #000000); /* Novo fundo com gradiente */
             color: #E5E7EB; /* Texto cinza claro */
         }
         /* Efeito de transição suave para o modal */
         #modal {
             transition: opacity 0.3s ease-in-out;
         }
-        /* Estilo para a barra de rolagem (opcional, mas melhora o visual) */
+        /* Estilo para a barra de rolagem */
         ::-webkit-scrollbar {
             width: 8px;
         }
@@ -54,11 +55,24 @@
             width: 100%;
             height: 100%;
         }
+        /* Classes personalizadas de design */
         .admin-input {
-            @apply w-full p-2 bg-gray-700 border border-gray-600 rounded-md focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 transition;
+            @apply w-full p-2 bg-gray-700 border border-gray-600 rounded-md text-white focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 transition;
+        }
+        .admin-input::placeholder {
+            color: #9ca3af; /* Cor para o texto de exemplo (placeholder) */
         }
         .admin-label {
             @apply block text-sm font-medium text-gray-300 mb-1;
+        }
+        .text-glow {
+            text-shadow: 0 0 12px rgba(165, 180, 252, 0.3);
+        }
+        .button-glow {
+            transition: box-shadow .3s ease;
+        }
+        .button-glow:hover {
+            box-shadow: 0 0 15px rgba(99, 102, 241, 0.5), 0 0 20px rgba(99, 102, 241, 0.2);
         }
     </style>
 </head>
@@ -69,20 +83,20 @@
         <div class="container mx-auto max-w-5xl px-6 py-12 md:py-20">
             <header class="flex flex-col md:flex-row items-center md:items-start gap-8 md:gap-12">
                 <div class="w-48 h-48 md:w-56 md:h-56 flex-shrink-0">
-                    <img id="profile-pic" src="https://placehold.co/400x400/1F2937/E5E7EB?text=Sua+Foto" alt="Foto de perfil" class="rounded-full object-cover w-full h-full shadow-lg border-4 border-gray-700">
+                    <img id="profile-pic" src="https://placehold.co/400x400/1F2937/E5E7EB?text=Sua+Foto" alt="Foto de perfil" class="rounded-full object-cover w-full h-full shadow-2xl shadow-indigo-500/40">
                 </div>
                 <div class="text-center md:text-left">
-                    <h1 id="profile-name" class="text-4xl md:text-5xl font-extrabold text-white">Seu Nome Aqui</h1>
-                    <h2 id="profile-role" class="text-xl md:text-2xl font-medium text-indigo-400 mt-2">Editor de Vídeo & Videomaker</h2>
+                    <h1 id="profile-name" class="text-4xl md:text-5xl font-extrabold text-white text-glow">Seu Nome Aqui</h1>
+                    <h2 id="profile-role" class="text-xl md:text-2xl font-medium text-indigo-300 mt-2">Editor de Vídeo & Videomaker</h2>
                     <p id="profile-bio" class="mt-6 text-lg text-gray-300 leading-relaxed">
                         Olá! Sou um criador de conteúdo audiovisual apaixonado por contar histórias que cativam, educam e inspiram. Com mais de 5 anos de experiência, especializei-me em edição de vídeo, motion graphics e direção de fotografia. Meu objetivo é transformar ideias em peças visuais impactantes e memoráveis.
                     </p>
                     <div class="mt-8 flex flex-col sm:flex-row justify-center md:justify-start items-center gap-6">
-                        <a id="profile-email" href="mailto:seuemail@exemplo.com" class="flex items-center gap-3 text-lg hover:text-indigo-400 transition-colors duration-300">
+                        <a id="profile-email" href="mailto:seuemail@exemplo.com" class="flex items-center gap-3 text-lg hover:text-indigo-300 transition-all duration-300 hover:drop-shadow-[0_0_8px_rgba(165,180,252,0.5)]">
                             <i data-feather="mail" class="w-6 h-6"></i>
                             <span id="profile-email-text">seuemail@exemplo.com</span>
                         </a>
-                        <a id="profile-whatsapp" href="https://wa.me/5511999999999" target="_blank" class="flex items-center gap-3 text-lg hover:text-indigo-400 transition-colors duration-300">
+                        <a id="profile-whatsapp" href="https://wa.me/5511999999999" target="_blank" class="flex items-center gap-3 text-lg hover:text-indigo-300 transition-all duration-300 hover:drop-shadow-[0_0_8px_rgba(165,180,252,0.5)]">
                             <i data-feather="message-circle" class="w-6 h-6"></i>
                             <span>WhatsApp</span>
                         </a>
@@ -90,8 +104,8 @@
                 </div>
             </header>
             <main class="mt-20">
-                <h3 class="text-3xl font-bold text-center text-white mb-12">Portfólio</h3>
-                <div id="gallery" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+                <h3 class="text-3xl font-bold text-center text-white mb-12 text-glow">Portfólio</h3>
+                <div id="gallery" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
                     <!-- Os projetos serão inseridos aqui pelo JavaScript -->
                 </div>
             </main>
@@ -102,7 +116,7 @@
     <div id="admin-view" class="hidden">
         <!-- Tela de Login -->
         <div id="login-screen" class="min-h-screen flex items-center justify-center">
-            <div class="bg-gray-800 p-8 rounded-lg shadow-xl w-full max-w-sm">
+            <div class="bg-gray-800 p-8 rounded-lg shadow-xl w-full max-w-sm border border-slate-700">
                 <h2 class="text-2xl font-bold text-center text-white mb-6">Acesso Administrativo</h2>
                 <form id="login-form">
                     <div>
@@ -110,7 +124,7 @@
                         <input type="password" id="password" class="admin-input" required>
                     </div>
                     <p id="login-error" class="text-red-400 text-sm mt-2 hidden">Senha incorreta.</p>
-                    <button type="submit" class="w-full bg-indigo-600 hover:bg-indigo-700 text-white font-bold py-2 px-4 rounded-md mt-6 transition-colors">Entrar</button>
+                    <button type="submit" class="w-full bg-indigo-600 hover:bg-indigo-700 text-white font-bold py-2 px-4 rounded-md mt-6 button-glow">Entrar</button>
                 </form>
             </div>
         </div>
@@ -119,16 +133,16 @@
         <div id="admin-panel" class="hidden container mx-auto max-w-5xl px-6 py-12">
             <div class="flex justify-between items-center mb-8">
                 <h2 class="text-3xl font-bold text-white">Painel de Administração</h2>
-                <button id="logout-btn" class="bg-red-600 hover:bg-red-700 text-white font-bold py-2 px-4 rounded-md transition-colors">Sair</button>
+                <button id="logout-btn" class="bg-red-600 hover:bg-red-700 text-white font-bold py-2 px-4 rounded-md button-glow">Sair</button>
             </div>
 
             <!-- Seção de Backup -->
-            <div class="bg-gray-800 p-6 rounded-lg mb-8">
+            <div class="bg-gray-800 p-6 rounded-lg mb-8 border border-slate-700">
                 <h3 class="text-xl font-bold text-white mb-4">Backup e Restauração</h3>
                 <p class="text-gray-400 mb-4">Os dados são salvos no seu navegador. Use os botões abaixo para criar ou restaurar um backup em arquivo (.json).</p>
                 <div class="flex gap-4">
-                    <button id="export-json-btn" class="bg-green-600 hover:bg-green-700 text-white font-bold py-2 px-4 rounded-md">Exportar JSON</button>
-                    <label class="bg-blue-600 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-md cursor-pointer">
+                    <button id="export-json-btn" class="bg-green-600 hover:bg-green-700 text-white font-bold py-2 px-4 rounded-md button-glow">Exportar JSON</button>
+                    <label class="bg-blue-600 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-md cursor-pointer button-glow">
                         <span>Importar JSON</span>
                         <input type="file" id="import-json-input" class="hidden" accept=".json">
                     </label>
@@ -137,7 +151,7 @@
 
             <!-- Formulário Principal -->
             <div class="space-y-8">
-                <div class="bg-gray-800 p-6 rounded-lg">
+                <div class="bg-gray-800 p-6 rounded-lg border border-slate-700">
                     <h3 class="text-xl font-bold text-white mb-4">Informações Principais</h3>
                     <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
                         <div>
@@ -167,28 +181,28 @@
                     </div>
                 </div>
 
-                <div class="bg-gray-800 p-6 rounded-lg">
+                <div class="bg-gray-800 p-6 rounded-lg border border-slate-700">
                      <h3 class="text-xl font-bold text-white mb-4">Projetos do Portfólio</h3>
                      <div id="projects-container" class="space-y-6">
                          <!-- Projetos serão renderizados aqui -->
                      </div>
-                     <button id="add-project-btn" class="mt-6 bg-indigo-600 hover:bg-indigo-700 text-white font-bold py-2 px-4 rounded-md">Adicionar Novo Projeto</button>
+                     <button id="add-project-btn" class="mt-6 bg-indigo-600 hover:bg-indigo-700 text-white font-bold py-2 px-4 rounded-md button-glow">Adicionar Novo Projeto</button>
                 </div>
             </div>
 
              <div class="mt-8 text-right">
-                <button id="save-changes-btn" class="bg-green-600 hover:bg-green-700 text-white font-bold py-3 px-6 rounded-md text-lg">Salvar Alterações</button>
+                <button id="save-changes-btn" class="bg-green-600 hover:bg-green-700 text-white font-bold py-3 px-6 rounded-md text-lg button-glow">Salvar Alterações</button>
             </div>
              <p id="save-feedback" class="text-green-400 text-right mt-4 hidden">Alterações salvas com sucesso!</p>
         </div>
     </div>
 
     <!-- Modal para exibir o trabalho -->
-    <div id="modal" class="fixed inset-0 bg-black bg-opacity-80 flex justify-center items-center p-4 z-50 opacity-0 pointer-events-none">
+    <div id="modal" class="fixed inset-0 bg-black bg-opacity-80 flex justify-center items-center p-4 z-50 opacity-0 pointer-events-none backdrop-blur-sm">
         <!-- Fundo clicável para fechar -->
         <div id="modal-close-bg" class="absolute inset-0"></div>
         <!-- Conteúdo do Modal -->
-        <div id="modal-content" class="bg-gray-800 rounded-lg shadow-2xl w-full max-w-4xl max-h-[90vh] overflow-y-auto relative transform scale-95 transition-transform duration-300"></div>
+        <div id="modal-content" class="bg-gray-800/80 backdrop-blur-lg border border-slate-700 rounded-lg shadow-2xl w-full max-w-4xl max-h-[90vh] overflow-y-auto relative transform scale-95 transition-transform duration-300"></div>
     </div>
 
     <script>
@@ -246,13 +260,14 @@
             gallery.innerHTML = '';
             const activeProjects = portfolioData.projects.filter(p => p.enabled && p.title && p.thumbnail && p.source);
             
-            activeProjects.forEach((project, index) => {
+            activeProjects.forEach((project) => {
                 const projectElement = document.createElement('div');
-                projectElement.className = 'group cursor-pointer';
+                projectElement.className = 'group cursor-pointer rounded-lg transition-all duration-300 hover:!opacity-100 group-hover:opacity-50 hover:scale-105 hover:shadow-2xl hover:shadow-indigo-500/20';
                 projectElement.innerHTML = `
-                    <div class="relative overflow-hidden rounded-lg aspect-w-16 aspect-h-9">
+                    <div class="relative overflow-hidden rounded-lg aspect-w-16 aspect-h-9 ring-1 ring-slate-800 group-hover:ring-indigo-500 transition-all duration-300">
                         <img src="${project.thumbnail}" alt="${project.title}" class="w-full h-full object-cover transform group-hover:scale-105 transition-transform duration-300">
-                        <div class="absolute inset-0 bg-black bg-opacity-40 flex items-end p-4">
+                        <div class="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent"></div>
+                        <div class="absolute bottom-0 left-0 p-4">
                             <h4 class="text-white text-lg font-bold">${project.title}</h4>
                         </div>
                     </div>
@@ -505,4 +520,5 @@
     </script>
 </body>
 </html>
+
 
