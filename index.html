@@ -1,140 +1,506 @@
 <!DOCTYPE html>
-<html lang="pt-br">
+<html lang="pt-BR">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Sua Landing Page Incrível</title>
+    <title>Seu Nome | Portfólio Audiovisual</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Google Fonts: Inter -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700;800&display=swap" rel="stylesheet">
+    <!-- Ícones (Feather Icons) -->
+    <script src="https://unpkg.com/feather-icons"></script>
+
     <style>
-        /* Estilos básicos para a página */
+        /* Estilo base para a fonte e cores */
         body {
-            font-family: Arial, sans-serif;
-            margin: 0;
-            padding: 0;
-            background-color: #f4f4f4;
-            color: #333;
+            font-family: 'Inter', sans-serif;
+            background-color: #111827; /* Fundo cinza escuro */
+            color: #E5E7EB; /* Texto cinza claro */
         }
-
-        .hero {
-            background: #007bff;
-            color: white;
-            padding: 100px 20px;
-            text-align: center;
+        /* Efeito de transição suave para o modal */
+        #modal {
+            transition: opacity 0.3s ease-in-out;
         }
-
-        .hero h1 {
-            font-size: 3em;
-            margin-bottom: 10px;
+        /* Estilo para a barra de rolagem (opcional, mas melhora o visual) */
+        ::-webkit-scrollbar {
+            width: 8px;
         }
-
-        .hero p {
-            font-size: 1.2em;
+        ::-webkit-scrollbar-track {
+            background: #1F2937;
         }
-
-        .cta-button {
-            background-color: #ffc107;
-            color: #333;
-            padding: 15px 30px;
-            text-decoration: none;
-            border-radius: 5px;
-            font-weight: bold;
-            display: inline-block;
-            margin-top: 20px;
+        ::-webkit-scrollbar-thumb {
+            background: #4B5563;
+            border-radius: 10px;
         }
-
-        .container {
-            max-width: 960px;
-            margin: 40px auto;
-            padding: 20px;
-            background: white;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        ::-webkit-scrollbar-thumb:hover {
+            background: #6B7280;
         }
-
-        .features {
-            display: flex;
-            justify-content: space-around;
-            text-align: center;
-            margin-top: 40px;
+        /* Estilo para o vídeo responsivo dentro do modal */
+        .video-container {
+            position: relative;
+            padding-bottom: 56.25%; /* Proporção 16:9 */
+            height: 0;
+            overflow: hidden;
+            max-width: 100%;
+            background: #000;
         }
-
-        .feature-item {
-            width: 30%;
-            padding: 20px;
+        .video-container iframe {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
         }
-
-        .footer {
-            text-align: center;
-            padding: 20px;
-            background-color: #333;
-            color: white;
-            margin-top: 40px;
+        .admin-input {
+            @apply w-full p-2 bg-gray-700 border border-gray-600 rounded-md focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 transition;
         }
-
-        /* Responsividade básica */
-        @media (max-width: 768px) {
-            .features {
-                flex-direction: column;
-            }
-            .feature-item {
-                width: 100%;
-                margin-bottom: 20px;
-            }
+        .admin-label {
+            @apply block text-sm font-medium text-gray-300 mb-1;
         }
     </style>
 </head>
-<body>
+<body class="antialiased">
 
-    <header class="hero">
-        <h1>Título Chamativo da Sua Landing Page</h1>
-        <p>Subtítulo que descreve o produto ou serviço de forma clara e concisa.</p>
-        <a href="#formulario" class="cta-button">Chamada para Ação!</a>
-    </header>
+    <!-- Container da Página Pública (Portfólio) -->
+    <div id="portfolio-view">
+        <div class="container mx-auto max-w-5xl px-6 py-12 md:py-20">
+            <header class="flex flex-col md:flex-row items-center md:items-start gap-8 md:gap-12">
+                <div class="w-48 h-48 md:w-56 md:h-56 flex-shrink-0">
+                    <img id="profile-pic" src="https://placehold.co/400x400/1F2937/E5E7EB?text=Sua+Foto" alt="Foto de perfil" class="rounded-full object-cover w-full h-full shadow-lg border-4 border-gray-700">
+                </div>
+                <div class="text-center md:text-left">
+                    <h1 id="profile-name" class="text-4xl md:text-5xl font-extrabold text-white">Seu Nome Aqui</h1>
+                    <h2 id="profile-role" class="text-xl md:text-2xl font-medium text-indigo-400 mt-2">Editor de Vídeo & Videomaker</h2>
+                    <p id="profile-bio" class="mt-6 text-lg text-gray-300 leading-relaxed">
+                        Olá! Sou um criador de conteúdo audiovisual apaixonado por contar histórias que cativam, educam e inspiram. Com mais de 5 anos de experiência, especializei-me em edição de vídeo, motion graphics e direção de fotografia. Meu objetivo é transformar ideias em peças visuais impactantes e memoráveis.
+                    </p>
+                    <div class="mt-8 flex flex-col sm:flex-row justify-center md:justify-start items-center gap-6">
+                        <a id="profile-email" href="mailto:seuemail@exemplo.com" class="flex items-center gap-3 text-lg hover:text-indigo-400 transition-colors duration-300">
+                            <i data-feather="mail" class="w-6 h-6"></i>
+                            <span id="profile-email-text">seuemail@exemplo.com</span>
+                        </a>
+                        <a id="profile-whatsapp" href="https://wa.me/5511999999999" target="_blank" class="flex items-center gap-3 text-lg hover:text-indigo-400 transition-colors duration-300">
+                            <i data-feather="message-circle" class="w-6 h-6"></i>
+                            <span>WhatsApp</span>
+                        </a>
+                    </div>
+                </div>
+            </header>
+            <main class="mt-20">
+                <h3 class="text-3xl font-bold text-center text-white mb-12">Portfólio</h3>
+                <div id="gallery" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+                    <!-- Os projetos serão inseridos aqui pelo JavaScript -->
+                </div>
+            </main>
+        </div>
+    </div>
 
-    <section class="container">
-        <h2>Por que nos escolher?</h2>
-        <div class="features">
-            <div class="feature-item">
-                <h3>Recurso 1</h3>
-                <p>Descreva o primeiro benefício de forma detalhada e atraente para o usuário.</p>
-            </div>
-            <div class="feature-item">
-                <h3>Recurso 2</h3>
-                <p>Explique o segundo benefício, focando no valor que ele agrega ao cliente.</p>
-            </div>
-            <div class="feature-item">
-                <h3>Recurso 3</h3>
-                <p>Apresente o terceiro benefício, reforçando o motivo pelo qual ele é importante.</p>
+    <!-- Container da Página de Administração -->
+    <div id="admin-view" class="hidden">
+        <!-- Tela de Login -->
+        <div id="login-screen" class="min-h-screen flex items-center justify-center">
+            <div class="bg-gray-800 p-8 rounded-lg shadow-xl w-full max-w-sm">
+                <h2 class="text-2xl font-bold text-center text-white mb-6">Acesso Administrativo</h2>
+                <form id="login-form">
+                    <div>
+                        <label for="password" class="admin-label">Senha</label>
+                        <input type="password" id="password" class="admin-input" required>
+                    </div>
+                    <p id="login-error" class="text-red-400 text-sm mt-2 hidden">Senha incorreta.</p>
+                    <button type="submit" class="w-full bg-indigo-600 hover:bg-indigo-700 text-white font-bold py-2 px-4 rounded-md mt-6 transition-colors">Entrar</button>
+                </form>
             </div>
         </div>
-    </section>
 
-    <section class="container">
-        <h2>O que nossos clientes dizem</h2>
-        <blockquote>
-            <p>"Essa é a melhor solução que já encontrei! O serviço é incrível e superou todas as minhas expectativas."</p>
-            <cite>— Nome do Cliente</cite>
-        </blockquote>
-    </section>
+        <!-- Painel de Administração -->
+        <div id="admin-panel" class="hidden container mx-auto max-w-5xl px-6 py-12">
+            <div class="flex justify-between items-center mb-8">
+                <h2 class="text-3xl font-bold text-white">Painel de Administração</h2>
+                <button id="logout-btn" class="bg-red-600 hover:bg-red-700 text-white font-bold py-2 px-4 rounded-md transition-colors">Sair</button>
+            </div>
 
-    <section class="container" id="formulario">
-        <h2>Entre em Contato</h2>
-        <p>Preencha o formulário abaixo para saber mais ou agendar uma demonstração.</p>
-        <form action="#" method="post">
-            <label for="nome">Nome:</label><br>
-            <input type="text" id="nome" name="nome" required><br><br>
+            <!-- Seção de Backup -->
+            <div class="bg-gray-800 p-6 rounded-lg mb-8">
+                <h3 class="text-xl font-bold text-white mb-4">Backup e Restauração</h3>
+                <p class="text-gray-400 mb-4">Os dados são salvos no seu navegador. Use os botões abaixo para criar ou restaurar um backup em arquivo (.json).</p>
+                <div class="flex gap-4">
+                    <button id="export-json-btn" class="bg-green-600 hover:bg-green-700 text-white font-bold py-2 px-4 rounded-md">Exportar JSON</button>
+                    <label class="bg-blue-600 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-md cursor-pointer">
+                        <span>Importar JSON</span>
+                        <input type="file" id="import-json-input" class="hidden" accept=".json">
+                    </label>
+                </div>
+            </div>
+
+            <!-- Formulário Principal -->
+            <div class="space-y-8">
+                <div class="bg-gray-800 p-6 rounded-lg">
+                    <h3 class="text-xl font-bold text-white mb-4">Informações Principais</h3>
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                        <div>
+                            <label for="admin-name" class="admin-label">Seu Nome</label>
+                            <input type="text" id="admin-name" class="admin-input">
+                        </div>
+                        <div>
+                            <label for="admin-role" class="admin-label">Sua Profissão</label>
+                            <input type="text" id="admin-role" class="admin-input">
+                        </div>
+                        <div class="md:col-span-2">
+                             <label for="admin-pic" class="admin-label">URL da sua Foto</label>
+                            <input type="text" id="admin-pic" class="admin-input">
+                        </div>
+                         <div class="md:col-span-2">
+                            <label for="admin-bio" class="admin-label">Sua Pequena História (Bio)</label>
+                            <textarea id="admin-bio" rows="4" class="admin-input"></textarea>
+                        </div>
+                        <div>
+                            <label for="admin-email" class="admin-label">E-mail</label>
+                            <input type="email" id="admin-email" class="admin-input">
+                        </div>
+                        <div>
+                            <label for="admin-whatsapp" class="admin-label">Link do WhatsApp (completo)</label>
+                            <input type="text" id="admin-whatsapp" class="admin-input" placeholder="https://wa.me/SEUNUMERO">
+                        </div>
+                    </div>
+                </div>
+
+                <div class="bg-gray-800 p-6 rounded-lg">
+                     <h3 class="text-xl font-bold text-white mb-4">Projetos do Portfólio</h3>
+                     <div id="projects-container" class="space-y-6">
+                         <!-- Projetos serão renderizados aqui -->
+                     </div>
+                     <button id="add-project-btn" class="mt-6 bg-indigo-600 hover:bg-indigo-700 text-white font-bold py-2 px-4 rounded-md">Adicionar Novo Projeto</button>
+                </div>
+            </div>
+
+             <div class="mt-8 text-right">
+                <button id="save-changes-btn" class="bg-green-600 hover:bg-green-700 text-white font-bold py-3 px-6 rounded-md text-lg">Salvar Alterações</button>
+            </div>
+             <p id="save-feedback" class="text-green-400 text-right mt-4 hidden">Alterações salvas com sucesso!</p>
+        </div>
+    </div>
+
+    <!-- Modal para exibir o trabalho (sem alterações) -->
+    <div id="modal" class="fixed inset-0 bg-black bg-opacity-80 flex justify-center items-center p-4 z-50 opacity-0 pointer-events-none">
+        <div id="modal-content" class="bg-gray-800 rounded-lg shadow-2xl w-full max-w-4xl max-h-[90vh] overflow-y-auto relative transform scale-95 transition-transform duration-300"></div>
+        <div id="modal-close-bg" class="absolute inset-0"></div>
+    </div>
+
+    <script>
+        // --- INÍCIO DA LÓGICA DO SITE ---
+
+        // Senha de administração
+        const ADMIN_PASSWORD = "Algoritimobadass1986";
+
+        // Estrutura de dados padrão
+        const defaultData = {
+            profile: {
+                name: "Seu Nome Aqui",
+                role: "Editor de Vídeo & Videomaker",
+                pic: "https://placehold.co/400x400/1F2937/E5E7EB?text=Sua+Foto",
+                bio: "Olá! Sou um criador de conteúdo audiovisual apaixonado por contar histórias que cativam, educam e inspiram. Com mais de 5 anos de experiência, especializei-me em edição de vídeo, motion graphics e direção de fotografia. Meu objetivo é transformar ideias em peças visuais impactantes e memoráveis.",
+                email: "seuemail@exemplo.com",
+                whatsapp: "https://wa.me/5511999999999"
+            },
+            projects: [
+                {
+                    enabled: true,
+                    title: "Videoclipe - Artista Incrível",
+                    thumbnail: "https://placehold.co/600x400/3B82F6/FFFFFF?text=Videoclipe",
+                    description: "Direção e edição para o videoclipe 'Canção Fictícia'. O objetivo era criar uma atmosfera sonhadora e nostálgica, utilizando técnicas de color grading e sobreposição de imagens para complementar a melodia.",
+                    type: "video",
+                    source: "https://www.youtube.com/embed/dQw4w9WgXcQ"
+                },
+                {
+                    enabled: true,
+                    title: "Ensaio Fotográfico - Moda Urbana",
+                    thumbnail: "https://placehold.co/600x400/EC4899/FFFFFF?text=Fotografia",
+                    description: "Sessão de fotos para a campanha de lançamento da marca 'UrbanStyle'. O foco foi capturar a energia e a atitude da moda de rua em um ambiente urbano e dinâmico.",
+                    type: "image",
+                    source: "https://placehold.co/1200x800/EC4899/FFFFFF?text=Foto+em+Alta+Resolução"
+                }
+            ]
+        };
+
+        let portfolioData;
+
+        // --- FUNÇÕES DE RENDERIZAÇÃO ---
+
+        function renderPortfolio() {
+            // Renderiza informações do perfil
+            document.getElementById('profile-pic').src = portfolioData.profile.pic || defaultData.profile.pic;
+            document.getElementById('profile-name').textContent = portfolioData.profile.name;
+            document.getElementById('profile-role').textContent = portfolioData.profile.role;
+            document.getElementById('profile-bio').textContent = portfolioData.profile.bio;
+            document.getElementById('profile-email').href = `mailto:${portfolioData.profile.email}`;
+            document.getElementById('profile-email-text').textContent = portfolioData.profile.email;
+            document.getElementById('profile-whatsapp').href = portfolioData.profile.whatsapp;
+
+            // Renderiza a galeria
+            const gallery = document.getElementById('gallery');
+            gallery.innerHTML = '';
+            const activeProjects = portfolioData.projects.filter(p => p.enabled && p.title && p.thumbnail && p.source);
             
-            <label for="email">E-mail:</label><br>
-            <input type="email" id="email" name="email" required><br><br>
+            activeProjects.forEach((project, index) => {
+                const projectElement = document.createElement('div');
+                projectElement.className = 'group cursor-pointer';
+                projectElement.innerHTML = `
+                    <div class="relative overflow-hidden rounded-lg aspect-w-16 aspect-h-9">
+                        <img src="${project.thumbnail}" alt="${project.title}" class="w-full h-full object-cover transform group-hover:scale-105 transition-transform duration-300">
+                        <div class="absolute inset-0 bg-black bg-opacity-40 flex items-end p-4">
+                            <h4 class="text-white text-lg font-bold">${project.title}</h4>
+                        </div>
+                    </div>
+                `;
+                projectElement.addEventListener('click', () => openModal(project));
+                gallery.appendChild(projectElement);
+            });
+            feather.replace();
+        }
 
-            <label for="mensagem">Mensagem:</label><br>
-            <textarea id="mensagem" name="mensagem" rows="4"></textarea><br><br>
+        function renderAdminPanel() {
+            // Renderiza informações do perfil no admin
+            document.getElementById('admin-name').value = portfolioData.profile.name;
+            document.getElementById('admin-role').value = portfolioData.profile.role;
+            document.getElementById('admin-pic').value = portfolioData.profile.pic;
+            document.getElementById('admin-bio').value = portfolioData.profile.bio;
+            document.getElementById('admin-email').value = portfolioData.profile.email;
+            document.getElementById('admin-whatsapp').value = portfolioData.profile.whatsapp;
+
+            // Renderiza projetos no admin
+            const projectsContainer = document.getElementById('projects-container');
+            projectsContainer.innerHTML = '';
+            portfolioData.projects.forEach((project, index) => {
+                const projectEl = document.createElement('div');
+                projectEl.className = 'border border-gray-700 p-4 rounded-lg';
+                projectEl.innerHTML = `
+                    <div class="flex justify-between items-center mb-4">
+                         <h4 class="text-lg font-bold text-white">Projeto ${index + 1}</h4>
+                         <div class="flex items-center gap-4">
+                            <label class="flex items-center cursor-pointer">
+                                <span class="mr-2 text-sm">Habilitado</span>
+                                <input type="checkbox" data-index="${index}" class="admin-project-enabled" ${project.enabled ? 'checked' : ''}>
+                            </label>
+                            <button data-index="${index}" class="remove-project-btn text-red-400 hover:text-red-600">&times; Remover</button>
+                         </div>
+                    </div>
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                        <div>
+                            <label class="admin-label">Título</label>
+                            <input type="text" data-index="${index}" value="${project.title}" class="admin-input admin-project-title">
+                        </div>
+                         <div>
+                            <label class="admin-label">Tipo (video/image)</label>
+                            <select data-index="${index}" class="admin-input admin-project-type">
+                                <option value="video" ${project.type === 'video' ? 'selected' : ''}>Vídeo</option>
+                                <option value="image" ${project.type === 'image' ? 'selected' : ''}>Imagem</option>
+                            </select>
+                        </div>
+                        <div class="md:col-span-2">
+                            <label class="admin-label">URL da Miniatura (Thumbnail)</label>
+                            <input type="text" data-index="${index}" value="${project.thumbnail}" class="admin-input admin-project-thumbnail">
+                        </div>
+                        <div class="md:col-span-2">
+                            <label class="admin-label">URL do Conteúdo (Embed do Youtube ou Imagem)</label>
+                            <input type="text" data-index="${index}" value="${project.source}" class="admin-input admin-project-source">
+                        </div>
+                        <div class="md:col-span-2">
+                            <label class="admin-label">Descrição</label>
+                            <textarea rows="3" data-index="${index}" class="admin-input admin-project-description">${project.description}</textarea>
+                        </div>
+                    </div>
+                `;
+                projectsContainer.appendChild(projectEl);
+            });
+             // Adiciona eventos aos botões de remover
+            document.querySelectorAll('.remove-project-btn').forEach(btn => {
+                btn.onclick = (e) => {
+                    const index = parseInt(e.target.dataset.index, 10);
+                    if (confirm(`Tem certeza que deseja remover o Projeto ${index + 1}?`)) {
+                        portfolioData.projects.splice(index, 1);
+                        renderAdminPanel();
+                    }
+                };
+            });
+        }
+        
+        // --- FUNÇÕES DE DADOS E LÓGICA ---
+        function loadData() {
+            const savedData = localStorage.getItem('portfolioData');
+            portfolioData = savedData ? JSON.parse(savedData) : JSON.parse(JSON.stringify(defaultData)); // Deep copy
+        }
+
+        function saveData() {
+            // Salva perfil
+            portfolioData.profile.name = document.getElementById('admin-name').value;
+            portfolioData.profile.role = document.getElementById('admin-role').value;
+            portfolioData.profile.pic = document.getElementById('admin-pic').value;
+            portfolioData.profile.bio = document.getElementById('admin-bio').value;
+            portfolioData.profile.email = document.getElementById('admin-email').value;
+            portfolioData.profile.whatsapp = document.getElementById('admin-whatsapp').value;
             
-            <button type="submit" class="cta-button">Enviar</button>
-        </form>
-    </section>
+            // Salva projetos
+            document.querySelectorAll('.admin-project-title').forEach((el, i) => {
+                 portfolioData.projects[i].title = el.value;
+                 portfolioData.projects[i].type = document.querySelectorAll('.admin-project-type')[i].value;
+                 portfolioData.projects[i].thumbnail = document.querySelectorAll('.admin-project-thumbnail')[i].value;
+                 portfolioData.projects[i].source = document.querySelectorAll('.admin-project-source')[i].value;
+                 portfolioData.projects[i].description = document.querySelectorAll('.admin-project-description')[i].value;
+                 portfolioData.projects[i].enabled = document.querySelectorAll('.admin-project-enabled')[i].checked;
+            });
 
-    <footer class="footer">
-        <p>&copy; 2025 Sua Empresa. Todos os direitos reservados.</p>
-    </footer>
+            localStorage.setItem('portfolioData', JSON.stringify(portfolioData));
+            
+            const feedback = document.getElementById('save-feedback');
+            feedback.classList.remove('hidden');
+            setTimeout(() => feedback.classList.add('hidden'), 3000);
+        }
 
+        function handleRouteChange() {
+            const hash = window.location.hash;
+            const portfolioView = document.getElementById('portfolio-view');
+            const adminView = document.getElementById('admin-view');
+            const loginScreen = document.getElementById('login-screen');
+            const adminPanel = document.getElementById('admin-panel');
+
+            if (hash === '#admin') {
+                portfolioView.classList.add('hidden');
+                adminView.classList.remove('hidden');
+                if (sessionStorage.getItem('isAdmin') === 'true') {
+                    loginScreen.classList.add('hidden');
+                    adminPanel.classList.remove('hidden');
+                    renderAdminPanel();
+                } else {
+                    loginScreen.classList.remove('hidden');
+                    adminPanel.classList.add('hidden');
+                }
+            } else {
+                portfolioView.classList.remove('hidden');
+                adminView.classList.add('hidden');
+                loadData();
+                renderPortfolio();
+            }
+        }
+        
+        function openModal(project) {
+            const modal = document.getElementById('modal');
+            const modalContent = document.getElementById('modal-content');
+            let mediaHtml = '';
+
+            if (project.type === 'video') {
+                mediaHtml = `<div class="video-container rounded-t-lg"><iframe src="${project.source}" frameborder="0" allow="autoplay; fullscreen; picture-in-picture" allowfullscreen></iframe></div>`;
+            } else {
+                mediaHtml = `<img src="${project.source}" alt="${project.title}" class="w-full h-auto object-contain rounded-t-lg">`;
+            }
+
+            modalContent.innerHTML = `
+                <button id="modal-close-btn" class="absolute top-3 right-3 text-white bg-black bg-opacity-50 rounded-full p-1 hover:bg-opacity-75 z-20"><i data-feather="x" class="w-6 h-6"></i></button>
+                ${mediaHtml}
+                <div class="p-6 md:p-8">
+                    <h3 class="text-2xl font-bold text-white">${project.title}</h3>
+                    <p class="mt-4 text-gray-300 text-base leading-relaxed">${project.description}</p>
+                </div>
+            `;
+            feather.replace();
+            document.getElementById('modal-close-btn').addEventListener('click', closeModal);
+            modal.classList.remove('opacity-0', 'pointer-events-none');
+            document.body.style.overflow = 'hidden';
+            modalContent.classList.remove('scale-95');
+        }
+
+        function closeModal() {
+            const modal = document.getElementById('modal');
+            const modalContent = document.getElementById('modal-content');
+            modal.classList.add('opacity-0', 'pointer-events-none');
+            document.body.style.overflow = 'auto';
+            modalContent.classList.add('scale-95');
+            setTimeout(() => { modalContent.innerHTML = ''; }, 300);
+        }
+
+        // --- INICIALIZAÇÃO E EVENTOS ---
+
+        document.addEventListener('DOMContentLoaded', () => {
+            loadData();
+            handleRouteChange();
+            window.addEventListener('hashchange', handleRouteChange);
+
+            // Eventos do Modal
+            document.getElementById('modal-close-bg').addEventListener('click', closeModal);
+            document.addEventListener('keydown', (e) => { if (e.key === 'Escape') closeModal(); });
+
+            // Eventos de Login/Admin
+            document.getElementById('login-form').addEventListener('submit', (e) => {
+                e.preventDefault();
+                const password = document.getElementById('password').value;
+                const errorEl = document.getElementById('login-error');
+                if (password === ADMIN_PASSWORD) {
+                    sessionStorage.setItem('isAdmin', 'true');
+                    errorEl.classList.add('hidden');
+                    handleRouteChange();
+                } else {
+                    errorEl.classList.remove('hidden');
+                }
+            });
+
+            document.getElementById('logout-btn').addEventListener('click', () => {
+                sessionStorage.removeItem('isAdmin');
+                window.location.hash = '';
+            });
+
+            document.getElementById('add-project-btn').addEventListener('click', () => {
+                portfolioData.projects.push({
+                    enabled: false,
+                    title: "",
+                    thumbnail: "",
+                    description: "",
+                    type: "video",
+                    source: ""
+                });
+                renderAdminPanel();
+            });
+
+            document.getElementById('save-changes-btn').addEventListener('click', () => {
+                saveData();
+                alert('Alterações salvas! A página principal será atualizada.');
+            });
+
+            // Eventos de Export/Import JSON
+            document.getElementById('export-json-btn').addEventListener('click', () => {
+                const dataStr = JSON.stringify(portfolioData, null, 2);
+                const dataUri = 'data:application/json;charset=utf-8,'+ encodeURIComponent(dataStr);
+                const exportFileDefaultName = 'portfolio_backup.json';
+                let linkElement = document.createElement('a');
+                linkElement.setAttribute('href', dataUri);
+                linkElement.setAttribute('download', exportFileDefaultName);
+                linkElement.click();
+            });
+
+            document.getElementById('import-json-input').addEventListener('change', (event) => {
+                const file = event.target.files[0];
+                if (!file) return;
+                const reader = new FileReader();
+                reader.onload = function(e) {
+                    try {
+                        const importedData = JSON.parse(e.target.result);
+                        if(importedData.profile && importedData.projects) {
+                           portfolioData = importedData;
+                           renderAdminPanel();
+                           alert('Dados importados com sucesso! Clique em "Salvar Alterações" para confirmar.');
+                        } else {
+                           alert('Arquivo JSON inválido. A estrutura esperada não foi encontrada.');
+                        }
+                    } catch (error) {
+                        alert('Erro ao ler o arquivo JSON. Verifique o formato do arquivo.');
+                    }
+                };
+                reader.readAsText(file);
+                event.target.value = ''; // Limpa o input para permitir re-importar o mesmo arquivo
+            });
+        });
+    </script>
 </body>
 </html>
+
