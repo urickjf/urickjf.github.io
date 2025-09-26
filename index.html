@@ -4,6 +4,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Seu Nome | Portfólio Audiovisual</title>
+    <!-- Favicon dinâmico (será atualizado pelo JS) -->
+    <link id="favicon" rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🎬</text></svg>">
     <!-- Tailwind CSS CDN -->
     <script src="https://cdn.tailwindcss.com"></script>
     <!-- Google Fonts: Inter -->
@@ -16,7 +18,7 @@
     <style>
         textarea {
             resize: vertical;
-	        color: #000 !important;
+            color: #000 !important;
         }
         .admin-input {
             color: #000 !important;
@@ -86,7 +88,7 @@
             z-index: 10;
         }
 
-        /* NOVOS Estilos das Miniaturas do Slider */
+        /* Estilos das Miniaturas do Slider */
         .slider-thumbnails {
             display: flex;
             gap: 0.5rem; /* 8px */
@@ -128,7 +130,6 @@
 
     <!-- Container da Página Pública (Portfólio) -->
     <div id="portfolio-view">
-        <!-- ... (código do portfólio público - sem alterações aqui) ... -->
         <div class="container mx-auto max-w-5xl px-6 py-12 md:py-20">
             <header class="flex flex-col md:flex-row items-center md:items-start gap-8 md:gap-12">
                 <div class="w-48 h-48 md:w-56 md:h-56 flex-shrink-0">
@@ -163,7 +164,6 @@
 
     <!-- Container da Página de Administração -->
     <div id="admin-view" class="hidden">
-        <!-- ... (código do login e painel admin - sem alterações aqui) ... -->
         <div id="login-screen" class="min-h-screen flex items-center justify-center">
             <div class="bg-gray-800 p-8 rounded-lg shadow-xl w-full max-w-sm border border-slate-700">
                 <h2 class="text-2xl font-bold text-center text-white mb-6">Acesso Administrativo</h2>
@@ -209,6 +209,10 @@
                              <label for="admin-pic" class="admin-label">URL da sua Foto</label>
                             <input type="text" id="admin-pic" class="admin-input">
                         </div>
+                        <div class="md:col-span-2">
+                            <label for="admin-favicon" class="admin-label">URL do Favicon</label>
+                            <input type="text" id="admin-favicon" class="admin-input" placeholder="Link para .ico, .png, .svg ou Base64">
+                        </div>
                          <div class="md:col-span-2">
                             <label for="admin-bio" class="admin-label">Sua Pequena História (Bio)</label>
                             <textarea id="admin-bio" rows="4" class="admin-input"></textarea>
@@ -250,7 +254,9 @@
         const ADMIN_PASSWORD = "Algoritimobadass1986";
 
         const defaultData = {
-            profile: { /* ... dados do perfil ... */ },
+            profile: {
+                favicon: "data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🎬</text></svg>"
+            },
             projects: [
                 {
                     enabled: true,
@@ -258,7 +264,7 @@
                     thumbnail: "https://placehold.co/600x400/3B82F6/FFFFFF?text=Videoclipe",
                     description: "Direção e edição para o videoclipe 'Canção Fictícia'.",
                     type: "video",
-                    source: "https://www.youtube.com/embed/dQw4w9WgXcQ"
+                    source: ["https://www.youtube.com/embed/dQw4w9WgXcQ"]
                 },
                 {
                     enabled: true,
@@ -276,6 +282,27 @@
         };
 
         let portfolioData;
+        
+        // --- FUNÇÕES DE LÓGICA E UTILIDADES ---
+
+        function getYoutubeThumbnailUrl(url) {
+            if (typeof url !== 'string' || !url) return 'https://placehold.co/128x72/1F2937/E5E7EB?text=Video';
+            try {
+                const urlObj = new URL(url);
+                if (urlObj.hostname.includes('youtube.com') || urlObj.hostname.includes('youtu.be')) {
+                    const videoId = urlObj.pathname.split('/').pop();
+                    if (videoId) {
+                        return `https://img.youtube.com/vi/${videoId}/mqdefault.jpg`;
+                    }
+                }
+            } catch (e) { /* URL inválida, ignora */ }
+            return 'https://placehold.co/128x72/1F2937/E5E7EB?text=Video';
+        }
+
+        function updateFavicon() {
+            const faviconUrl = portfolioData.profile.favicon || defaultData.profile.favicon;
+            document.getElementById('favicon').href = faviconUrl;
+        }
 
         // --- FUNÇÕES DE RENDERIZAÇÃO DO PORTFÓLIO E MODAL ---
 
@@ -293,7 +320,7 @@
             const gallery = document.getElementById('gallery');
             gallery.innerHTML = '';
             const activeProjects = portfolioData.projects.filter(p => {
-                const hasSource = p.type === 'video' ? p.source : (Array.isArray(p.source) && p.source.length > 0 && p.source[0]);
+                const hasSource = Array.isArray(p.source) && p.source.length > 0 && p.source[0];
                 return p.enabled && p.title && p.thumbnail && hasSource;
             });
             
@@ -318,38 +345,35 @@
         function openModal(project) {
             const modal = document.getElementById('modal');
             const modalContent = document.getElementById('modal-content');
-            let mediaHtml = '';
-            let thumbnailsHtml = '';
+            
+            if (!Array.isArray(project.source) || project.source.length === 0) return;
 
-            if (project.type === 'video') {
-                mediaHtml = `<div class="media-container rounded-t-lg"><iframe src="${project.source}" frameborder="0" allow="autoplay; fullscreen; picture-in-picture" allowfullscreen></iframe></div>`;
-            } else if (project.type === 'image' && Array.isArray(project.source) && project.source.length > 0) {
-                // ESTRUTURA DO SLIDER
-                mediaHtml = `
-                    <div class="media-container rounded-t-lg">
-                        <img id="slider-image" src="${project.source[0]}" alt="${project.title}" class="transition-opacity duration-300">
-                        ${project.source.length > 1 ? `
-                        <button id="slider-prev" class="slider-btn prev"><i data-feather="chevron-left" class="w-6 h-6"></i></button>
-                        <button id="slider-next" class="slider-btn next"><i data-feather="chevron-right" class="w-6 h-6"></i></button>
-                        <div id="slider-counter" class="slider-counter">1 / ${project.source.length}</div>
-                        ` : ''}
-                    </div>`;
+            const isVideo = project.type === 'video';
+            
+            const mediaHtml = `
+                <div id="media-player" class="media-container rounded-t-lg">
+                    <!-- O player (img ou iframe) será inserido aqui pelo JS -->
+                </div>
+                ${project.source.length > 1 ? `
+                <button id="slider-prev" class="slider-btn prev"><i data-feather="chevron-left" class="w-6 h-6"></i></button>
+                <button id="slider-next" class="slider-btn next"><i data-feather="chevron-right" class="w-6 h-6"></i></button>
+                <div id="slider-counter" class="slider-counter">1 / ${project.source.length}</div>
+                ` : ''}
+            `;
                 
-                // ESTRUTURA DAS MINIATURAS
-                if (project.source.length > 1) {
-                    thumbnailsHtml = `
-                        <div class="slider-thumbnails">
-                            ${project.source.map((src, index) => `
-                                <img src="${src}" class="slider-thumbnail" data-index="${index}" alt="Miniatura ${index + 1}">
-                            `).join('')}
-                        </div>
-                    `;
-                }
-            }
+            const thumbnailsHtml = project.source.length > 1 ? `
+                <div class="slider-thumbnails">
+                    ${project.source.map((src, index) => {
+                        const thumbSrc = isVideo ? getYoutubeThumbnailUrl(src) : src;
+                        return `<img src="${thumbSrc}" class="slider-thumbnail" data-index="${index}" alt="Miniatura ${index + 1}">`;
+                    }).join('')}
+                </div>` : '';
 
             modalContent.innerHTML = `
-                <button id="modal-close-btn" class="absolute top-3 right-3 text-white bg-black bg-opacity-50 rounded-full p-1 hover:bg-opacity-75 z-20"><i data-feather="x" class="w-6 h-6"></i></button>
-                ${mediaHtml}
+                <div class="relative">
+                    <button id="modal-close-btn" class="absolute top-3 right-3 text-white bg-black bg-opacity-50 rounded-full p-1 hover:bg-opacity-75 z-20"><i data-feather="x" class="w-6 h-6"></i></button>
+                    ${mediaHtml}
+                </div>
                 <div class="p-6 md:p-8">
                     ${thumbnailsHtml}
                     <h3 class="text-2xl font-bold text-white mt-4">${project.title}</h3>
@@ -360,10 +384,10 @@
             feather.replace();
             document.getElementById('modal-close-btn').addEventListener('click', closeModal);
 
-            // LÓGICA DO SLIDER COM MINIATURAS
-            if (project.type === 'image' && project.source.length > 1) {
+            // LÓGICA DO SLIDER UNIFICADA
+            if (project.source.length > 1) {
                 let currentIndex = 0;
-                const imageEl = document.getElementById('slider-image');
+                const playerEl = document.getElementById('media-player');
                 const counterEl = document.getElementById('slider-counter');
                 const prevBtn = document.getElementById('slider-prev');
                 const nextBtn = document.getElementById('slider-next');
@@ -375,33 +399,38 @@
                     });
                 };
 
-                const showImage = (index) => {
+                const showItem = (index) => {
                     currentIndex = index;
-                    imageEl.style.opacity = '0';
-                    setTimeout(() => {
-                        imageEl.src = project.source[index];
-                        imageEl.style.opacity = '1';
-                        if(counterEl) counterEl.textContent = `${index + 1} / ${project.source.length}`;
-                        updateThumbnails(index);
-                    }, 300);
+                    const sourceUrl = project.source[index];
+                    
+                    if (isVideo) {
+                        playerEl.innerHTML = `<iframe src="${sourceUrl}" frameborder="0" allow="autoplay; fullscreen; picture-in-picture" allowfullscreen></iframe>`;
+                    } else {
+                        playerEl.innerHTML = `<img src="${sourceUrl}" alt="${project.title}" class="transition-opacity duration-300 opacity-0">`;
+                        setTimeout(() => playerEl.querySelector('img').classList.remove('opacity-0'), 50);
+                    }
+                    
+                    if(counterEl) counterEl.textContent = `${index + 1} / ${project.source.length}`;
+                    updateThumbnails(index);
                 };
                 
+                showItem(0); // Mostra o primeiro item
                 updateThumbnails(0); // Ativa a primeira miniatura
 
                 prevBtn.addEventListener('click', () => {
                     const newIndex = (currentIndex > 0) ? currentIndex - 1 : project.source.length - 1;
-                    showImage(newIndex);
+                    showItem(newIndex);
                 });
 
                 nextBtn.addEventListener('click', () => {
                     const newIndex = (currentIndex < project.source.length - 1) ? currentIndex + 1 : 0;
-                    showImage(newIndex);
+                    showItem(newIndex);
                 });
 
                 thumbnailEls.forEach(thumb => {
                     thumb.addEventListener('click', () => {
                         const index = parseInt(thumb.dataset.index, 10);
-                        showImage(index);
+                        showItem(index);
                     });
                 });
 
@@ -411,6 +440,7 @@
                 };
                 document.addEventListener('keydown', handleKeyDown);
 
+                // Limpa o event listener quando o modal é fechado
                 const modalObserver = new MutationObserver(() => {
                     if (!document.body.contains(modalContent)) {
                         document.removeEventListener('keydown', handleKeyDown);
@@ -418,6 +448,13 @@
                     }
                 });
                 modalObserver.observe(document.body, { childList: true, subtree: true });
+            } else {
+                // Se for só um item, apenas mostra
+                 if (isVideo) {
+                    document.getElementById('media-player').innerHTML = `<iframe src="${project.source[0]}" frameborder="0" allow="autoplay; fullscreen; picture-in-picture" allowfullscreen></iframe>`;
+                } else {
+                    document.getElementById('media-player').innerHTML = `<img src="${project.source[0]}" alt="${project.title}">`;
+                }
             }
 
             modal.classList.remove('opacity-0', 'pointer-events-none');
@@ -431,6 +468,7 @@
             modal.classList.add('opacity-0', 'pointer-events-none');
             document.body.style.overflow = 'auto';
             modalContent.classList.add('scale-95');
+            // Importante: Limpa o conteúdo para parar vídeos do YouTube
             setTimeout(() => { modalContent.innerHTML = ''; }, 300);
         }
 
@@ -441,6 +479,7 @@
             document.getElementById('admin-name').value = portfolioData.profile.name;
             document.getElementById('admin-role').value = portfolioData.profile.role;
             document.getElementById('admin-pic').value = portfolioData.profile.pic;
+            document.getElementById('admin-favicon').value = portfolioData.profile.favicon;
             document.getElementById('admin-bio').value = portfolioData.profile.bio;
             document.getElementById('admin-email').value = portfolioData.profile.email;
             document.getElementById('admin-whatsapp').value = portfolioData.profile.whatsapp;
@@ -450,28 +489,21 @@
             portfolioData.projects.forEach((project, index) => {
                 const projectEl = document.createElement('div');
                 projectEl.className = 'border border-gray-700 p-4 rounded-lg';
+                const isVideo = project.type === 'video';
+                
+                const sourceInputs = (project.source || []).map((src, itemIndex) => `
+                    <div class="flex items-center gap-2" data-item-index="${itemIndex}">
+                        <input type="text" value="${src}" class="admin-input admin-project-source-item" placeholder="URL d${isVideo ? 'o Vídeo' : 'a Imagem'} ${itemIndex + 1}">
+                        <button type="button" class="remove-item-btn text-red-400 hover:text-red-600">&times;</button>
+                    </div>
+                `).join('');
 
-                let sourceFieldsHtml = '';
-                if (project.type === 'video') {
-                    sourceFieldsHtml = `
-                        <div class="md:col-span-2">
-                            <label class="admin-label">URL do Vídeo (Embed do Youtube)</label>
-                            <input type="text" value="${project.source || ''}" class="admin-input admin-project-source-video">
-                        </div>`;
-                } else {
-                    const imageInputs = (project.source || []).map((src, imgIndex) => `
-                        <div class="flex items-center gap-2" data-img-index="${imgIndex}">
-                            <input type="text" value="${src}" class="admin-input admin-project-source-image" placeholder="URL da Imagem ${imgIndex + 1}">
-                            <button type="button" class="remove-image-btn text-red-400 hover:text-red-600">&times;</button>
-                        </div>
-                    `).join('');
-                    sourceFieldsHtml = `
-                        <div class="md:col-span-2">
-                            <label class="admin-label">URLs das Imagens</label>
-                            <div class="space-y-2 image-sources-container">${imageInputs}</div>
-                            <button type="button" class="add-image-btn mt-2 text-sm text-indigo-300 hover:text-indigo-400">+ Adicionar outra imagem</button>
-                        </div>`;
-                }
+                const sourceFieldsHtml = `
+                    <div class="md:col-span-2">
+                        <label class="admin-label">URLs d${isVideo ? 'os Vídeos (Embed)' : 'as Imagens'}</label>
+                        <div class="space-y-2 item-sources-container">${sourceInputs}</div>
+                        <button type="button" class="add-item-btn mt-2 text-sm text-indigo-300 hover:text-indigo-400">+ Adicionar outr${isVideo ? 'o vídeo' : 'a imagem'}</button>
+                    </div>`;
                 
                 projectEl.innerHTML = `
                     <div class="flex justify-between items-center mb-4">
@@ -492,8 +524,8 @@
                          <div>
                             <label class="admin-label">Tipo</label>
                             <select class="admin-input admin-project-type">
-                                <option value="video" ${project.type === 'video' ? 'selected' : ''}>Vídeo</option>
-                                <option value="image" ${project.type === 'image' ? 'selected' : ''}>Fotografia (Slide)</option>
+                                <option value="video" ${!isVideo ? '' : 'selected'}>Vídeo (Slide)</option>
+                                <option value="image" ${isVideo ? '' : 'selected'}>Fotografia (Slide)</option>
                             </select>
                         </div>
                         <div class="md:col-span-2">
@@ -521,16 +553,15 @@
                     const newType = select.value;
                     if (project.type !== newType) {
                         project.type = newType;
-                        // Converte a estrutura de 'source'
-                        project.source = (newType === 'video') ? '' : [];
-                        renderAdminPanel(); // Re-renderiza para mostrar os campos corretos
+                        project.source = []; // Limpa as URLs ao trocar o tipo
+                        renderAdminPanel();
                     }
                 };
             });
-            // Adicionar/Remover projetos
+
+            // Adicionar/Remover projetos e itens
             document.querySelectorAll('.remove-project-btn').forEach(btn => { /* ... (código existente) ... */ });
-            // Adicionar/Remover imagens dentro de um projeto
-            document.querySelectorAll('.add-image-btn').forEach((btn, index) => {
+            document.querySelectorAll('.add-item-btn').forEach((btn, index) => {
                 btn.onclick = () => {
                     if (!Array.isArray(portfolioData.projects[index].source)) {
                         portfolioData.projects[index].source = [];
@@ -539,11 +570,11 @@
                     renderAdminPanel();
                 };
             });
-            document.querySelectorAll('.image-sources-container').forEach((container, projectIndex) => {
-                container.querySelectorAll('.remove-image-btn').forEach(btn => {
+            document.querySelectorAll('.item-sources-container').forEach((container, projectIndex) => {
+                container.querySelectorAll('.remove-item-btn').forEach(btn => {
                     btn.onclick = (e) => {
-                        const imgIndex = parseInt(e.target.closest('[data-img-index]').dataset.imgIndex, 10);
-                        portfolioData.projects[projectIndex].source.splice(imgIndex, 1);
+                        const itemIndex = parseInt(e.target.closest('[data-item-index]').dataset.itemIndex, 10);
+                        portfolioData.projects[projectIndex].source.splice(itemIndex, 1);
                         renderAdminPanel();
                     };
                 });
@@ -555,6 +586,7 @@
             portfolioData.profile.name = document.getElementById('admin-name').value;
             portfolioData.profile.role = document.getElementById('admin-role').value;
             portfolioData.profile.pic = document.getElementById('admin-pic').value;
+            portfolioData.profile.favicon = document.getElementById('admin-favicon').value;
             portfolioData.profile.bio = document.getElementById('admin-bio').value;
             portfolioData.profile.email = document.getElementById('admin-email').value;
             portfolioData.profile.whatsapp = document.getElementById('admin-whatsapp').value;
@@ -566,16 +598,13 @@
                  portfolioData.projects[i].thumbnail = projectEl.querySelector('.admin-project-thumbnail').value;
                  portfolioData.projects[i].description = projectEl.querySelector('.admin-project-description').value;
                  portfolioData.projects[i].enabled = projectEl.querySelector('.admin-project-enabled').checked;
-
-                 if (portfolioData.projects[i].type === 'video') {
-                     portfolioData.projects[i].source = projectEl.querySelector('.admin-project-source-video').value;
-                 } else {
-                     const imageInputs = projectEl.querySelectorAll('.admin-project-source-image');
-                     portfolioData.projects[i].source = Array.from(imageInputs).map(input => input.value).filter(src => src.trim() !== '');
-                 }
+                 
+                 const sourceInputs = projectEl.querySelectorAll('.admin-project-source-item');
+                 portfolioData.projects[i].source = Array.from(sourceInputs).map(input => input.value).filter(src => src.trim() !== '');
             });
 
             localStorage.setItem('portfolioData', JSON.stringify(portfolioData));
+            updateFavicon(); // Atualiza o favicon imediatamente após salvar
             const feedback = document.getElementById('save-feedback');
             feedback.classList.remove('hidden');
             setTimeout(() => feedback.classList.add('hidden'), 3000);
@@ -583,7 +612,12 @@
 
         // --- INICIALIZAÇÃO E EVENTOS GERAIS ---
         
-        function loadData() { /* ... (código existente) ... */ }
+        function loadData() {
+            const savedData = localStorage.getItem('portfolioData');
+            portfolioData = savedData ? JSON.parse(savedData) : JSON.parse(JSON.stringify(defaultData));
+            updateFavicon();
+        }
+
         function handleRouteChange() { /* ... (código existente) ... */ }
 
         document.addEventListener('DOMContentLoaded', () => {
@@ -591,28 +625,30 @@
             handleRouteChange();
             window.addEventListener('hashchange', handleRouteChange);
 
-            // ... (código de eventos de login, logout, modal, import/export - sem alterações) ...
             document.getElementById('modal-close-bg').addEventListener('click', closeModal);
             document.addEventListener('keydown', (e) => { if (e.key === 'Escape') closeModal(); });
             document.getElementById('login-form').addEventListener('submit', (e) => { e.preventDefault(); /* ... */ });
             document.getElementById('logout-btn').addEventListener('click', () => { /* ... */ });
             document.getElementById('add-project-btn').addEventListener('click', () => {
                 portfolioData.projects.push({
-                    enabled: false, title: "", thumbnail: "", description: "", type: "video", source: ""
+                    enabled: true, title: "", thumbnail: "", description: "", type: "video", source: []
                 });
                 renderAdminPanel();
             });
             document.getElementById('save-changes-btn').addEventListener('click', () => {
                 saveData();
-                alert('Alterações salvas! A página principal será atualizada.');
+                alert('Alterações salvas! A página principal será atualizada ao fechar este aviso.');
+                if(window.location.hash !== '#admin') {
+                   renderPortfolio();
+                }
             });
             document.getElementById('export-json-btn').addEventListener('click', () => { /* ... */ });
             document.getElementById('import-json-input').addEventListener('change', (event) => { /* ... */ });
         });
 
         // Simulação de preenchimento para as partes omitidas
-        defaultData.profile = { name: "Seu Nome Aqui", role: "Editor de Vídeo & Videomaker", pic: "https://placehold.co/400x400/1F2937/E5E7EB?text=Sua+Foto", bio: "Olá! Sou um criador de conteúdo audiovisual...", email: "seuemail@exemplo.com", whatsapp: "https://wa.me/5511999999999" };
-        function loadData() { const savedData = localStorage.getItem('portfolioData'); portfolioData = savedData ? JSON.parse(savedData) : JSON.parse(JSON.stringify(defaultData)); }
+        defaultData.profile = { name: "Seu Nome Aqui", role: "Editor de Vídeo & Videomaker", pic: "https://placehold.co/400x400/1F2937/E5E7EB?text=Sua+Foto", bio: "Olá! Sou um criador de conteúdo audiovisual...", email: "seuemail@exemplo.com", whatsapp: "https://wa.me/5511999999999", favicon: "data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🎬</text></svg>" };
+        
         function handleRouteChange() {
             const hash = window.location.hash;
             const portfolioView = document.getElementById('portfolio-view');
@@ -634,9 +670,8 @@
         document.getElementById('login-form').addEventListener('submit', (e) => { e.preventDefault(); const password = document.getElementById('password').value; const errorEl = document.getElementById('login-error'); if (password === ADMIN_PASSWORD) { sessionStorage.setItem('isAdmin', 'true'); errorEl.classList.add('hidden'); handleRouteChange(); } else { errorEl.classList.remove('hidden'); } });
         document.getElementById('logout-btn').addEventListener('click', () => { sessionStorage.removeItem('isAdmin'); window.location.hash = ''; });
         document.getElementById('export-json-btn').addEventListener('click', () => { const dataStr = JSON.stringify(portfolioData, null, 2); const dataUri = 'data:application/json;charset=utf-8,' + encodeURIComponent(dataStr); const exportFileDefaultName = 'portfolio_backup.json'; let linkElement = document.createElement('a'); linkElement.setAttribute('href', dataUri); linkElement.setAttribute('download', exportFileDefaultName); linkElement.click(); });
-        document.getElementById('import-json-input').addEventListener('change', (event) => { const file = event.target.files[0]; if (!file) return; const reader = new FileReader(); reader.onload = function(e) { try { const importedData = JSON.parse(e.target.result); if (importedData.profile && importedData.projects) { portfolioData = importedData; renderAdminPanel(); alert('Dados importados com sucesso! Clique em "Salvar Alterações" para confirmar.'); } else { alert('Arquivo JSON inválido.'); } } catch (error) { alert('Erro ao ler o arquivo JSON.'); } }; reader.readAsText(file); event.target.value = ''; });
+        document.getElementById('import-json-input').addEventListener('change', (event) => { const file = event.target.files[0]; if (!file) return; const reader = new FileReader(); reader.onload = function(e) { try { const importedData = JSON.parse(e.target.result); if (importedData.profile && importedData.projects) { portfolioData = importedData; renderAdminPanel(); updateFavicon(); alert('Dados importados com sucesso! Clique em "Salvar Alterações" para confirmar.'); } else { alert('Arquivo JSON inválido.'); } } catch (error) { alert('Erro ao ler o arquivo JSON.'); } }; reader.readAsText(file); event.target.value = ''; });
     </script>
 </body>
 </html>
-
 
