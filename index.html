@@ -183,6 +183,10 @@
                 </div>
             </main>
         </div>
+        <!-- Botão flutuante para Admin -->
+        <a id="admin-button" href="#admin" class="hidden fixed bottom-4 right-4 bg-slate-800 text-slate-400 p-2 rounded-full hover:bg-slate-700 hover:text-white transition-all z-10">
+            <i data-feather="settings" class="w-6 h-6"></i>
+        </a>
     </div>
 
     <!-- Container da Página de Administração -->
@@ -249,6 +253,12 @@
                             <label for="admin-whatsapp" class="admin-label">Link do WhatsApp (completo)</label>
                             <input type="text" id="admin-whatsapp" class="admin-input" placeholder="https://wa.me/SEUNUMERO">
                         </div>
+                        <div class="md:col-span-2">
+                            <label class="flex items-center gap-2 text-gray-300 cursor-pointer">
+                                <input type="checkbox" id="admin-show-admin-button" class="form-checkbox h-5 w-5 rounded bg-gray-700 border-gray-600 text-indigo-600 focus:ring-indigo-500">
+                                <span>Mostrar botão de acesso ao Admin na página principal</span>
+                            </label>
+                        </div>
                     </div>
                 </div>
                 <!-- Serviços -->
@@ -290,7 +300,8 @@
                 bio: "Olá! Sou um criador de conteúdo audiovisual apaixonado por contar histórias que cativam, educam e inspiram. Meu objetivo é transformar ideias em peças visuais impactantes e memoráveis.",
                 email: "seuemail@exemplo.com",
                 whatsapp: "https://wa.me/5511999999999",
-                favicon: "data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🎬</text></svg>"
+                favicon: "data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🎬</text></svg>",
+                showAdminButton: true
             },
             services: [
                 { icon: "video", title: "Edição de Vídeo", description: "Edição completa para vlogs, vídeos institucionais e redes sociais, com foco em narrativa e ritmo." },
@@ -378,7 +389,7 @@
         // --- FUNÇÕES DE RENDERIZAÇÃO DO PORTFÓLIO ---
 
         function renderPortfolio() {
-            // Perfil, Serviços, Galeria
+            // Perfil
             document.getElementById('profile-pic').src = portfolioData.profile.pic || defaultData.profile.pic;
             document.getElementById('profile-name').textContent = portfolioData.profile.name;
             document.getElementById('profile-role').textContent = portfolioData.profile.role;
@@ -387,6 +398,14 @@
             document.getElementById('profile-email').href = `mailto:${portfolioData.profile.email}`;
             document.getElementById('profile-email-text').textContent = portfolioData.profile.email;
             document.getElementById('profile-whatsapp').href = portfolioData.profile.whatsapp;
+
+            // Botão Admin
+            const adminButton = document.getElementById('admin-button');
+            if (portfolioData.profile.showAdminButton) {
+                adminButton.classList.remove('hidden');
+            } else {
+                adminButton.classList.add('hidden');
+            }
             
             // Serviços
             const servicesGrid = document.getElementById('services-grid');
@@ -564,6 +583,7 @@
             document.getElementById('admin-bio').value = portfolioData.profile.bio;
             document.getElementById('admin-email').value = portfolioData.profile.email;
             document.getElementById('admin-whatsapp').value = portfolioData.profile.whatsapp;
+            document.getElementById('admin-show-admin-button').checked = !!portfolioData.profile.showAdminButton;
 
             // Serviços
             const servicesContainer = document.getElementById('admin-services-container');
@@ -655,11 +675,6 @@
         
         function addAdminEventListeners() {
             // Serviços
-            document.getElementById('add-service-btn').onclick = () => {
-                if (!portfolioData.services) portfolioData.services = [];
-                portfolioData.services.push({ icon: 'settings', title: 'Novo Serviço', description: '' });
-                renderAdminPanel();
-            };
             document.querySelectorAll('.remove-service-btn').forEach(btn => {
                 btn.onclick = (e) => {
                     const index = parseInt(e.target.closest('[data-service-index]').dataset.serviceIndex, 10);
@@ -729,6 +744,7 @@
             portfolioData.profile.bio = document.getElementById('admin-bio').value;
             portfolioData.profile.email = document.getElementById('admin-email').value;
             portfolioData.profile.whatsapp = document.getElementById('admin-whatsapp').value;
+            portfolioData.profile.showAdminButton = document.getElementById('admin-show-admin-button').checked;
             
             // Serviços
             portfolioData.services = [];
@@ -847,6 +863,4 @@
     </script>
 </body>
 </html>
-
-
 
