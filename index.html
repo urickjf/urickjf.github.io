@@ -29,6 +29,7 @@
             background-color: #0f172a; /* Fallback para navegadores antigos */
             background-image: linear-gradient(to bottom, #0f172a, #000000); /* Novo fundo com gradiente */
             color: #E5E7EB; /* Texto cinza claro */
+            scroll-behavior: smooth;
         }
         /* Efeito de transição suave para o modal */
         #modal {
@@ -114,6 +115,12 @@
             opacity: 1;
             border-color: #6366f1; /* indigo-500 */
         }
+        
+        /* Novo estilo para a foto de perfil com bordas suaves */
+        #profile-pic {
+           mask-image: radial-gradient(circle at center, white 60%, transparent 100%);
+           -webkit-mask-image: radial-gradient(circle at center, white 60%, transparent 100%); /* Para compatibilidade com Safari */
+        }
 
         /* Classes personalizadas de design do Admin */
         .admin-input {
@@ -121,9 +128,9 @@
         }
         .admin-input::placeholder { color: #6b7280; }
         .admin-label { @apply block text-sm font-medium text-gray-300 mb-1; }
-        .text-glow { text-shadow: 0 0 12px rgba(165, 180, 252, 0.3); }
-        .button-glow { transition: box-shadow .3s ease; }
-        .button-glow:hover { box-shadow: 0 0 15px rgba(99, 102, 241, 0.5), 0 0 20px rgba(99, 102, 241, 0.2); }
+        .text-glow { text-shadow: 0 0 12px rgba(2, 239, 239, 0.4); }
+        .button-glow { transition: all .3s ease; }
+        .button-glow:hover { box-shadow: 0 0 15px rgba(2, 239, 239, 0.5), 0 0 20px rgba(2, 239, 239, 0.2); background-color: #02efef; color: #0f172a; }
     </style>
 </head>
 <body class="antialiased">
@@ -131,28 +138,40 @@
     <!-- Container da Página Pública (Portfólio) -->
     <div id="portfolio-view">
         <div class="container mx-auto max-w-5xl px-6 py-12 md:py-20">
-            <header class="flex flex-col md:flex-row items-center md:items-start gap-8 md:gap-12">
-                <div class="w-48 h-48 md:w-56 md:h-56 flex-shrink-0">
-                    <img id="profile-pic" src="https://placehold.co/400x400/1F2937/E5E7EB?text=Sua+Foto" alt="Foto de perfil" class="rounded-full object-cover w-full h-full shadow-2xl shadow-indigo-500/40">
-                </div>
-                <div class="text-center md:text-left">
+            <header class="flex flex-col md:flex-row items-center justify-between gap-8 md:gap-12">
+                <div class="text-center md:text-left order-2 md:order-1">
+                    <h3 class="text-2xl font-bold text-white">Olá, eu sou</h3>
                     <h1 id="profile-name" class="text-4xl md:text-5xl font-extrabold text-white text-glow">Seu Nome Aqui</h1>
-                    <h2 id="profile-role" class="text-xl md:text-2xl font-medium text-indigo-300 mt-2">Editor de Vídeo & Videomaker</h2>
-                    <p id="profile-bio" class="mt-6 text-lg text-gray-300 leading-relaxed">
-                        Olá! Sou um criador de conteúdo audiovisual apaixonado por contar histórias que cativam, educam e inspiram. Com mais de 5 anos de experiência, especializei-me em edição de vídeo, motion graphics e direção de fotografia. Meu objetivo é transformar ideias em peças visuais impactantes e memoráveis.
+                    <h2 id="profile-role" class="text-xl md:text-2xl font-medium text-cyan-300 mt-2">Editor de Vídeo & Videomaker</h2>
+                    <p id="profile-bio" class="mt-6 text-lg text-gray-300 leading-relaxed max-w-xl">
+                        Olá! Sou um criador de conteúdo audiovisual apaixonado por contar histórias que cativam, educam e inspiram. Meu objetivo é transformar ideias em peças visuais impactantes e memoráveis.
                     </p>
                     <div class="mt-8 flex flex-col sm:flex-row justify-center md:justify-start items-center gap-6">
-                        <a id="profile-email" href="mailto:seuemail@exemplo.com" class="flex items-center gap-3 text-lg hover:text-indigo-300 transition-all duration-300 hover:drop-shadow-[0_0_8px_rgba(165,180,252,0.5)]">
+                        <a id="profile-email" href="mailto:seuemail@exemplo.com" class="flex items-center gap-3 text-lg hover:text-cyan-300 transition-all duration-300">
                             <i data-feather="mail" class="w-6 h-6"></i>
                             <span id="profile-email-text">seuemail@exemplo.com</span>
                         </a>
-                        <a id="profile-whatsapp" href="https://wa.me/5511999999999" target="_blank" class="flex items-center gap-3 text-lg hover:text-indigo-300 transition-all duration-300 hover:drop-shadow-[0_0_8px_rgba(165,180,252,0.5)]">
+                        <a id="profile-whatsapp" href="https://wa.me/5511999999999" target="_blank" class="flex items-center gap-3 text-lg hover:text-cyan-300 transition-all duration-300">
                             <i data-feather="message-circle" class="w-6 h-6"></i>
                             <span>WhatsApp</span>
                         </a>
                     </div>
                 </div>
+                <div class="order-1 md:order-2 flex-shrink-0">
+                    <div class="w-56 h-56">
+                        <img id="profile-pic" src="https://placehold.co/400x400/1F2937/E5E7EB?text=Sua+Foto" alt="Foto de perfil" class="object-cover w-full h-full rounded-lg">
+                    </div>
+                </div>
             </header>
+            
+            <!-- Seção de Serviços -->
+            <section id="services-section" class="mt-20">
+                <h3 class="text-3xl font-bold text-center text-white mb-12 text-glow">Serviços</h3>
+                <div id="services-grid" class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                    <!-- Serviços serão inseridos aqui -->
+                </div>
+            </section>
+
             <main class="mt-20">
                 <h3 class="text-3xl font-bold text-center text-white mb-12 text-glow">Portfólio</h3>
                 <div id="gallery" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
@@ -173,27 +192,28 @@
                         <input type="password" id="password" class="admin-input" required>
                     </div>
                     <p id="login-error" class="text-red-400 text-sm mt-2 hidden">Senha incorreta.</p>
-                    <button type="submit" class="w-full bg-indigo-600 hover:bg-indigo-700 text-white font-bold py-2 px-4 rounded-md mt-6 button-glow">Entrar</button>
+                    <button type="submit" class="w-full bg-indigo-600 hover:bg-indigo-700 text-white font-bold py-2 px-4 rounded-md mt-6">Entrar</button>
                 </form>
             </div>
         </div>
         <div id="admin-panel" class="hidden container mx-auto max-w-5xl px-6 py-12">
             <div class="flex justify-between items-center mb-8">
                 <h2 class="text-3xl font-bold text-white">Painel de Administração</h2>
-                <button id="logout-btn" class="bg-red-600 hover:bg-red-700 text-white font-bold py-2 px-4 rounded-md button-glow">Sair</button>
+                <button id="logout-btn" class="bg-red-600 hover:bg-red-700 text-white font-bold py-2 px-4 rounded-md">Sair</button>
             </div>
+            <!-- Backup / Restore -->
             <div class="bg-gray-800 p-6 rounded-lg mb-8 border border-slate-700">
                 <h3 class="text-xl font-bold text-white mb-4">Backup e Restauração</h3>
-                <p class="text-gray-400 mb-4">Os dados são salvos no seu navegador. Use os botões abaixo para criar ou restaurar um backup em arquivo (.json).</p>
                 <div class="flex gap-4">
-                    <button id="export-json-btn" class="bg-green-600 hover:bg-green-700 text-white font-bold py-2 px-4 rounded-md button-glow">Exportar JSON</button>
-                    <label class="bg-blue-600 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-md cursor-pointer button-glow">
+                    <button id="export-json-btn" class="bg-green-600 hover:bg-green-700 text-white font-bold py-2 px-4 rounded-md">Exportar JSON</button>
+                    <label class="bg-blue-600 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-md cursor-pointer">
                         <span>Importar JSON</span>
                         <input type="file" id="import-json-input" class="hidden" accept=".json">
                     </label>
                 </div>
             </div>
             <div class="space-y-8">
+                <!-- Informações Principais -->
                 <div class="bg-gray-800 p-6 rounded-lg border border-slate-700">
                     <h3 class="text-xl font-bold text-white mb-4">Informações Principais</h3>
                     <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
@@ -206,7 +226,7 @@
                             <input type="text" id="admin-role" class="admin-input">
                         </div>
                         <div class="md:col-span-2">
-                             <label for="admin-pic" class="admin-label">URL da sua Foto</label>
+                            <label for="admin-pic" class="admin-label">URL da sua Foto</label>
                             <input type="text" id="admin-pic" class="admin-input">
                         </div>
                         <div class="md:col-span-2">
@@ -218,7 +238,7 @@
                             <textarea id="admin-bio" rows="4" class="admin-input"></textarea>
                         </div>
                         <div>
-                            <label for="admin-email" class="admin-label">E-mail</label>
+                            <label for="admin-email" class="admin-label">E-mail de Contato</label>
                             <input type="email" id="admin-email" class="admin-input">
                         </div>
                         <div>
@@ -227,16 +247,21 @@
                         </div>
                     </div>
                 </div>
+                <!-- Serviços -->
+                <div class="bg-gray-800 p-6 rounded-lg border border-slate-700">
+                     <h3 class="text-xl font-bold text-white mb-4">Serviços</h3>
+                     <div id="admin-services-container" class="space-y-6"></div>
+                     <button id="add-service-btn" class="mt-6 bg-indigo-600 hover:bg-indigo-700 text-white font-bold py-2 px-4 rounded-md">Adicionar Novo Serviço</button>
+                </div>
+                <!-- Projetos -->
                 <div class="bg-gray-800 p-6 rounded-lg border border-slate-700">
                      <h3 class="text-xl font-bold text-white mb-4">Projetos do Portfólio</h3>
-                     <div id="projects-container" class="space-y-6">
-                         <!-- Projetos serão renderizados aqui -->
-                     </div>
-                     <button id="add-project-btn" class="mt-6 bg-indigo-600 hover:bg-indigo-700 text-white font-bold py-2 px-4 rounded-md button-glow">Adicionar Novo Projeto</button>
+                     <div id="projects-container" class="space-y-6"></div>
+                     <button id="add-project-btn" class="mt-6 bg-indigo-600 hover:bg-indigo-700 text-white font-bold py-2 px-4 rounded-md">Adicionar Novo Projeto</button>
                 </div>
             </div>
              <div class="mt-8 text-right">
-                <button id="save-changes-btn" class="bg-green-600 hover:bg-green-700 text-white font-bold py-3 px-6 rounded-md text-lg button-glow">Salvar Alterações</button>
+                <button id="save-changes-btn" class="bg-green-600 hover:bg-green-700 text-white font-bold py-3 px-6 rounded-md text-lg">Salvar Alterações</button>
             </div>
              <p id="save-feedback" class="text-green-400 text-right mt-4 hidden">Alterações salvas com sucesso!</p>
         </div>
@@ -255,8 +280,19 @@
 
         const defaultData = {
             profile: {
+                name: "Seu Nome Aqui",
+                role: "Editor de Vídeo & Videomaker",
+                pic: "https://placehold.co/400x400/1F2937/E5E7EB?text=Sua+Foto",
+                bio: "Olá! Sou um criador de conteúdo audiovisual apaixonado por contar histórias que cativam, educam e inspiram. Meu objetivo é transformar ideias em peças visuais impactantes e memoráveis.",
+                email: "seuemail@exemplo.com",
+                whatsapp: "https://wa.me/5511999999999",
                 favicon: "data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🎬</text></svg>"
             },
+            services: [
+                { icon: "video", title: "Edição de Vídeo", description: "Edição completa para vlogs, vídeos institucionais e redes sociais, com foco em narrativa e ritmo." },
+                { icon: "camera", title: "Captação de Imagem", description: "Gravação de alta qualidade com equipamento profissional para garantir a melhor imagem para seu projeto." },
+                { icon: "bar-chart-2", title: "Motion Graphics", description: "Animações 2D e elementos gráficos para dar vida às suas ideias, vinhetas e peças publicitárias." }
+            ],
             projects: [
                 {
                     enabled: true,
@@ -284,7 +320,6 @@
         let portfolioData;
         
         // --- FUNÇÕES DE LÓGICA E UTILIDADES ---
-
         function getYoutubeThumbnailUrl(url) {
             if (typeof url !== 'string' || !url) return 'https://placehold.co/128x72/1F2937/E5E7EB?text=Video';
             try {
@@ -304,26 +339,68 @@
             document.getElementById('favicon').href = faviconUrl;
         }
 
-        // --- FUNÇÕES DE RENDERIZAÇÃO DO PORTFÓLIO E MODAL ---
+        // --- FUNÇÕES DE ROTEAMENTO E CARREGAMENTO DE DADOS ---
+        function loadData() {
+            const savedData = localStorage.getItem('portfolioData');
+            portfolioData = savedData ? JSON.parse(savedData) : JSON.parse(JSON.stringify(defaultData));
+            updateFavicon();
+        }
+
+        function handleRouteChange() {
+            const hash = window.location.hash;
+            const portfolioView = document.getElementById('portfolio-view');
+            const adminView = document.getElementById('admin-view');
+            const loginScreen = document.getElementById('login-screen');
+            const adminPanel = document.getElementById('admin-panel');
+            if (hash === '#admin') {
+                portfolioView.classList.add('hidden');
+                adminView.classList.remove('hidden');
+                if (sessionStorage.getItem('isAdmin') === 'true') {
+                    loginScreen.classList.add('hidden');
+                    adminPanel.classList.remove('hidden');
+                    renderAdminPanel();
+                } else {
+                    loginScreen.classList.remove('hidden');
+                    adminPanel.classList.add('hidden');
+                }
+            } else {
+                portfolioView.classList.remove('hidden');
+                adminView.classList.add('hidden');
+                loadData();
+                renderPortfolio();
+            }
+        }
+
+        // --- FUNÇÕES DE RENDERIZAÇÃO DO PORTFÓLIO ---
 
         function renderPortfolio() {
-            // Renderiza informações do perfil
+            // Perfil, Serviços, Galeria
             document.getElementById('profile-pic').src = portfolioData.profile.pic || defaultData.profile.pic;
             document.getElementById('profile-name').textContent = portfolioData.profile.name;
             document.getElementById('profile-role').textContent = portfolioData.profile.role;
-            document.getElementById('profile-bio').textContent = portfolioData.profile.bio;
+            document.getElementById('profile-bio').innerHTML = portfolioData.profile.bio.replace(/\n/g, '<br>');
+
             document.getElementById('profile-email').href = `mailto:${portfolioData.profile.email}`;
             document.getElementById('profile-email-text').textContent = portfolioData.profile.email;
             document.getElementById('profile-whatsapp').href = portfolioData.profile.whatsapp;
-
-            // Renderiza a galeria
+            
+            // Serviços
+            const servicesGrid = document.getElementById('services-grid');
+            servicesGrid.innerHTML = (portfolioData.services || []).map(service => `
+                <div class="bg-slate-800 border border-slate-700 p-6 rounded-lg text-center transition-all duration-300 hover:border-cyan-400 hover:-translate-y-2">
+                     <i data-feather="${service.icon}" class="w-12 h-12 mx-auto text-cyan-400 mb-4"></i>
+                     <h4 class="text-xl font-bold text-white mb-2">${service.title}</h4>
+                     <p class="text-gray-400">${service.description}</p>
+                </div>
+            `).join('');
+            
+            // Galeria
             const gallery = document.getElementById('gallery');
             gallery.innerHTML = '';
             const activeProjects = portfolioData.projects.filter(p => {
                 const hasSource = Array.isArray(p.source) && p.source.length > 0 && p.source[0];
                 return p.enabled && p.title && p.thumbnail && hasSource;
             });
-            
             activeProjects.forEach((project) => {
                 const projectElement = document.createElement('div');
                 projectElement.className = 'group cursor-pointer rounded-lg transition-all duration-300 hover:!opacity-100 group-hover:opacity-50 hover:scale-105 hover:shadow-2xl hover:shadow-indigo-500/20';
@@ -475,7 +552,7 @@
         // --- FUNÇÕES DE RENDERIZAÇÃO E LÓGICA DO ADMIN ---
 
         function renderAdminPanel() {
-            // Renderiza informações do perfil no admin
+            // Perfil
             document.getElementById('admin-name').value = portfolioData.profile.name;
             document.getElementById('admin-role').value = portfolioData.profile.role;
             document.getElementById('admin-pic').value = portfolioData.profile.pic;
@@ -484,11 +561,38 @@
             document.getElementById('admin-email').value = portfolioData.profile.email;
             document.getElementById('admin-whatsapp').value = portfolioData.profile.whatsapp;
 
+            // Serviços
+            const servicesContainer = document.getElementById('admin-services-container');
+            servicesContainer.innerHTML = (portfolioData.services || []).map((service, index) => `
+                <div class="border border-gray-700 p-4 rounded-lg space-y-3" data-service-index="${index}">
+                     <div class="flex justify-between items-center">
+                        <h4 class="text-lg font-bold text-white">Serviço ${index + 1}</h4>
+                        <button type="button" class="remove-service-btn text-red-400 hover:text-red-600">&times; Remover</button>
+                    </div>
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                        <div>
+                            <label class="admin-label">Ícone (feathericons.com)</label>
+                            <input type="text" value="${service.icon}" class="admin-input admin-service-icon">
+                        </div>
+                        <div>
+                            <label class="admin-label">Título</label>
+                            <input type="text" value="${service.title}" class="admin-input admin-service-title">
+                        </div>
+                        <div class="md:col-span-2">
+                            <label class="admin-label">Descrição</label>
+                            <textarea rows="3" class="admin-input admin-service-description">${service.description}</textarea>
+                        </div>
+                    </div>
+                </div>
+            `).join('');
+
+            // Projetos
             const projectsContainer = document.getElementById('projects-container');
             projectsContainer.innerHTML = '';
             portfolioData.projects.forEach((project, index) => {
                 const projectEl = document.createElement('div');
                 projectEl.className = 'border border-gray-700 p-4 rounded-lg';
+                projectEl.dataset.projectIndex = index;
                 const isVideo = project.type === 'video';
                 
                 const sourceInputs = (project.source || []).map((src, itemIndex) => `
@@ -511,9 +615,9 @@
                          <div class="flex items-center gap-4">
                             <label class="flex items-center cursor-pointer">
                                 <span class="mr-2 text-sm">Habilitado</span>
-                                <input type="checkbox" data-index="${index}" class="admin-project-enabled" ${project.enabled ? 'checked' : ''}>
+                                <input type="checkbox" class="admin-project-enabled" ${project.enabled ? 'checked' : ''}>
                             </label>
-                            <button data-index="${index}" class="remove-project-btn text-red-400 hover:text-red-600">&times; Remover</button>
+                            <button type="button" class="remove-project-btn text-red-400 hover:text-red-600">&times; Remover</button>
                          </div>
                     </div>
                     <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
@@ -546,7 +650,21 @@
         }
         
         function addAdminEventListeners() {
-            // Event listener para mudar tipo de projeto
+            // Serviços
+            document.getElementById('add-service-btn').onclick = () => {
+                if (!portfolioData.services) portfolioData.services = [];
+                portfolioData.services.push({ icon: 'settings', title: 'Novo Serviço', description: '' });
+                renderAdminPanel();
+            };
+            document.querySelectorAll('.remove-service-btn').forEach(btn => {
+                btn.onclick = (e) => {
+                    const index = parseInt(e.target.closest('[data-service-index]').dataset.serviceIndex, 10);
+                    portfolioData.services.splice(index, 1);
+                    renderAdminPanel();
+                };
+            });
+
+            // Projetos
             document.querySelectorAll('.admin-project-type').forEach((select, index) => {
                 select.onchange = () => {
                     const project = portfolioData.projects[index];
@@ -558,31 +676,48 @@
                     }
                 };
             });
-
-            // Adicionar/Remover projetos e itens
-            document.querySelectorAll('.remove-project-btn').forEach(btn => { /* ... (código existente) ... */ });
-            document.querySelectorAll('.add-item-btn').forEach((btn, index) => {
-                btn.onclick = () => {
-                    if (!Array.isArray(portfolioData.projects[index].source)) {
-                        portfolioData.projects[index].source = [];
+            document.querySelectorAll('.remove-project-btn').forEach(btn => {
+                btn.onclick = (e) => {
+                    const projectEl = e.target.closest('[data-project-index]');
+                    if (projectEl) {
+                        const index = parseInt(projectEl.dataset.projectIndex, 10);
+                        if (confirm(`Tem certeza que deseja remover o Projeto ${index + 1}?`)) {
+                            portfolioData.projects.splice(index, 1);
+                            renderAdminPanel();
+                        }
                     }
-                    portfolioData.projects[index].source.push('');
-                    renderAdminPanel();
                 };
             });
-            document.querySelectorAll('.item-sources-container').forEach((container, projectIndex) => {
-                container.querySelectorAll('.remove-item-btn').forEach(btn => {
-                    btn.onclick = (e) => {
-                        const itemIndex = parseInt(e.target.closest('[data-item-index]').dataset.itemIndex, 10);
-                        portfolioData.projects[projectIndex].source.splice(itemIndex, 1);
+            document.querySelectorAll('.add-item-btn').forEach((btn) => {
+                 const projectEl = btn.closest('[data-project-index]');
+                 if(projectEl){
+                    const projectIndex = parseInt(projectEl.dataset.projectIndex, 10);
+                    btn.onclick = () => {
+                        if (!Array.isArray(portfolioData.projects[projectIndex].source)) {
+                            portfolioData.projects[projectIndex].source = [];
+                        }
+                        portfolioData.projects[projectIndex].source.push('');
                         renderAdminPanel();
                     };
-                });
+                 }
+            });
+            document.querySelectorAll('.item-sources-container').forEach((container) => {
+                const projectEl = container.closest('[data-project-index]');
+                if(projectEl){
+                    const projectIndex = parseInt(projectEl.dataset.projectIndex, 10);
+                    container.querySelectorAll('.remove-item-btn').forEach(btn => {
+                        btn.onclick = (e) => {
+                            const itemIndex = parseInt(e.target.closest('[data-item-index]').dataset.itemIndex, 10);
+                            portfolioData.projects[projectIndex].source.splice(itemIndex, 1);
+                            renderAdminPanel();
+                        };
+                    });
+                }
             });
         }
         
         function saveData() {
-            // Salva perfil
+            // Perfil
             portfolioData.profile.name = document.getElementById('admin-name').value;
             portfolioData.profile.role = document.getElementById('admin-role').value;
             portfolioData.profile.pic = document.getElementById('admin-pic').value;
@@ -590,36 +725,39 @@
             portfolioData.profile.bio = document.getElementById('admin-bio').value;
             portfolioData.profile.email = document.getElementById('admin-email').value;
             portfolioData.profile.whatsapp = document.getElementById('admin-whatsapp').value;
+            
+            // Serviços
+            portfolioData.services = [];
+            document.querySelectorAll('[data-service-index]').forEach(el => {
+                const icon = el.querySelector('.admin-service-icon').value.trim();
+                const title = el.querySelector('.admin-service-title').value.trim();
+                const description = el.querySelector('.admin-service-description').value.trim();
+                if (icon && title) portfolioData.services.push({ icon, title, description });
+            });
 
-            // Salva projetos
-            document.querySelectorAll('#projects-container > div').forEach((projectEl, i) => {
-                 portfolioData.projects[i].title = projectEl.querySelector('.admin-project-title').value;
-                 portfolioData.projects[i].type = projectEl.querySelector('.admin-project-type').value;
-                 portfolioData.projects[i].thumbnail = projectEl.querySelector('.admin-project-thumbnail').value;
-                 portfolioData.projects[i].description = projectEl.querySelector('.admin-project-description').value;
-                 portfolioData.projects[i].enabled = projectEl.querySelector('.admin-project-enabled').checked;
+            // Projetos
+            portfolioData.projects = [];
+            document.querySelectorAll('#projects-container > div[data-project-index]').forEach((projectEl) => {
+                 const newProjectData = {};
+                 newProjectData.title = projectEl.querySelector('.admin-project-title').value;
+                 newProjectData.type = projectEl.querySelector('.admin-project-type').value;
+                 newProjectData.thumbnail = projectEl.querySelector('.admin-project-thumbnail').value;
+                 newProjectData.description = projectEl.querySelector('.admin-project-description').value;
+                 newProjectData.enabled = projectEl.querySelector('.admin-project-enabled').checked;
                  
                  const sourceInputs = projectEl.querySelectorAll('.admin-project-source-item');
-                 portfolioData.projects[i].source = Array.from(sourceInputs).map(input => input.value).filter(src => src.trim() !== '');
+                 newProjectData.source = Array.from(sourceInputs).map(input => input.value).filter(src => src.trim() !== '');
+                 portfolioData.projects.push(newProjectData);
             });
 
             localStorage.setItem('portfolioData', JSON.stringify(portfolioData));
-            updateFavicon(); // Atualiza o favicon imediatamente após salvar
+            updateFavicon();
             const feedback = document.getElementById('save-feedback');
             feedback.classList.remove('hidden');
             setTimeout(() => feedback.classList.add('hidden'), 3000);
         }
-
-        // --- INICIALIZAÇÃO E EVENTOS GERAIS ---
         
-        function loadData() {
-            const savedData = localStorage.getItem('portfolioData');
-            portfolioData = savedData ? JSON.parse(savedData) : JSON.parse(JSON.stringify(defaultData));
-            updateFavicon();
-        }
-
-        function handleRouteChange() { /* ... (código existente) ... */ }
-
+        // --- INICIALIZAÇÃO E EVENTOS GERAIS ---
         document.addEventListener('DOMContentLoaded', () => {
             loadData();
             handleRouteChange();
@@ -627,14 +765,33 @@
 
             document.getElementById('modal-close-bg').addEventListener('click', closeModal);
             document.addEventListener('keydown', (e) => { if (e.key === 'Escape') closeModal(); });
-            document.getElementById('login-form').addEventListener('submit', (e) => { e.preventDefault(); /* ... */ });
-            document.getElementById('logout-btn').addEventListener('click', () => { /* ... */ });
+            
+            document.getElementById('login-form').addEventListener('submit', (e) => {
+                e.preventDefault();
+                const password = document.getElementById('password').value;
+                const errorEl = document.getElementById('login-error');
+                if (password === ADMIN_PASSWORD) {
+                    sessionStorage.setItem('isAdmin', 'true');
+                    errorEl.classList.add('hidden');
+                    handleRouteChange();
+                } else {
+                    errorEl.classList.remove('hidden');
+                }
+            });
+
+            document.getElementById('logout-btn').addEventListener('click', () => {
+                sessionStorage.removeItem('isAdmin');
+                window.location.hash = '';
+            });
+
             document.getElementById('add-project-btn').addEventListener('click', () => {
+                if (!portfolioData.projects) portfolioData.projects = [];
                 portfolioData.projects.push({
-                    enabled: true, title: "", thumbnail: "", description: "", type: "video", source: []
+                    enabled: true, title: "Novo Projeto", thumbnail: "", description: "", type: "video", source: []
                 });
                 renderAdminPanel();
             });
+
             document.getElementById('save-changes-btn').addEventListener('click', () => {
                 saveData();
                 alert('Alterações salvas! A página principal será atualizada ao fechar este aviso.');
@@ -642,36 +799,45 @@
                    renderPortfolio();
                 }
             });
-            document.getElementById('export-json-btn').addEventListener('click', () => { /* ... */ });
-            document.getElementById('import-json-input').addEventListener('change', (event) => { /* ... */ });
-        });
 
-        // Simulação de preenchimento para as partes omitidas
-        defaultData.profile = { name: "Seu Nome Aqui", role: "Editor de Vídeo & Videomaker", pic: "https://placehold.co/400x400/1F2937/E5E7EB?text=Sua+Foto", bio: "Olá! Sou um criador de conteúdo audiovisual...", email: "seuemail@exemplo.com", whatsapp: "https://wa.me/5511999999999", favicon: "data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🎬</text></svg>" };
-        
-        function handleRouteChange() {
-            const hash = window.location.hash;
-            const portfolioView = document.getElementById('portfolio-view');
-            const adminView = document.getElementById('admin-view');
-            const loginScreen = document.getElementById('login-screen');
-            const adminPanel = document.getElementById('admin-panel');
-            if (hash === '#admin') {
-                portfolioView.classList.add('hidden'); adminView.classList.remove('hidden');
-                if (sessionStorage.getItem('isAdmin') === 'true') {
-                    loginScreen.classList.add('hidden'); adminPanel.classList.remove('hidden'); renderAdminPanel();
-                } else {
-                    loginScreen.classList.remove('hidden'); adminPanel.classList.add('hidden');
-                }
-            } else {
-                portfolioView.classList.remove('hidden'); adminView.classList.add('hidden'); loadData(); renderPortfolio();
-            }
-        }
-        document.querySelectorAll('.remove-project-btn').forEach(btn => { btn.onclick = (e) => { const index = parseInt(e.target.dataset.index, 10); if (confirm(`Tem certeza que deseja remover o Projeto ${index + 1}?`)) { portfolioData.projects.splice(index, 1); renderAdminPanel(); } }; });
-        document.getElementById('login-form').addEventListener('submit', (e) => { e.preventDefault(); const password = document.getElementById('password').value; const errorEl = document.getElementById('login-error'); if (password === ADMIN_PASSWORD) { sessionStorage.setItem('isAdmin', 'true'); errorEl.classList.add('hidden'); handleRouteChange(); } else { errorEl.classList.remove('hidden'); } });
-        document.getElementById('logout-btn').addEventListener('click', () => { sessionStorage.removeItem('isAdmin'); window.location.hash = ''; });
-        document.getElementById('export-json-btn').addEventListener('click', () => { const dataStr = JSON.stringify(portfolioData, null, 2); const dataUri = 'data:application/json;charset=utf-8,' + encodeURIComponent(dataStr); const exportFileDefaultName = 'portfolio_backup.json'; let linkElement = document.createElement('a'); linkElement.setAttribute('href', dataUri); linkElement.setAttribute('download', exportFileDefaultName); linkElement.click(); });
-        document.getElementById('import-json-input').addEventListener('change', (event) => { const file = event.target.files[0]; if (!file) return; const reader = new FileReader(); reader.onload = function(e) { try { const importedData = JSON.parse(e.target.result); if (importedData.profile && importedData.projects) { portfolioData = importedData; renderAdminPanel(); updateFavicon(); alert('Dados importados com sucesso! Clique em "Salvar Alterações" para confirmar.'); } else { alert('Arquivo JSON inválido.'); } } catch (error) { alert('Erro ao ler o arquivo JSON.'); } }; reader.readAsText(file); event.target.value = ''; });
+            document.getElementById('export-json-btn').addEventListener('click', () => {
+                const dataStr = JSON.stringify(portfolioData, null, 2);
+                const dataUri = 'data:application/json;charset=utf-8,' + encodeURIComponent(dataStr);
+                const exportFileDefaultName = 'portfolio_backup.json';
+                const linkElement = document.createElement('a');
+                linkElement.setAttribute('href', dataUri);
+                linkElement.setAttribute('download', exportFileDefaultName);
+                linkElement.click();
+            });
+
+            document.getElementById('import-json-input').addEventListener('change', (event) => {
+                const file = event.target.files[0];
+                if (!file) return;
+                const reader = new FileReader();
+                reader.onload = function(e) {
+                    try {
+                        const importedData = JSON.parse(e.target.result);
+                        if (importedData.profile && importedData.projects && importedData.services) {
+                            portfolioData = importedData;
+                            renderAdminPanel();
+                            updateFavicon();
+                            alert('Dados importados com sucesso! Clique em "Salvar Alterações" para confirmar.');
+                        } else {
+                            alert('Arquivo JSON inválido.');
+                        }
+                    } catch (error) {
+                        console.error('Erro ao ler o arquivo JSON:', error);
+                        alert('Erro ao ler o arquivo JSON.');
+                    }
+                };
+                reader.readAsText(file);
+                event.target.value = '';
+            });
+        });
     </script>
 </body>
 </html>
+
+
+
 
