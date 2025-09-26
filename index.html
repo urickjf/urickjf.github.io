@@ -118,8 +118,14 @@
         
         /* Novo estilo para a foto de perfil com bordas suaves */
         #profile-pic {
-           mask-image: radial-gradient(circle at center, white 60%, transparent 100%);
-           -webkit-mask-image: radial-gradient(circle at center, white 60%, transparent 100%); /* Para compatibilidade com Safari */
+           -webkit-mask-image: 
+                linear-gradient(to bottom, transparent 0%, white 25%, white 75%, transparent 100%),
+                linear-gradient(to right, transparent 0%, white 25%, white 75%, transparent 100%);
+           -webkit-mask-composite: source-in;
+           mask-image: 
+                linear-gradient(to bottom, transparent 0%, white 25%, white 75%, transparent 100%),
+                linear-gradient(to right, transparent 0%, white 25%, white 75%, transparent 100%);
+           mask-composite: intersect;
         }
 
         /* Classes personalizadas de design do Admin */
@@ -837,7 +843,4 @@
     </script>
 </body>
 </html>
-
-
-
 
