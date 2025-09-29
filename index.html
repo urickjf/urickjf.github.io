@@ -98,7 +98,7 @@
         }
         .slider-thumbnail {
             width: 80px;
-            height: 45px; /* Alterado de 50px para 45px para forçar a proporção 16:9 (80/16*9) */
+            height: 50px; /* Revertido para a altura original */
             object-fit: cover;
             border-radius: 0.25rem; /* 4px */
             cursor: pointer;
@@ -664,6 +664,7 @@
         }
         
         function addAdminEventListeners() {
+            // Serviços
             document.querySelectorAll('.remove-service-btn').forEach(btn => {
                 btn.onclick = (e) => {
                     const index = parseInt(e.target.closest('[data-service-index]').dataset.serviceIndex, 10);
@@ -674,6 +675,7 @@
                 };
             });
 
+            // Projetos
             document.querySelectorAll('.admin-project-type').forEach((select, index) => {
                 select.onchange = () => {
                     const project = portfolioData.projects[index];
@@ -853,5 +855,5 @@
     </script>
 </body>
 </html>
-
+"
 
