@@ -16,9 +16,6 @@
     <script src="https://unpkg.com/feather-icons"></script>
 
     <style>
-        .w-64 {
-              width: 22rem !important;
-        }
         textarea {
             resize: vertical;
             color: #000 !important;
@@ -29,8 +26,8 @@
         /* Estilo base para a fonte e cores */
         body {
             font-family: 'Inter', sans-serif;
-            background-color: #000; /* Fallback para navegadores antigos */
-            background-image: linear-gradient(to bottom, #000, #464646);
+            background-color: #000000; /* Fallback para navegadores antigos */
+            background-image: linear-gradient(to bottom, #000000, #0f172a); /* Novo fundo com gradiente */
             color: #E5E7EB; /* Texto cinza claro */
             scroll-behavior: smooth;
         }
@@ -101,7 +98,7 @@
         }
         .slider-thumbnail {
             width: 80px;
-            height: 50px;
+            height: 45px; /* Alterado de 50px para 45px para forçar a proporção 16:9 (80/16*9) */
             object-fit: cover;
             border-radius: 0.25rem; /* 4px */
             cursor: pointer;
@@ -118,9 +115,6 @@
             opacity: 1;
             border-color: #6366f1; /* indigo-500 */
         }
-        
-        /* Novo estilo para a foto de perfil com bordas suaves */
-
 
         /* Classes personalizadas de design do Admin */
         .admin-input {
@@ -138,15 +132,17 @@
     <!-- Container da Página Pública (Portfólio) -->
     <div id="portfolio-view">
         <div class="container mx-auto max-w-5xl px-6 py-12 md:py-20">
-            <header class="flex flex-col md:flex-row items-center md:items-stretch justify-between gap-8 md:gap-12">
-                <div class="text-center md:text-left order-2 md:order-1 flex-1">
-                    <h3 class="text-2xl font-bold text-white">Olá, eu sou</h3>
-                    <h1 id="profile-name" class="text-4xl md:text-5xl font-extrabold text-white text-glow">Seu Nome Aqui</h1>
-                    <h2 id="profile-role" class="text-xl md:text-2xl font-medium text-cyan-300 mt-2">Editor de Vídeo & Videomaker</h2>
-                    <p id="profile-bio" class="mt-6 text-lg text-gray-300 leading-relaxed max-w-xl">
-                        Olá! Sou um criador de conteúdo audiovisual apaixonado por contar histórias que cativam, educam e inspiram. Meu objetivo é transformar ideias em peças visuais impactantes e memoráveis.
-                    </p>
-                    <div class="mt-8 flex flex-col sm:flex-row justify-center md:justify-start items-center gap-6">
+            <header class="flex flex-col md:flex-row items-center md:items-stretch justify-center md:justify-between gap-8 md:gap-12">
+                <div class="text-center md:text-left order-2 md:order-1 flex-1 flex flex-col">
+                    <div>
+                        <h3 class="text-2xl font-bold text-white">Olá, eu sou</h3>
+                        <h1 id="profile-name" class="text-4xl md:text-5xl font-extrabold text-white text-glow">Seu Nome Aqui</h1>
+                        <h2 id="profile-role" class="text-xl md:text-2xl font-medium text-cyan-300 mt-2">Editor de Vídeo & Videomaker</h2>
+                        <p id="profile-bio" class="mt-6 text-lg text-gray-300 leading-relaxed max-w-xl">
+                            Olá! Sou um criador de conteúdo audiovisual apaixonado por contar histórias que cativam, educam e inspiram. Meu objetivo é transformar ideias em peças visuais impactantes e memoráveis.
+                        </p>
+                    </div>
+                    <div class="mt-auto pt-8 flex flex-col sm:flex-row justify-center md:justify-start items-center gap-6">
                         <a id="profile-email" href="mailto:seuemail@exemplo.com" class="flex items-center gap-3 text-lg hover:text-cyan-300 transition-all duration-300">
                             <i data-feather="mail" class="w-6 h-6"></i>
                             <span id="profile-email-text">seuemail@exemplo.com</span>
@@ -157,7 +153,7 @@
                         </a>
                     </div>
                 </div>
-                <div class="order-1 md:order-2 flex-shrink-0 w-64">
+                <div class="order-1 md:order-2 flex-shrink-0 w-64 max-w-xs mx-auto md:w-auto md:h-auto">
                     <img id="profile-pic" src="https://placehold.co/400x400/1F2937/E5E7EB?text=Sua+Foto" alt="Foto de perfil" class="object-cover w-full h-full rounded-lg">
                 </div>
             </header>
@@ -668,16 +664,16 @@
         }
         
         function addAdminEventListeners() {
-            // Serviços
             document.querySelectorAll('.remove-service-btn').forEach(btn => {
                 btn.onclick = (e) => {
                     const index = parseInt(e.target.closest('[data-service-index]').dataset.serviceIndex, 10);
-                    portfolioData.services.splice(index, 1);
-                    renderAdminPanel();
+                    if (confirm(`Tem certeza que deseja remover o Serviço ${index + 1}?`)) {
+                        portfolioData.services.splice(index, 1);
+                        renderAdminPanel();
+                    }
                 };
             });
 
-            // Projetos
             document.querySelectorAll('.admin-project-type').forEach((select, index) => {
                 select.onchange = () => {
                     const project = portfolioData.projects[index];
@@ -857,4 +853,5 @@
     </script>
 </body>
 </html>
+
 
