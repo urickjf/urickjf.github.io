@@ -283,7 +283,7 @@
             <div id="admin-portfolio-content">
                 <!-- Backup / Restore -->
                 <div class="bg-gray-800 p-6 rounded-lg mb-8 border border-slate-700">
-                    <h3 class="text-xl font-bold text-white mb-4">Backup e Restauração</h3>
+                    <h3 class="text-xl font-bold text-white mb-4">Backup e Restauração (Local)</h3>
                     <div class="flex gap-4">
                         <button id="export-json-btn" class="bg-green-600 hover:bg-green-700 text-white font-bold py-2 px-4 rounded-md">Exportar JSON</button>
                         <label class="bg-blue-600 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-md cursor-pointer">
@@ -404,9 +404,9 @@
             </div>
 
              <div class="mt-8 text-right">
-                <button id="save-changes-btn" class="bg-green-600 hover:bg-green-700 text-white font-bold py-3 px-6 rounded-md text-lg">Salvar Alterações</button>
+                <button id="save-changes-btn" class="bg-green-600 hover:bg-green-700 text-white font-bold py-3 px-6 rounded-md text-lg">Salvar Alterações no Servidor</button>
             </div>
-             <p id="save-feedback" class="text-green-400 text-right mt-4 hidden">Alterações salvas com sucesso!</p>
+             <p id="save-feedback" class="text-right mt-4 h-5"></p>
         </div>
     </div>
 
@@ -420,6 +420,9 @@
         // --- INÍCIO DA LÓGICA DO SITE ---
 
         const ADMIN_PASSWORD = "Algoritimobadass1986";
+
+        // Conexão com o backend.
+        const API_BASE_URL = 'https://meu-portfolio-api.onrender.com';
 
         const defaultData = {
             profile: {
@@ -511,21 +514,32 @@
         }
 
         // --- FUNÇÕES DE ROTEAMENTO E CARREGAMENTO DE DADOS ---
-        function loadData() {
-            const savedData = localStorage.getItem('portfolioData');
-            let data = savedData ? JSON.parse(savedData) : JSON.parse(JSON.stringify(defaultData));
+        async function loadData() {
+            try {
+                const response = await fetch(`${API_BASE_URL}/api/data`);
+                let data = await response.json();
+                
+                // Mescla os dados do servidor com os dados padrão para garantir que todas as chaves existam
+                const mergedData = {
+                    ...JSON.parse(JSON.stringify(defaultData)),
+                    ...data
+                };
+                 // Garante que as sub-estruturas também sejam mescladas
+                mergedData.profile = {...defaultData.profile, ...data.profile};
+                mergedData.curriculum = {...defaultData.curriculum, ...data.curriculum};
+                mergedData.curriculum.contacts = {...defaultData.curriculum.contacts, ...(data.curriculum ? data.curriculum.contacts : {})};
 
-            // --- Data Structure Migration ---
-            // Garante que a chave do currículo exista, corrigindo dados de versões mais antigas.
-            if (!data.curriculum) {
-                data.curriculum = JSON.parse(JSON.stringify(defaultData.curriculum));
+
+                portfolioData = mergedData;
+
+            } catch (error) {
+                console.error('Failed to load data from server, falling back to default:', error);
+                portfolioData = JSON.parse(JSON.stringify(defaultData));
             }
-
-            portfolioData = data;
             updateFavicon();
         }
 
-        function handleRouteChange() {
+        async function handleRouteChange() {
             const hash = window.location.hash;
             const portfolioView = document.getElementById('portfolio-view');
             const curriculoView = document.getElementById('curriculo-view');
@@ -541,6 +555,7 @@
             if (hash === '#admin') {
                 adminView.classList.remove('hidden');
                 if (sessionStorage.getItem('isAdmin') === 'true') {
+                    await loadData();
                     loginScreen.classList.add('hidden');
                     adminPanel.classList.remove('hidden');
                     renderAdminPanel();
@@ -550,11 +565,11 @@
                 }
             } else if (hash === '#curriculo') {
                  curriculoView.classList.remove('hidden');
-                 loadData();
+                 await loadData();
                  renderCurriculum();
             } else {
                 portfolioView.classList.remove('hidden');
-                loadData();
+                await loadData();
                 renderPortfolio();
             }
         }
@@ -1008,7 +1023,6 @@
             // Projetos
             document.querySelectorAll('.admin-project-type').forEach((select, index) => {
                 select.onchange = () => {
-                    saveData(); // Salva o estado atual antes de recarregar
                     const project = portfolioData.projects[index];
                     const newType = select.value;
                     if (project.type !== newType) {
@@ -1033,7 +1047,6 @@
                    if(projectEl){
                        const projectIndex = parseInt(projectEl.dataset.projectIndex, 10);
                        btn.onclick = () => {
-                           saveData();
                            if (!Array.isArray(portfolioData.projects[projectIndex].source)) {
                                portfolioData.projects[projectIndex].source = [];
                            }
@@ -1058,23 +1071,19 @@
 
             // --- Event Listeners for Curriculum Admin ---
             document.getElementById('add-cv-experience-btn').onclick = () => {
-                saveData();
                 portfolioData.curriculum.experience.push({ date: "", title: "", company: "", description: "" });
                 renderAdminCurriculum();
             };
             document.getElementById('add-cv-education-btn').onclick = () => {
-                saveData();
                 portfolioData.curriculum.education.push({ date: "", degree: "", institution: "" });
                 renderAdminCurriculum();
             };
             document.getElementById('add-cv-course-btn').onclick = () => {
-                saveData();
                 portfolioData.curriculum.courses.push({ name: "", institution: "" });
                 renderAdminCurriculum();
             };
             document.querySelectorAll('.add-list-item-btn').forEach(btn => {
                 btn.onclick = (e) => {
-                    saveData();
                     const type = e.target.dataset.type;
                     portfolioData.curriculum[type].push("");
                     renderAdminCurriculum();
@@ -1091,7 +1100,13 @@
             });
         }
         
-        function saveData() {
+        async function saveData() {
+            const feedback = document.getElementById('save-feedback');
+            feedback.textContent = 'Salvando...';
+            feedback.className = 'text-yellow-400 text-right mt-4 h-5';
+            feedback.classList.remove('hidden');
+
+            // Coleta todos os dados da UI para o objeto portfolioData
             // Perfil
             portfolioData.profile.name = document.getElementById('admin-name').value;
             portfolioData.profile.role = document.getElementById('admin-role').value;
@@ -1126,7 +1141,7 @@
                    portfolioData.projects.push(newProjectData);
             });
 
-            // --- Save Curriculum Data ---
+            // --- Coleta dados do Currículo ---
             const cv = portfolioData.curriculum;
             cv.name = document.getElementById('admin-cv-name').value;
             cv.role = document.getElementById('admin-cv-role').value;
@@ -1167,18 +1182,33 @@
             cv.tools = Array.from(document.querySelectorAll('.admin-cv-tools-item')).map(i => i.value).filter(Boolean);
             cv.hobbies = Array.from(document.querySelectorAll('.admin-cv-hobbies-item')).map(i => i.value).filter(Boolean);
 
+            try {
+                const response = await fetch(`${API_BASE_URL}/api/data`, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify(portfolioData)
+                });
+                if (!response.ok) {
+                    throw new Error('Falha ao salvar os dados no servidor.');
+                }
+                feedback.textContent = 'Alterações salvas com sucesso!';
+                feedback.className = 'text-green-400 text-right mt-4 h-5';
+            } catch(error) {
+                console.error('Erro ao salvar:', error);
+                feedback.textContent = 'Erro ao salvar. Verifique o console.';
+                feedback.className = 'text-red-400 text-right mt-4 h-5';
+            }
 
-            localStorage.setItem('portfolioData', JSON.stringify(portfolioData));
             updateFavicon();
-            const feedback = document.getElementById('save-feedback');
-            feedback.classList.remove('hidden');
-            setTimeout(() => feedback.classList.add('hidden'), 3000);
+            setTimeout(() => {
+                feedback.textContent = '';
+                feedback.classList.add('hidden');
+            }, 4000);
         }
         
         // --- INICIALIZAÇÃO E EVENTOS GERAIS ---
-        document.addEventListener('DOMContentLoaded', () => {
-            loadData();
-            handleRouteChange();
+        document.addEventListener('DOMContentLoaded', async () => {
+            await handleRouteChange();
             window.addEventListener('hashchange', handleRouteChange);
 
             document.getElementById('modal-close-bg').addEventListener('click', closeModal);
@@ -1203,27 +1233,22 @@
             });
 
             document.getElementById('add-service-btn').addEventListener('click', () => {
-                saveData();
                 if (!portfolioData.services) portfolioData.services = [];
                 portfolioData.services.push({ icon: 'settings', title: 'Novo Serviço', description: '' });
                 renderAdminPanel();
             });
 
             document.getElementById('add-project-btn').addEventListener('click', () => {
-                saveData();
                 if (!portfolioData.projects) portfolioData.projects = [];
                 portfolioData.projects.push({
-                    enabled: true, title: "Novo Projeto", thumbnail: "", description: "", type: "video", source: []
+                    enabled: true, title: "Novo Projeto", thumbnail: "", description: "", type: "video", source: [""]
                 });
                 renderAdminPanel();
             });
 
-            document.getElementById('save-changes-btn').addEventListener('click', () => {
-                saveData();
-            });
+            document.getElementById('save-changes-btn').addEventListener('click', saveData);
 
             document.getElementById('export-json-btn').addEventListener('click', () => {
-                saveData();
                 const dataStr = JSON.stringify(portfolioData, null, 2);
                 const dataUri = 'data:application/json;charset=utf-8,' + encodeURIComponent(dataStr);
                 const exportFileDefaultName = 'portfolio_backup.json';
@@ -1241,7 +1266,6 @@
                     try {
                         const importedData = JSON.parse(e.target.result);
                         if (importedData.profile && importedData.projects && importedData.services) {
-                            // Deep merge to ensure new properties like 'curriculum' are added if missing
                             const mergedData = { ...JSON.parse(JSON.stringify(defaultData)), ...importedData };
                             portfolioData = mergedData;
                             renderAdminPanel();
@@ -1262,5 +1286,4 @@
     </script>
 </body>
 </html>
-
 
