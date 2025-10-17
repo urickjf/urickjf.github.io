@@ -16,13 +16,6 @@
     <script src="https://unpkg.com/feather-icons"></script>
 
     <style>
-        textarea {
-            resize: vertical;
-            color: #000 !important;
-        }
-        .admin-input {
-            color: #000 !important;
-        }
         /* Estilo base para a fonte e cores */
         body {
             font-family: 'Inter', sans-serif;
@@ -98,7 +91,7 @@
         }
         .slider-thumbnail {
             width: 80px;
-            height: 50px; /* Revertido para a altura original */
+            height: 50px;
             object-fit: cover;
             border-radius: 0.25rem; /* 4px */
             cursor: pointer;
@@ -116,12 +109,7 @@
             border-color: #6366f1; /* indigo-500 */
         }
 
-        /* Classes personalizadas de design do Admin */
-        .admin-input {
-            @apply w-full p-2 bg-gray-200 border border-gray-400 rounded-md text-black focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 transition;
-        }
-        .admin-input::placeholder { color: #6b7280; }
-        .admin-label { @apply block text-sm font-medium text-gray-300 mb-1; }
+        /* Classes personalizadas de design */
         .text-glow { text-shadow: 0 0 12px rgba(2, 239, 239, 0.4); }
         .button-glow { transition: all .3s ease; }
         .button-glow:hover { box-shadow: 0 0 15px rgba(2, 239, 239, 0.5), 0 0 20px rgba(2, 239, 239, 0.2); background-color: #02efef; color: #0f172a; }
@@ -182,10 +170,6 @@
                 </div>
             </main>
         </div>
-        <!-- Botão flutuante para Admin -->
-        <a id="admin-button" href="#admin" class="hidden fixed bottom-4 right-4 bg-slate-800 text-slate-400 p-2 rounded-full hover:bg-slate-700 hover:text-white transition-all z-10">
-            <i data-feather="settings" class="w-6 h-6"></i>
-        </a>
     </div>
 
     <!-- Container da Página de Currículo -->
@@ -250,166 +234,6 @@
         </div>
     </div>
 
-
-    <!-- Container da Página de Administração -->
-    <div id="admin-view" class="hidden">
-        <div id="login-screen" class="min-h-screen flex items-center justify-center">
-            <div class="bg-gray-800 p-8 rounded-lg shadow-xl w-full max-w-sm border border-slate-700">
-                <h2 class="text-2xl font-bold text-center text-white mb-6">Acesso Administrativo</h2>
-                <form id="login-form">
-                    <div>
-                        <label for="password" class="admin-label">Senha</label>
-                        <input type="password" id="password" class="admin-input" required>
-                    </div>
-                    <p id="login-error" class="text-red-400 text-sm mt-2 hidden">Senha incorreta.</p>
-                    <button type="submit" class="w-full bg-indigo-600 hover:bg-indigo-700 text-white font-bold py-2 px-4 rounded-md mt-6">Entrar</button>
-                </form>
-            </div>
-        </div>
-        <div id="admin-panel" class="hidden container mx-auto max-w-5xl px-6 py-12">
-            <div class="flex justify-between items-center mb-8">
-                <h2 class="text-3xl font-bold text-white">Painel de Administração</h2>
-                <button id="logout-btn" class="bg-red-600 hover:bg-red-700 text-white font-bold py-2 px-4 rounded-md">Sair</button>
-            </div>
-
-            <!-- ABAS DO ADMIN -->
-            <div class="mb-8 border-b border-slate-700">
-                <nav class="flex space-x-4" aria-label="Tabs">
-                    <button id="admin-tab-portfolio" class="px-3 py-2 font-medium text-sm rounded-t-md text-white bg-slate-700">Geral & Portfólio</button>
-                    <button id="admin-tab-curriculo" class="px-3 py-2 font-medium text-sm rounded-t-md text-slate-400 hover:text-white">Currículo</button>
-                </nav>
-            </div>
-            
-            <div id="admin-portfolio-content">
-                <!-- Backup / Restore -->
-                <div class="bg-gray-800 p-6 rounded-lg mb-8 border border-slate-700">
-                    <h3 class="text-xl font-bold text-white mb-4">Backup e Restauração (Local)</h3>
-                    <div class="flex gap-4">
-                        <button id="export-json-btn" class="bg-green-600 hover:bg-green-700 text-white font-bold py-2 px-4 rounded-md">Exportar JSON</button>
-                        <label class="bg-blue-600 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-md cursor-pointer">
-                            <span>Importar JSON</span>
-                            <input type="file" id="import-json-input" class="hidden" accept=".json">
-                        </label>
-                    </div>
-                </div>
-                <div class="space-y-8">
-                    <!-- Informações Principais -->
-                    <div class="bg-gray-800 p-6 rounded-lg border border-slate-700">
-                        <h3 class="text-xl font-bold text-white mb-4">Informações Principais</h3>
-                        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-                            <div>
-                                <label for="admin-name" class="admin-label">Seu Nome</label>
-                                <input type="text" id="admin-name" class="admin-input">
-                            </div>
-                            <div>
-                                <label for="admin-role" class="admin-label">Sua Profissão</label>
-                                <input type="text" id="admin-role" class="admin-input">
-                            </div>
-                            <div class="md:col-span-2">
-                                <label for="admin-pic" class="admin-label">URL da sua Foto</label>
-                                <input type="text" id="admin-pic" class="admin-input">
-                            </div>
-                            <div class="md:col-span-2">
-                                <label for="admin-favicon" class="admin-label">URL do Favicon</label>
-                                <input type="text" id="admin-favicon" class="admin-input" placeholder="Link para .ico, .png, .svg ou Base64">
-                            </div>
-                               <div class="md:col-span-2">
-                                <label for="admin-bio" class="admin-label">Sua Pequena História (Bio)</label>
-                                <textarea id="admin-bio" rows="4" class="admin-input"></textarea>
-                            </div>
-                            <div>
-                                <label for="admin-email" class="admin-label">E-mail de Contato</label>
-                                <input type="email" id="admin-email" class="admin-input">
-                            </div>
-                            <div>
-                                <label for="admin-whatsapp" class="admin-label">Link do WhatsApp (completo)</label>
-                                <input type="text" id="admin-whatsapp" class="admin-input" placeholder="https://wa.me/SEUNUMERO">
-                            </div>
-                            <div class="md:col-span-2">
-                                <label class="flex items-center gap-2 text-gray-300 cursor-pointer">
-                                    <input type="checkbox" id="admin-show-admin-button" class="form-checkbox h-5 w-5 rounded bg-gray-700 border-gray-600 text-indigo-600 focus:ring-indigo-500">
-                                    <span>Mostrar botão de acesso ao Admin na página principal</span>
-                                </label>
-                            </div>
-                        </div>
-                    </div>
-                    <!-- Serviços -->
-                    <div class="bg-gray-800 p-6 rounded-lg border border-slate-700">
-                               <h3 class="text-xl font-bold text-white mb-4">Serviços</h3>
-                               <div id="admin-services-container" class="space-y-6"></div>
-                               <button id="add-service-btn" class="mt-6 bg-indigo-600 hover:bg-indigo-700 text-white font-bold py-2 px-4 rounded-md">Adicionar Novo Serviço</button>
-                    </div>
-                    <!-- Projetos -->
-                    <div class="bg-gray-800 p-6 rounded-lg border border-slate-700">
-                               <h3 class="text-xl font-bold text-white mb-4">Projetos do Portfólio</h3>
-                               <div id="projects-container" class="space-y-6"></div>
-                               <button id="add-project-btn" class="mt-6 bg-indigo-600 hover:bg-indigo-700 text-white font-bold py-2 px-4 rounded-md">Adicionar Novo Projeto</button>
-                    </div>
-                </div>
-            </div>
-
-            <!-- CONTEÚDO ADMIN CURRÍCULO -->
-            <div id="admin-curriculo-content" class="hidden space-y-8">
-                 <div class="bg-gray-800 p-6 rounded-lg border border-slate-700">
-                    <h3 class="text-xl font-bold text-white mb-4">Cabeçalho e Contatos</h3>
-                     <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-                         <div><label class="admin-label">Nome Completo</label><input type="text" id="admin-cv-name" class="admin-input"></div>
-                         <div><label class="admin-label">Cargo</label><input type="text" id="admin-cv-role" class="admin-input"></div>
-                         <div class="md:col-span-2"><label class="admin-label">URL da Foto</label><input type="text" id="admin-cv-photo" class="admin-input"></div>
-                         <div><label class="admin-label">E-mail</label><input type="text" id="admin-cv-email" class="admin-input"></div>
-                         <div><label class="admin-label">Telefone</label><input type="text" id="admin-cv-phone" class="admin-input"></div>
-                         <div><label class="admin-label">Website</label><input type="text" id="admin-cv-website" class="admin-input"></div>
-                     </div>
-                 </div>
-                 <div class="bg-gray-800 p-6 rounded-lg border border-slate-700">
-                    <h3 class="text-xl font-bold text-white mb-4">Informação Pessoal (Resumo)</h3>
-                    <textarea id="admin-cv-personal-info" rows="5" class="admin-input"></textarea>
-                </div>
-                <div class="bg-gray-800 p-6 rounded-lg border border-slate-700">
-                     <h3 class="text-xl font-bold text-white mb-4">Experiência Profissional</h3>
-                     <div id="admin-cv-experience-container" class="space-y-6"></div>
-                     <button id="add-cv-experience-btn" class="mt-6 bg-indigo-600 hover:bg-indigo-700 text-white font-bold py-2 px-4 rounded-md">Adicionar Experiência</button>
-                </div>
-                 <div class="bg-gray-800 p-6 rounded-lg border border-slate-700">
-                     <h3 class="text-xl font-bold text-white mb-4">Formação Acadêmica</h3>
-                     <div id="admin-cv-education-container" class="space-y-6"></div>
-                     <button id="add-cv-education-btn" class="mt-6 bg-indigo-600 hover:bg-indigo-700 text-white font-bold py-2 px-4 rounded-md">Adicionar Formação</button>
-                </div>
-                <div class="bg-gray-800 p-6 rounded-lg border border-slate-700">
-                     <h3 class="text-xl font-bold text-white mb-4">Habilidades, Ferramentas, Cursos e Hobbies</h3>
-                     <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
-                         <div>
-                            <h4 class="text-lg text-white mb-2">Habilidades</h4>
-                            <div id="admin-cv-skills-container" class="space-y-2"></div>
-                            <button class="add-list-item-btn mt-2 text-sm text-indigo-300 hover:text-indigo-400" data-type="skills">+ Adicionar Habilidade</button>
-                         </div>
-                         <div>
-                            <h4 class="text-lg text-white mb-2">Ferramentas</h4>
-                            <div id="admin-cv-tools-container" class="space-y-2"></div>
-                             <button class="add-list-item-btn mt-2 text-sm text-indigo-300 hover:text-indigo-400" data-type="tools">+ Adicionar Ferramenta</button>
-                         </div>
-                         <div>
-                            <h4 class="text-lg text-white mb-2">Cursos</h4>
-                            <div id="admin-cv-courses-container" class="space-y-4"></div>
-                            <button id="add-cv-course-btn" class="mt-2 text-sm text-indigo-300 hover:text-indigo-400">+ Adicionar Curso</button>
-                         </div>
-                         <div>
-                            <h4 class="text-lg text-white mb-2">Hobbies</h4>
-                            <div id="admin-cv-hobbies-container" class="space-y-2"></div>
-                            <button class="add-list-item-btn mt-2 text-sm text-indigo-300 hover:text-indigo-400" data-type="hobbies">+ Adicionar Hobby</button>
-                         </div>
-                     </div>
-                </div>
-
-            </div>
-
-             <div class="mt-8 text-right">
-                <button id="save-changes-btn" class="bg-green-600 hover:bg-green-700 text-white font-bold py-3 px-6 rounded-md text-lg">Salvar Alterações no Servidor</button>
-            </div>
-             <p id="save-feedback" class="text-right mt-4 h-5"></p>
-        </div>
-    </div>
-
     <!-- Modal para exibir o trabalho -->
     <div id="modal" class="fixed inset-0 bg-black bg-opacity-80 flex justify-center items-center p-4 z-50 opacity-0 pointer-events-none backdrop-blur-sm">
         <div id="modal-close-bg" class="absolute inset-0"></div>
@@ -419,80 +243,16 @@
     <script>
         // --- INÍCIO DA LÓGICA DO SITE ---
 
-        const ADMIN_PASSWORD = "Algoritimobadass1986";
-
-        // Conexão com o backend.
-        const API_BASE_URL = 'https://meu-portfolio-api.onrender.com';
-
-        const defaultData = {
-            profile: {
-                name: "Seu Nome Aqui",
-                role: "Editor de Vídeo & Videomaker",
-                pic: "https://placehold.co/400x400/1F2937/E5E7EB?text=Sua+Foto",
-                bio: "Olá! Sou um criador de conteúdo audiovisual apaixonado por contar histórias que cativam, educam e inspiram. Meu objetivo é transformar ideias em peças visuais impactantes e memoráveis.",
-                email: "seuemail@exemplo.com",
-                whatsapp: "https://wa.me/5511999999999",
-                favicon: "data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🎬</text></svg>",
-                showAdminButton: true
-            },
-            services: [
-                { icon: "video", title: "Edição de Vídeo", description: "Edição completa para vlogs, vídeos institucionais e redes sociais, com foco em narrativa e ritmo." },
-                { icon: "camera", title: "Captação de Imagem", description: "Gravação de alta qualidade com equipamento profissional para garantir a melhor imagem para seu projeto." },
-                { icon: "bar-chart-2", title: "Motion Graphics", description: "Animações 2D e elementos gráficos para dar vida às suas ideias, vinhetas e peças publicitárias." }
-            ],
-            projects: [
-                {
-                    enabled: true,
-                    title: "Videoclipe - Artista Incrível",
-                    thumbnail: "https://placehold.co/600x400/3B82F6/FFFFFF?text=Videoclipe",
-                    description: "Direção e edição para o videoclipe 'Canção Fictícia'.",
-                    type: "video",
-                    source: ["https://www.youtube.com/embed/dQw4w9WgXcQ"]
-                },
-                {
-                    enabled: true,
-                    title: "Ensaio Fotográfico - Moda Urbana",
-                    thumbnail: "https://placehold.co/600x400/EC4899/FFFFFF?text=Fotografia",
-                    description: "Sessão de fotos para a campanha de lançamento da marca 'UrbanStyle'.",
-                    type: "image",
-                    source: [
-                        "https://placehold.co/1200x800/EC4899/FFFFFF?text=Foto+1",
-                        "https://placehold.co/1200x800/be185d/FFFFFF?text=Foto+2",
-                        "https://placehold.co/1200x800/9d174d/FFFFFF?text=Foto+3"
-                    ]
-                }
-            ],
-            curriculum: {
-                name: "BERNARDO BOTAFOGO",
-                role: "FOTÓGRAFO E EDITOR",
-                photo: "https://placehold.co/300x300/1f2937/e5e7eb?text=Bernardo",
-                contacts: {
-                    email: "bmbotafogo86@gmail.com",
-                    phone: "(24) 99316-4000",
-                    website: "http://www.bernardobotafogo.com.br"
-                },
-                personalInfo: "Comecei há 11 anos na area de fotografia e cinema, com projetos pessoais do universo nerd, como filmmaker e fotógrafo, já participando de quase todo o processo de criação de filmes (roteiro, produção, filmagem, cenário, captação de audio e video, cenografia, pós-produção edição e efeitos especiais).\n\nAtualmente, também dou consultoria para produtores de vídeos iniciantes (youtube, cinema, propaganda etc). Trabalhei também com design de peças publicitárias e drops de conteúdo para redes sociais.",
-                experience: [
-                    { date: "NOVEMBRO DE 2020 - HOJE", title: "Editor de video, gerente de midias sociais e design", company: "Medo e Delírio em Brasília", description: "Cuido de toda a produção de conteúdo para as redes desde imagens para posts e vídeos para o Canal do youtube, tiktok, instagram e telegram." },
-                    { date: "SETEMBRO 2014 - OUTUBRO 2017", title: "Técnico em Manutenção", company: "Ovnipix conteúdo WEB LTDA", description: "Fiz a captação e edição de coberturas para eventos, canais do youtube como (Reynold Romão e David Mafra), Locução de comerciais para rádio, e drops de conteúdo para redes sociais do portal." },
-                    { date: "MARÇO 2010 - AGOSTO 2017", title: "Editor de Video, Cameraman e redes sociais", company: "Nerdice.com", description: "Fiz a captação e edição de todo o material audiovisual dos canais do portal Nerdice.com. Fiz também a alimentação com drops de conteúdo nas redes sociais do portal." }
-                ],
-                education: [
-                    { date: "2008-2010", degree: "Tecnólogo de WEB (Superior incompleto)", institution: "CEFET-RJ" },
-                    { date: "2004", degree: "Técnico em Informática", institution: "Liceu São José de Itaipava" }
-                ],
-                skills: ["FOTOGRAFIA", "EDIÇÃO DE FOTOS", "FILMAGEM", "EDIÇÃO DE VIDEO", "EDIÇÃO DE ÁUDIO"],
-                tools: ["PREMIERE PRO", "FINAL CUT", "PHOTOSHOP", "AUDITION", "LIGHTROOM", "ILUSTRATOR"],
-                courses: [
-                    { name: "Ruby on Rails (2013)", institution: "Caelum" },
-                    { name: "Autocad Basico e 3D (2005)", institution: "SENAI" }
-                ],
-                hobbies: ["VLOGER E PODCAST"]
-            }
-        };
-
         let portfolioData;
         
+        // Objeto de dados padrão, usado como fallback caso o data.json não seja encontrado.
+        const defaultData = {
+            profile: { name: "Nome não carregado", role: "Profissão", pic: "", bio: "", email: "", whatsapp: "", favicon: "" },
+            services: [],
+            projects: [],
+            curriculum: { name: "", role: "", photo: "", contacts: {}, personalInfo: "", experience: [], education: [], skills: [], tools: [], courses: [], hobbies: [] }
+        };
+
         // --- FUNÇÕES DE LÓGICA E UTILIDADES ---
         function getYoutubeThumbnailUrl(url) {
             if (typeof url !== 'string' || !url) return 'https://placehold.co/128x72/1F2937/E5E7EB?text=Video';
@@ -509,67 +269,48 @@
         }
 
         function updateFavicon() {
-            const faviconUrl = portfolioData.profile.favicon || defaultData.profile.favicon;
-            document.getElementById('favicon').href = faviconUrl;
+            if (portfolioData && portfolioData.profile) {
+                const faviconUrl = portfolioData.profile.favicon;
+                if(faviconUrl) document.getElementById('favicon').href = faviconUrl;
+            }
         }
 
         // --- FUNÇÕES DE ROTEAMENTO E CARREGAMENTO DE DADOS ---
         async function loadData() {
             try {
-                const response = await fetch(`${API_BASE_URL}/api/data`);
-                let data = await response.json();
-                
-                // Mescla os dados do servidor com os dados padrão para garantir que todas as chaves existam
-                const mergedData = {
-                    ...JSON.parse(JSON.stringify(defaultData)),
-                    ...data
-                };
-                 // Garante que as sub-estruturas também sejam mescladas
-                mergedData.profile = {...defaultData.profile, ...data.profile};
-                mergedData.curriculum = {...defaultData.curriculum, ...data.curriculum};
-                mergedData.curriculum.contacts = {...defaultData.curriculum.contacts, ...(data.curriculum ? data.curriculum.contacts : {})};
-
-
-                portfolioData = mergedData;
-
+                // Busca o arquivo data.json local
+                const response = await fetch('./data.json');
+                if (!response.ok) {
+                    throw new Error(`HTTP error! status: ${response.status}`);
+                }
+                portfolioData = await response.json();
             } catch (error) {
-                console.error('Failed to load data from server, falling back to default:', error);
+                console.error('Falha ao carregar data.json. Usando dados de fallback.', error);
                 portfolioData = JSON.parse(JSON.stringify(defaultData));
+                alert('Atenção: Não foi possível carregar o arquivo "data.json". O conteúdo padrão está sendo exibido.');
             }
             updateFavicon();
         }
 
         async function handleRouteChange() {
-            const hash = window.location.hash;
+// ... existing code ... -->
             const portfolioView = document.getElementById('portfolio-view');
             const curriculoView = document.getElementById('curriculo-view');
-            const adminView = document.getElementById('admin-view');
-            const loginScreen = document.getElementById('login-screen');
-            const adminPanel = document.getElementById('admin-panel');
-
+            
             // Oculta todas as views
             portfolioView.classList.add('hidden');
             curriculoView.classList.add('hidden');
-            adminView.classList.add('hidden');
 
-            if (hash === '#admin') {
-                adminView.classList.remove('hidden');
-                if (sessionStorage.getItem('isAdmin') === 'true') {
-                    await loadData();
-                    loginScreen.classList.add('hidden');
-                    adminPanel.classList.remove('hidden');
-                    renderAdminPanel();
-                } else {
-                    loginScreen.classList.remove('hidden');
-                    adminPanel.classList.add('hidden');
-                }
-            } else if (hash === '#curriculo') {
+            // Carrega os dados antes de decidir qual view mostrar
+            // A função loadData() é chamada dentro de handleRouteChange para garantir que os dados estão sempre carregados
+            // antes de qualquer tentativa de renderização. Isso já está correto.
+            await loadData();
+
+            if (hash === '#curriculo') {
                  curriculoView.classList.remove('hidden');
-                 await loadData();
                  renderCurriculum();
             } else {
                 portfolioView.classList.remove('hidden');
-                await loadData();
                 renderPortfolio();
             }
         }
@@ -577,713 +318,129 @@
         // --- FUNÇÕES DE RENDERIZAÇÃO DO PORTFÓLIO ---
 
         function renderPortfolio() {
-            // Perfil
-            document.getElementById('profile-pic').src = portfolioData.profile.pic || defaultData.profile.pic;
-            document.getElementById('profile-name').textContent = portfolioData.profile.name;
-            document.getElementById('profile-role').textContent = portfolioData.profile.role;
-            document.getElementById('profile-bio').innerHTML = portfolioData.profile.bio.replace(/\n/g, '<br>');
+            try {
+                if (!portfolioData || !portfolioData.profile) {
+                    console.error("Dados do perfil não encontrados.");
+                    return;
+                }
 
-            document.getElementById('profile-email').href = `mailto:${portfolioData.profile.email}`;
-            document.getElementById('profile-email-text').textContent = portfolioData.profile.email;
-            document.getElementById('profile-whatsapp').href = portfolioData.profile.whatsapp;
+                const profile = portfolioData.profile;
 
-            // Botão Admin
-            const adminButton = document.getElementById('admin-button');
-            if (portfolioData.profile.showAdminButton) {
-                adminButton.classList.remove('hidden');
-            } else {
-                adminButton.classList.add('hidden');
-            }
-            
-            // Serviços
-            const servicesGrid = document.getElementById('services-grid');
-            servicesGrid.innerHTML = (portfolioData.services || []).map(service => `
-                <div class="bg-slate-800 border border-slate-700 p-6 rounded-lg text-center transition-all duration-300 hover:border-cyan-400 hover:-translate-y-2">
-                           <i data-feather="${service.icon}" class="w-12 h-12 mx-auto text-cyan-400 mb-4"></i>
-                           <h4 class="text-xl font-bold text-white mb-2">${service.title}</h4>
-                           <p class="text-gray-400">${service.description}</p>
-                </div>
-            `).join('');
-            
-            // Galeria
-            const gallery = document.getElementById('gallery');
-            gallery.innerHTML = '';
-            const activeProjects = (portfolioData.projects || []).filter(p => {
-                const hasSource = Array.isArray(p.source) && p.source.length > 0 && p.source[0];
-                return p.enabled && p.title && p.thumbnail && hasSource;
-            });
-            activeProjects.forEach((project) => {
-                const projectElement = document.createElement('div');
-                projectElement.className = 'group cursor-pointer rounded-lg transition-all duration-300 hover:!opacity-100 group-hover:opacity-50 hover:scale-105 hover:shadow-2xl hover:shadow-indigo-500/20';
-                projectElement.innerHTML = `
-                    <div class="relative overflow-hidden rounded-lg aspect-w-16 aspect-h-9 ring-1 ring-slate-800 group-hover:ring-indigo-500 transition-all duration-300">
-                        <img src="${project.thumbnail}" alt="${project.title}" class="w-full h-full object-cover transform group-hover:scale-105 transition-transform duration-300">
-                        <div class="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent"></div>
-                        <div class="absolute bottom-0 left-0 p-4">
-                            <h4 class="text-white text-lg font-bold">${project.title}</h4>
-                        </div>
+                // Perfil
+                document.title = `${profile.name || 'Portfólio'} | Portfólio Audiovisual`;
+                document.getElementById('profile-pic').src = profile.pic || '';
+                document.getElementById('profile-name').textContent = profile.name || '';
+                document.getElementById('profile-role').textContent = profile.role || '';
+                document.getElementById('profile-bio').innerHTML = (profile.bio || '').replace(/\n/g, '<br>');
+
+                document.getElementById('profile-email').href = `mailto:${profile.email || ''}`;
+                document.getElementById('profile-email-text').textContent = profile.email || '';
+                document.getElementById('profile-whatsapp').href = profile.whatsapp || 'https://wa.me/';
+
+                // Serviços
+                const servicesGrid = document.getElementById('services-grid');
+                servicesGrid.innerHTML = (portfolioData.services || []).map(service => `
+                    <div class="bg-slate-800 border border-slate-700 p-6 rounded-lg text-center transition-all duration-300 hover:border-cyan-400 hover:-translate-y-2">
+                                <i data-feather="${service.icon || 'settings'}" class="w-12 h-12 mx-auto text-cyan-400 mb-4"></i>
+                                <h4 class="text-xl font-bold text-white mb-2">${service.title || 'Serviço'}</h4>
+                                <p class="text-gray-400">${service.description || ''}</p>
                     </div>
-                `;
-                projectElement.addEventListener('click', () => openModal(project));
-                gallery.appendChild(projectElement);
-            });
-            feather.replace();
+                `).join('');
+                
+                // Galeria
+                const gallery = document.getElementById('gallery');
+                gallery.innerHTML = '';
+                const activeProjects = (portfolioData.projects || []).filter(p => {
+                    const hasSource = Array.isArray(p.source) && p.source.length > 0 && p.source[0];
+                    return p.enabled && p.title && p.thumbnail && hasSource;
+                });
+                activeProjects.forEach((project) => {
+                    const projectElement = document.createElement('div');
+                    projectElement.className = 'group cursor-pointer rounded-lg transition-all duration-300 hover:!opacity-100 group-hover:opacity-50 hover:scale-105 hover:shadow-2xl hover:shadow-indigo-500/20';
+                    projectElement.innerHTML = `
+                        <div class="relative overflow-hidden rounded-lg aspect-w-16 aspect-h-9 ring-1 ring-slate-800 group-hover:ring-indigo-500 transition-all duration-300">
+                            <img src="${project.thumbnail}" alt="${project.title}" class="w-full h-full object-cover transform group-hover:scale-105 transition-transform duration-300">
+                            <div class="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent"></div>
+                            <div class="absolute bottom-0 left-0 p-4">
+                                <h4 class="text-white text-lg font-bold">${project.title}</h4>
+                            </div>
+                        </div>
+                    `;
+                    projectElement.addEventListener('click', () => openModal(project));
+                    gallery.appendChild(projectElement);
+                });
+                feather.replace();
+            } catch (error) {
+                console.error("Erro ao renderizar o portfólio:", error);
+                document.getElementById('portfolio-view').innerHTML = '<p class="text-center text-red-500">Ocorreu um erro ao carregar o portfólio.</p>';
+            }
         }
 
         function renderCurriculum() {
-            const cv = portfolioData.curriculum;
-            document.getElementById('cv-name').textContent = cv.name;
-            document.getElementById('cv-role').textContent = cv.role;
-            document.getElementById('cv-photo').src = cv.photo;
-            document.getElementById('cv-personal-info').innerHTML = cv.personalInfo.replace(/\n/g, '<br>');
+            try {
+                if (!portfolioData || !portfolioData.curriculum) {
+                    console.error("Dados do currículo não encontrados.");
+                    return;
+                }
 
-            const contactsEl = document.getElementById('cv-contacts');
-            contactsEl.innerHTML = `
-                <a href="mailto:${cv.contacts.email}" class="flex items-center gap-3 hover:text-cyan-300"><i data-feather="mail" class="w-4 h-4"></i><span>${cv.contacts.email}</span></a>
-                <p class="flex items-center gap-3"><i data-feather="phone" class="w-4 h-4"></i><span>${cv.contacts.phone}</span></p>
-                <a href="${cv.contacts.website}" target="_blank" class="flex items-center gap-3 hover:text-cyan-300"><i data-feather="link" class="w-4 h-4"></i><span>${cv.contacts.website}</span></a>
-            `;
+                const cv = portfolioData.curriculum;
+                const profile = portfolioData.profile;
 
-            const experienceEl = document.getElementById('cv-experience');
-            experienceEl.innerHTML = (cv.experience || []).map(item => `
-                <div>
-                    <p class="font-semibold text-slate-400 text-xs">${item.date}</p>
-                    <h4 class="font-bold text-white text-lg">${item.company}</h4>
-                    <p class="font-medium text-md text-slate-300">${item.title}</p>
-                    <p class="mt-2 text-slate-400 text-sm">${item.description}</p>
-                </div>
-            `).join('');
+                document.title = `Currículo | ${profile.name || 'Portfólio'}`;
 
-            const educationEl = document.getElementById('cv-education');
-            educationEl.innerHTML = (cv.education || []).map(item => `
-                <div>
-                    <p class="font-semibold text-slate-400 text-xs">${item.date}</p>
-                    <h4 class="font-bold text-white">${item.institution}</h4>
-                    <p class="font-medium text-sm text-slate-300">${item.degree}</p>
-                </div>
-            `).join('');
-            
-            const coursesEl = document.getElementById('cv-courses');
-            coursesEl.innerHTML = (cv.courses || []).map(item => `
-                <div>
-                    <h4 class="font-bold text-white">${item.institution}</h4>
-                    <p class="text-slate-300">${item.name}</p>
-                </div>
-            `).join('');
+                document.getElementById('cv-name').textContent = cv.name || '';
+                document.getElementById('cv-role').textContent = cv.role || '';
+                document.getElementById('cv-photo').src = cv.photo || '';
+                document.getElementById('cv-personal-info').innerHTML = (cv.personalInfo || '').replace(/\n/g, '<br>');
 
-            document.getElementById('cv-skills').innerHTML = (cv.skills || []).map(s => `<li>${s}</li>`).join('');
-            document.getElementById('cv-tools').innerHTML = (cv.tools || []).map(t => `<li>${t}</li>`).join('');
-            document.getElementById('cv-hobbies').innerHTML = (cv.hobbies || []).map(h => `<li>${h}</li>`).join('');
-            
-            feather.replace();
+                const contactsEl = document.getElementById('cv-contacts');
+                if (cv.contacts) {
+                    contactsEl.innerHTML = `
+                        <a href="mailto:${cv.contacts.email || ''}" class="flex items-center gap-3 hover:text-cyan-300"><i data-feather="mail" class="w-4 h-4"></i><span>${cv.contacts.email || ''}</span></a>
+                        <p class="flex items-center gap-3"><i data-feather="phone" class="w-4 h-4"></i><span>${cv.contacts.phone || ''}</span></p>
+                        <a href="${cv.contacts.website || ''}" target="_blank" class="flex items-center gap-3 hover:text-cyan-300"><i data-feather="link" class="w-4 h-4"></i><span>${cv.contacts.website || ''}</span></a>
+                    `;
+                }
+
+                const experienceEl = document.getElementById('cv-experience');
+                experienceEl.innerHTML = (cv.experience || []).map(item => `
+                    <div>
+                        <p class="font-semibold text-slate-400 text-xs">${item.date || ''}</p>
+                        <h4 class="font-bold text-white text-lg">${item.company || ''}</h4>
+                        <p class="font-medium text-md text-slate-300">${item.title || ''}</p>
+                        <p class="mt-2 text-slate-400 text-sm">${item.description || ''}</p>
+                    </div>
+                `).join('');
+
+                const educationEl = document.getElementById('cv-education');
+                educationEl.innerHTML = (cv.education || []).map(item => `
+                    <div>
+                        <p class="font-semibold text-slate-400 text-xs">${item.date || ''}</p>
+                        <h4 class="font-bold text-white">${item.institution || ''}</h4>
+                        <p class="font-medium text-sm text-slate-300">${item.degree || ''}</p>
+                    </div>
+                `).join('');
+                
+                const coursesEl = document.getElementById('cv-courses');
+                coursesEl.innerHTML = (cv.courses || []).map(item => `
+                    <div>
+                        <h4 class="font-bold text-white">${item.institution || ''}</h4>
+                        <p class="text-slate-300">${item.name || ''}</p>
+                    </div>
+                `).join('');
+
+                document.getElementById('cv-skills').innerHTML = (cv.skills || []).map(s => `<li>${s}</li>`).join('');
+                document.getElementById('cv-tools').innerHTML = (cv.tools || []).map(t => `<li>${t}</li>`).join('');
+                document.getElementById('cv-hobbies').innerHTML = (cv.hobbies || []).map(h => `<li>${h}</li>`).join('');
+                
+                feather.replace();
+            } catch (error) {
+                console.error("Erro ao renderizar o currículo:", error);
+                document.getElementById('curriculo-view').innerHTML = '<p class="text-center text-red-500">Ocorreu um erro ao carregar o currículo.</p>';
+            }
         }
 
         function openModal(project) {
             const modal = document.getElementById('modal');
-            const modalContent = document.getElementById('modal-content');
-            
-            if (!Array.isArray(project.source) || project.source.length === 0) return;
-
-            const isVideo = project.type === 'video';
-            
-            const mediaHtml = `
-                <div id="media-player" class="media-container rounded-t-lg">
-                    <!-- O player (img ou iframe) será inserido aqui pelo JS -->
-                </div>
-                ${project.source.length > 1 ? `
-                <button id="slider-prev" class="slider-btn prev"><i data-feather="chevron-left" class="w-6 h-6"></i></button>
-                <button id="slider-next" class="slider-btn next"><i data-feather="chevron-right" class="w-6 h-6"></i></button>
-                <div id="slider-counter" class="slider-counter">1 / ${project.source.length}</div>
-                ` : ''}
-            `;
-                
-            const thumbnailsHtml = project.source.length > 1 ? `
-                <div class="slider-thumbnails">
-                    ${project.source.map((src, index) => {
-                        const thumbSrc = isVideo ? getYoutubeThumbnailUrl(src) : src;
-                        return `<img src="${thumbSrc}" class="slider-thumbnail" data-index="${index}" alt="Miniatura ${index + 1}">`;
-                    }).join('')}
-                </div>` : '';
-
-            modalContent.innerHTML = `
-                <div class="relative">
-                    <button id="modal-close-btn" class="absolute top-3 right-3 text-white bg-black bg-opacity-50 rounded-full p-1 hover:bg-opacity-75 z-20"><i data-feather="x" class="w-6 h-6"></i></button>
-                    ${mediaHtml}
-                </div>
-                <div class="p-6 md:p-8">
-                    ${thumbnailsHtml}
-                    <h3 class="text-2xl font-bold text-white mt-4">${project.title}</h3>
-                    <p class="mt-4 text-gray-300 text-base leading-relaxed">${project.description}</p>
-                </div>
-            `;
-            
-            feather.replace();
-            document.getElementById('modal-close-btn').addEventListener('click', closeModal);
-
-            // LÓGICA DO SLIDER UNIFICADA
-            if (project.source.length > 1) {
-                let currentIndex = 0;
-                const playerEl = document.getElementById('media-player');
-                const counterEl = document.getElementById('slider-counter');
-                const prevBtn = document.getElementById('slider-prev');
-                const nextBtn = document.getElementById('slider-next');
-                const thumbnailEls = modalContent.querySelectorAll('.slider-thumbnail');
-
-                const updateThumbnails = (activeIndex) => {
-                    thumbnailEls.forEach((thumb, i) => {
-                        thumb.classList.toggle('active', i === activeIndex);
-                    });
-                };
-
-                const showItem = (index) => {
-                    currentIndex = index;
-                    const sourceUrl = project.source[index];
-                    
-                    if (isVideo) {
-                        playerEl.innerHTML = `<iframe src="${sourceUrl}" frameborder="0" allow="autoplay; fullscreen; picture-in-picture" allowfullscreen></iframe>`;
-                    } else {
-                        playerEl.innerHTML = `<img src="${sourceUrl}" alt="${project.title}" class="transition-opacity duration-300 opacity-0">`;
-                        setTimeout(() => playerEl.querySelector('img').classList.remove('opacity-0'), 50);
-                    }
-                    
-                    if(counterEl) counterEl.textContent = `${index + 1} / ${project.source.length}`;
-                    updateThumbnails(index);
-                };
-                
-                showItem(0); // Mostra o primeiro item
-                updateThumbnails(0); // Ativa a primeira miniatura
-
-                prevBtn.addEventListener('click', () => {
-                    const newIndex = (currentIndex > 0) ? currentIndex - 1 : project.source.length - 1;
-                    showItem(newIndex);
-                });
-
-                nextBtn.addEventListener('click', () => {
-                    const newIndex = (currentIndex < project.source.length - 1) ? currentIndex + 1 : 0;
-                    showItem(newIndex);
-                });
-
-                thumbnailEls.forEach(thumb => {
-                    thumb.addEventListener('click', () => {
-                        const index = parseInt(thumb.dataset.index, 10);
-                        showItem(index);
-                    });
-                });
-
-                const handleKeyDown = (e) => {
-                    if (e.key === 'ArrowLeft') prevBtn.click();
-                    if (e.key === 'ArrowRight') nextBtn.click();
-                };
-                document.addEventListener('keydown', handleKeyDown);
-
-                // Limpa o event listener quando o modal é fechado
-                const modalObserver = new MutationObserver(() => {
-                    if (!document.body.contains(modalContent)) {
-                        document.removeEventListener('keydown', handleKeyDown);
-                        modalObserver.disconnect();
-                    }
-                });
-                modalObserver.observe(document.body, { childList: true, subtree: true });
-            } else {
-                // Se for só um item, apenas mostra
-                   if (isVideo) {
-                    document.getElementById('media-player').innerHTML = `<iframe src="${project.source[0]}" frameborder="0" allow="autoplay; fullscreen; picture-in-picture" allowfullscreen></iframe>`;
-                } else {
-                    document.getElementById('media-player').innerHTML = `<img src="${project.source[0]}" alt="${project.title}">`;
-                }
-            }
-
-            modal.classList.remove('opacity-0', 'pointer-events-none');
-            document.body.style.overflow = 'hidden';
-            modalContent.classList.remove('scale-95');
-        }
-
-        function closeModal() {
-            const modal = document.getElementById('modal');
-            const modalContent = document.getElementById('modal-content');
-            modal.classList.add('opacity-0', 'pointer-events-none');
-            document.body.style.overflow = 'auto';
-            modalContent.classList.add('scale-95');
-            // Importante: Limpa o conteúdo para parar vídeos do YouTube
-            setTimeout(() => { modalContent.innerHTML = ''; }, 300);
-        }
-
-        // --- FUNÇÕES DE RENDERIZAÇÃO E LÓGICA DO ADMIN ---
-
-        function renderAdminPanel() {
-            // Perfil
-            document.getElementById('admin-name').value = portfolioData.profile.name;
-            document.getElementById('admin-role').value = portfolioData.profile.role;
-            document.getElementById('admin-pic').value = portfolioData.profile.pic;
-            document.getElementById('admin-favicon').value = portfolioData.profile.favicon;
-            document.getElementById('admin-bio').value = portfolioData.profile.bio;
-            document.getElementById('admin-email').value = portfolioData.profile.email;
-            document.getElementById('admin-whatsapp').value = portfolioData.profile.whatsapp;
-            document.getElementById('admin-show-admin-button').checked = !!portfolioData.profile.showAdminButton;
-
-            // Serviços
-            const servicesContainer = document.getElementById('admin-services-container');
-            servicesContainer.innerHTML = (portfolioData.services || []).map((service, index) => `
-                <div class="border border-gray-700 p-4 rounded-lg space-y-3" data-service-index="${index}">
-                           <div class="flex justify-between items-center">
-                                <h4 class="text-lg font-bold text-white">Serviço ${index + 1}</h4>
-                                <button type="button" class="remove-service-btn text-red-400 hover:text-red-600">&times; Remover</button>
-                            </div>
-                            <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
-                                <div>
-                                    <label class="admin-label">Ícone (feathericons.com)</label>
-                                    <input type="text" value="${service.icon}" class="admin-input admin-service-icon">
-                                </div>
-                                <div>
-                                    <label class="admin-label">Título</label>
-                                    <input type="text" value="${service.title}" class="admin-input admin-service-title">
-                                </div>
-                                <div class="md:col-span-2">
-                                    <label class="admin-label">Descrição</label>
-                                    <textarea rows="3" class="admin-input admin-service-description">${service.description}</textarea>
-                                </div>
-                            </div>
-                </div>
-            `).join('');
-
-            // Projetos
-            const projectsContainer = document.getElementById('projects-container');
-            projectsContainer.innerHTML = '';
-            (portfolioData.projects || []).forEach((project, index) => {
-                const projectEl = document.createElement('div');
-                projectEl.className = 'border border-gray-700 p-4 rounded-lg';
-                projectEl.dataset.projectIndex = index;
-                const isVideo = project.type === 'video';
-                
-                const sourceInputs = (project.source || []).map((src, itemIndex) => `
-                    <div class="flex items-center gap-2" data-item-index="${itemIndex}">
-                        <input type="text" value="${src}" class="admin-input admin-project-source-item" placeholder="URL d${isVideo ? 'o Vídeo' : 'a Imagem'} ${itemIndex + 1}">
-                        <button type="button" class="remove-item-btn text-red-400 hover:text-red-600">&times;</button>
-                    </div>
-                `).join('');
-
-                const sourceFieldsHtml = `
-                    <div class="md:col-span-2">
-                        <label class="admin-label">URLs d${isVideo ? 'os Vídeos (Embed)' : 'as Imagens'}</label>
-                        <div class="space-y-2 item-sources-container">${sourceInputs}</div>
-                        <button type="button" class="add-item-btn mt-2 text-sm text-indigo-300 hover:text-indigo-400">+ Adicionar outr${isVideo ? 'o vídeo' : 'a imagem'}</button>
-                    </div>`;
-                
-                projectEl.innerHTML = `
-                    <div class="flex justify-between items-center mb-4">
-                           <h4 class="text-lg font-bold text-white">Projeto ${index + 1}</h4>
-                           <div class="flex items-center gap-4">
-                                <label class="flex items-center cursor-pointer">
-                                    <span class="mr-2 text-sm">Habilitado</span>
-                                    <input type="checkbox" class="admin-project-enabled" ${project.enabled ? 'checked' : ''}>
-                                </label>
-                                <button type="button" class="remove-project-btn text-red-400 hover:text-red-600">&times; Remover</button>
-                           </div>
-                    </div>
-                    <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
-                        <div>
-                            <label class="admin-label">Título</label>
-                            <input type="text" value="${project.title}" class="admin-input admin-project-title">
-                        </div>
-                           <div>
-                            <label class="admin-label">Tipo</label>
-                            <select class="admin-input admin-project-type">
-                                <option value="video" ${!isVideo ? '' : 'selected'}>Vídeo (Slide)</option>
-                                <option value="image" ${isVideo ? '' : 'selected'}>Fotografia (Slide)</option>
-                            </select>
-                        </div>
-                        <div class="md:col-span-2">
-                            <label class="admin-label">URL da Miniatura (Thumbnail)</label>
-                            <input type="text" value="${project.thumbnail}" class="admin-input admin-project-thumbnail">
-                        </div>
-                        ${sourceFieldsHtml}
-                        <div class="md:col-span-2">
-                            <label class="admin-label">Descrição</label>
-                            <textarea rows="3" class="admin-input admin-project-description">${project.description}</textarea>
-                        </div>
-                    </div>
-                `;
-                projectsContainer.appendChild(projectEl);
-            });
-
-            renderAdminCurriculum();
-            addAdminEventListeners();
-        }
-
-        function renderAdminCurriculum() {
-            const cv = portfolioData.curriculum;
-            document.getElementById('admin-cv-name').value = cv.name;
-            document.getElementById('admin-cv-role').value = cv.role;
-            document.getElementById('admin-cv-photo').value = cv.photo;
-            document.getElementById('admin-cv-email').value = cv.contacts.email;
-            document.getElementById('admin-cv-phone').value = cv.contacts.phone;
-            document.getElementById('admin-cv-website').value = cv.contacts.website;
-            document.getElementById('admin-cv-personal-info').value = cv.personalInfo;
-
-            // Render Experience
-            const expContainer = document.getElementById('admin-cv-experience-container');
-            expContainer.innerHTML = (cv.experience || []).map((item, index) => `
-                <div class="border border-gray-700 p-4 rounded-lg space-y-3" data-index="${index}">
-                    <div class="flex justify-between items-center">
-                        <h4 class="text-lg font-bold text-white">Experiência ${index + 1}</h4>
-                        <button type="button" class="remove-dynamic-item-btn text-red-400 hover:text-red-600" data-type="experience">&times; Remover</button>
-                    </div>
-                    <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
-                        <div><label class="admin-label">Período</label><input type="text" value="${item.date}" class="admin-input admin-cv-exp-date"></div>
-                        <div><label class="admin-label">Empresa</label><input type="text" value="${item.company}" class="admin-input admin-cv-exp-company"></div>
-                        <div class="md:col-span-2"><label class="admin-label">Cargo</label><input type="text" value="${item.title}" class="admin-input admin-cv-exp-title"></div>
-                        <div class="md:col-span-2"><label class="admin-label">Descrição</label><textarea rows="3" class="admin-input admin-cv-exp-desc">${item.description}</textarea></div>
-                    </div>
-                </div>
-            `).join('');
-
-            // Render Education
-            const eduContainer = document.getElementById('admin-cv-education-container');
-            eduContainer.innerHTML = (cv.education || []).map((item, index) => `
-                 <div class="border border-gray-700 p-4 rounded-lg space-y-3" data-index="${index}">
-                    <div class="flex justify-between items-center">
-                        <h4 class="text-lg font-bold text-white">Formação ${index + 1}</h4>
-                        <button type="button" class="remove-dynamic-item-btn text-red-400 hover:text-red-600" data-type="education">&times; Remover</button>
-                    </div>
-                    <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
-                        <div><label class="admin-label">Período</label><input type="text" value="${item.date}" class="admin-input admin-cv-edu-date"></div>
-                        <div><label class="admin-label">Instituição</label><input type="text" value="${item.institution}" class="admin-input admin-cv-edu-institution"></div>
-                        <div class="md:col-span-2"><label class="admin-label">Curso/Grau</label><input type="text" value="${item.degree}" class="admin-input admin-cv-edu-degree"></div>
-                    </div>
-                </div>
-            `).join('');
-
-             // Render Courses
-            const courseContainer = document.getElementById('admin-cv-courses-container');
-            courseContainer.innerHTML = (cv.courses || []).map((item, index) => `
-                 <div class="border border-gray-700 p-3 rounded-lg" data-index="${index}">
-                     <div class="flex justify-between items-center mb-2">
-                        <h5 class="text-md font-bold text-white">Curso ${index + 1}</h4>
-                        <button type="button" class="remove-dynamic-item-btn text-red-400 hover:text-red-600" data-type="courses">&times; Remover</button>
-                    </div>
-                    <div class="space-y-2">
-                         <div><label class="admin-label text-xs">Instituição</label><input type="text" value="${item.institution}" class="admin-input admin-cv-course-institution"></div>
-                         <div><label class="admin-label text-xs">Nome do Curso</label><input type="text" value="${item.name}" class="admin-input admin-cv-course-name"></div>
-                    </div>
-                </div>
-            `).join('');
-            
-            // Render Lists (Skills, Tools, Hobbies)
-            ['skills', 'tools', 'hobbies'].forEach(type => {
-                const container = document.getElementById(`admin-cv-${type}-container`);
-                container.innerHTML = (cv[type] || []).map((item, index) => `
-                    <div class="flex items-center gap-2" data-index="${index}">
-                        <input type="text" value="${item}" class="admin-input admin-cv-${type}-item">
-                        <button type="button" class="remove-dynamic-item-btn text-red-400 hover:text-red-600" data-type="${type}">&times;</button>
-                    </div>
-                `).join('');
-            });
-        }
-        
-        function addAdminEventListeners() {
-            // Remove previous listeners to avoid duplication
-            document.querySelectorAll('.remove-service-btn, .remove-project-btn, .add-item-btn, .remove-item-btn, .admin-project-type').forEach(el => {
-                const newEl = el.cloneNode(true);
-                el.parentNode.replaceChild(newEl, el);
-            });
-
-            // Admin Tabs
-            const portfolioTab = document.getElementById('admin-tab-portfolio');
-            const curriculoTab = document.getElementById('admin-tab-curriculo');
-            const portfolioContent = document.getElementById('admin-portfolio-content');
-            const curriculoContent = document.getElementById('admin-curriculo-content');
-
-            portfolioTab.addEventListener('click', () => {
-                portfolioContent.classList.remove('hidden');
-                curriculoContent.classList.add('hidden');
-                portfolioTab.classList.add('text-white', 'bg-slate-700');
-                portfolioTab.classList.remove('text-slate-400');
-                curriculoTab.classList.add('text-slate-400');
-                curriculoTab.classList.remove('text-white', 'bg-slate-700');
-            });
-            curriculoTab.addEventListener('click', () => {
-                portfolioContent.classList.add('hidden');
-                curriculoContent.classList.remove('hidden');
-                curriculoTab.classList.add('text-white', 'bg-slate-700');
-                curriculoTab.classList.remove('text-slate-400');
-                portfolioTab.classList.add('text-slate-400');
-                portfolioTab.classList.remove('text-white', 'bg-slate-700');
-            });
-
-
-            // Serviços
-            document.querySelectorAll('.remove-service-btn').forEach(btn => {
-                btn.onclick = (e) => {
-                    const index = parseInt(e.target.closest('[data-service-index]').dataset.serviceIndex, 10);
-                    portfolioData.services.splice(index, 1);
-                    renderAdminPanel();
-                };
-            });
-
-            // Projetos
-            document.querySelectorAll('.admin-project-type').forEach((select, index) => {
-                select.onchange = () => {
-                    const project = portfolioData.projects[index];
-                    const newType = select.value;
-                    if (project.type !== newType) {
-                        project.type = newType;
-                        project.source = ['']; 
-                        renderAdminPanel();
-                    }
-                };
-            });
-            document.querySelectorAll('.remove-project-btn').forEach(btn => {
-                btn.onclick = (e) => {
-                    const projectEl = e.target.closest('[data-project-index]');
-                    if (projectEl) {
-                        const index = parseInt(projectEl.dataset.projectIndex, 10);
-                        portfolioData.projects.splice(index, 1);
-                        renderAdminPanel();
-                    }
-                };
-            });
-            document.querySelectorAll('.add-item-btn').forEach((btn) => {
-                   const projectEl = btn.closest('[data-project-index]');
-                   if(projectEl){
-                       const projectIndex = parseInt(projectEl.dataset.projectIndex, 10);
-                       btn.onclick = () => {
-                           if (!Array.isArray(portfolioData.projects[projectIndex].source)) {
-                               portfolioData.projects[projectIndex].source = [];
-                           }
-                           portfolioData.projects[projectIndex].source.push('');
-                           renderAdminPanel();
-                       };
-                   }
-            });
-            document.querySelectorAll('.item-sources-container').forEach((container) => {
-                const projectEl = container.closest('[data-project-index]');
-                if(projectEl){
-                    const projectIndex = parseInt(projectEl.dataset.projectIndex, 10);
-                    container.querySelectorAll('.remove-item-btn').forEach(btn => {
-                        btn.onclick = (e) => {
-                            const itemIndex = parseInt(e.target.closest('[data-item-index]').dataset.itemIndex, 10);
-                            portfolioData.projects[projectIndex].source.splice(itemIndex, 1);
-                            renderAdminPanel();
-                        };
-                    });
-                }
-            });
-
-            // --- Event Listeners for Curriculum Admin ---
-            document.getElementById('add-cv-experience-btn').onclick = () => {
-                portfolioData.curriculum.experience.push({ date: "", title: "", company: "", description: "" });
-                renderAdminCurriculum();
-            };
-            document.getElementById('add-cv-education-btn').onclick = () => {
-                portfolioData.curriculum.education.push({ date: "", degree: "", institution: "" });
-                renderAdminCurriculum();
-            };
-            document.getElementById('add-cv-course-btn').onclick = () => {
-                portfolioData.curriculum.courses.push({ name: "", institution: "" });
-                renderAdminCurriculum();
-            };
-            document.querySelectorAll('.add-list-item-btn').forEach(btn => {
-                btn.onclick = (e) => {
-                    const type = e.target.dataset.type;
-                    portfolioData.curriculum[type].push("");
-                    renderAdminCurriculum();
-                };
-            });
-
-             document.querySelectorAll('.remove-dynamic-item-btn').forEach(btn => {
-                btn.onclick = (e) => {
-                    const type = e.target.dataset.type;
-                    const index = parseInt(e.target.closest('[data-index]').dataset.index, 10);
-                    portfolioData.curriculum[type].splice(index, 1);
-                    renderAdminCurriculum();
-                };
-            });
-        }
-        
-        async function saveData() {
-            const feedback = document.getElementById('save-feedback');
-            feedback.textContent = 'Salvando...';
-            feedback.className = 'text-yellow-400 text-right mt-4 h-5';
-            feedback.classList.remove('hidden');
-
-            // Coleta todos os dados da UI para o objeto portfolioData
-            // Perfil
-            portfolioData.profile.name = document.getElementById('admin-name').value;
-            portfolioData.profile.role = document.getElementById('admin-role').value;
-            portfolioData.profile.pic = document.getElementById('admin-pic').value;
-            portfolioData.profile.favicon = document.getElementById('admin-favicon').value;
-            portfolioData.profile.bio = document.getElementById('admin-bio').value;
-            portfolioData.profile.email = document.getElementById('admin-email').value;
-            portfolioData.profile.whatsapp = document.getElementById('admin-whatsapp').value;
-            portfolioData.profile.showAdminButton = document.getElementById('admin-show-admin-button').checked;
-            
-            // Serviços
-            portfolioData.services = [];
-            document.querySelectorAll('[data-service-index]').forEach(el => {
-                const icon = el.querySelector('.admin-service-icon').value.trim();
-                const title = el.querySelector('.admin-service-title').value.trim();
-                const description = el.querySelector('.admin-service-description').value.trim();
-                if (icon && title) portfolioData.services.push({ icon, title, description });
-            });
-
-            // Projetos
-            portfolioData.projects = [];
-            document.querySelectorAll('#projects-container > div[data-project-index]').forEach((projectEl) => {
-                   const newProjectData = {};
-                   newProjectData.title = projectEl.querySelector('.admin-project-title').value;
-                   newProjectData.type = projectEl.querySelector('.admin-project-type').value;
-                   newProjectData.thumbnail = projectEl.querySelector('.admin-project-thumbnail').value;
-                   newProjectData.description = projectEl.querySelector('.admin-project-description').value;
-                   newProjectData.enabled = projectEl.querySelector('.admin-project-enabled').checked;
-                   
-                   const sourceInputs = projectEl.querySelectorAll('.admin-project-source-item');
-                   newProjectData.source = Array.from(sourceInputs).map(input => input.value).filter(src => src.trim() !== '');
-                   portfolioData.projects.push(newProjectData);
-            });
-
-            // --- Coleta dados do Currículo ---
-            const cv = portfolioData.curriculum;
-            cv.name = document.getElementById('admin-cv-name').value;
-            cv.role = document.getElementById('admin-cv-role').value;
-            cv.photo = document.getElementById('admin-cv-photo').value;
-            cv.contacts.email = document.getElementById('admin-cv-email').value;
-            cv.contacts.phone = document.getElementById('admin-cv-phone').value;
-            cv.contacts.website = document.getElementById('admin-cv-website').value;
-            cv.personalInfo = document.getElementById('admin-cv-personal-info').value;
-
-            cv.experience = [];
-            document.querySelectorAll('#admin-cv-experience-container > div').forEach(el => {
-                cv.experience.push({
-                    date: el.querySelector('.admin-cv-exp-date').value,
-                    company: el.querySelector('.admin-cv-exp-company').value,
-                    title: el.querySelector('.admin-cv-exp-title').value,
-                    description: el.querySelector('.admin-cv-exp-desc').value,
-                });
-            });
-
-            cv.education = [];
-             document.querySelectorAll('#admin-cv-education-container > div').forEach(el => {
-                cv.education.push({
-                    date: el.querySelector('.admin-cv-edu-date').value,
-                    institution: el.querySelector('.admin-cv-edu-institution').value,
-                    degree: el.querySelector('.admin-cv-edu-degree').value,
-                });
-            });
-
-            cv.courses = [];
-            document.querySelectorAll('#admin-cv-courses-container > div').forEach(el => {
-                cv.courses.push({
-                    institution: el.querySelector('.admin-cv-course-institution').value,
-                    name: el.querySelector('.admin-cv-course-name').value,
-                });
-            });
-
-            cv.skills = Array.from(document.querySelectorAll('.admin-cv-skills-item')).map(i => i.value).filter(Boolean);
-            cv.tools = Array.from(document.querySelectorAll('.admin-cv-tools-item')).map(i => i.value).filter(Boolean);
-            cv.hobbies = Array.from(document.querySelectorAll('.admin-cv-hobbies-item')).map(i => i.value).filter(Boolean);
-
-            try {
-                const response = await fetch(`${API_BASE_URL}/api/data`, {
-                    method: 'POST',
-                    headers: { 'Content-Type': 'application/json' },
-                    body: JSON.stringify(portfolioData)
-                });
-                if (!response.ok) {
-                    throw new Error('Falha ao salvar os dados no servidor.');
-                }
-                feedback.textContent = 'Alterações salvas com sucesso!';
-                feedback.className = 'text-green-400 text-right mt-4 h-5';
-            } catch(error) {
-                console.error('Erro ao salvar:', error);
-                feedback.textContent = 'Erro ao salvar. Verifique o console.';
-                feedback.className = 'text-red-400 text-right mt-4 h-5';
-            }
-
-            updateFavicon();
-            setTimeout(() => {
-                feedback.textContent = '';
-                feedback.classList.add('hidden');
-            }, 4000);
-        }
-        
-        // --- INICIALIZAÇÃO E EVENTOS GERAIS ---
-        document.addEventListener('DOMContentLoaded', async () => {
-            await handleRouteChange();
-            window.addEventListener('hashchange', handleRouteChange);
-
-            document.getElementById('modal-close-bg').addEventListener('click', closeModal);
-            document.addEventListener('keydown', (e) => { if (e.key === 'Escape') closeModal(); });
-            
-            document.getElementById('login-form').addEventListener('submit', (e) => {
-                e.preventDefault();
-                const password = document.getElementById('password').value;
-                const errorEl = document.getElementById('login-error');
-                if (password === ADMIN_PASSWORD) {
-                    sessionStorage.setItem('isAdmin', 'true');
-                    errorEl.classList.add('hidden');
-                    handleRouteChange();
-                } else {
-                    errorEl.classList.remove('hidden');
-                }
-            });
-
-            document.getElementById('logout-btn').addEventListener('click', () => {
-                sessionStorage.removeItem('isAdmin');
-                window.location.hash = '';
-            });
-
-            document.getElementById('add-service-btn').addEventListener('click', () => {
-                if (!portfolioData.services) portfolioData.services = [];
-                portfolioData.services.push({ icon: 'settings', title: 'Novo Serviço', description: '' });
-                renderAdminPanel();
-            });
-
-            document.getElementById('add-project-btn').addEventListener('click', () => {
-                if (!portfolioData.projects) portfolioData.projects = [];
-                portfolioData.projects.push({
-                    enabled: true, title: "Novo Projeto", thumbnail: "", description: "", type: "video", source: [""]
-                });
-                renderAdminPanel();
-            });
-
-            document.getElementById('save-changes-btn').addEventListener('click', saveData);
-
-            document.getElementById('export-json-btn').addEventListener('click', () => {
-                const dataStr = JSON.stringify(portfolioData, null, 2);
-                const dataUri = 'data:application/json;charset=utf-8,' + encodeURIComponent(dataStr);
-                const exportFileDefaultName = 'portfolio_backup.json';
-                const linkElement = document.createElement('a');
-                linkElement.setAttribute('href', dataUri);
-                linkElement.setAttribute('download', exportFileDefaultName);
-                linkElement.click();
-            });
-
-            document.getElementById('import-json-input').addEventListener('change', (event) => {
-                const file = event.target.files[0];
-                if (!file) return;
-                const reader = new FileReader();
-                reader.onload = function(e) {
-                    try {
-                        const importedData = JSON.parse(e.target.result);
-                        if (importedData.profile && importedData.projects && importedData.services) {
-                            const mergedData = { ...JSON.parse(JSON.stringify(defaultData)), ...importedData };
-                            portfolioData = mergedData;
-                            renderAdminPanel();
-                            updateFavicon();
-                            alert('Dados importados com sucesso! Clique em "Salvar Alterações" para confirmar.');
-                        } else {
-                            alert('Arquivo JSON inválido.');
-                        }
-                    } catch (error) {
-                        console.error('Erro ao ler o arquivo JSON:', error);
-                        alert('Erro ao ler o arquivo JSON.');
-                    }
-                };
-                reader.readAsText(file);
-                event.target.value = '';
-            });
-        });
-    </script>
-</body>
-</html>
+// ... existing code ... -->
 
