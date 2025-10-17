@@ -1,0 +1,127 @@
+{
+  "profile": {
+    "name": "Seu Nome Completo",
+    "role": "Sua Profissão Principal (ex: Videomaker & Fotógrafo)",
+    "pic": "https://placehold.co/400x400/0f172a/E5E7EB?text=Sua+Foto",
+    "bio": "Escreva aqui um parágrafo cativante sobre você e seu trabalho. Fale sobre suas paixões, sua experiência e o que você busca em seus projetos. Tente manter o texto conciso e impactante para prender a atenção de quem visita seu portfólio.",
+    "email": "seu.email@provedor.com",
+    "whatsapp": "https://wa.me/5500999999999",
+    "favicon": "data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🚀</text></svg>"
+  },
+  "services": [
+    {
+      "icon": "video",
+      "title": "Edição de Vídeos",
+      "description": "Edição profissional para redes sociais, YouTube e projetos institucionais, com foco em narrativa e dinamismo."
+    },
+    {
+      "icon": "camera",
+      "title": "Captação de Imagens",
+      "description": "Filmagem e fotografia com equipamentos de alta qualidade para garantir o melhor resultado visual para seu projeto."
+    },
+    {
+      "icon": "award",
+      "title": "Consultoria Criativa",
+      "description": "Auxílio no desenvolvimento de conceitos e roteiros para transformar suas ideias em conteúdo audiovisual de impacto."
+    }
+  ],
+  "projects": [
+    {
+      "enabled": true,
+      "title": "Projeto de Vídeo Exemplo",
+      "thumbnail": "https://placehold.co/600x400/3B82F6/FFFFFF?text=Projeto+de+Vídeo",
+      "description": "Esta é a descrição do seu primeiro projeto. Explique o que foi feito, qual era o objetivo e qual foi o seu papel. (Ex: Direção, edição e finalização de videoclipe para o artista X.)",
+      "type": "video",
+      "source": [
+        "https://www.youtube.com/embed/dQw4w9WgXcQ"
+      ]
+    },
+    {
+      "enabled": true,
+      "title": "Projeto de Fotografia Exemplo",
+      "thumbnail": "https://placehold.co/600x400/EC4899/FFFFFF?text=Projeto+de+Foto",
+      "description": "Aqui você descreve seu projeto de fotografia. Pode ser um ensaio, uma cobertura de evento, etc. Destaque os pontos mais importantes.",
+      "type": "image",
+      "source": [
+        "https://placehold.co/1200x800/d946ef/FFFFFF?text=Foto+1",
+        "https://placehold.co/1200x800/c026d3/FFFFFF?text=Foto+2",
+        "https://placehold.co/1200x800/a21caf/FFFFFF?text=Foto+3"
+      ]
+    },
+    {
+      "enabled": false,
+      "title": "Projeto Desabilitado",
+      "thumbnail": "https://placehold.co/600x400/f97316/FFFFFF?text=Projeto+Oculto",
+      "description": "Este projeto está com 'enabled: false' e não aparecerá no seu portfólio. É útil para guardar projetos que você não quer exibir no momento.",
+      "type": "video",
+      "source": [
+        "https://www.youtube.com/embed/dQw4w9WgXcQ"
+      ]
+    }
+  ],
+  "curriculum": {
+    "name": "Seu Nome Completo no Currículo",
+    "role": "Seu Cargo ou Especialidade",
+    "photo": "https://placehold.co/300x300/1f2937/e5e7eb?text=Sua+Foto",
+    "contacts": {
+      "email": "seu.email.profissional@provedor.com",
+      "phone": "(00) 99999-9999",
+      "website": "https://seusite.com.br"
+    },
+    "personalInfo": "Aqui você pode escrever um resumo profissional mais detalhado. Fale sobre seus anos de experiência, suas principais competências e seus objetivos de carreira. Este é o seu 'pitch' pessoal.",
+    "experience": [
+      {
+        "date": "Mês Ano - Presente",
+        "title": "Seu Cargo Atual",
+        "company": "Nome da Empresa ou 'Freelancer'",
+        "description": "Descreva suas responsabilidades e conquistas nesta posição. Use pontos para listar as atividades mais importantes. Ex: - Edição de vídeos para o canal X; - Gerenciamento de redes sociais."
+      },
+      {
+        "date": "Mês Ano - Mês Ano",
+        "title": "Cargo Anterior",
+        "company": "Nome da Empresa Anterior",
+        "description": "Faça o mesmo para suas experiências passadas. Tente focar nas experiências mais relevantes para a área que você quer destacar."
+      }
+    ],
+    "education": [
+      {
+        "date": "Ano de Conclusão",
+        "degree": "Nome do Curso ou Formação",
+        "institution": "Nome da Instituição de Ensino"
+      },
+      {
+        "date": "Ano de Conclusão",
+        "degree": "Curso Técnico ou Outra Formação",
+        "institution": "Nome da Instituição de Ensino"
+      }
+    ],
+    "skills": [
+      "Habilidade Principal 1 (ex: Edição de Vídeo)",
+      "Habilidade Principal 2 (ex: Direção de Fotografia)",
+      "Habilidade Complementar 1 (ex: Roteiro)",
+      "Habilidade Complementar 2 (ex: Color Grading)"
+    ],
+    "tools": [
+      "Software Principal (ex: Adobe Premiere Pro)",
+      "Software Secundário (ex: DaVinci Resolve)",
+      "Outro Software (ex: Adobe Photoshop)",
+      "Equipamento (ex: Câmeras Sony Alpha)"
+    ],
+    "courses": [
+      {
+        "name": "Nome do Curso Complementar",
+        "institution": "Instituição que ofereceu o curso"
+      },
+      {
+        "name": "Workshop ou Certificação",
+        "institution": "Instituição"
+      }
+    ],
+    "hobbies": [
+      "Um Hobby (ex: Cinema Clássico)",
+      "Outro Hobby (ex: Fotografia Analógica)",
+      "Mais um Hobby (ex: Escrever Roteiros)"
+    ]
+  }
+}
+
