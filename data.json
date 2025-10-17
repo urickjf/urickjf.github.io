@@ -10,27 +10,27 @@
   },
   "services": [
     {
-      "icon": "video",
-      "title": "Edição de Vídeos",
-      "description": "Edição profissional para redes sociais, YouTube e projetos institucionais, com foco em narrativa e dinamismo."
-    },
-    {
       "icon": "camera",
-      "title": "Captação de Imagens",
-      "description": "Filmagem e fotografia com equipamentos de alta qualidade para garantir o melhor resultado visual para seu projeto."
+      "title": "Fotografia & Filmagem",
+      "description": "Captação de imagem e vídeo para eventos, ensaios e projetos audiovisuais, com foco na qualidade e narrativa visual."
     },
     {
-      "icon": "award",
-      "title": "Consultoria Criativa",
-      "description": "Auxílio no desenvolvimento de conceitos e roteiros para transformar suas ideias em conteúdo audiovisual de impacto."
+      "icon": "video",
+      "title": "Edição e Pós-Produção",
+      "description": "Edição de vídeo, tratamento de cor, motion graphics e efeitos especiais para transformar suas ideias em peças impactantes."
+    },
+    {
+      "icon": "share-2",
+      "title": "Gestão de Mídias Sociais",
+      "description": "Criação de conteúdo visual e textual para YouTube, TikTok e Instagram, desde a produção até a publicação."
     }
   ],
   "projects": [
     {
       "enabled": true,
-      "title": "Projeto de Vídeo Exemplo",
+      "title": "Seu Melhor Projeto de Vídeo",
       "thumbnail": "https://placehold.co/600x400/3B82F6/FFFFFF?text=Projeto+de+Vídeo",
-      "description": "Esta é a descrição do seu primeiro projeto. Explique o que foi feito, qual era o objetivo e qual foi o seu papel. (Ex: Direção, edição e finalização de videoclipe para o artista X.)",
+      "description": "Descreva aqui um dos seus principais trabalhos em vídeo. Cole o link do YouTube ou Vimeo na seção 'source' abaixo.",
       "type": "video",
       "source": [
         "https://www.youtube.com/embed/dQw4w9WgXcQ"
@@ -38,94 +38,90 @@
     },
     {
       "enabled": true,
-      "title": "Projeto de Fotografia Exemplo",
+      "title": "Seu Melhor Projeto de Fotografia",
       "thumbnail": "https://placehold.co/600x400/EC4899/FFFFFF?text=Projeto+de+Foto",
-      "description": "Aqui você descreve seu projeto de fotografia. Pode ser um ensaio, uma cobertura de evento, etc. Destaque os pontos mais importantes.",
+      "description": "Descreva um ensaio fotográfico ou cobertura de evento. Adicione os links para as melhores imagens na seção 'source' abaixo.",
       "type": "image",
       "source": [
         "https://placehold.co/1200x800/d946ef/FFFFFF?text=Foto+1",
-        "https://placehold.co/1200x800/c026d3/FFFFFF?text=Foto+2",
-        "https://placehold.co/1200x800/a21caf/FFFFFF?text=Foto+3"
-      ]
-    },
-    {
-      "enabled": false,
-      "title": "Projeto Desabilitado",
-      "thumbnail": "https://placehold.co/600x400/f97316/FFFFFF?text=Projeto+Oculto",
-      "description": "Este projeto está com 'enabled: false' e não aparecerá no seu portfólio. É útil para guardar projetos que você não quer exibir no momento.",
-      "type": "video",
-      "source": [
-        "https://www.youtube.com/embed/dQw4w9WgXcQ"
+        "https://placehold.co/1200x800/c026d3/FFFFFF?text=Foto+2"
       ]
     }
   ],
   "curriculum": {
-    "name": "Seu Nome Completo no Currículo",
-    "role": "Seu Cargo ou Especialidade",
+    "name": "Bernardo Botafogo",
+    "role": "Fotógrafo e Editor",
     "photo": "https://placehold.co/300x300/1f2937/e5e7eb?text=Sua+Foto",
     "contacts": {
-      "email": "seu.email.profissional@provedor.com",
-      "phone": "(00) 99999-9999",
-      "website": "https://seusite.com.br"
+      "email": "bmbotafogo86@gmail.com",
+      "phone": "(24) 99316-4000",
+      "website": "http://www.bernardobotafogo.com.br"
     },
-    "personalInfo": "Aqui você pode escrever um resumo profissional mais detalhado. Fale sobre seus anos de experiência, suas principais competências e seus objetivos de carreira. Este é o seu 'pitch' pessoal.",
+    "personalInfo": "Comecei há 11 anos na area de fotografia e cinema, com projetos pessoais do universo nerd, como filmmaker e fotógrafo, já participando de quase todo o processo de criação de filmes (roteiro, produção, filmagem, cenário, captação de audio e video, cenografia, pós-produção edição e efeitos especiais). Atualmente, também dou consultoria para produtores de vídeos iniciantes (youtube, cinema, propaganda etc). Trabalhei também com design de peças publicitárias e drops de conteúdo para redes sociais.",
     "experience": [
       {
-        "date": "Mês Ano - Presente",
-        "title": "Seu Cargo Atual",
-        "company": "Nome da Empresa ou 'Freelancer'",
-        "description": "Descreva suas responsabilidades e conquistas nesta posição. Use pontos para listar as atividades mais importantes. Ex: - Edição de vídeos para o canal X; - Gerenciamento de redes sociais."
+        "date": "Novembro de 2020 - Hoje",
+        "title": "Editor de vídeo, gerente de mídias sociais e design",
+        "company": "Medo e Delírio em Brasília",
+        "description": "Cuido de toda a produção de conteúdo para as redes desde imagens para posts e vídeos para o Canal do youtube, tiktok, instagram e telegram."
       },
       {
-        "date": "Mês Ano - Mês Ano",
-        "title": "Cargo Anterior",
-        "company": "Nome da Empresa Anterior",
-        "description": "Faça o mesmo para suas experiências passadas. Tente focar nas experiências mais relevantes para a área que você quer destacar."
+        "date": "Setembro de 2014 - Outubro de 2017",
+        "title": "Técnico em Manutenção",
+        "company": "Ovnipix conteúdo WEB LTDA",
+        "description": "Fiz a captação e edição de coberturas para eventos, canais do youtube como (Reynold Romão e David Mafra), Locução de comerciais para rádio, e drops de conteúdo para redes sociais do portal."
+      },
+      {
+        "date": "Março de 2010 - Agosto de 2017",
+        "title": "Editor de Video, Cameraman e redes sociais",
+        "company": "Nerdice.com",
+        "description": "Fiz a captação e edição de todo o material audiovisual dos canais do portal Nerdice.com. Fiz também a alimentação com drops de conteúdo nas redes sociais do portal."
       }
     ],
     "education": [
       {
-        "date": "Ano de Conclusão",
-        "degree": "Nome do Curso ou Formação",
-        "institution": "Nome da Instituição de Ensino"
+        "date": "2008 - 2010",
+        "degree": "Tecnólogo de WEB (Superior incompleto)",
+        "institution": "CEFET-RJ"
       },
       {
-        "date": "Ano de Conclusão",
-        "degree": "Curso Técnico ou Outra Formação",
-        "institution": "Nome da Instituição de Ensino"
+        "date": "2004",
+        "degree": "Técnico em Informática",
+        "institution": "Liceu São José de Itaipava"
       }
     ],
     "skills": [
-      "Habilidade Principal 1 (ex: Edição de Vídeo)",
-      "Habilidade Principal 2 (ex: Direção de Fotografia)",
-      "Habilidade Complementar 1 (ex: Roteiro)",
-      "Habilidade Complementar 2 (ex: Color Grading)"
+      "Fotografia",
+      "Edição de Fotos",
+      "Filmagem",
+      "Edição de Vídeo",
+      "Edição de Áudio"
     ],
     "tools": [
-      "Software Principal (ex: Adobe Premiere Pro)",
-      "Software Secundário (ex: DaVinci Resolve)",
-      "Outro Software (ex: Adobe Photoshop)",
-      "Equipamento (ex: Câmeras Sony Alpha)"
+      "Premiere Pro",
+      "Final Cut",
+      "Photoshop",
+      "Audition",
+      "Lightroom",
+      "Ilustrator"
     ],
     "courses": [
       {
-        "name": "Nome do Curso Complementar",
-        "institution": "Instituição que ofereceu o curso"
+        "name": "Ruby on Rails - Desenvolvimento Ágil para Web 2.0",
+        "institution": "Caelum (2013)"
       },
       {
-        "name": "Workshop ou Certificação",
-        "institution": "Instituição"
+        "name": "Autocad Básico e 3D",
+        "institution": "SENAI (2005)"
+      },
+      {
+        "name": "Cursos diversos de fotografia, filmagem, edição e montagem",
+        "institution": "Internet"
       }
     ],
     "hobbies": [
-      "Um Hobby (ex: Cinema Clássico)",
-      "Outro Hobby (ex: Fotografia Analógica)",
-      "Mais um Hobby (ex: Escrever Roteiros)"
+      "Vloger e Podcast"
     ]
   }
 }
-
-
-
-
 
