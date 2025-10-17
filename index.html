@@ -172,18 +172,16 @@
                 <div class="text-center md:text-left order-2 md:order-1 flex-1 flex flex-col">
                     <div>
                         <h3 class="text-2xl font-bold text-white">Olá, eu sou</h3>
-                        <h1 id="profile-name" class="text-4xl md:text-5xl font-extrabold text-white text-glow">Seu Nome Aqui</h1>
-                        <h2 id="profile-role" class="text-xl md:text-2xl font-medium text-cyan-300 mt-2">Editor de Vídeo & Videomaker</h2>
-                        <p id="profile-bio" class="mt-6 text-lg text-gray-300 leading-relaxed max-w-xl">
-                            Olá! Sou um criador de conteúdo audiovisual apaixonado por contar histórias que cativam, educam e inspiram. Meu objetivo é transformar ideias em peças visuais impactantes e memoráveis.
-                        </p>
+                        <h1 id="profile-name" class="text-4xl md:text-5xl font-extrabold text-white text-glow"></h1>
+                        <h2 id="profile-role" class="text-xl md:text-2xl font-medium text-cyan-300 mt-2"></h2>
+                        <p id="profile-bio" class="mt-6 text-lg text-gray-300 leading-relaxed max-w-xl"></p>
                     </div>
                     <div class="mt-auto pt-8 flex flex-col sm:flex-row justify-center md:justify-start items-center gap-6">
-                        <a id="profile-email" href="mailto:seuemail@exemplo.com" class="flex items-center gap-3 text-lg hover:text-cyan-300 transition-all duration-300">
+                        <a id="profile-email" href="" class="flex items-center gap-3 text-lg hover:text-cyan-300 transition-all duration-300">
                             <i data-feather="mail" class="w-6 h-6"></i>
-                            <span id="profile-email-text">seuemail@exemplo.com</span>
+                            <span id="profile-email-text"></span>
                         </a>
-                        <a id="profile-whatsapp" href="https://wa.me/5511999999999" target="_blank" class="flex items-center gap-3 text-lg hover:text-cyan-300 transition-all duration-300">
+                        <a id="profile-whatsapp" href="" target="_blank" class="flex items-center gap-3 text-lg hover:text-cyan-300 transition-all duration-300">
                             <i data-feather="message-circle" class="w-6 h-6"></i>
                             <span>WhatsApp</span>
                         </a>
@@ -194,23 +192,18 @@
                     </div>
                 </div>
                 <div class="order-1 md:order-2 flex-shrink-0 w-64 max-w-xs mx-auto md:w-auto md:h-auto">
-                    <img id="profile-pic" src="https://placehold.co/400x400/1F2937/E5E7EB?text=Bernardo" alt="Foto de perfil" class="object-cover w-full h-full rounded-lg">
+                    <img id="profile-pic" src="" alt="Foto de perfil" class="object-cover w-full h-full rounded-lg">
                 </div>
             </header>
             
-            <!-- Seção de Serviços -->
             <section id="services-section" class="mt-20">
                 <h3 class="text-3xl font-bold text-center text-white mb-12 text-glow">Serviços</h3>
-                <div id="services-grid" class="grid grid-cols-1 md:grid-cols-3 gap-8">
-                    <!-- Serviços serão inseridos aqui -->
-                </div>
+                <div id="services-grid" class="grid grid-cols-1 md:grid-cols-3 gap-8"></div>
             </section>
 
             <main class="mt-20">
                 <h3 class="text-3xl font-bold text-center text-white mb-12 text-glow">Portfólio</h3>
-                <div id="gallery" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
-                    <!-- Os projetos serão inseridos aqui pelo JavaScript -->
-                </div>
+                <div id="gallery" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8"></div>
             </main>
         </div>
     </div>
@@ -219,51 +212,40 @@
     <div id="curriculo-view" class="hidden">
         <div class="container mx-auto max-w-5xl px-6 py-12 md:py-20">
              <div class="grid grid-cols-1 md:grid-cols-12 gap-12">
-                <!-- Main Content Column (Left) -->
                 <div class="md:col-span-8">
                     <header class="mb-10">
                         <h1 id="cv-name" class="text-4xl md:text-5xl font-bold text-white"></h1>
                         <h2 id="cv-role" class="mt-1 text-xl md:text-2xl font-medium text-cyan-300"></h2>
                     </header>
-
                     <section class="mb-10">
                         <h3 class="cv-section-title">INFORMAÇÃO PESSOAL</h3>
                         <div id="cv-personal-info" class="space-y-4 text-gray-300 leading-relaxed"></div>
                     </section>
-
                     <section class="mb-10">
                         <h3 class="cv-section-title">EXPERIÊNCIA PROFISSIONAL</h3>
                         <div id="cv-experience" class="space-y-8"></div>
                     </section>
-
                     <section>
                         <h3 class="cv-section-title">FORMAÇÃO ACADÊMICA</h3>
                         <div id="cv-education" class="space-y-6"></div>
                     </section>
                 </div>
-
-                <!-- Sidebar Column (Right) -->
                 <div class="md:col-span-4">
                     <div class="bg-slate-800/50 p-6 rounded-lg sticky top-10">
                         <img id="cv-photo" src="" alt="Foto de perfil" class="rounded-full w-40 h-40 mx-auto mb-6 border-4 border-slate-700">
-                        
                         <div id="cv-contacts" class="space-y-4 text-sm text-gray-300 mb-8"></div>
-
                         <section class="mb-6">
                             <h3 class="cv-section-title !text-base !border-slate-700 !pb-2 !mb-4">HABILIDADES</h3>
                             <ul id="cv-skills" class="list-disc list-inside text-sm text-gray-300 space-y-2"></ul>
                         </section>
-                        
                         <section class="mb-6">
                             <h3 class="cv-section-title !text-base !border-slate-700 !pb-2 !mb-4">FERRAMENTAS</h3>
                             <ul id="cv-tools" class="list-disc list-inside text-sm text-gray-300 space-y-2"></ul>
                         </section>
-
                         <section class="mb-6">
                             <h3 class="cv-section-title !text-base !border-slate-700 !pb-2 !mb-4">CURSOS</h3>
                             <div id="cv-courses" class="space-y-4 text-sm"></div>
                         </section>
-
                         <section>
                             <h3 class="cv-section-title !text-base !border-slate-700 !pb-2 !mb-4">HOBBIES</h3>
                             <ul id="cv-hobbies" class="list-disc list-inside text-sm text-gray-300 space-y-2"></ul>
@@ -284,33 +266,26 @@
     </div>
 
     <script>
-        // --- INÍCIO DA LÓGICA DO SITE ---
-
         let portfolioData;
 
-        // --- FUNÇÕES DE LÓGICA E UTILIDADES ---
         function getYoutubeThumbnailUrl(url) {
             if (typeof url !== 'string' || !url) return 'https://placehold.co/128x72/1F2937/E5E7EB?text=Video';
             try {
                 const urlObj = new URL(url);
                 if (urlObj.hostname.includes('youtube.com') || urlObj.hostname.includes('youtu.be')) {
                     const videoId = urlObj.pathname.split('/').pop();
-                    if (videoId) {
-                        return `https://img.youtube.com/vi/${videoId}/mqdefault.jpg`;
-                    }
+                    if (videoId) return `https://img.youtube.com/vi/${videoId}/mqdefault.jpg`;
                 }
-            } catch (e) { /* URL inválida, ignora */ }
+            } catch (e) { /* Ignora URL inválida */ }
             return 'https://placehold.co/128x72/1F2937/E5E7EB?text=Video';
         }
 
         function updateFavicon() {
-            if (portfolioData && portfolioData.profile) {
-                const faviconUrl = portfolioData.profile.favicon;
-                if(faviconUrl) document.getElementById('favicon').href = faviconUrl;
+            if (portfolioData && portfolioData.profile && portfolioData.profile.favicon) {
+                document.getElementById('favicon').href = portfolioData.profile.favicon;
             }
         }
 
-        // --- FUNÇÕES DE ROTEAMENTO E CARREGAMENTO DE DADOS ---
         async function loadData() {
             try {
                 const response = await fetch('./data.json');
@@ -318,11 +293,8 @@
                     if (response.status === 404) {
                         throw new Error('Arquivo "data.json" não encontrado (Erro 404). Verifique o nome e a localização do arquivo no seu repositório do GitHub.');
                     }
-                    // Tenta ler o corpo da resposta para ver se o JSON tem um erro de sintaxe
                     const text = await response.text();
-                    try {
-                        JSON.parse(text);
-                    } catch (jsonError) {
+                    try { JSON.parse(text); } catch (jsonError) {
                          throw new Error(`Erro de sintaxe no arquivo data.json: ${jsonError.message}`);
                     }
                     throw new Error(`Erro ao carregar o arquivo: ${response.statusText} (código: ${response.status})`);
@@ -337,16 +309,14 @@
                             <p style="margin: 0; font-weight: bold; font-size: 1.1em;">${error.message}</p>
                         </div>
                         <p style="margin-top: 30px; color: #cfd8dc; max-width: 500px; text-align: center;">Por favor, verifique se o arquivo <strong style="color: white; background: #455a64; padding: 2px 6px; border-radius: 4px;">data.json</strong> foi enviado para o GitHub, está no mesmo diretório que o <strong style="color: white; background: #455a64; padding: 2px 6px; border-radius: 4px;">index.html</strong> e não possui erros de sintaxe.</p>
-                    </div>
-                `;
-                throw error; // Interrompe a execução
+                    </div>`;
+                throw error;
             }
         }
 
         async function handleRouteChange() {
             try {
                 await loadData();
-
                 const hash = window.location.hash;
                 const portfolioView = document.getElementById('portfolio-view');
                 const curriculoView = document.getElementById('curriculo-view');
@@ -366,155 +336,100 @@
             }
         }
 
-        // --- FUNÇÕES DE RENDERIZAÇÃO ---
-
         function renderPortfolio() {
-            try {
-                if (!portfolioData || !portfolioData.profile) {
-                    throw new Error("Dados do perfil ('profile') não encontrados no data.json.");
-                }
-                const profile = portfolioData.profile;
-                document.title = `${profile.name || 'Portfólio'} | Portfólio Audiovisual`;
-                document.getElementById('profile-pic').src = profile.pic || '';
-                document.getElementById('profile-name').textContent = profile.name || '';
-                document.getElementById('profile-role').textContent = profile.role || '';
-                document.getElementById('profile-bio').innerHTML = (profile.bio || '').replace(/\n/g, '<br>');
-                document.getElementById('profile-email').href = `mailto:${profile.email || ''}`;
-                document.getElementById('profile-email-text').textContent = profile.email || '';
-                document.getElementById('profile-whatsapp').href = profile.whatsapp || 'https://wa.me/';
+            if (!portfolioData || !portfolioData.profile) return;
+            const profile = portfolioData.profile;
+            document.title = `${profile.name || 'Portfólio'} | Portfólio Audiovisual`;
+            document.getElementById('profile-pic').src = profile.pic || '';
+            document.getElementById('profile-name').textContent = profile.name || '';
+            document.getElementById('profile-role').textContent = profile.role || '';
+            document.getElementById('profile-bio').innerHTML = (profile.bio || '').replace(/\n/g, '<br>');
+            document.getElementById('profile-email').href = `mailto:${profile.email || ''}`;
+            document.getElementById('profile-email-text').textContent = profile.email || '';
+            document.getElementById('profile-whatsapp').href = profile.whatsapp || 'https://wa.me/';
 
-                const servicesGrid = document.getElementById('services-grid');
-                servicesGrid.innerHTML = (portfolioData.services || []).map(service => `
-                    <div class="bg-slate-800 border border-slate-700 p-6 rounded-lg text-center transition-all duration-300 hover:border-cyan-400 hover:-translate-y-2">
-                        <i data-feather="${service.icon || 'settings'}" class="w-12 h-12 mx-auto text-cyan-400 mb-4"></i>
-                        <h4 class="text-xl font-bold text-white mb-2">${service.title || 'Serviço'}</h4>
-                        <p class="text-gray-400">${service.description || ''}</p>
-                    </div>
-                `).join('');
-                
-                const gallery = document.getElementById('gallery');
-                gallery.innerHTML = '';
-                const activeProjects = (portfolioData.projects || []).filter(p => p.enabled && p.title && p.thumbnail && Array.isArray(p.source) && p.source.length > 0 && p.source[0]);
-                activeProjects.forEach((project) => {
-                    const projectElement = document.createElement('div');
-                    projectElement.className = 'group cursor-pointer rounded-lg transition-all duration-300 hover:!opacity-100 group-hover:opacity-50 hover:scale-105 hover:shadow-2xl hover:shadow-indigo-500/20';
-                    projectElement.innerHTML = `
-                        <div class="relative overflow-hidden rounded-lg aspect-w-16 aspect-h-9 ring-1 ring-slate-800 group-hover:ring-indigo-500 transition-all duration-300">
-                            <img src="${project.thumbnail}" alt="${project.title}" class="w-full h-full object-cover transform group-hover:scale-105 transition-transform duration-300" onerror="this.onerror=null;this.src='https://placehold.co/600x400/7f1d1d/ffffff?text=Imagem+Inválida';">
-                            <div class="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent"></div>
-                            <div class="absolute bottom-0 left-0 p-4"><h4 class="text-white text-lg font-bold">${project.title}</h4></div>
-                        </div>`;
-                    projectElement.addEventListener('click', () => openModal(project));
-                    gallery.appendChild(projectElement);
-                });
-                feather.replace();
-                updateFavicon();
-            } catch (error) {
-                console.error("Erro ao renderizar o portfólio:", error);
-            }
+            const servicesGrid = document.getElementById('services-grid');
+            servicesGrid.innerHTML = (portfolioData.services || []).map(service => `
+                <div class="bg-slate-800 border border-slate-700 p-6 rounded-lg text-center transition-all duration-300 hover:border-cyan-400 hover:-translate-y-2">
+                    <i data-feather="${service.icon || 'settings'}" class="w-12 h-12 mx-auto text-cyan-400 mb-4"></i>
+                    <h4 class="text-xl font-bold text-white mb-2">${service.title || 'Serviço'}</h4>
+                    <p class="text-gray-400">${service.description || ''}</p>
+                </div>`).join('');
+            
+            const gallery = document.getElementById('gallery');
+            gallery.innerHTML = '';
+            const activeProjects = (portfolioData.projects || []).filter(p => p.enabled && p.title && p.thumbnail && Array.isArray(p.source) && p.source.length > 0 && p.source[0]);
+            activeProjects.forEach((project) => {
+                const projectElement = document.createElement('div');
+                projectElement.className = 'group cursor-pointer rounded-lg transition-all duration-300 hover:!opacity-100 group-hover:opacity-50 hover:scale-105 hover:shadow-2xl hover:shadow-indigo-500/20';
+                projectElement.innerHTML = `
+                    <div class="relative overflow-hidden rounded-lg aspect-w-16 aspect-h-9 ring-1 ring-slate-800 group-hover:ring-indigo-500 transition-all duration-300">
+                        <img src="${project.thumbnail}" alt="${project.title}" class="w-full h-full object-cover transform group-hover:scale-105 transition-transform duration-300" onerror="this.onerror=null;this.src='https://placehold.co/600x400/7f1d1d/ffffff?text=Imagem+Inválida';">
+                        <div class="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent"></div>
+                        <div class="absolute bottom-0 left-0 p-4"><h4 class="text-white text-lg font-bold">${project.title}</h4></div>
+                    </div>`;
+                projectElement.addEventListener('click', () => openModal(project));
+                gallery.appendChild(projectElement);
+            });
+            feather.replace();
+            updateFavicon();
         }
 
         function renderCurriculum() {
-            try {
-                if (!portfolioData || !portfolioData.curriculum) {
-                    throw new Error("Dados do currículo ('curriculum') não encontrados no data.json.");
-                }
+            if (!portfolioData || !portfolioData.curriculum) return;
+            const cv = portfolioData.curriculum;
+            const profile = portfolioData.profile;
+            document.title = `Currículo | ${profile.name || 'Portfólio'}`;
+            document.getElementById('cv-name').textContent = cv.name || '';
+            document.getElementById('cv-role').textContent = cv.role || '';
+            document.getElementById('cv-photo').src = cv.photo || '';
+            document.getElementById('cv-personal-info').innerHTML = (cv.personalInfo || '').replace(/\n/g, '<br>');
 
-                const cv = portfolioData.curriculum;
-                const profile = portfolioData.profile;
-                document.title = `Currículo | ${profile.name || 'Portfólio'}`;
-
-                document.getElementById('cv-name').textContent = cv.name || '';
-                document.getElementById('cv-role').textContent = cv.role || '';
-                document.getElementById('cv-photo').src = cv.photo || '';
-                document.getElementById('cv-personal-info').innerHTML = (cv.personalInfo || '').replace(/\n/g, '<br>');
-
-                const contactsEl = document.getElementById('cv-contacts');
-                if (cv.contacts) {
-                    contactsEl.innerHTML = `
-                        <a href="mailto:${cv.contacts.email || ''}" class="flex items-center gap-3 hover:text-cyan-300"><i data-feather="mail" class="w-4 h-4"></i><span>${cv.contacts.email || ''}</span></a>
-                        <p class="flex items-center gap-3"><i data-feather="phone" class="w-4 h-4"></i><span>${cv.contacts.phone || ''}</span></p>
-                        <a href="${cv.contacts.website || ''}" target="_blank" class="flex items-center gap-3 hover:text-cyan-300"><i data-feather="link" class="w-4 h-4"></i><span>${cv.contacts.website || ''}</span></a>
-                    `;
-                }
-
-                const experienceEl = document.getElementById('cv-experience');
-                experienceEl.innerHTML = (cv.experience || []).map(item => `
-                    <div>
-                        <p class="font-semibold text-slate-400 text-xs">${item.date || ''}</p>
-                        <h4 class="font-bold text-white text-lg">${item.company || ''}</h4>
-                        <p class="font-medium text-md text-slate-300">${item.title || ''}</p>
-                        <p class="mt-2 text-slate-400 text-sm">${item.description || ''}</p>
-                    </div>
-                `).join('');
-
-                const educationEl = document.getElementById('cv-education');
-                educationEl.innerHTML = (cv.education || []).map(item => `
-                    <div>
-                        <p class="font-semibold text-slate-400 text-xs">${item.date || ''}</p>
-                        <h4 class="font-bold text-white">${item.institution || ''}</h4>
-                        <p class="font-medium text-sm text-slate-300">${item.degree || ''}</p>
-                    </div>
-                `).join('');
-                
-                const coursesEl = document.getElementById('cv-courses');
-                coursesEl.innerHTML = (cv.courses || []).map(item => `
-                    <div>
-                        <h4 class="font-bold text-white">${item.institution || ''}</h4>
-                        <p class="text-slate-300">${item.name || ''}</p>
-                    </div>
-                `).join('');
-
-                document.getElementById('cv-skills').innerHTML = (cv.skills || []).map(s => `<li>${s}</li>`).join('');
-                document.getElementById('cv-tools').innerHTML = (cv.tools || []).map(t => `<li>${t}</li>`).join('');
-                document.getElementById('cv-hobbies').innerHTML = (cv.hobbies || []).map(h => `<li>${h}</li>`).join('');
-                
-                feather.replace();
-            } catch (error) {
-                console.error("Erro ao renderizar o currículo:", error);
+            const contactsEl = document.getElementById('cv-contacts');
+            if (cv.contacts) {
+                contactsEl.innerHTML = `
+                    <a href="mailto:${cv.contacts.email || ''}" class="flex items-center gap-3 hover:text-cyan-300"><i data-feather="mail" class="w-4 h-4"></i><span>${cv.contacts.email || ''}</span></a>
+                    <p class="flex items-center gap-3"><i data-feather="phone" class="w-4 h-4"></i><span>${cv.contacts.phone || ''}</span></p>
+                    <a href="${cv.contacts.website || ''}" target="_blank" class="flex items-center gap-3 hover:text-cyan-300"><i data-feather="link" class="w-4 h-4"></i><span>${cv.contacts.website || ''}</span></a>`;
             }
+            const experienceEl = document.getElementById('cv-experience');
+            experienceEl.innerHTML = (cv.experience || []).map(item => `
+                <div>
+                    <p class="font-semibold text-slate-400 text-xs">${item.date || ''}</p>
+                    <h4 class="font-bold text-white text-lg">${item.company || ''}</h4>
+                    <p class="font-medium text-md text-slate-300">${item.title || ''}</p>
+                    <p class="mt-2 text-slate-400 text-sm">${item.description || ''}</p>
+                </div>`).join('');
+            const educationEl = document.getElementById('cv-education');
+            educationEl.innerHTML = (cv.education || []).map(item => `
+                <div>
+                    <p class="font-semibold text-slate-400 text-xs">${item.date || ''}</p>
+                    <h4 class="font-bold text-white">${item.institution || ''}</h4>
+                    <p class="font-medium text-sm text-slate-300">${item.degree || ''}</p>
+                </div>`).join('');
+            const coursesEl = document.getElementById('cv-courses');
+            coursesEl.innerHTML = (cv.courses || []).map(item => `
+                <div>
+                    <h4 class="font-bold text-white">${item.institution || ''}</h4>
+                    <p class="text-slate-300">${item.name || ''}</p>
+                </div>`).join('');
+            document.getElementById('cv-skills').innerHTML = (cv.skills || []).map(s => `<li>${s}</li>`).join('');
+            document.getElementById('cv-tools').innerHTML = (cv.tools || []).map(t => `<li>${t}</li>`).join('');
+            document.getElementById('cv-hobbies').innerHTML = (cv.hobbies || []).map(h => `<li>${h}</li>`).join('');
+            feather.replace();
         }
 
         function openModal(project) {
             const modal = document.getElementById('modal');
             const modalContent = document.getElementById('modal-content');
-            
             if (!Array.isArray(project.source) || project.source.length === 0) return;
-
             const isVideo = project.type === 'video';
-            
-            const mediaHtml = `
-                <div id="media-player" class="media-container rounded-t-lg"></div>
-                ${project.source.length > 1 ? `
-                <button id="slider-prev" class="slider-btn prev"><i data-feather="chevron-left" class="w-6 h-6"></i></button>
-                <button id="slider-next" class="slider-btn next"><i data-feather="chevron-right" class="w-6 h-6"></i></button>
-                <div id="slider-counter" class="slider-counter">1 / ${project.source.length}</div>
-                ` : ''}
-            `;
-            
-            const thumbnailsHtml = project.source.length > 1 ? `
-                <div class="slider-thumbnails">
-                    ${project.source.map((src, index) => {
-                        const thumbSrc = isVideo ? getYoutubeThumbnailUrl(src) : src;
-                        return `<img src="${thumbSrc}" class="slider-thumbnail" data-index="${index}" alt="Miniatura ${index + 1}" onerror="this.onerror=null;this.src='https://placehold.co/80x50/7f1d1d/ffffff?text=Erro';">`;
-                    }).join('')}
-                </div>` : '';
-
-            modalContent.innerHTML = `
-                <div class="relative">
-                    <button id="modal-close-btn" class="absolute top-3 right-3 text-white bg-black bg-opacity-50 rounded-full p-1 hover:bg-opacity-75 z-20"><i data-feather="x" class="w-6 h-6"></i></button>
-                    ${mediaHtml}
-                </div>
-                <div class="p-6 md:p-8">
-                    ${thumbnailsHtml}
-                    <h3 class="text-2xl font-bold text-white mt-4">${project.title}</h3>
-                    <p class="mt-4 text-gray-300 text-base leading-relaxed">${project.description}</p>
-                </div>
-            `;
-            
+            const mediaHtml = `<div id="media-player" class="media-container rounded-t-lg"></div>
+                ${project.source.length > 1 ? `<button id="slider-prev" class="slider-btn prev"><i data-feather="chevron-left" class="w-6 h-6"></i></button><button id="slider-next" class="slider-btn next"><i data-feather="chevron-right" class="w-6 h-6"></i></button><div id="slider-counter" class="slider-counter">1 / ${project.source.length}</div>` : ''}`;
+            const thumbnailsHtml = project.source.length > 1 ? `<div class="slider-thumbnails">${project.source.map((src, index) => {const thumbSrc = isVideo ? getYoutubeThumbnailUrl(src) : src; return `<img src="${thumbSrc}" class="slider-thumbnail" data-index="${index}" alt="Miniatura ${index + 1}" onerror="this.onerror=null;this.src='https://placehold.co/80x50/7f1d1d/ffffff?text=Erro';">`;}).join('')}</div>` : '';
+            modalContent.innerHTML = `<div class="relative"><button id="modal-close-btn" class="absolute top-3 right-3 text-white bg-black bg-opacity-50 rounded-full p-1 hover:bg-opacity-75 z-20"><i data-feather="x" class="w-6 h-6"></i></button>${mediaHtml}</div><div class="p-6 md:p-8">${thumbnailsHtml}<h3 class="text-2xl font-bold text-white mt-4">${project.title}</h3><p class="mt-4 text-gray-300 text-base leading-relaxed">${project.description}</p></div>`;
             feather.replace();
             document.getElementById('modal-close-btn').addEventListener('click', closeModal);
-
             if (project.source.length > 1) {
                 let currentIndex = 0;
                 const playerEl = document.getElementById('media-player');
@@ -522,58 +437,31 @@
                 const prevBtn = document.getElementById('slider-prev');
                 const nextBtn = document.getElementById('slider-next');
                 const thumbnailEls = modalContent.querySelectorAll('.slider-thumbnail');
-
-                const updateThumbnails = (activeIndex) => {
-                    thumbnailEls.forEach((thumb, i) => thumb.classList.toggle('active', i === activeIndex));
-                };
-
-                const showItem = (index) => {
-                    currentIndex = index;
-                    const sourceUrl = project.source[index];
-                    
-                    if (isVideo) {
-                        playerEl.innerHTML = `<iframe src="${sourceUrl}" frameborder="0" allow="autoplay; fullscreen; picture-in-picture" allowfullscreen></iframe>`;
-                    } else {
-                        playerEl.innerHTML = `<img src="${sourceUrl}" alt="${project.title}" class="transition-opacity duration-300 opacity-0" onerror="this.onerror=null;this.src='https://placehold.co/1200x800/7f1d1d/ffffff?text=Imagem+Inválida';">`;
-                        setTimeout(() => {
-                            const img = playerEl.querySelector('img');
-                            if (img) img.classList.remove('opacity-0');
-                        }, 50);
+                const updateThumbnails = a => thumbnailEls.forEach((t, i) => t.classList.toggle('active', i === a));
+                const showItem = i => {
+                    currentIndex = i;
+                    const s = project.source[i];
+                    if (isVideo) playerEl.innerHTML = `<iframe src="${s}" frameborder="0" allow="autoplay; fullscreen; picture-in-picture" allowfullscreen></iframe>`;
+                    else {
+                        playerEl.innerHTML = `<img src="${s}" alt="${project.title}" class="transition-opacity duration-300 opacity-0" onerror="this.onerror=null;this.src='https://placehold.co/1200x800/7f1d1d/ffffff?text=Imagem+Inválida';">`;
+                        setTimeout(() => { const img = playerEl.querySelector('img'); if (img) img.classList.remove('opacity-0'); }, 50);
                     }
-                    
-                    if(counterEl) counterEl.textContent = `${index + 1} / ${project.source.length}`;
-                    updateThumbnails(index);
+                    if(counterEl) counterEl.textContent = `${i + 1} / ${project.source.length}`;
+                    updateThumbnails(i);
                 };
-                
                 showItem(0);
                 updateThumbnails(0);
-
-                prevBtn.addEventListener('click', () => showItem((currentIndex > 0) ? currentIndex - 1 : project.source.length - 1));
-                nextBtn.addEventListener('click', () => showItem((currentIndex < project.source.length - 1) ? currentIndex + 1 : 0));
-                thumbnailEls.forEach(thumb => thumb.addEventListener('click', () => showItem(parseInt(thumb.dataset.index, 10))));
-
-                const handleKeyDown = (e) => {
-                    if (e.key === 'ArrowLeft') prevBtn.click();
-                    if (e.key === 'ArrowRight') nextBtn.click();
-                };
+                prevBtn.addEventListener('click', () => showItem(currentIndex > 0 ? currentIndex - 1 : project.source.length - 1));
+                nextBtn.addEventListener('click', () => showItem(currentIndex < project.source.length - 1 ? currentIndex + 1 : 0));
+                thumbnailEls.forEach(t => t.addEventListener('click', () => showItem(parseInt(t.dataset.index, 10))));
+                const handleKeyDown = e => { if (e.key === 'ArrowLeft') prevBtn.click(); if (e.key === 'ArrowRight') nextBtn.click(); };
                 document.addEventListener('keydown', handleKeyDown);
-
-                const modalObserver = new MutationObserver(() => {
-                    if (!document.body.contains(modalContent)) {
-                        document.removeEventListener('keydown', handleKeyDown);
-                        modalObserver.disconnect();
-                    }
-                });
-                modalObserver.observe(document.body, { childList: true, subtree: true });
+                new MutationObserver(() => { if (!document.body.contains(modalContent)) document.removeEventListener('keydown', handleKeyDown); }).observe(document.body, { childList: true, subtree: true });
             } else {
                 const playerEl = document.getElementById('media-player');
-                 if (isVideo) {
-                    playerEl.innerHTML = `<iframe src="${project.source[0]}" frameborder="0" allow="autoplay; fullscreen; picture-in-picture" allowfullscreen></iframe>`;
-                } else {
-                    playerEl.innerHTML = `<img src="${project.source[0]}" alt="${project.title}" onerror="this.onerror=null;this.src='https://placehold.co/1200x800/7f1d1d/ffffff?text=Imagem+Inválida';">`;
-                }
+                 if (isVideo) playerEl.innerHTML = `<iframe src="${project.source[0]}" frameborder="0" allow="autoplay; fullscreen; picture-in-picture" allowfullscreen></iframe>`;
+                else playerEl.innerHTML = `<img src="${project.source[0]}" alt="${project.title}" onerror="this.onerror=null;this.src='https://placehold.co/1200x800/7f1d1d/ffffff?text=Imagem+Inválida';">`;
             }
-
             modal.classList.remove('opacity-0', 'pointer-events-none');
             document.body.style.overflow = 'hidden';
             modalContent.classList.remove('scale-95');
@@ -588,15 +476,13 @@
             setTimeout(() => { modalContent.innerHTML = ''; }, 300);
         }
 
-        // --- INICIALIZAÇÃO E EVENTOS GERAIS ---
         document.addEventListener('DOMContentLoaded', async () => {
             window.addEventListener('hashchange', handleRouteChange);
-            // Carga inicial
             await handleRouteChange();
-
             document.getElementById('modal-close-bg').addEventListener('click', closeModal);
             document.addEventListener('keydown', (e) => { if (e.key === 'Escape') closeModal(); });
         });
     </script>
 </body>
 </html>
+
