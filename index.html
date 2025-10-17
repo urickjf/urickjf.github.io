@@ -16,33 +16,52 @@
     <script src="https://unpkg.com/feather-icons"></script>
 
     <style>
-        /* Estilo base para a fonte e cores */
+        /* ==========================================================================
+           1. ESTILOS GERAIS E BASE
+           ========================================================================== */
+
+        /* Define a fonte principal, o fundo gradiente e a cor do texto para toda a página. */
         body {
-            font-family: 'Inter', sans-serif;
-            background-color: #000000; /* Fallback para navegadores antigos */
-            background-image: linear-gradient(to bottom, #000000, #0f172a); /* Novo fundo com gradiente */
-            color: #E5E7EB; /* Texto cinza claro */
-            scroll-behavior: smooth;
+            font-family: 'Inter', sans-serif; /* Fonte principal do site. */
+            background-color: #000000; /* Cor de fundo sólida para navegadores antigos. */
+            background-image: linear-gradient(to bottom, #000000, #0f172a); /* Fundo gradiente de preto para um azul escuro. */
+            color: #E5E7EB; /* Cor do texto principal (um cinza claro). */
+            scroll-behavior: smooth; /* Animação suave ao clicar em links internos (ex: #curriculo). */
         }
-        /* Efeito de transição suave para o modal */
+
+        /* Adiciona uma transição suave de opacidade ao abrir e fechar o modal. */
         #modal {
             transition: opacity 0.3s ease-in-out;
         }
-        /* Estilo para a barra de rolagem */
+
+        /* ==========================================================================
+           2. ESTILIZAÇÃO DA BARRA DE ROLAGEM
+           ========================================================================== */
+
+        /* Largura da barra de rolagem. */
         ::-webkit-scrollbar { width: 8px; }
+        /* Cor do fundo (trilha) da barra de rolagem. */
         ::-webkit-scrollbar-track { background: #1F2937; }
+        /* Cor e arredondamento do "polegar" (a parte que você arrasta). */
         ::-webkit-scrollbar-thumb { background: #4B5563; border-radius: 10px; }
+        /* Cor do "polegar" quando o mouse está sobre ele. */
         ::-webkit-scrollbar-thumb:hover { background: #6B7280; }
 
-        /* Estilos para o Conteúdo de Mídia (Vídeo e Slider) */
+        /* ==========================================================================
+           3. ESTILOS DO MODAL (VISUALIZADOR DE PROJETOS)
+           ========================================================================== */
+
+        /* Container de mídia (vídeos e imagens no modal) para manter a proporção 16:9. */
         .media-container {
             position: relative;
             width: 100%;
-            padding-bottom: 56.25%; /* Proporção 16:9 */
+            padding-bottom: 56.25%; /* Truque para manter a proporção 16:9 (9 / 16 = 0.5625). */
             height: 0;
             overflow: hidden;
-            background: #000;
+            background: #000; /* Fundo preto para o container. */
         }
+        
+        /* Garante que o iframe do vídeo e a imagem preencham o container de mídia. */
         .media-container iframe,
         .media-container img {
             position: absolute;
@@ -50,25 +69,28 @@
             left: 0;
             width: 100%;
             height: 100%;
-            object-fit: contain; /* Garante que a imagem inteira apareça */
+            object-fit: contain; /* 'contain' garante que a mídia inteira apareça sem ser cortada. */
         }
 
-        /* Estilos do Slider */
+        /* Botões de navegação (próximo/anterior) do slider dentro do modal. */
         .slider-btn {
             position: absolute;
             top: 50%;
             transform: translateY(-50%);
-            background-color: rgba(0, 0, 0, 0.5);
-            color: white;
+            background-color: rgba(0, 0, 0, 0.5); /* Fundo semi-transparente. */
+            color: white; /* Cor do ícone. */
             border: none;
             padding: 0.75rem;
             cursor: pointer;
             transition: background-color 0.2s ease;
             z-index: 10;
         }
+        /* Cor de fundo do botão ao passar o mouse. */
         .slider-btn:hover { background-color: rgba(0, 0, 0, 0.8); }
-        .slider-btn.prev { left: 1rem; border-radius: 9999px; }
-        .slider-btn.next { right: 1rem; border-radius: 9999px; }
+        .slider-btn.prev { left: 1rem; border-radius: 9999px; } /* Posição e arredondamento do botão "anterior". */
+        .slider-btn.next { right: 1rem; border-radius: 9999px; } /* Posição e arredondamento do botão "próximo". */
+        
+        /* Contador de slides (ex: "1 / 3") no topo do modal. */
         .slider-counter {
             position: absolute;
             top: 1rem;
@@ -82,40 +104,61 @@
             z-index: 10;
         }
 
-        /* Estilos das Miniaturas do Slider */
+        /* Container das miniaturas (thumbnails) do slider. */
         .slider-thumbnails {
             display: flex;
-            gap: 0.5rem; /* 8px */
-            padding: 0.25rem; /* 4px */
-            overflow-x: auto; /* Permite rolar se houver muitas miniaturas */
+            gap: 0.5rem; /* Espaçamento entre as miniaturas. */
+            padding: 0.25rem;
+            overflow-x: auto; /* Permite rolar horizontalmente se houver muitas miniaturas. */
         }
+        
+        /* Estilos de cada miniatura. */
         .slider-thumbnail {
             width: 80px;
             height: 50px;
-            object-fit: cover;
-            border-radius: 0.25rem; /* 4px */
+            object-fit: cover; /* Garante que a imagem preencha o espaço sem distorcer. */
+            border-radius: 0.25rem;
             cursor: pointer;
-            border: 2px solid transparent;
-            opacity: 0.6;
+            border: 2px solid transparent; /* Borda inicial transparente. */
+            opacity: 0.6; /* Deixa as miniaturas inativas com menos opacidade. */
             transition: all 0.2s ease-in-out;
-            flex-shrink: 0; /* Impede que as miniaturas encolham */
+            flex-shrink: 0;
         }
+        
+        /* Estilos da miniatura ao passar o mouse. */
         .slider-thumbnail:hover {
             opacity: 1;
-            border-color: #a5b4fc; /* indigo-300 */
+            border-color: #a5b4fc; /* Cor da borda no hover (um anil claro). */
         }
+        
+        /* Estilos da miniatura que está ativa (selecionada). */
         .slider-thumbnail.active {
             opacity: 1;
-            border-color: #6366f1; /* indigo-500 */
+            border-color: #6366f1; /* Cor da borda da miniatura ativa (um anil mais forte). */
         }
 
-        /* Classes personalizadas de design */
-        .text-glow { text-shadow: 0 0 12px rgba(2, 239, 239, 0.4); }
-        .button-glow { transition: all .3s ease; }
-        .button-glow:hover { box-shadow: 0 0 15px rgba(2, 239, 239, 0.5), 0 0 20px rgba(2, 239, 239, 0.2); background-color: #02efef; color: #0f172a; }
+        /* ==========================================================================
+           4. EFEITOS VISUAIS E ESTILOS DO CURRÍCULO
+           ========================================================================== */
 
-        /* Estilos para a página de Currículo */
+        /* Efeito de brilho para textos importantes (usado nos títulos). */
+        /* Altere a cor em rgba(2, 239, 239, 0.4) para mudar a cor do brilho. */
+        .text-glow { text-shadow: 0 0 12px rgba(2, 239, 239, 0.4); }
+
+        /* Transição suave para o efeito de brilho nos botões. */
+        .button-glow { transition: all .3s ease; }
+        
+        /* Efeito de brilho e mudança de cor para botões ao passar o mouse. */
+        .button-glow:hover {
+            box-shadow: 0 0 15px rgba(2, 239, 239, 0.5), 0 0 20px rgba(2, 239, 239, 0.2);
+            background-color: #02efef; /* Cor de fundo no hover (ciano brilhante). */
+            color: #0f172a; /* Cor do texto no hover (azul escuro). */
+        }
+
+        /* Estilos dos títulos de seção na página do currículo. */
         .cv-section-title {
+            /* @apply é uma diretiva do Tailwind para agrupar classes. */
+            /* Aqui definimos o tamanho da fonte, peso, cor, e uma borda inferior. */
             @apply text-xl font-bold text-cyan-300 pb-2 border-b-2 border-slate-700 mb-6;
         }
     </style>
@@ -275,6 +318,13 @@
                     if (response.status === 404) {
                         throw new Error('Arquivo "data.json" não encontrado (Erro 404). Verifique o nome e a localização do arquivo no seu repositório do GitHub.');
                     }
+                    // Tenta ler o corpo da resposta para ver se o JSON tem um erro de sintaxe
+                    const text = await response.text();
+                    try {
+                        JSON.parse(text);
+                    } catch (jsonError) {
+                         throw new Error(`Erro de sintaxe no arquivo data.json: ${jsonError.message}`);
+                    }
                     throw new Error(`Erro ao carregar o arquivo: ${response.statusText} (código: ${response.status})`);
                 }
                 portfolioData = await response.json();
@@ -283,10 +333,10 @@
                 document.body.innerHTML = `
                     <div style="padding: 40px; text-align: center; color: white; font-family: sans-serif; min-height: 100vh; display: flex; flex-direction: column; align-items: center; justify-content: center;">
                         <h1 style="font-size: 24px; margin-bottom: 20px; color: #ef5350;">Erro ao Carregar o Portfólio</h1>
-                        <div style="color: #ffcdd2; background: #2a2a2a; border: 1px solid #c62828; padding: 20px; border-radius: 8px; max-width: 600px; margin: 0 auto;">
+                        <div style="color: #ffcdd2; background: #2a2a2a; border: 1px solid #c62828; padding: 20px; border-radius: 8px; max-width: 600px; margin: 0 auto; text-align: left;">
                             <p style="margin: 0; font-weight: bold; font-size: 1.1em;">${error.message}</p>
                         </div>
-                        <p style="margin-top: 30px; color: #cfd8dc; max-width: 500px;">Por favor, verifique se o arquivo <strong style="color: white; background: #455a64; padding: 2px 6px; border-radius: 4px;">data.json</strong> foi enviado para o GitHub e está no mesmo diretório que o arquivo <strong style="color: white; background: #455a64; padding: 2px 6px; border-radius: 4px;">index.html</strong>.</p>
+                        <p style="margin-top: 30px; color: #cfd8dc; max-width: 500px; text-align: center;">Por favor, verifique se o arquivo <strong style="color: white; background: #455a64; padding: 2px 6px; border-radius: 4px;">data.json</strong> foi enviado para o GitHub, está no mesmo diretório que o <strong style="color: white; background: #455a64; padding: 2px 6px; border-radius: 4px;">index.html</strong> e não possui erros de sintaxe.</p>
                     </div>
                 `;
                 throw error; // Interrompe a execução
