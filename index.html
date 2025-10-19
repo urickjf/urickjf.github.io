@@ -186,12 +186,20 @@
     <!-- Container da Página Pública (Portfólio) -->
     <div id="portfolio-view">
         <div class="container mx-auto max-w-5xl px-6 py-12 md:py-20">
+            <!-- HEADER: Alterado para ser flex-col por padrão e md:flex-row para telas maiores -->
             <header class="flex flex-col md:flex-row items-center md:items-stretch justify-center md:justify-between gap-8 md:gap-12">
-                <div class="text-center md:text-left order-2 md:order-1 flex-1 flex flex-col">
+                <!-- Bloco de Texto (sempre primeiro) -->
+                <div class="text-center md:text-left flex-1 flex flex-col order-2 md:order-1">
                     <div>
                         <h3 class="text-2xl font-bold text-white">Olá, eu sou</h3>
                         <h1 id="profile-name" class="text-4xl md:text-5xl font-extrabold text-white text-glow">Seu Nome Aqui</h1>
                         <h2 id="profile-role" class="text-xl md:text-2xl font-medium text-cyan-300 mt-2">Editor de Vídeo & Videomaker</h2>
+                    </div>
+                     <!-- Bloco da Foto (aparece aqui no mobile) -->
+                    <div class="md:hidden flex-shrink-0 w-48 max-w-xs mx-auto my-8 order-1">
+                        <img id="profile-pic-mobile" src="" alt="Foto de perfil" class="object-cover w-full h-full rounded-lg">
+                    </div>
+                    <div>
                         <p id="profile-bio" class="mt-6 text-lg text-gray-300 leading-relaxed max-w-xl">
                             Olá! Sou um criador de conteúdo audiovisual apaixonado por contar histórias que cativam, educam e inspiram. Meu objetivo é transformar ideias em peças visuais impactantes e memoráveis.
                         </p>
@@ -211,8 +219,9 @@
                         </a>
                     </div>
                 </div>
-                <div class="order-1 md:order-2 flex-shrink-0 w-64 max-w-xs mx-auto md:w-auto md:h-auto">
-                    <img id="profile-pic" src="https://placehold.co/400x400/1F2937/E5E7EB?text=Bernardo" alt="Foto de perfil" class="object-cover w-full h-full rounded-lg">
+                <!-- Bloco da Foto (só aparece no desktop) -->
+                <div class="hidden md:block flex-shrink-0 w-64 order-2">
+                    <img id="profile-pic-desktop" src="" alt="Foto de perfil" class="object-cover w-full h-full rounded-lg">
                 </div>
             </header>
             
@@ -331,19 +340,15 @@
         // --- FUNÇÕES DE ROTEAMENTO E CARREGAMENTO DE DADOS ---
         async function loadData() {
             try {
+                // VOLTOU AO ORIGINAL: Busca o arquivo data.json na mesma pasta.
                 const response = await fetch('./data.json');
                 if (!response.ok) {
                     if (response.status === 404) {
                         throw new Error('Arquivo "data.json" não encontrado (Erro 404). Verifique o nome e a localização do arquivo no seu repositório do GitHub.');
                     }
-                    // Tenta ler o corpo da resposta para ver se o JSON tem um erro de sintaxe
                     const text = await response.text();
                     try {
-                        const jsonData = JSON.parse(text);
-                         // Check for bad control characters which might indicate unescaped newlines
-                        if (/[\u0000-\u001F]/.test(text.replace(/\n/g, ''))) {
-                             throw new Error("Caracteres de controle inválidos encontrados. Verifique se há quebras de linha literais (Enter) dentro de campos de texto como 'bio' ou 'description'. Use '\\n' em vez disso.");
-                        }
+                        JSON.parse(text);
                     } catch (jsonError) {
                          throw new Error(`Erro de sintaxe no arquivo data.json: ${jsonError.message}`);
                     }
@@ -397,7 +402,10 @@
                 }
                 const profile = portfolioData.profile;
                 document.title = `${profile.name || 'Portfólio'} | Portfólio Audiovisual`;
-                document.getElementById('profile-pic').src = profile.pic || '';
+                // Atualiza as duas imagens de perfil
+                document.getElementById('profile-pic-desktop').src = profile.pic || '';
+                document.getElementById('profile-pic-mobile').src = profile.pic || '';
+                
                 document.getElementById('profile-name').textContent = profile.name || '';
                 document.getElementById('profile-role').textContent = profile.role || '';
                 document.getElementById('profile-bio').innerHTML = (profile.bio || '').replace(/\n/g, '<br>');
@@ -420,7 +428,6 @@
                 activeProjects.forEach((project) => {
                     const projectElement = document.createElement('div');
                     projectElement.className = 'group cursor-pointer';
-                    // ATUALIZADO: Usando a nova classe CSS para forçar a proporção
                     projectElement.innerHTML = `
                         <div class="thumbnail-container rounded-lg ring-1 ring-slate-800 group-hover:ring-indigo-500 transition-all duration-300">
                             <img src="${project.thumbnail}" alt="${project.title}" class="transform group-hover:scale-105 transition-transform duration-300" onerror="this.onerror=null;this.src='https://placehold.co/600x400/7f1d1d/ffffff?text=Imagem+Inválida';">
