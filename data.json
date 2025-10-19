@@ -19,11 +19,6 @@
       "title": "Edição e Pós-Produção",
       "description": "Edição de vídeo, tratamento de cor, motion graphics e efeitos especiais para transformar suas ideias em peças impactantes."
     },
-    {
-      "icon": "share-2",
-      "title": "Gestão de Mídias Sociais",
-      "description": "Criação de conteúdo visual e textual para YouTube, TikTok e Instagram, desde a produção até a publicação."
-    }
   ],
   "projects": [
     {
@@ -226,5 +221,6 @@
     ]
   }
 }
+
 
 
