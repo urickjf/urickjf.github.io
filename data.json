@@ -1,598 +1,195 @@
-<!DOCTYPE html>
-<html lang="pt-BR">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Seu Nome | Portfólio Audiovisual</title>
-    <!-- Favicon dinâmico (será atualizado pelo JS) -->
-    <link id="favicon" rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🎬</text></svg>">
-    <!-- Tailwind CSS CDN -->
-    <script src="https://cdn.tailwindcss.com"></script>
-    <!-- Google Fonts: Inter -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700;800&display=swap" rel="stylesheet">
-    <!-- Ícones (Feather Icons) -->
-    <script src="https://unpkg.com/feather-icons"></script>
-
-    <style>
-        /* ==========================================================================
-           1. ESTILOS GERAIS E BASE (TEMA ESCURO)
-           ========================================================================== */
-
-        body {
-            font-family: 'Inter', sans-serif;
-            background-color: #000000;
-            background-image: linear-gradient(to bottom, #000000, #0f172a);
-            color: #E5E7EB;
-            scroll-behavior: smooth;
-        }
-
-        #modal {
-            transition: opacity 0.3s ease-in-out;
-        }
-
-        /* ==========================================================================
-           2. ESTILIZAÇÃO DA BARRA DE ROLAGEM (TEMA ESCURO)
-           ========================================================================== */
-
-        ::-webkit-scrollbar { width: 8px; }
-        ::-webkit-scrollbar-track { background: #1F2937; }
-        ::-webkit-scrollbar-thumb { background: #4B5563; border-radius: 10px; }
-        ::-webkit-scrollbar-thumb:hover { background: #6B7280; }
-
-        /* ==========================================================================
-           3. ESTILOS DO MODAL E MINIATURAS DO PORTFÓLIO
-           ========================================================================== */
-        
-        .thumbnail-container {
-            position: relative;
-            padding-bottom: 56.25%; 
-            height: 0;
-            overflow: hidden;
-        }
-
-        .thumbnail-container img {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-        }
-
-        .media-container {
-            position: relative;
-            width: 100%;
-            padding-bottom: 56.25%;
-            height: 0;
-            overflow: hidden;
-            background: #000;
-        }
-        
-        .media-container iframe,
-        .media-container img {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            object-fit: contain;
-        }
-
-        .slider-btn {
-            position: absolute;
-            top: 50%;
-            transform: translateY(-50%);
-            background-color: rgba(0, 0, 0, 0.5);
-            color: white;
-            border: none;
-            padding: 0.75rem;
-            cursor: pointer;
-            transition: background-color 0.2s ease;
-            z-index: 10;
-        }
-        .slider-btn:hover { background-color: rgba(0, 0, 0, 0.8); }
-        .slider-btn.prev { left: 1rem; border-radius: 9999px; }
-        .slider-btn.next { right: 1rem; border-radius: 9999px; }
-        
-        .slider-counter {
-            position: absolute;
-            top: 1rem;
-            left: 50%;
-            transform: translateX(-50%);
-            background-color: rgba(0, 0, 0, 0.7);
-            color: white;
-            padding: 0.25rem 0.75rem;
-            font-size: 0.875rem;
-            border-radius: 9999px;
-            z-index: 10;
-        }
-
-        .slider-thumbnails {
-            display: flex;
-            gap: 0.5rem;
-            padding: 0.25rem;
-            overflow-x: auto;
-        }
-        
-        .slider-thumbnail {
-            width: 80px;
-            height: 50px;
-            object-fit: cover;
-            border-radius: 0.25rem;
-            cursor: pointer;
-            border: 2px solid transparent;
-            opacity: 0.6;
-            transition: all 0.2s ease-in-out;
-            flex-shrink: 0;
-        }
-        
-        .slider-thumbnail:hover {
-            opacity: 1;
-            border-color: #a5b4fc;
-        }
-        
-        .slider-thumbnail.active {
-            opacity: 1;
-            border-color: #6366f1;
-        }
-
-        /* ==========================================================================
-           4. EFEITOS VISUAIS E ESTILOS DO CURRÍCULO (TEMA ESCURO)
-           ========================================================================== */
-
-        .text-glow { text-shadow: 0 0 12px rgba(2, 239, 239, 0.4); }
-
-        .cv-section-title {
-            @apply text-xl font-bold text-cyan-300 pb-2 border-b-2 border-slate-700 mb-6;
-        }
-    </style>
-</head>
-<body class="antialiased">
-
-    <!-- Container da Página Pública (Portfólio) -->
-    <div id="portfolio-view">
-        <div class="container mx-auto max-w-5xl px-6 py-12 md:py-20">
-            <!-- HEADER -->
-            <header class="flex flex-col md:flex-row items-center md:items-stretch justify-center md:justify-between gap-8 md:gap-12">
-                <!-- Bloco de Conteúdo Principal -->
-                <div class="flex-1 flex flex-col w-full">
-                    <!-- Topo: Foto e Nome -->
-                    <div class="flex flex-row items-center justify-between md:block md:text-center">
-                        <div class="text-left">
-                            <h3 class="text-lg md:text-2xl font-bold text-white">Olá, eu sou</h3>
-                            <h1 id="profile-name" class="text-2xl md:text-5xl font-extrabold text-white text-glow"></h1>
-                            <h2 id="profile-role" class="text-base md:text-2xl font-medium text-cyan-300 mt-1 md:mt-2"></h2>
-                        </div>
-                        <div class="md:hidden flex-shrink-0 w-24">
-                            <img id="profile-pic-mobile" src="" alt="Foto de perfil" class="rounded-lg object-cover">
-                        </div>
-                    </div>
-
-                    <!-- Bio e Contatos -->
-                    <div class="text-center md:text-left">
-                        <p id="profile-bio" class="mt-8 text-base md:text-lg text-gray-300 leading-relaxed max-w-xl mx-auto md:mx-0"></p>
-                        <div class="mt-8 pt-8 flex flex-row justify-around md:justify-start items-center gap-4 md:gap-6">
-                            <a id="profile-email" href="" class="flex items-center gap-3 text-lg text-gray-300 hover:text-cyan-300 transition-all duration-300">
-                                <i data-feather="mail" class="w-6 h-6"></i>
-                                <span id="profile-email-text" class="hidden sm:inline"></span>
-                            </a>
-                            <a id="profile-whatsapp" href="" target="_blank" class="flex items-center gap-3 text-lg text-gray-300 hover:text-cyan-300 transition-all duration-300">
-                                <i data-feather="message-circle" class="w-6 h-6"></i>
-                                <span>WhatsApp</span>
-                            </a>
-                            <a href="#curriculo" class="flex items-center gap-3 text-lg text-gray-300 hover:text-cyan-300 transition-all duration-300">
-                                 <i data-feather="file-text" class="w-6 h-6"></i>
-                                <span>Currículo</span>
-                            </a>
-                        </div>
-                    </div>
-                </div>
-                <!-- Foto para Desktop -->
-                <div class="hidden md:block flex-shrink-0 w-64">
-                    <img id="profile-pic-desktop" src="" alt="Foto de perfil" class="object-cover w-full h-full rounded-lg">
-                </div>
-            </header>
-            
-            <!-- Seção de Serviços -->
-            <section id="services-section" class="mt-12 border-t border-slate-700 pt-12">
-                <div id="services-grid" class="grid grid-cols-2 gap-4 md:gap-8">
-                    <!-- Serviços serão inseridos aqui -->
-                </div>
-            </section>
-
-            <main class="mt-20">
-                <h3 class="text-3xl font-bold text-center text-white mb-12 text-glow">Projetos</h3>
-                <div id="gallery" class="grid grid-cols-2 lg:grid-cols-3 gap-4 md:gap-8">
-                    <!-- Os projetos serão inseridos aqui pelo JavaScript -->
-                </div>
-            </main>
-        </div>
-    </div>
-
-    <!-- Container da Página de Currículo -->
-    <div id="curriculo-view" class="hidden">
-        <div class="container mx-auto max-w-5xl px-6 py-12 md:py-20">
-             <div class="grid grid-cols-1 md:grid-cols-12 gap-12">
-                <div class="md:col-span-8">
-                    <header class="mb-10">
-                        <h1 id="cv-name" class="text-4xl md:text-5xl font-bold text-white"></h1>
-                        <h2 id="cv-role" class="mt-1 text-xl md:text-2xl font-medium text-cyan-300"></h2>
-                    </header>
-                    <section class="mb-10">
-                        <h3 class="cv-section-title">INFORMAÇÃO PESSOAL</h3>
-                        <div id="cv-personal-info" class="space-y-4 text-gray-300 leading-relaxed"></div>
-                    </section>
-                    <section class="mb-10">
-                        <h3 class="cv-section-title">EXPERIÊNCIA PROFISSIONAL</h3>
-                        <div id="cv-experience" class="space-y-8"></div>
-                    </section>
-                    <section>
-                        <h3 class="cv-section-title">FORMAÇÃO ACADÊMICA</h3>
-                        <div id="cv-education" class="space-y-6"></div>
-                    </section>
-                </div>
-                <div class="md:col-span-4">
-                    <div class="bg-slate-800/50 p-6 rounded-lg sticky top-10">
-                        <img id="cv-photo" src="" alt="Foto de perfil" class="rounded-full w-40 h-40 mx-auto mb-6 border-4 border-slate-700">
-                        <div id="cv-contacts" class="space-y-4 text-sm text-gray-300 mb-8"></div>
-                        <section class="mb-6">
-                            <h3 class="cv-section-title !text-base !border-slate-700 !pb-2 !mb-4">HABILIDADES</h3>
-                            <ul id="cv-skills" class="list-disc list-inside text-sm text-gray-300 space-y-2"></ul>
-                        </section>
-                        <section class="mb-6">
-                            <h3 class="cv-section-title !text-base !border-slate-700 !pb-2 !mb-4">FERRAMENTAS</h3>
-                            <ul id="cv-tools" class="list-disc list-inside text-sm text-gray-300 space-y-2"></ul>
-                        </section>
-                        <section class="mb-6">
-                            <h3 class="cv-section-title !text-base !border-slate-700 !pb-2 !mb-4">CURSOS</h3>
-                            <div id="cv-courses" class="space-y-4 text-sm"></div>
-                        </section>
-                        <section>
-                            <h3 class="cv-section-title !text-base !border-slate-700 !pb-2 !mb-4">HOBBIES</h3>
-                            <ul id="cv-hobbies" class="list-disc list-inside text-sm text-gray-300 space-y-2"></ul>
-                        </section>
-                    </div>
-                </div>
-            </div>
-             <a href="#" class="mt-12 inline-block bg-slate-800 text-slate-300 px-6 py-2 rounded-md hover:bg-slate-700 transition-all">
-                &larr; Voltar ao Portfólio
-            </a>
-        </div>
-    </div>
-
-    <!-- Modal para exibir o trabalho -->
-    <div id="modal" class="fixed inset-0 bg-black bg-opacity-80 flex justify-center items-center p-4 z-50 opacity-0 pointer-events-none backdrop-blur-sm">
-        <div id="modal-close-bg" class="absolute inset-0"></div>
-        <div id="modal-content" class="bg-gray-800/80 backdrop-blur-lg border border-slate-700 rounded-lg shadow-2xl w-full max-w-4xl max-h-[90vh] overflow-y-auto relative transform scale-95 transition-transform duration-300"></div>
-    </div>
-
-    <script>
-        // --- INÍCIO DA LÓGICA DO SITE ---
-
-        let portfolioData;
-
-        // --- FUNÇÕES DE LÓGICA E UTILIDADES ---
-        function getYoutubeThumbnailUrl(url) {
-            if (typeof url !== 'string' || !url) return 'https://placehold.co/128x72/1F2937/E5E7EB?text=Video';
-            try {
-                const urlObj = new URL(url);
-                if (urlObj.hostname.includes('youtube.com') || urlObj.hostname.includes('youtu.be')) {
-                    const videoId = urlObj.pathname.split('/').pop();
-                    if (videoId) {
-                        return `https://img.youtube.com/vi/${videoId}/hqdefault.jpg`;
-                    }
-                }
-            } catch (e) { /* URL inválida, ignora */ }
-            return 'https://placehold.co/128x72/1F2937/E5E7EB?text=Video';
-        }
-
-        function updateFavicon() {
-            if (portfolioData && portfolioData.profile) {
-                const faviconUrl = portfolioData.profile.favicon;
-                if(faviconUrl) document.getElementById('favicon').href = faviconUrl;
-            }
-        }
-
-        // --- FUNÇÕES DE ROTEAMENTO E CARREGAMENTO DE DADOS ---
-        async function loadData() {
-            try {
-                const response = await fetch('./data.json');
-                if (!response.ok) {
-                    if (response.status === 404) {
-                        throw new Error('Arquivo "data.json" não encontrado (Erro 404). Verifique o nome e a localização do arquivo no seu repositório do GitHub.');
-                    }
-                    const text = await response.text();
-                    try {
-                        JSON.parse(text);
-                    } catch (jsonError) {
-                         throw new Error(`Erro de sintaxe no arquivo data.json: ${jsonError.message}`);
-                    }
-                    throw new Error(`Erro ao carregar o arquivo: ${response.statusText} (código: ${response.status})`);
-                }
-                portfolioData = await response.json();
-            } catch (error) {
-                console.error('Falha ao carregar data.json:', error);
-                document.body.innerHTML = `
-                    <div style="padding: 40px; text-align: center; color: white; font-family: sans-serif; min-height: 100vh; display: flex; flex-direction: column; align-items: center; justify-content: center; background-color: #111827;">
-                        <h1 style="font-size: 24px; margin-bottom: 20px; color: #ef5350;">Erro ao Carregar o Portfólio</h1>
-                        <div style="color: #ffcdd2; background: #1f2937; border: 1px solid #c62828; padding: 20px; border-radius: 8px; max-width: 600px; margin: 0 auto; text-align: left; line-height: 1.6;">
-                            <p style="margin: 0; font-weight: bold; font-size: 1.1em;">${error.message}</p>
-                        </div>
-                        <p style="margin-top: 30px; color: #cfd8dc; max-width: 500px; text-align: center;">Por favor, verifique se o arquivo <strong style="color: white; background: #455a64; padding: 2px 6px; border-radius: 4px;">data.json</strong> foi enviado para o GitHub, está no mesmo diretório que o <strong style="color: white; background: #455a64; padding: 2px 6px; border-radius: 4px;">index.html</strong> e não possui erros de sintaxe.</p>
-                    </div>
-                `;
-                throw error; // Interrompe a execução
-            }
-        }
-
-        async function handleRouteChange() {
-            try {
-                await loadData();
-
-                const hash = window.location.hash;
-                const portfolioView = document.getElementById('portfolio-view');
-                const curriculoView = document.getElementById('curriculo-view');
-                
-                portfolioView.classList.add('hidden');
-                curriculoView.classList.add('hidden');
-
-                if (hash === '#curriculo') {
-                     curriculoView.classList.remove('hidden');
-                     renderCurriculum();
-                } else {
-                    portfolioView.classList.remove('hidden');
-                    renderPortfolio();
-                }
-            } catch (error) {
-                console.error("Renderização interrompida devido a erro no carregamento dos dados.");
-            }
-        }
-
-        // --- FUNÇÕES DE RENDERIZAÇÃO ---
-
-        function renderPortfolio() {
-            try {
-                if (!portfolioData || !portfolioData.profile) {
-                    throw new Error("Dados do perfil ('profile') não encontrados no data.json.");
-                }
-                const profile = portfolioData.profile;
-                document.title = `${profile.name || 'Portfólio'} | Portfólio Audiovisual`;
-                document.getElementById('profile-pic-desktop').src = profile.pic || '';
-                document.getElementById('profile-pic-mobile').src = profile.pic || '';
-                
-                document.getElementById('profile-name').textContent = profile.name || '';
-                document.getElementById('profile-role').textContent = profile.role || '';
-                document.getElementById('profile-bio').innerHTML = (profile.bio || '').replace(/\n/g, '<br>');
-                document.getElementById('profile-email').href = `mailto:${profile.email || ''}`;
-                const emailTextEl = document.getElementById('profile-email-text');
-                emailTextEl.textContent = profile.email || '';
-                if (window.innerWidth < 420 && (profile.email || '').length > 20) {
-                    emailTextEl.classList.add('hidden');
-                } else {
-                    emailTextEl.classList.remove('hidden');
-                }
-
-                document.getElementById('profile-whatsapp').href = profile.whatsapp || 'https://wa.me/';
-
-                const servicesGrid = document.getElementById('services-grid');
-                servicesGrid.innerHTML = (portfolioData.services || [])
-                    .filter(service => service.title !== 'Gestão de Mídias Sociais')
-                    .map(service => `
-                    <div class="bg-slate-800 border border-slate-700 p-4 md:p-6 rounded-lg text-center transition-all duration-300 hover:border-cyan-400 hover:-translate-y-2 flex flex-col items-center justify-center">
-                        <i data-feather="${service.icon || 'settings'}" class="w-8 h-8 md:w-12 md:h-12 mx-auto text-cyan-400 mb-3 flex-shrink-0"></i>
-                        <h4 class="text-xs md:text-xl font-bold text-white">${service.title || 'Serviço'}</h4>
-                        <p class="text-xs md:text-sm text-gray-400 mt-2">${service.description || ''}</p>
-                    </div>
-                `).join('');
-                
-                const gallery = document.getElementById('gallery');
-                gallery.innerHTML = '';
-                const activeProjects = (portfolioData.projects || []).filter(p => p.enabled && p.title && p.thumbnail && Array.isArray(p.source) && p.source.length > 0 && p.source[0]);
-                activeProjects.forEach((project) => {
-                    const projectElement = document.createElement('div');
-                    projectElement.className = 'group cursor-pointer';
-                    projectElement.innerHTML = `
-                        <div class="thumbnail-container rounded-lg ring-1 ring-slate-800 group-hover:ring-indigo-500 transition-all duration-300">
-                            <img src="${project.thumbnail}" alt="${project.title}" class="transform group-hover:scale-105 transition-transform duration-300" onerror="this.onerror=null;this.src='https://placehold.co/600x400/7f1d1d/ffffff?text=Imagem+Inválida';">
-                            <div class="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent"></div>
-                            <div class="absolute bottom-0 left-0 p-4"><h4 class="text-white text-lg font-bold">${project.title}</h4></div>
-                        </div>`;
-                    projectElement.addEventListener('click', () => openModal(project));
-                    gallery.appendChild(projectElement);
-                });
-                feather.replace();
-                updateFavicon();
-            } catch (error) {
-                console.error("Erro ao renderizar o portfólio:", error);
-            }
-        }
-
-        function renderCurriculum() {
-            try {
-                if (!portfolioData || !portfolioData.curriculum) {
-                    throw new Error("Dados do currículo ('curriculum') não encontrados no data.json.");
-                }
-
-                const cv = portfolioData.curriculum;
-                const profile = portfolioData.profile;
-                document.title = `Currículo | ${profile.name || 'Portfólio'}`;
-
-                document.getElementById('cv-name').textContent = cv.name || '';
-                document.getElementById('cv-role').textContent = cv.role || '';
-                document.getElementById('cv-photo').src = cv.photo || '';
-                document.getElementById('cv-personal-info').innerHTML = (cv.personalInfo || '').replace(/\n/g, '<br>');
-
-                const contactsEl = document.getElementById('cv-contacts');
-                if (cv.contacts) {
-                    contactsEl.innerHTML = `
-                        <a href="mailto:${cv.contacts.email || ''}" class="flex items-center gap-3 text-gray-300 hover:text-cyan-300"><i data-feather="mail" class="w-4 h-4"></i><span>${cv.contacts.email || ''}</span></a>
-                        <p class="flex items-center gap-3 text-gray-300"><i data-feather="phone" class="w-4 h-4"></i><span>${cv.contacts.phone || ''}</span></p>
-                        <a href="${cv.contacts.website || ''}" target="_blank" class="flex items-center gap-3 text-gray-300 hover:text-cyan-300"><i data-feather="link" class="w-4 h-4"></i><span>${cv.contacts.website || ''}</span></a>
-                    `;
-                }
-
-                const experienceEl = document.getElementById('cv-experience');
-                experienceEl.innerHTML = (cv.experience || []).map(item => `
-                    <div>
-                        <p class="font-semibold text-slate-400 text-xs">${item.date || ''}</p>
-                        <h4 class="font-bold text-white text-lg">${item.company || ''}</h4>
-                        <p class="font-medium text-md text-slate-300">${item.title || ''}</p>
-                        <p class="mt-2 text-slate-400 text-sm">${item.description || ''}</p>
-                    </div>
-                `).join('');
-
-                const educationEl = document.getElementById('cv-education');
-                educationEl.innerHTML = (cv.education || []).map(item => `
-                    <div>
-                        <p class="font-semibold text-slate-400 text-xs">${item.date || ''}</p>
-                        <h4 class="font-bold text-white">${item.institution || ''}</h4>
-                        <p class="font-medium text-sm text-slate-300">${item.degree || ''}</p>
-                    </div>
-                `).join('');
-                
-                const coursesEl = document.getElementById('cv-courses');
-                coursesEl.innerHTML = (cv.courses || []).map(item => `
-                    <div>
-                        <h4 class="font-bold text-white">${item.institution || ''}</h4>
-                        <p class="text-slate-300">${item.name || ''}</p>
-                    </div>
-                `).join('');
-
-                document.getElementById('cv-skills').innerHTML = (cv.skills || []).map(s => `<li>${s}</li>`).join('');
-                document.getElementById('cv-tools').innerHTML = (cv.tools || []).map(t => `<li>${t}</li>`).join('');
-                document.getElementById('cv-hobbies').innerHTML = (cv.hobbies || []).map(h => `<li>${h}</li>`).join('');
-                
-                feather.replace();
-            } catch (error) {
-                console.error("Erro ao renderizar o currículo:", error);
-            }
-        }
-
-        function openModal(project) {
-            const modal = document.getElementById('modal');
-            const modalContent = document.getElementById('modal-content');
-            
-            if (!Array.isArray(project.source) || project.source.length === 0) return;
-
-            const isVideo = project.type === 'video';
-            
-            const mediaHtml = `
-                <div id="media-player" class="media-container rounded-t-lg"></div>
-                ${project.source.length > 1 ? `
-                <button id="slider-prev" class="slider-btn prev"><i data-feather="chevron-left" class="w-6 h-6"></i></button>
-                <button id="slider-next" class="slider-btn next"><i data-feather="chevron-right" class="w-6 h-6"></i></button>
-                <div id="slider-counter" class="slider-counter">1 / ${project.source.length}</div>
-                ` : ''}
-            `;
-            
-            const thumbnailsHtml = project.source.length > 1 ? `
-                <div class="slider-thumbnails">
-                    ${project.source.map((src, index) => {
-                        const thumbSrc = isVideo ? getYoutubeThumbnailUrl(src) : src;
-                        return `<img src="${thumbSrc}" class="slider-thumbnail" data-index="${index}" alt="Miniatura ${index + 1}" onerror="this.onerror=null;this.src='https://placehold.co/80x50/7f1d1d/ffffff?text=Erro';">`;
-                    }).join('')}
-                </div>` : '';
-
-            modalContent.innerHTML = `
-                <div class="relative">
-                    <button id="modal-close-btn" class="absolute top-3 right-3 text-white bg-black bg-opacity-50 rounded-full p-1 hover:bg-opacity-75 z-20"><i data-feather="x" class="w-6 h-6"></i></button>
-                    ${mediaHtml}
-                </div>
-                <div class="p-6 md:p-8">
-                    ${thumbnailsHtml}
-                    <h3 class="text-2xl font-bold text-white mt-4">${project.title}</h3>
-                    <p class="mt-4 text-gray-300 text-base leading-relaxed">${project.description}</p>
-                </div>
-            `;
-            
-            feather.replace();
-            document.getElementById('modal-close-btn').addEventListener('click', closeModal);
-
-            if (project.source.length > 1) {
-                let currentIndex = 0;
-                const playerEl = document.getElementById('media-player');
-                const counterEl = document.getElementById('slider-counter');
-                const prevBtn = document.getElementById('slider-prev');
-                const nextBtn = document.getElementById('slider-next');
-                const thumbnailEls = modalContent.querySelectorAll('.slider-thumbnail');
-
-                const updateThumbnails = (activeIndex) => {
-                    thumbnailEls.forEach((thumb, i) => thumb.classList.toggle('active', i === activeIndex));
-                };
-
-                const showItem = (index) => {
-                    currentIndex = index;
-                    const sourceUrl = project.source[index];
-                    
-                    if (isVideo) {
-                        playerEl.innerHTML = `<iframe src="${sourceUrl}" frameborder="0" allow="autoplay; fullscreen; picture-in-picture" allowfullscreen></iframe>`;
-                    } else {
-                        playerEl.innerHTML = `<img src="${sourceUrl}" alt="${project.title}" class="transition-opacity duration-300 opacity-0" onerror="this.onerror=null;this.src='https://placehold.co/1200x800/7f1d1d/ffffff?text=Imagem+Inválida';">`;
-                        setTimeout(() => {
-                            const img = playerEl.querySelector('img');
-                            if (img) img.classList.remove('opacity-0');
-                        }, 50);
-                    }
-                    
-                    if(counterEl) counterEl.textContent = `${index + 1} / ${project.source.length}`;
-                    updateThumbnails(index);
-                };
-                
-                showItem(0);
-                updateThumbnails(0);
-
-                prevBtn.addEventListener('click', () => showItem((currentIndex > 0) ? currentIndex - 1 : project.source.length - 1));
-                nextBtn.addEventListener('click', () => showItem((currentIndex < project.source.length - 1) ? currentIndex + 1 : 0));
-                thumbnailEls.forEach(thumb => thumb.addEventListener('click', () => showItem(parseInt(thumb.dataset.index, 10))));
-
-                const handleKeyDown = (e) => {
-                    if (e.key === 'ArrowLeft') prevBtn.click();
-                    if (e.key === 'ArrowRight') nextBtn.click();
-                };
-                document.addEventListener('keydown', handleKeyDown);
-
-                const modalObserver = new MutationObserver(() => {
-                    if (!document.body.contains(modalContent)) {
-                        document.removeEventListener('keydown', handleKeyDown);
-                        modalObserver.disconnect();
-                    }
-                });
-                modalObserver.observe(document.body, { childList: true, subtree: true });
-            } else {
-                const playerEl = document.getElementById('media-player');
-                 if (isVideo) {
-                    playerEl.innerHTML = `<iframe src="${project.source[0]}" frameborder="0" allow="autoplay; fullscreen; picture-in-picture" allowfullscreen></iframe>`;
-                } else {
-                    playerEl.innerHTML = `<img src="${project.source[0]}" alt="${project.title}" onerror="this.onerror=null;this.src='https://placehold.co/1200x800/7f1d1d/ffffff?text=Imagem+Inválida';">`;
-                }
-            }
-
-            modal.classList.remove('opacity-0', 'pointer-events-none');
-            document.body.style.overflow = 'hidden';
-            modalContent.classList.remove('scale-95');
-        }
-
-        function closeModal() {
-            const modal = document.getElementById('modal');
-            const modalContent = document.getElementById('modal-content');
-            modal.classList.add('opacity-0', 'pointer-events-none');
-            document.body.style.overflow = 'auto';
-            modalContent.classList.add('scale-95');
-            setTimeout(() => { modalContent.innerHTML = ''; }, 300);
-        }
-
-        // --- INICIALIZAÇÃO E EVENTOS GERAIS ---
-        document.addEventListener('DOMContentLoaded', async () => {
-            window.addEventListener('hashchange', handleRouteChange);
-            // Carga inicial
-            await handleRouteChange();
-
-            document.getElementById('modal-close-bg').addEventListener('click', closeModal);
-            document.addEventListener('keydown', (e) => { if (e.key === 'Escape') closeModal(); });
-        });
-    </script>
-</body>
-</html>
-
+{
+  "profile": {
+    "name": "Bernardo Botafogo",
+    "role": "Videomaker & Fotógrafo",
+    "pic": "https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEgisBTlbze9Ny8Mj_uQPylqNOxCLMrVzPbf-B3_OCJ5CTWOipVuMp0KvetCU-Am5zv1vDCDNUwCiangy8tu03SERJaaT3IR_TBsVR5KglXS7-eg4CmZvdtIxM5RhtXRVJrOjyWnEb157qVrsiw0vTxQxlsNwHy8ATWB2ahYAH1HQ2R8EGyf9sZnBcMccA/s1600/eu.png",
+    "bio": "Com 14 anos de experiência trabalhando na criação de conteúdo para internet, criando desde memes, posts em blogs, video de esquetes de humor, clips musicais, podcasts, propaganda, etc. Além disso, tenho projetos pessoais focados no universo nerd, atuando como filmmaker e fotógrafo. Atualmente, também presto consultoria para produtores de vídeos iniciantes, sejam eles para o YouTube, cinema ou propaganda. Meu foco atual é na consultoria para criação de podcasts, vídeos para YouTube, Tiktok e Instagram. Fazendo também toda a parte de edição, criação das Thumbs e publicação nas redes.",
+    "email": "bmbotafogo86@gmail.com",
+    "whatsapp": "https://wa.me/5524974056483",
+    "favicon": "data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🎬</text></svg>"
+  },
+  "services": [
+    {
+      "icon": "camera",
+      "title": "Fotografia & Filmagem",
+      "description": "Captação de imagem e vídeo para eventos, ensaios e projetos audiovisuais, com foco na qualidade e narrativa visual."
+    },
+    {
+      "icon": "video",
+      "title": "Edição e Pós-Produção",
+      "description": "Edição de vídeo, tratamento de cor, motion graphics e efeitos especiais para transformar suas ideias em peças impactantes."
+    }
+  ],
+  "projects": [
+    {
+      "enabled": true,
+      "title": "Canais do YouTube",
+      "thumbnail": "https://i.ytimg.com/vi/Cq4IOx-FAPE/hqdefault.jpg",
+      "description": "Produção de conteúdo para diversos canais do YouTube, incluindo roteiro, pesquisa, artes, edição, animações e locução.",
+      "type": "video",
+      "source": [
+        "https://www.youtube.com/embed/Cq4IOx-FAPE",
+        "https://www.youtube.com/embed/193bNKiKQGc",
+        "https://www.youtube.com/embed/ytAdKLAPzGU",
+        "https://www.youtube.com/embed/PZ3YYWKlDmE",
+        "https://www.youtube.com/embed/MJN8DCs-seM",
+        "https://www.youtube.com/embed/bJ25ebDopBQ",
+        "https://www.youtube.com/embed/O0XUtU_0GoM",
+        "https://www.youtube.com/embed/xAc0dH7_s20"
+      ]
+    },
+    {
+      "enabled": true,
+      "title": "Propaganda",
+      "thumbnail": "https://i.ytimg.com/vi/gxHxaNM6r8s/hqdefault.jpg",
+      "description": "Criação de vídeos publicitários, desde a concepção da ideia até a edição final, para marcas e eventos.",
+      "type": "video",
+      "source": [
+        "https://www.youtube.com/embed/gxHxaNM6r8s",
+        "https://www.youtube.com/embed/eOhgGvFGfy8"
+      ]
+    },
+    {
+      "enabled": true,
+      "title": "Eventos",
+      "thumbnail": "https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEjSyE4ZjnlOygUTPSkHyrFGDRtYg15F-Al8o51uPx4CfyzLwE4kcOGtcWbyPYoXZUvrzHhFwSgJDPHbvwcEtHBqYjX1qEPFwdbVJgw4xUQuKwAvsY4pxVWpGGTuRJm4F6TCZEnoM2HfPQ/s1600/DSC00702.jpeg",
+      "description": "Cobertura audiovisual de eventos, com especialidade em vídeos que capturam a transformação e a energia do momento.",
+      "type": "video",
+      "source": [
+        "https://www.youtube.com/embed/eOhgGvFGfy8",
+        "https://www.youtube.com/embed/vG-zQPAqT6A"
+      ]
+    },
+    {
+      "enabled": true,
+      "title": "Fotografia de Produto (Still)",
+      "thumbnail": "https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEgz509eNvZ19wUwVuWqr2he8mWBFUdZWXYxc93-ynTMMReh7b46wCdlU-OXbdancRZdNoKV8Z2mzc6I6lmVJ1adL9IBefQEetG8UklGsY3ul-o2_IniOEES8klthmIfqpu7vcDJM3APAQ/s1600/jubolinha.cadernos_27582150_280261919171533_2056272342362882048_n.jpg",
+      "description": "Fotografia de produtos (Still) para diversas finalidades, desde alimentos até peças de cerâmica, com foco em destacar os detalhes e a qualidade.",
+      "type": "image",
+      "source": [
+        "https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEgz509eNvZ19wUwVuWqr2he8mWBFUdZWXYxc93-ynTMMReh7b46wCdlU-OXbdancRZdNoKV8Z2mzc6I6lmVJ1adL9IBefQEetG8UklGsY3ul-o2_IniOEES8klthmIfqpu7vcDJM3APAQ/s1600/jubolinha.cadernos_27582150_280261919171533_2056272342362882048_n.jpg",
+        "https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEhCz1GdL5pnc0S1hB0tTvBpKqwe2f2zBXsexLa57UgNNHcx1L0bCzzokjcyk5it7o0EM8jUFKXtvJJxe_0_j_Qy6EaaOql1JIwJE1ddVWbMHX4FzBn22_fM9gEZBg2uLq2bBSD3b0ZeEQ/s1600/WhatsApp+Image+2018-12-20+at+17.22.39.jpeg",
+        "https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEhpA3ETz7JV2efnCVog0IIUGRbaAJMw4UWVxNptl9NPOPUw-_eeg5Ahyphenhyphen6qS1CDcpH2ppnb1jbVwVonF2JQZWf_CBn9nBjC2lSC-eaAcwk542dUmfecqiek68A5Z0P5b65JpycCb5e_Gog/s1600/bernardobotafogo_22221015_283703642117591_6089397468263350272_n.jpg",
+        "https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEhieQ-4HpkTeZNXvGF7L3K2vc6JP68GQ6WhxCDSENPnBB2B7Rz6S23peYkVFBJexsSBbQJuREN4JVeh0AQuJj7313S8f2Qpxpla4W6Tqx285AGGDa3zcWpWKjNJE3mQX01J7d5geo3zsw/s1600/bernardobotafogo_31270424_2045604535726934_348753431789305856_n.jpg",
+        "https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEjo9kg25jCaj2dnV7tXJropUhmdKOGpUJDL6IcPP7o1NGR6bqCCd5wAUUae50EvmXMtq4R6oQPgf8tk9yVfjUn9GDSdnmcZlQdqJiY1bQwYxPI-boisYmgaPpjlzp3GEJ5DRNM6cbnAxQ/s1600/DSC01907.jpg",
+        "https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEjorJH_oczjjO3PuSx_h7QS4g4ffthJyU1-ySSnvZjrNzM2p_n_Yu3U_NWR_hOwLtze0cQ0KFeB8xXMcUl00zslKJ8L81vUhWAb1u4rvy1TVWGsvhyA7fsLj6_eMl1nNmPE5nb6gPjP2Q/s1600/bernardobotafogo_28152215_342772286217990_2691797029654364160_n.jpg"
+      ]
+    },
+    {
+      "enabled": false,
+      "title": "Podcasts",
+      "thumbnail": "https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEhRp22giiBSTcVGLasHthtsIj5OL7rhwXsgi3UfnTr_VjYGPBbWCckia1JtvVn4gw0iumIs9EjkC9-T6WeNsiKA0Vuf3NatbwcY6PpwRqJXwIXtViT4vxJYx-bIeBawpvqCTaP5w1QRSw/s1600/2017-12-18-23.25.05.jpg",
+      "description": "Produção de podcasts, abordando temas do universo Nerd e vivências sobre a maternidade, com uma atmosfera acolhedora e sensível.",
+      "type": "video",
+      "source": [
+        "https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/tracks/449564124&color=%23ff5500&auto_play=false&hide_related=false&show_comments=true&show_user=true&show_reposts=false&show_teaser=true&visual=true",
+        "https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/tracks/490269339&color=%23ff5500&auto_play=false&hide_related=false&show_comments=true&show_user=true&show_reposts=false&show_teaser=true&visual=true",
+        "https://open.spotify.com/embed/episode/4l4rEgC6bPll52JgBm6d5T?utm_source=generator"
+      ]
+    },
+    {
+      "enabled": false,
+      "title": "Fotografia Noturna",
+      "thumbnail": "https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEha4_jAPRdfHa7vTGKrjNaFOzCTSn-qRus2qR3GJwDTk-UUmhtV7_vKG26Tg8kwpCv71qCqzn5vIr9B8ruDkAuWUOKQMBT0rGspuc0CF0t-0aeMa_Tt7X82VEbIxY1MSlIgi2RvxAeCug/s1600/P1070079.jpg",
+      "description": "Um hobby fascinante de fotografar a noite, explorando os desafios e a realidade única que a escuridão proporciona.",
+      "type": "image",
+      "source": [
+        "https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEha4_jAPRdfHa7vTGKrjNaFOzCTSn-qRus2qR3GJwDTk-UUmhtV7_vKG26Tg8kwpCv71qCqzn5vIr9B8ruDkAuWUOKQMBT0rGspuc0CF0t-0aeMa_Tt7X82VEbIxY1MSlIgi2RvxAeCug/s1600/P1070079.jpg",
+        "https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEjWYtDz9cVH1434n37-R87chfk8lknenqZx3VPPpqqMBiKqz5bDTrAFlH1Y8XOW3E5FkQWOTAabgX0szlttoixiAW8e3LG-x4tdsqHU09PRQvnqz-e9q470STvTJ1spJYOGHx2rz3MdHQ/s1600/1502251_10204596074207103_3408762593083168688_o.jpg",
+        "https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEgFpjNBevqgjLyl2Q5BvYedEMa6_9jy7vYC7I53NOA4WBZm_UYqtV2-AccxckLqxGIqHZoT_nH0QkqbSodtikhkB6gjoBCtebQBEWdFLeYFU5vRpVBkhWuJbvO_zC05Gvpcj0uNkIlRpw/s1600/10472158_10204596109207978_5594027491523102164_o.jpg"
+      ]
+    },
+    {
+      "enabled": false,
+      "title": "Fotografia Macro",
+      "thumbnail": "https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEgNkEJghxy6m5hb27T-ppYmJA5OaIH1vnVnOrEOLs0jhV78IXp17RTaDW70M5GjhG-QjJTkBFQcMAalzAdzCbSOWuF2X0QREpfVCZxTJ_4DtSdq4o0yX4ZWSlWL1vk_M12_HCJjEerLbg/s1600/bernardobotafogo_27579310_166322487342973_2173078350254309376_n.jpg",
+      "description": "Explorando um novo universo através da fotografia macro, revelando a complexidade de pequenas estruturas com paciência e precisão.",
+      "type": "image",
+      "source": [
+        "https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEgNkEJghxy6m5hb27T-ppYmJA5OaIH1vnVnOrEOLs0jhV78IXp17RTaDW70M5GjhG-QjJTkBFQcMAalzAdzCbSOWuF2X0QREpfVCZxTJ_4DtSdq4o0yX4ZWSlWL1vk_M12_HCJjEerLbg/s1600/bernardobotafogo_27579310_166322487342973_2173078350254309376_n.jpg",
+        "https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEj0tU59Vse460RINSizrSuf3VawKdRURxyVdUbnuVTStbRr10hNXhtllBe-D7agU9IEnrXVdEGPDEM2Z0TmJYvLStRgYPAAODyRVrmGOc7i5WLLSQEiP2VD8RljFp56vFVX_1SfgfTOdg/s1600/bernardobotafogo_10326587_716823401715232_1536037054_n.jpg",
+        "https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEj6SHA6ysLFZwYH235jjxXKNeMrAq6PQeIo8k62ekaZO5gBvAhT8JphV5G81_XY65ute9O-9wHxJea_Vuz8tllXnttTL9u6Yx4T1Gz_tFt7GY-mibHBL87BW2pMP1T0ySUu5X61pYw6Sw/s1600/bernardobotafogo_10990587_1550724501845590_1990814807_n.jpg",
+        "https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEgeT6VhMAcPhgtqC3apaZey39j1ARByk5sIa_NkbJrK7-Aq4FQ7gZ0tLk9IcLoyfRj3rF9jT0R1PH7xURRD3ZTI0jWUwMaWfOlJ6nLexcE9IHgE3yZuleTKawgLahvn_lWNsi_refZyLQ/s1600/bernardobotafogo_10995173_1573925442850680_846956765_n.jpg",
+        "https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEhsCYuVNj4QqJZmj7y1yAPPk8FKa7pJ-UKkxq3JIU0UPHfayURrK_piiYcpQDQQTK8_Q8KGnDn89RFAnoZmZXdqm-t9P7fs0C7cIC4xsqeYcZHdPzUQ1qGTphxFdqIM-sZmXm1EVM1cBA/s1600/bernardobotafogo_12362428_940626622658864_1565229986_n.jpg",
+        "https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEghkHj8QLDhSA8GMwvUlnCrS9UUpc9t9bJOeeazjV9kbusEqbogAG2klQqwrKQDC34lU9Ikqv1yce7Vf1CVZ-C3N8pzhYUBUjmezCf-B5JTdkjw2DyBq2LwUjj0u62raMz2UQFh-A8ViA/s1600/bernardobotafogo_12907417_609134209233705_571932135_n.jpg",
+        "https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEhhrWZ9oHZSOaT9EQJVdZra20y5jpEdb5HKWyue0_AoaTXhD1PblnajS8i_93I_fQNEzOLMs5mtc7LtZqZFqRf87AA_ur4G0dVfyhw7hmywjQgAYVFXbv-WdL3Mjn8qCfk27rCY8SRjMg/s1600/bernardobotafogo_12940215_1313136945368106_1125925076_n.jpg"
+      ]
+    }
+  ],
+  "curriculum": {
+    "name": "Bernardo Botafogo",
+    "role": "Fotógrafo e Editor",
+    "photo": "https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEgisBTlbze9Ny8Mj_uQPylqNOxCLMrVzPbf-B3_OCJ5CTWOipVuMp0KvetCU-Am5zv1vDCDNUwCiangy8tu03SERJaaT3IR_TBsVR5KglXS7-eg4CmZvdtIxM5RhtXRVJrOjyWnEb157qVrsiw0vTxQxlsNwHy8ATWB2ahYAH1HQ2R8EGyf9sZnBcMccA/s1600/eu.png",
+    "contacts": {
+      "email": "bmbotafogo86@gmail.com",
+      "phone": "(24) 97405-6483",
+      "website": "http://www.bernardobotafogo.com.br"
+    },
+    "personalInfo": "Comecei há 11 anos na area de fotografia e cinema, com projetos pessoais do universo nerd, como filmmaker e fotógrafo, já participando de quase todo o processo de criação de filmes (roteiro, produção, filmagem, cenário, captação de audio e video, cenografia, pós-produção edição e efeitos especiais). Atualmente, também dou consultoria para produtores de vídeos iniciantes (youtube, cinema, propaganda etc). Trabalhei também com design de peças publicitárias e drops de conteúdo para redes sociais.",
+    "experience": [
+      {
+        "date": "Novembro de 2020 - Hoje",
+        "title": "Editor de vídeo, gerente de mídias sociais e design",
+        "company": "Medo e Delírio em Brasília",
+        "description": "Cuido de toda a produção de conteúdo para as redes desde imagens para posts e vídeos para o Canal do youtube, tiktok, instagram e telegram."
+      },
+      {
+        "date": "Setembro de 2014 - Outubro de 2017",
+        "title": "Técnico em Manutenção",
+        "company": "Ovnipix conteúdo WEB LTDA",
+        "description": "Fiz a captação e edição de coberturas para eventos, canais do youtube como (Reynold Romão e David Mafra), Locução de comerciais para rádio, e drops de conteúdo para redes sociais do portal."
+      },
+      {
+        "date": "Março de 2010 - Agosto de 2017",
+        "title": "Editor de Video, Cameraman e redes sociais",
+        "company": "Nerdice.com",
+        "description": "Fiz a captação e edição de todo o material audiovisual dos canais do portal Nerdice.com. Fiz também a alimentação com drops de conteúdo nas redes sociais do portal."
+      }
+    ],
+    "education": [
+      {
+        "date": "2008 - 2010",
+        "degree": "Tecnólogo de WEB (Superior incompleto)",
+        "institution": "CEFET-RJ"
+      },
+      {
+        "date": "2004",
+        "degree": "Técnico em Informática",
+        "institution": "Liceu São José de Itaipava"
+      }
+    ],
+    "skills": [
+      "Fotografia",
+      "Edição de Fotos",
+      "Filmagem",
+      "Edição de Vídeo",
+      "Edição de Áudio"
+    ],
+    "tools": [
+      "Premiere Pro",
+      "Final Cut",
+      "Photoshop",
+      "Audition",
+      "Lightroom",
+      "Ilustrator",
+      "Redes Sociais"
+    ],
+    "courses": [
+      {
+        "name": "Ruby on Rails - Desenvolvimento Ágil para Web 2.0",
+        "institution": "Caelum (2013)"
+      },
+      {
+        "name": "Autocad Básico e 3D",
+        "institution": "SENAI (2005)"
+      },
+      {
+        "name": "Cursos diversos de fotografia, filmagem, edição e montagem",
+        "institution": "Internet"
+      }
+    ],
+    "hobbies": [
+      "Vloger e Podcast"
+    ]
+  }
+}
