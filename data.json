@@ -3,7 +3,7 @@
     "name": "Bernardo Botafogo",
     "role": "Videomaker & Fotógrafo",
     "pic": "https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEgisBTlbze9Ny8Mj_uQPylqNOxCLMrVzPbf-B3_OCJ5CTWOipVuMp0KvetCU-Am5zv1vDCDNUwCiangy8tu03SERJaaT3IR_TBsVR5KglXS7-eg4CmZvdtIxM5RhtXRVJrOjyWnEb157qVrsiw0vTxQxlsNwHy8ATWB2ahYAH1HQ2R8EGyf9sZnBcMccA/s1600/eu.png",
-    "bio": "Com 14 anos de experiência trabalhando na criação de conteúdo para internet, criando desde memes, posts em blogs, video de esquetes de humor, clips musicais, podcasts, propaganda, etc.",
+    "bio": "Com 14 anos de experiência trabalhando na criação de conteúdo para internet, criando desde memes, posts em blogs, video de esquetes de humor, clips musicais, podcasts, propaganda, etc. Além disso, tenho projetos pessoais focados no universo nerd, atuando como filmmaker e fotógrafo. Atualmente, também presto consultoria para produtores de vídeos iniciantes, sejam eles para o YouTube, cinema ou propaganda. Meu foco atual é na consultoria para criação de podcasts, vídeos para YouTube, Tiktok e Instagram. Fazendo também toda a parte de edição, criação das Thumbs e publicação nas redes.",
     "email": "bmbotafogo86@gmail.com",
     "whatsapp": "https://wa.me/5524974056483",
     "favicon": "data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🎬</text></svg>"
@@ -18,14 +18,14 @@
       "icon": "video",
       "title": "Edição e Pós-Produção",
       "description": "Edição de vídeo, tratamento de cor, motion graphics e efeitos especiais para transformar suas ideias em peças impactantes."
-    },
+    }
   ],
   "projects": [
     {
       "enabled": true,
       "title": "Canais do YouTube",
       "thumbnail": "https://i.ytimg.com/vi/Cq4IOx-FAPE/hqdefault.jpg",
-      "description": "A maioria dos meus trabalhos são voltados para o audiovisual, e grande parte deles são conteúdo para o youtube. Aqui vão alguns vídeos que eu participei em canais como Medo e Delírio em Brasília, Nerd Raiz, Medologia e Nerdice.",
+      "description": "Produção de conteúdo para diversos canais do YouTube, incluindo roteiro, pesquisa, artes, edição, animações e locução.",
       "type": "video",
       "source": [
         "https://www.youtube.com/embed/Cq4IOx-FAPE",
@@ -42,7 +42,7 @@
       "enabled": true,
       "title": "Propaganda",
       "thumbnail": "https://i.ytimg.com/vi/gxHxaNM6r8s/hqdefault.jpg",
-      "description": "Ju Bolinha - Vídeo feito para promover um caderno artesanal criativo. A ideia é mostrar a interatividade do caderno. E vídeo para oficina de culinária para passar a transformação de quem participava.",
+      "description": "Criação de vídeos publicitários, desde a concepção da ideia até a edição final, para marcas e eventos.",
       "type": "video",
       "source": [
         "https://www.youtube.com/embed/gxHxaNM6r8s",
@@ -52,8 +52,8 @@
     {
       "enabled": true,
       "title": "Eventos",
-      "thumbnail": "https://i.ytimg.com/vi/eOhgGvFGfy8/hqdefault.jpg",
-      "description": "Durante a minha jornada como fotógrafo acabei me deparando com os eventos. Fiz muita fotografia, mas a minha especialidade são os vídeos. Cobertura de oficina de culinária e do evento Geek Prime 2015 em Brasília.",
+      "thumbnail": "https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEjSyE4ZjnlOygUTPSkHyrFGDRtYg15F-Al8o51uPx4CfyzLwE4kcOGtcWbyPYoXZUvrzHhFwSgJDPHbvwcEtHBqYjX1qEPFwdbVJgw4xUQuKwAvsY4pxVWpGGTuRJm4F6TCZEnoM2HfPQ/s1600/DSC00702.jpeg",
+      "description": "Cobertura audiovisual de eventos, com especialidade em vídeos que capturam a transformação e a energia do momento.",
       "type": "video",
       "source": [
         "https://www.youtube.com/embed/eOhgGvFGfy8",
@@ -62,19 +62,9 @@
     },
     {
       "enabled": true,
-      "title": "Redes Sociais",
-      "thumbnail": "https://i.ytimg.com/vi/mGuSkhV5DaM/hqdefault.jpg",
-      "description": "A_Trama - Faço drops de vídeos de entretenimento no estilo de 'você sabia' para a página. Stec - Faço a fotografia, filmagem e edição dos vídeos.",
-      "type": "video",
-      "source": [
-        "https://www.youtube.com/embed/mGuSkhV5DaM"
-      ]
-    },
-    {
-      "enabled": true,
-      "title": "Fotografia de produto (Still)",
+      "title": "Fotografia de Produto (Still)",
       "thumbnail": "https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEgz509eNvZ19wUwVuWqr2he8mWBFUdZWXYxc93-ynTMMReh7b46wCdlU-OXbdancRZdNoKV8Z2mzc6I6lmVJ1adL9IBefQEetG8UklGsY3ul-o2_IniOEES8klthmIfqpu7vcDJM3APAQ/s1600/jubolinha.cadernos_27582150_280261919171533_2056272342362882048_n.jpg",
-      "description": "Uma das minhas especialidades na fotografia é Still. Já fiz de tudo um pouco, desde fotos de Hambúrguer, até fotografia de peças de cerâmica.",
+      "description": "Fotografia de produtos (Still) para diversas finalidades, desde alimentos até peças de cerâmica, com foco em destacar os detalhes e a qualidade.",
       "type": "image",
       "source": [
         "https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEgz509eNvZ19wUwVuWqr2he8mWBFUdZWXYxc93-ynTMMReh7b46wCdlU-OXbdancRZdNoKV8Z2mzc6I6lmVJ1adL9IBefQEetG8UklGsY3ul-o2_IniOEES8klthmIfqpu7vcDJM3APAQ/s1600/jubolinha.cadernos_27582150_280261919171533_2056272342362882048_n.jpg",
@@ -89,17 +79,19 @@
       "enabled": false,
       "title": "Podcasts",
       "thumbnail": "https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEhRp22giiBSTcVGLasHthtsIj5OL7rhwXsgi3UfnTr_VjYGPBbWCckia1JtvVn4gw0iumIs9EjkC9-T6WeNsiKA0Vuf3NatbwcY6PpwRqJXwIXtViT4vxJYx-bIeBawpvqCTaP5w1QRSw/s1600/2017-12-18-23.25.05.jpg",
-      "description": "Produção e edição de podcasts. 'Relatos da maternidade', com o objetivo de trazer a tona vivências sobre a maternidade, e um projeto pessoal para desconstruir temas sobre o mundo Nerd.",
-      "type": "image",
+      "description": "Produção de podcasts, abordando temas do universo Nerd e vivências sobre a maternidade, com uma atmosfera acolhedora e sensível.",
+      "type": "video",
       "source": [
-        "https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEhRp22giiBSTcVGLasHthtsIj5OL7rhwXsgi3UfnTr_VjYGPBbWCckia1JtvVn4gw0iumIs9EjkC9-T6WeNsiKA0Vuf3NatbwcY6PpwRqJXwIXtViT4vxJYx-bIeBawpvqCTaP5w1QRSw/s1600/2017-12-18-23.25.05.jpg"
+        "https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/tracks/449564124&color=%23ff5500&auto_play=false&hide_related=false&show_comments=true&show_user=true&show_reposts=false&show_teaser=true&visual=true",
+        "https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/tracks/490269339&color=%23ff5500&auto_play=false&hide_related=false&show_comments=true&show_user=true&show_reposts=false&show_teaser=true&visual=true",
+        "https://open.spotify.com/embed/episode/4l4rEgC6bPll52JgBm6d5T?utm_source=generator"
       ]
     },
     {
       "enabled": false,
-      "title": "Hobby de Fotografia Noturna",
+      "title": "Fotografia Noturna",
       "thumbnail": "https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEha4_jAPRdfHa7vTGKrjNaFOzCTSn-qRus2qR3GJwDTk-UUmhtV7_vKG26Tg8kwpCv71qCqzn5vIr9B8ruDkAuWUOKQMBT0rGspuc0CF0t-0aeMa_Tt7X82VEbIxY1MSlIgi2RvxAeCug/s1600/P1070079.jpg",
-      "description": "Sou fascinado por fotografar a noite, primeiro pelo desafio, e segundo porque nessas fotografias podemos fazer trabalhos com uma outra realidade da noite.",
+      "description": "Um hobby fascinante de fotografar a noite, explorando os desafios e a realidade única que a escuridão proporciona.",
       "type": "image",
       "source": [
         "https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEha4_jAPRdfHa7vTGKrjNaFOzCTSn-qRus2qR3GJwDTk-UUmhtV7_vKG26Tg8kwpCv71qCqzn5vIr9B8ruDkAuWUOKQMBT0rGspuc0CF0t-0aeMa_Tt7X82VEbIxY1MSlIgi2RvxAeCug/s1600/P1070079.jpg",
@@ -109,9 +101,9 @@
     },
     {
       "enabled": false,
-      "title": "Hobby de Fotografia Macro",
+      "title": "Fotografia Macro",
       "thumbnail": "https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEgNkEJghxy6m5hb27T-ppYmJA5OaIH1vnVnOrEOLs0jhV78IXp17RTaDW70M5GjhG-QjJTkBFQcMAalzAdzCbSOWuF2X0QREpfVCZxTJ_4DtSdq4o0yX4ZWSlWL1vk_M12_HCJjEerLbg/s1600/bernardobotafogo_27579310_166322487342973_2173078350254309376_n.jpg",
-      "description": "A fotografia macro para mim é uma forma de abrir um novo universo, pequenos insetos parecem grandes monstros. Algumas dessas fotos foram feitas com celulares e lentes baratas.",
+      "description": "Explorando um novo universo através da fotografia macro, revelando a complexidade de pequenas estruturas com paciência e precisão.",
       "type": "image",
       "source": [
         "https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEgNkEJghxy6m5hb27T-ppYmJA5OaIH1vnVnOrEOLs0jhV78IXp17RTaDW70M5GjhG-QjJTkBFQcMAalzAdzCbSOWuF2X0QREpfVCZxTJ_4DtSdq4o0yX4ZWSlWL1vk_M12_HCJjEerLbg/s1600/bernardobotafogo_27579310_166322487342973_2173078350254309376_n.jpg",
@@ -122,27 +114,6 @@
         "https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEghkHj8QLDhSA8GMwvUlnCrS9UUpc9t9bJOeeazjV9kbusEqbogAG2klQqwrKQDC34lU9Ikqv1yce7Vf1CVZ-C3N8pzhYUBUjmezCf-B5JTdkjw2DyBq2LwUjj0u62raMz2UQFh-A8ViA/s1600/bernardobotafogo_12907417_609134209233705_571932135_n.jpg",
         "https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEhhrWZ9oHZSOaT9EQJVdZra20y5jpEdb5HKWyue0_AoaTXhD1PblnajS8i_93I_fQNEzOLMs5mtc7LtZqZFqRf87AA_ur4G0dVfyhw7hmywjQgAYVFXbv-WdL3Mjn8qCfk27rCY8SRjMg/s1600/bernardobotafogo_12940215_1313136945368106_1125925076_n.jpg"
       ]
-    },
-    {
-      "enabled": false,
-      "title": "Trabalhos Antigos",
-      "thumbnail": "https://i.ytimg.com/vi/HTazTBR_Gjw/hqdefault.jpg",
-      "description": "Esses vídeos foram feitos a 10 anos ou mais, mas todos tem um espaço no meu coração. Eram de um canal onde fazíamos esquetes de humor.",
-      "type": "video",
-      "source": [
-        "https://www.youtube.com/embed/HTazTBR_Gjw",
-        "https://www.youtube.com/embed/mMt--Jy-0jU"
-      ]
-    },
-    {
-      "enabled": false,
-      "title": "Locução / Narração / Interpretação",
-      "thumbnail": "https://i.ytimg.com/vi/eM5GIM64x-w/hqdefault.jpg",
-      "description": "Desde pequeno eu gosto muito de imitar vozes e fazer tipos, hoje eu transporto esse meu gosto pela voz para meus trabalhos. Este audio é um conto de terror que fiz.",
-      "type": "video",
-      "source": [
-        "https://www.youtube.com/embed/eM5GIM64x-w"
-      ]
     }
   ],
   "curriculum": {
@@ -151,7 +122,8 @@
     "photo": "https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEgisBTlbze9Ny8Mj_uQPylqNOxCLMrVzPbf-B3_OCJ5CTWOipVuMp0KvetCU-Am5zv1vDCDNUwCiangy8tu03SERJaaT3IR_TBsVR5KglXS7-eg4CmZvdtIxM5RhtXRVJrOjyWnEb157qVrsiw0vTxQxlsNwHy8ATWB2ahYAH1HQ2R8EGyf9sZnBcMccA/s1600/eu.png",
     "contacts": {
       "email": "bmbotafogo86@gmail.com",
-      "phone": "(24) 974056483"
+      "phone": "(24) 97405-6483",
+      "website": "http://www.bernardobotafogo.com.br"
     },
     "personalInfo": "Comecei há 11 anos na area de fotografia e cinema, com projetos pessoais do universo nerd, como filmmaker e fotógrafo, já participando de quase todo o processo de criação de filmes (roteiro, produção, filmagem, cenário, captação de audio e video, cenografia, pós-produção edição e efeitos especiais). Atualmente, também dou consultoria para produtores de vídeos iniciantes (youtube, cinema, propaganda etc). Trabalhei também com design de peças publicitárias e drops de conteúdo para redes sociais.",
     "experience": [
@@ -221,6 +193,4 @@
     ]
   }
 }
-
-
 
