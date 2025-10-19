@@ -210,10 +210,11 @@
                         <p id="profile-bio" class="mt-8 text-base md:text-lg text-gray-300 leading-relaxed max-w-xl mx-auto md:mx-0">
                             <!-- Conteúdo da Bio virá do JS -->
                         </p>
-                        <div class="mt-8 pt-8 flex flex-col sm:flex-row justify-center md:justify-start items-center gap-6">
+                        <!-- MODIFICADO: Links de contato agora em linha no mobile -->
+                        <div class="mt-8 pt-8 flex flex-row justify-around md:justify-start items-center gap-4 md:gap-6">
                             <a id="profile-email" href="" class="flex items-center gap-3 text-lg hover:text-cyan-300 transition-all duration-300">
                                 <i data-feather="mail" class="w-6 h-6"></i>
-                                <span id="profile-email-text"></span>
+                                <span id="profile-email-text" class="hidden sm:inline"></span>
                             </a>
                             <a id="profile-whatsapp" href="" target="_blank" class="flex items-center gap-3 text-lg hover:text-cyan-300 transition-all duration-300">
                                 <i data-feather="message-circle" class="w-6 h-6"></i>
@@ -233,7 +234,8 @@
             </header>
             
             <!-- Seção de Serviços -->
-            <section id="services-section" class="mt-20">
+            <!-- MODIFICADO: Espaço reduzido e linha de separação adicionada -->
+            <section id="services-section" class="mt-12 border-t border-slate-700 pt-12">
                 <h3 class="text-3xl font-bold text-center text-white mb-12 text-glow">Serviços</h3>
                 <!-- MODIFICADO: Agora usa 3 colunas no mobile e um espaçamento menor -->
                 <div id="services-grid" class="grid grid-cols-3 gap-4 md:gap-8">
@@ -418,7 +420,15 @@
                 document.getElementById('profile-role').textContent = profile.role || '';
                 document.getElementById('profile-bio').innerHTML = (profile.bio || '').replace(/\n/g, '<br>');
                 document.getElementById('profile-email').href = `mailto:${profile.email || ''}`;
-                document.getElementById('profile-email-text').textContent = profile.email || '';
+                const emailTextEl = document.getElementById('profile-email-text');
+                emailTextEl.textContent = profile.email || '';
+                // Esconde o texto do email se for muito longo em telas pequenas
+                if (window.innerWidth < 420 && profile.email.length > 20) {
+                    emailTextEl.classList.add('hidden');
+                } else {
+                    emailTextEl.classList.remove('hidden');
+                }
+
                 document.getElementById('profile-whatsapp').href = profile.whatsapp || 'https://wa.me/';
 
                 const servicesGrid = document.getElementById('services-grid');
@@ -639,4 +649,3 @@
     </script>
 </body>
 </html>
-
