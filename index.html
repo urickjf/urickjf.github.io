@@ -17,69 +17,59 @@
 
     <style>
         /* ==========================================================================
-           1. ESTILOS GERAIS E BASE
+           1. ESTILOS GERAIS E BASE (TEMA CLARO)
            ========================================================================== */
 
-        /* Define a fonte principal, o fundo gradiente e a cor do texto para toda a página. */
         body {
-            font-family: 'Inter', sans-serif; /* Fonte principal do site. */
-            background-color: #000000; /* Cor de fundo sólida para navegadores antigos. */
-            background-image: linear-gradient(to bottom, #000000, #0f172a); /* Fundo gradiente de preto para um azul escuro. */
-            color: #E5E7EB; /* Cor do texto principal (um cinza claro). */
-            scroll-behavior: smooth; /* Animação suave ao clicar em links internos (ex: #curriculo). */
+            font-family: 'Inter', sans-serif;
+            background-color: #ffffff; /* Fundo branco sólido */
+            background-image: linear-gradient(to bottom, #ffffff, #f3f4f6); /* Gradiente de branco para cinza claro */
+            color: #1f2937; /* Cor do texto principal (cinza escuro) */
+            scroll-behavior: smooth;
         }
 
-        /* Adiciona uma transição suave de opacidade ao abrir e fechar o modal. */
         #modal {
             transition: opacity 0.3s ease-in-out;
         }
 
         /* ==========================================================================
-           2. ESTILIZAÇÃO DA BARRA DE ROLAGEM
+           2. ESTILIZAÇÃO DA BARRA DE ROLAGEM (TEMA CLARO)
            ========================================================================== */
 
-        /* Largura da barra de rolagem. */
         ::-webkit-scrollbar { width: 8px; }
-        /* Cor do fundo (trilha) da barra de rolagem. */
-        ::-webkit-scrollbar-track { background: #1F2937; }
-        /* Cor e arredondamento do "polegar" (a parte que você arrasta). */
-        ::-webkit-scrollbar-thumb { background: #4B5563; border-radius: 10px; }
-        /* Cor do "polegar" quando o mouse está sobre ele. */
-        ::-webkit-scrollbar-thumb:hover { background: #6B7280; }
+        ::-webkit-scrollbar-track { background: #e5e7eb; } /* Fundo da barra (cinza claro) */
+        ::-webkit-scrollbar-thumb { background: #9ca3af; border-radius: 10px; } /* Cor da barra (cinza médio) */
+        ::-webkit-scrollbar-thumb:hover { background: #6b7280; } /* Cor da barra no hover (cinza escuro) */
 
         /* ==========================================================================
            3. ESTILOS DO MODAL E MINIATURAS DO PORTFÓLIO
            ========================================================================== */
         
-        /* NOVO: Container para forçar a proporção das miniaturas do portfólio */
         .thumbnail-container {
             position: relative;
-            padding-bottom: 56.25%; /* Força a proporção 16:9 (9 / 16 = 0.5625) */
+            padding-bottom: 56.25%; 
             height: 0;
-            overflow: hidden; /* Garante que a imagem cortada respeite as bordas arredondadas */
+            overflow: hidden;
         }
 
-        /* NOVO: Faz a imagem dentro do container preencher todo o espaço */
         .thumbnail-container img {
             position: absolute;
             top: 0;
             left: 0;
             width: 100%;
             height: 100%;
-            object-fit: cover; /* ESSA É A MÁGICA: A imagem cobre todo o espaço, cortando o excesso sem distorcer. */
+            object-fit: cover;
         }
 
-        /* Container de mídia (vídeos e imagens no modal) para manter a proporção 16:9. */
         .media-container {
             position: relative;
             width: 100%;
-            padding-bottom: 56.25%; /* Truque para manter a proporção 16:9 (9 / 16 = 0.5625). */
+            padding-bottom: 56.25%;
             height: 0;
             overflow: hidden;
-            background: #000; /* Fundo preto para o container. */
+            background: #f3f4f6; /* Fundo cinza claro para o container de mídia */
         }
         
-        /* Garante que o iframe do vídeo e a imagem preencham o container de mídia. */
         .media-container iframe,
         .media-container img {
             position: absolute;
@@ -87,28 +77,27 @@
             left: 0;
             width: 100%;
             height: 100%;
-            object-fit: contain; /* 'contain' garante que a mídia inteira apareça sem ser cortada. */
+            object-fit: contain;
         }
 
-        /* Botões de navegação (próximo/anterior) do slider dentro do modal. */
         .slider-btn {
             position: absolute;
             top: 50%;
             transform: translateY(-50%);
-            background-color: rgba(0, 0, 0, 0.5); /* Fundo semi-transparente. */
-            color: white; /* Cor do ícone. */
+            background-color: rgba(255, 255, 255, 0.7); /* Fundo branco semi-transparente */
+            color: #1f2937; /* Ícone escuro */
             border: none;
             padding: 0.75rem;
             cursor: pointer;
             transition: background-color 0.2s ease;
             z-index: 10;
+            border-radius: 9999px;
+            box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
         }
-        /* Cor de fundo do botão ao passar o mouse. */
-        .slider-btn:hover { background-color: rgba(0, 0, 0, 0.8); }
-        .slider-btn.prev { left: 1rem; border-radius: 9999px; } /* Posição e arredondamento do botão "anterior". */
-        .slider-btn.next { right: 1rem; border-radius: 9999px; } /* Posição e arredondamento do botão "próximo". */
+        .slider-btn:hover { background-color: rgba(255, 255, 255, 1); }
+        .slider-btn.prev { left: 1rem; }
+        .slider-btn.next { right: 1rem; }
         
-        /* Contador de slides (ex: "1 / 3") no topo do modal. */
         .slider-counter {
             position: absolute;
             top: 1rem;
@@ -122,62 +111,45 @@
             z-index: 10;
         }
 
-        /* Container das miniaturas (thumbnails) do slider. */
         .slider-thumbnails {
             display: flex;
-            gap: 0.5rem; /* Espaçamento entre as miniaturas. */
+            gap: 0.5rem;
             padding: 0.25rem;
-            overflow-x: auto; /* Permite rolar horizontalmente se houver muitas miniaturas. */
+            overflow-x: auto;
         }
         
-        /* Estilos de cada miniatura. */
         .slider-thumbnail {
             width: 80px;
             height: 50px;
-            object-fit: cover; /* Garante que a imagem preencha o espaço sem distorcer. */
+            object-fit: cover;
             border-radius: 0.25rem;
             cursor: pointer;
-            border: 2px solid transparent; /* Borda inicial transparente. */
-            opacity: 0.6; /* Deixa as miniaturas inativas com menos opacidade. */
+            border: 2px solid transparent;
+            opacity: 0.7;
             transition: all 0.2s ease-in-out;
             flex-shrink: 0;
         }
         
-        /* Estilos da miniatura ao passar o mouse. */
         .slider-thumbnail:hover {
             opacity: 1;
-            border-color: #a5b4fc; /* Cor da borda no hover (um anil claro). */
+            border-color: #60a5fa; /* Azul claro */
         }
         
-        /* Estilos da miniatura que está ativa (selecionada). */
         .slider-thumbnail.active {
             opacity: 1;
-            border-color: #6366f1; /* Cor da borda da miniatura ativa (um anil mais forte). */
+            border-color: #2563eb; /* Azul escuro */
         }
 
         /* ==========================================================================
-           4. EFEITOS VISUAIS E ESTILOS DO CURRÍCULO
+           4. EFEITOS VISUAIS E ESTILOS DO CURRÍCULO (TEMA CLARO)
            ========================================================================== */
 
-        /* Efeito de brilho para textos importantes (usado nos títulos). */
-        /* Altere a cor em rgba(2, 239, 239, 0.4) para mudar a cor do brilho. */
-        .text-glow { text-shadow: 0 0 12px rgba(2, 239, 239, 0.4); }
+        /* Efeito de brilho para textos, agora com um tom de azul */
+        .text-glow { text-shadow: 0 0 15px rgba(59, 130, 246, 0.4); }
 
-        /* Transição suave para o efeito de brilho nos botões. */
-        .button-glow { transition: all .3s ease; }
-        
-        /* Efeito de brilho e mudança de cor para botões ao passar o mouse. */
-        .button-glow:hover {
-            box-shadow: 0 0 15px rgba(2, 239, 239, 0.5), 0 0 20px rgba(2, 239, 239, 0.2);
-            background-color: #02efef; /* Cor de fundo no hover (ciano brilhante). */
-            color: #0f172a; /* Cor do texto no hover (azul escuro). */
-        }
-
-        /* Estilos dos títulos de seção na página do currículo. */
+        /* Estilos dos títulos de seção na página do currículo, agora em azul */
         .cv-section-title {
-            /* @apply é uma diretiva do Tailwind para agrupar classes. */
-            /* Aqui definimos o tamanho da fonte, peso, cor, e uma borda inferior. */
-            @apply text-xl font-bold text-cyan-300 pb-2 border-b-2 border-slate-700 mb-6;
+            @apply text-xl font-bold text-blue-600 pb-2 border-b-2 border-gray-200 mb-6;
         }
     </style>
 </head>
@@ -186,20 +158,17 @@
     <!-- Container da Página Pública (Portfólio) -->
     <div id="portfolio-view">
         <div class="container mx-auto max-w-5xl px-6 py-12 md:py-20">
-            <!-- HEADER ATUALIZADO -->
+            <!-- HEADER ATUALIZADO PARA TEMA CLARO -->
             <header class="flex flex-col md:flex-row items-center md:items-stretch justify-center md:justify-between gap-8 md:gap-12">
                 <!-- Bloco de Conteúdo Principal -->
                 <div class="flex-1 flex flex-col w-full">
-                    <!-- Topo: Foto e Nome (layout muda com o tamanho da tela) -->
+                    <!-- Topo: Foto e Nome -->
                     <div class="flex flex-row items-center justify-between md:block md:text-center">
-                        <!-- Bloco de Nome e Profissão (tamanhos de fonte ajustados) -->
                         <div class="text-left">
-                            <h3 class="text-lg md:text-2xl font-bold text-white">Olá, eu sou</h3>
-                            <!-- FONTE DO NOME REDUZIDA PARA CABER EM UMA LINHA NO CELULAR -->
-                            <h1 id="profile-name" class="text-2xl md:text-5xl font-extrabold text-white text-glow"></h1>
-                            <h2 id="profile-role" class="text-base md:text-2xl font-medium text-cyan-300 mt-1 md:mt-2"></h2>
+                            <h3 class="text-lg md:text-2xl font-bold text-gray-800">Olá, eu sou</h3>
+                            <h1 id="profile-name" class="text-2xl md:text-5xl font-extrabold text-gray-900 text-glow"></h1>
+                            <h2 id="profile-role" class="text-base md:text-2xl font-medium text-blue-600 mt-1 md:mt-2"></h2>
                         </div>
-                        <!-- Foto para Mobile (visível apenas em telas pequenas e agora à direita) -->
                         <div class="md:hidden flex-shrink-0 w-24">
                             <img id="profile-pic-mobile" src="" alt="Foto de perfil" class="rounded-lg object-cover">
                         </div>
@@ -207,44 +176,39 @@
 
                     <!-- Bio e Contatos -->
                     <div class="text-center md:text-left">
-                        <p id="profile-bio" class="mt-8 text-base md:text-lg text-gray-300 leading-relaxed max-w-xl mx-auto md:mx-0">
-                            <!-- Conteúdo da Bio virá do JS -->
-                        </p>
-                        <!-- MODIFICADO: Links de contato agora em linha no mobile -->
+                        <p id="profile-bio" class="mt-8 text-base md:text-lg text-gray-600 leading-relaxed max-w-xl mx-auto md:mx-0"></p>
                         <div class="mt-8 pt-8 flex flex-row justify-around md:justify-start items-center gap-4 md:gap-6">
-                            <a id="profile-email" href="" class="flex items-center gap-3 text-lg hover:text-cyan-300 transition-all duration-300">
+                            <a id="profile-email" href="" class="flex items-center gap-3 text-gray-700 hover:text-blue-600 transition-all duration-300">
                                 <i data-feather="mail" class="w-6 h-6"></i>
                                 <span id="profile-email-text" class="hidden sm:inline"></span>
                             </a>
-                            <a id="profile-whatsapp" href="" target="_blank" class="flex items-center gap-3 text-lg hover:text-cyan-300 transition-all duration-300">
+                            <a id="profile-whatsapp" href="" target="_blank" class="flex items-center gap-3 text-gray-700 hover:text-blue-600 transition-all duration-300">
                                 <i data-feather="message-circle" class="w-6 h-6"></i>
                                 <span>WhatsApp</span>
                             </a>
-                            <a href="#curriculo" class="flex items-center gap-3 text-lg hover:text-cyan-300 transition-all duration-300">
+                            <a href="#curriculo" class="flex items-center gap-3 text-gray-700 hover:text-blue-600 transition-all duration-300">
                                  <i data-feather="file-text" class="w-6 h-6"></i>
                                 <span>Currículo</span>
                             </a>
                         </div>
                     </div>
                 </div>
-                <!-- Foto para Desktop (visível apenas em telas grandes) -->
+                <!-- Foto para Desktop -->
                 <div class="hidden md:block flex-shrink-0 w-64">
                     <img id="profile-pic-desktop" src="" alt="Foto de perfil" class="object-cover w-full h-full rounded-lg">
                 </div>
             </header>
             
-            <!-- Seção de Serviços -->
-            <!-- MODIFICADO: Espaço reduzido e linha de separação adicionada -->
-            <section id="services-section" class="mt-12 border-t border-slate-700 pt-12">
-                <h3 class="text-3xl font-bold text-center text-white mb-12 text-glow">Serviços</h3>
-                <!-- MODIFICADO: Agora usa 3 colunas no mobile e um espaçamento menor -->
+            <!-- Seção de Serviços (TEMA CLARO) -->
+            <section id="services-section" class="mt-12 border-t border-gray-200 pt-12">
+                <h3 class="text-3xl font-bold text-center text-gray-900 mb-12 text-glow">Serviços</h3>
                 <div id="services-grid" class="grid grid-cols-3 gap-4 md:gap-8">
                     <!-- Serviços serão inseridos aqui -->
                 </div>
             </section>
 
             <main class="mt-20">
-                <h3 class="text-3xl font-bold text-center text-white mb-12 text-glow">Portfólio</h3>
+                <h3 class="text-3xl font-bold text-center text-gray-900 mb-12 text-glow">Portfólio</h3>
                 <div id="gallery" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
                     <!-- Os projetos serão inseridos aqui pelo JavaScript -->
                 </div>
@@ -252,72 +216,61 @@
         </div>
     </div>
 
-    <!-- Container da Página de Currículo -->
+    <!-- Container da Página de Currículo (TEMA CLARO) -->
     <div id="curriculo-view" class="hidden">
         <div class="container mx-auto max-w-5xl px-6 py-12 md:py-20">
              <div class="grid grid-cols-1 md:grid-cols-12 gap-12">
-                <!-- Main Content Column (Left) -->
                 <div class="md:col-span-8">
                     <header class="mb-10">
-                        <h1 id="cv-name" class="text-4xl md:text-5xl font-bold text-white"></h1>
-                        <h2 id="cv-role" class="mt-1 text-xl md:text-2xl font-medium text-cyan-300"></h2>
+                        <h1 id="cv-name" class="text-4xl md:text-5xl font-bold text-gray-900"></h1>
+                        <h2 id="cv-role" class="mt-1 text-xl md:text-2xl font-medium text-blue-600"></h2>
                     </header>
-
                     <section class="mb-10">
                         <h3 class="cv-section-title">INFORMAÇÃO PESSOAL</h3>
-                        <div id="cv-personal-info" class="space-y-4 text-gray-300 leading-relaxed"></div>
+                        <div id="cv-personal-info" class="space-y-4 text-gray-700 leading-relaxed"></div>
                     </section>
-
                     <section class="mb-10">
                         <h3 class="cv-section-title">EXPERIÊNCIA PROFISSIONAL</h3>
                         <div id="cv-experience" class="space-y-8"></div>
                     </section>
-
                     <section>
                         <h3 class="cv-section-title">FORMAÇÃO ACADÊMICA</h3>
                         <div id="cv-education" class="space-y-6"></div>
                     </section>
                 </div>
-
-                <!-- Sidebar Column (Right) -->
                 <div class="md:col-span-4">
-                    <div class="bg-slate-800/50 p-6 rounded-lg sticky top-10">
-                        <img id="cv-photo" src="" alt="Foto de perfil" class="rounded-full w-40 h-40 mx-auto mb-6 border-4 border-slate-700">
-                        
-                        <div id="cv-contacts" class="space-y-4 text-sm text-gray-300 mb-8"></div>
-
+                    <div class="bg-gray-50 border border-gray-200 p-6 rounded-lg sticky top-10">
+                        <img id="cv-photo" src="" alt="Foto de perfil" class="rounded-full w-40 h-40 mx-auto mb-6 border-4 border-gray-200">
+                        <div id="cv-contacts" class="space-y-4 text-sm text-gray-700 mb-8"></div>
                         <section class="mb-6">
-                            <h3 class="cv-section-title !text-base !border-slate-700 !pb-2 !mb-4">HABILIDADES</h3>
-                            <ul id="cv-skills" class="list-disc list-inside text-sm text-gray-300 space-y-2"></ul>
+                            <h3 class="cv-section-title !text-base !border-gray-200 !pb-2 !mb-4">HABILIDADES</h3>
+                            <ul id="cv-skills" class="list-disc list-inside text-sm text-gray-700 space-y-2"></ul>
                         </section>
-                        
                         <section class="mb-6">
-                            <h3 class="cv-section-title !text-base !border-slate-700 !pb-2 !mb-4">FERRAMENTAS</h3>
-                            <ul id="cv-tools" class="list-disc list-inside text-sm text-gray-300 space-y-2"></ul>
+                            <h3 class="cv-section-title !text-base !border-gray-200 !pb-2 !mb-4">FERRAMENTAS</h3>
+                            <ul id="cv-tools" class="list-disc list-inside text-sm text-gray-700 space-y-2"></ul>
                         </section>
-
                         <section class="mb-6">
-                            <h3 class="cv-section-title !text-base !border-slate-700 !pb-2 !mb-4">CURSOS</h3>
+                            <h3 class="cv-section-title !text-base !border-gray-200 !pb-2 !mb-4">CURSOS</h3>
                             <div id="cv-courses" class="space-y-4 text-sm"></div>
                         </section>
-
                         <section>
-                            <h3 class="cv-section-title !text-base !border-slate-700 !pb-2 !mb-4">HOBBIES</h3>
-                            <ul id="cv-hobbies" class="list-disc list-inside text-sm text-gray-300 space-y-2"></ul>
+                            <h3 class="cv-section-title !text-base !border-gray-200 !pb-2 !mb-4">HOBBIES</h3>
+                            <ul id="cv-hobbies" class="list-disc list-inside text-sm text-gray-700 space-y-2"></ul>
                         </section>
                     </div>
                 </div>
             </div>
-             <a href="#" class="mt-12 inline-block bg-slate-800 text-slate-300 px-6 py-2 rounded-md hover:bg-slate-700 transition-all">
+             <a href="#" class="mt-12 inline-block bg-gray-100 text-gray-700 px-6 py-2 rounded-md hover:bg-gray-200 transition-all">
                 &larr; Voltar ao Portfólio
             </a>
         </div>
     </div>
 
-    <!-- Modal para exibir o trabalho -->
-    <div id="modal" class="fixed inset-0 bg-black bg-opacity-80 flex justify-center items-center p-4 z-50 opacity-0 pointer-events-none backdrop-blur-sm">
+    <!-- Modal para exibir o trabalho (TEMA CLARO) -->
+    <div id="modal" class="fixed inset-0 bg-black bg-opacity-70 flex justify-center items-center p-4 z-50 opacity-0 pointer-events-none backdrop-blur-sm">
         <div id="modal-close-bg" class="absolute inset-0"></div>
-        <div id="modal-content" class="bg-gray-800/80 backdrop-blur-lg border border-slate-700 rounded-lg shadow-2xl w-full max-w-4xl max-h-[90vh] overflow-y-auto relative transform scale-95 transition-transform duration-300"></div>
+        <div id="modal-content" class="bg-white/95 backdrop-blur-lg border border-gray-200 rounded-lg shadow-2xl w-full max-w-4xl max-h-[90vh] overflow-y-auto relative transform scale-95 transition-transform duration-300"></div>
     </div>
 
     <script>
@@ -350,7 +303,6 @@
         // --- FUNÇÕES DE ROTEAMENTO E CARREGAMENTO DE DADOS ---
         async function loadData() {
             try {
-                // VOLTOU AO ORIGINAL: Busca o arquivo data.json na mesma pasta.
                 const response = await fetch('./data.json');
                 if (!response.ok) {
                     if (response.status === 404) {
@@ -368,12 +320,12 @@
             } catch (error) {
                 console.error('Falha ao carregar data.json:', error);
                 document.body.innerHTML = `
-                    <div style="padding: 40px; text-align: center; color: white; font-family: sans-serif; min-height: 100vh; display: flex; flex-direction: column; align-items: center; justify-content: center; background-color: #111827;">
-                        <h1 style="font-size: 24px; margin-bottom: 20px; color: #ef5350;">Erro ao Carregar o Portfólio</h1>
-                        <div style="color: #ffcdd2; background: #1f2937; border: 1px solid #c62828; padding: 20px; border-radius: 8px; max-width: 600px; margin: 0 auto; text-align: left; line-height: 1.6;">
+                    <div style="padding: 40px; text-align: center; color: #1f2937; font-family: sans-serif; min-height: 100vh; display: flex; flex-direction: column; align-items: center; justify-content: center; background-color: #f9fafb;">
+                        <h1 style="font-size: 24px; margin-bottom: 20px; color: #dc2626;">Erro ao Carregar o Portfólio</h1>
+                        <div style="color: #991b1b; background: #fee2e2; border: 1px solid #f87171; padding: 20px; border-radius: 8px; max-width: 600px; margin: 0 auto; text-align: left; line-height: 1.6;">
                             <p style="margin: 0; font-weight: bold; font-size: 1.1em;">${error.message}</p>
                         </div>
-                        <p style="margin-top: 30px; color: #cfd8dc; max-width: 500px; text-align: center;">Por favor, verifique se o arquivo <strong style="color: white; background: #455a64; padding: 2px 6px; border-radius: 4px;">data.json</strong> foi enviado para o GitHub, está no mesmo diretório que o <strong style="color: white; background: #455a64; padding: 2px 6px; border-radius: 4px;">index.html</strong> e não possui erros de sintaxe.</p>
+                        <p style="margin-top: 30px; color: #4b5563; max-width: 500px; text-align: center;">Por favor, verifique se o arquivo <strong style="color: #111827; background: #e5e7eb; padding: 2px 6px; border-radius: 4px;">data.json</strong> foi enviado para o GitHub, está no mesmo diretório que o <strong style="color: #111827; background: #e5e7eb; padding: 2px 6px; border-radius: 4px;">index.html</strong> e não possui erros de sintaxe.</p>
                     </div>
                 `;
                 throw error; // Interrompe a execução
@@ -412,7 +364,6 @@
                 }
                 const profile = portfolioData.profile;
                 document.title = `${profile.name || 'Portfólio'} | Portfólio Audiovisual`;
-                // Atualiza as duas imagens de perfil
                 document.getElementById('profile-pic-desktop').src = profile.pic || '';
                 document.getElementById('profile-pic-mobile').src = profile.pic || '';
                 
@@ -422,7 +373,6 @@
                 document.getElementById('profile-email').href = `mailto:${profile.email || ''}`;
                 const emailTextEl = document.getElementById('profile-email-text');
                 emailTextEl.textContent = profile.email || '';
-                // Esconde o texto do email se for muito longo em telas pequenas
                 if (window.innerWidth < 420 && profile.email.length > 20) {
                     emailTextEl.classList.add('hidden');
                 } else {
@@ -432,12 +382,11 @@
                 document.getElementById('profile-whatsapp').href = profile.whatsapp || 'https://wa.me/';
 
                 const servicesGrid = document.getElementById('services-grid');
-                // MODIFICADO: Oculta a descrição em telas pequenas
                 servicesGrid.innerHTML = (portfolioData.services || []).map(service => `
-                    <div class="bg-slate-800 border border-slate-700 p-2 md:p-6 rounded-lg text-center transition-all duration-300 hover:border-cyan-400 hover:-translate-y-2 flex flex-col items-center justify-center">
-                        <i data-feather="${service.icon || 'settings'}" class="w-8 h-8 md:w-12 md:h-12 mx-auto text-cyan-400 mb-3 flex-shrink-0"></i>
-                        <h4 class="text-xs md:text-xl font-bold text-white">${service.title || 'Serviço'}</h4>
-                        <p class="text-xs md:text-sm text-gray-400 mt-2 hidden md:block">${service.description || ''}</p>
+                    <div class="bg-white border border-gray-200 p-2 md:p-6 rounded-lg text-center transition-all duration-300 hover:border-blue-400 hover:-translate-y-2 hover:shadow-lg flex flex-col items-center justify-center">
+                        <i data-feather="${service.icon || 'settings'}" class="w-8 h-8 md:w-12 md:h-12 mx-auto text-blue-600 mb-3 flex-shrink-0"></i>
+                        <h4 class="text-xs md:text-xl font-bold text-gray-800">${service.title || 'Serviço'}</h4>
+                        <p class="text-xs md:text-sm text-gray-500 mt-2 hidden md:block">${service.description || ''}</p>
                     </div>
                 `).join('');
                 
@@ -448,9 +397,9 @@
                     const projectElement = document.createElement('div');
                     projectElement.className = 'group cursor-pointer';
                     projectElement.innerHTML = `
-                        <div class="thumbnail-container rounded-lg ring-1 ring-slate-800 group-hover:ring-indigo-500 transition-all duration-300">
+                        <div class="thumbnail-container rounded-lg ring-1 ring-gray-200 group-hover:ring-blue-500 transition-all duration-300 shadow-sm hover:shadow-xl">
                             <img src="${project.thumbnail}" alt="${project.title}" class="transform group-hover:scale-105 transition-transform duration-300" onerror="this.onerror=null;this.src='https://placehold.co/600x400/7f1d1d/ffffff?text=Imagem+Inválida';">
-                            <div class="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent"></div>
+                            <div class="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent"></div>
                             <div class="absolute bottom-0 left-0 p-4"><h4 class="text-white text-lg font-bold">${project.title}</h4></div>
                         </div>`;
                     projectElement.addEventListener('click', () => openModal(project));
@@ -481,36 +430,36 @@
                 const contactsEl = document.getElementById('cv-contacts');
                 if (cv.contacts) {
                     contactsEl.innerHTML = `
-                        <a href="mailto:${cv.contacts.email || ''}" class="flex items-center gap-3 hover:text-cyan-300"><i data-feather="mail" class="w-4 h-4"></i><span>${cv.contacts.email || ''}</span></a>
+                        <a href="mailto:${cv.contacts.email || ''}" class="flex items-center gap-3 hover:text-blue-600"><i data-feather="mail" class="w-4 h-4"></i><span>${cv.contacts.email || ''}</span></a>
                         <p class="flex items-center gap-3"><i data-feather="phone" class="w-4 h-4"></i><span>${cv.contacts.phone || ''}</span></p>
-                        <a href="${cv.contacts.website || ''}" target="_blank" class="flex items-center gap-3 hover:text-cyan-300"><i data-feather="link" class="w-4 h-4"></i><span>${cv.contacts.website || ''}</span></a>
+                        <a href="${cv.contacts.website || ''}" target="_blank" class="flex items-center gap-3 hover:text-blue-600"><i data-feather="link" class="w-4 h-4"></i><span>${cv.contacts.website || ''}</span></a>
                     `;
                 }
 
                 const experienceEl = document.getElementById('cv-experience');
                 experienceEl.innerHTML = (cv.experience || []).map(item => `
                     <div>
-                        <p class="font-semibold text-slate-400 text-xs">${item.date || ''}</p>
-                        <h4 class="font-bold text-white text-lg">${item.company || ''}</h4>
-                        <p class="font-medium text-md text-slate-300">${item.title || ''}</p>
-                        <p class="mt-2 text-slate-400 text-sm">${item.description || ''}</p>
+                        <p class="font-semibold text-gray-500 text-xs">${item.date || ''}</p>
+                        <h4 class="font-bold text-gray-800 text-lg">${item.company || ''}</h4>
+                        <p class="font-medium text-md text-gray-700">${item.title || ''}</p>
+                        <p class="mt-2 text-gray-600 text-sm">${item.description || ''}</p>
                     </div>
                 `).join('');
 
                 const educationEl = document.getElementById('cv-education');
                 educationEl.innerHTML = (cv.education || []).map(item => `
                     <div>
-                        <p class="font-semibold text-slate-400 text-xs">${item.date || ''}</p>
-                        <h4 class="font-bold text-white">${item.institution || ''}</h4>
-                        <p class="font-medium text-sm text-slate-300">${item.degree || ''}</p>
+                        <p class="font-semibold text-gray-500 text-xs">${item.date || ''}</p>
+                        <h4 class="font-bold text-gray-800">${item.institution || ''}</h4>
+                        <p class="font-medium text-sm text-gray-700">${item.degree || ''}</p>
                     </div>
                 `).join('');
                 
                 const coursesEl = document.getElementById('cv-courses');
                 coursesEl.innerHTML = (cv.courses || []).map(item => `
                     <div>
-                        <h4 class="font-bold text-white">${item.institution || ''}</h4>
-                        <p class="text-slate-300">${item.name || ''}</p>
+                        <h4 class="font-bold text-gray-800">${item.institution || ''}</h4>
+                        <p class="text-gray-700">${item.name || ''}</p>
                     </div>
                 `).join('');
 
@@ -551,13 +500,13 @@
 
             modalContent.innerHTML = `
                 <div class="relative">
-                    <button id="modal-close-btn" class="absolute top-3 right-3 text-white bg-black bg-opacity-50 rounded-full p-1 hover:bg-opacity-75 z-20"><i data-feather="x" class="w-6 h-6"></i></button>
+                    <button id="modal-close-btn" class="absolute top-3 right-3 text-gray-800 bg-white bg-opacity-70 rounded-full p-1 hover:bg-opacity-100 z-20"><i data-feather="x" class="w-6 h-6"></i></button>
                     ${mediaHtml}
                 </div>
                 <div class="p-6 md:p-8">
                     ${thumbnailsHtml}
-                    <h3 class="text-2xl font-bold text-white mt-4">${project.title}</h3>
-                    <p class="mt-4 text-gray-300 text-base leading-relaxed">${project.description}</p>
+                    <h3 class="text-2xl font-bold text-gray-900 mt-4">${project.title}</h3>
+                    <p class="mt-4 text-gray-700 text-base leading-relaxed">${project.description}</p>
                 </div>
             `;
             
