@@ -67,12 +67,6 @@
                 
                 <ul>
                     <li><a href="#" data-target="projects" class="nav-link text-lg text-gray-400 hover:text-white transition-colors duration-200">Projetos</a></li>
-                    <li>
-                        <!-- Link "Bio" para Mobile -->
-                        <a href="#" data-target="bio" class="nav-link text-lg text-gray-400 hover:text-white transition-colors duration-200 md:hidden">Bio</a>
-                        <!-- Link "Serviços" para Desktop (leva ao mesmo lugar) -->
-                        <a href="#" data-target="bio" class="nav-link text-lg text-gray-400 hover:text-white transition-colors duration-200 hidden md:block">Serviços</a>
-                    </li>
                     <li><a href="#" data-target="curriculum" class="nav-link text-lg text-gray-400 hover:text-white transition-colors duration-200">Currículo</a></li>
                 </ul>
             </nav>
@@ -85,26 +79,6 @@
         <main class="w-full md:ml-64 p-4 sm:p-6 md:p-8">
 
             <!-- Views de Conteúdo -->
-            <div id="bio-view" class="content-view">
-                <!-- Placeholder Bio (Mobile) -->
-                <section class="flex flex-col md:hidden items-center gap-6 md:gap-10 mb-12 md:mb-16 animate-pulse">
-                     <div class="w-32 h-32 md:w-40 md:h-40 rounded-full bg-gray-800 border-4 border-gray-700"></div>
-                    <div class="text-center md:text-left flex-1 w-full">
-                        <div class="h-12 bg-gray-800 rounded w-3/4 mx-auto md:mx-0 mb-3"></div>
-                        <div class="h-6 bg-gray-800 rounded w-1/2 mx-auto md:mx-0 mb-4"></div>
-                        <div class="h-4 bg-gray-800 rounded w-full mb-2"></div>
-                        <div class="h-4 bg-gray-800 rounded w-5/6 mx-auto md:mx-0"></div>
-                    </div>
-                </section>
-                <!-- Placeholder Serviços (Mobile/Desktop) -->
-                <section class="animate-pulse">
-                    <div class="h-9 bg-gray-800 rounded w-1/3 mx-auto mb-8"></div>
-                    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-2 gap-6">
-                        <div class="bg-gray-800 p-6 rounded-lg border border-gray-700 h-36"></div>
-                        <div class="bg-gray-800 p-6 rounded-lg border border-gray-700 h-36"></div>
-                    </div>
-                </section>
-            </div>
             <div id="projects-view" class="content-view">
                 <!-- Placeholder Projetos -->
                 <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-2 sm:gap-4">
@@ -148,6 +122,157 @@
     <!-- Carrega o script de ícones (Feather Icons) -->
     <script src="https://cdn.jsdelivr.net/npm/feather-icons/dist/feather.min.js"></script>
 
+    <!-- 
+      DADOS DA APLICAÇÃO (INCORPORADOS)
+      O JSON que antes estava no arquivo 'data.json' agora está aqui.
+      Isso evita erros de 'fetch' ao abrir o arquivo 'index.html' localmente.
+    -->
+    <script id="app-data" type="application/json">
+    {
+      "profile": {
+        "name": "Bernardo Botafogo",
+        "jobTitle": "Videomaker & Fotógrafo",
+        "photoUrl": "https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEgisBTlbze9Ny8Mj_uQPylqNOxCLMrVzPbf-B3_OCJ5CTWOipVuMp0KvetCU-Am5zv1vDCDNUwCiangy8tu03SERJaaT3IR_TBsVR5KglXS7-eg4CmZvdtIxM5RhtXRVJrOjyWnEb157qVrsiw0vTxQxlsNwHy8ATWB2ahYAH1HQ2R8EGyf9sZnBcMccA/s1600/eu.png",
+        "bio": "Com 14 anos de experiência trabalhando na criação de conteúdo para internet, criando desde memes, posts em blogs, video de esquetes de humor, clips musicais, podcasts, propaganda, etc.",
+        "contacts": {
+          "email": "bmbotafogo86@gmail.com",
+          "whatsapp": "5524974056483"
+        }
+      },
+      "projects": [
+        {
+          "enabled": true,
+          "title": "Canais do YouTube",
+          "thumbnail": "https://i.ytimg.com/vi/Cq4IOx-FAPE/hqdefault.jpg",
+          "description": "Produção de conteúdo para diversos canais do YouTube, incluindo roteiro, pesquisa, artes, edição, animações e locução.",
+          "media": [
+            { "type": "video", "url": "https://www.youtube.com/embed/Cq4IOx-FAPE" },
+            { "type": "video", "url": "https://www.youtube.com/embed/193bNKiKQGc" },
+            { "type": "video", "url": "https://www.youtube.com/embed/ytAdKLAPzGU" },
+            { "type": "video", "url": "https://www.youtube.com/embed/PZ3YYWKlDmE" },
+            { "type": "video", "url": "https://www.youtube.com/embed/MJN8DCs-seM" },
+            { "type": "video", "url": "https://www.youtube.com/embed/bJ25ebDopBQ" },
+            { "type": "video", "url": "https://www.youtube.com/embed/O0XUtU_0GoM" },
+            { "type": "video", "url": "https://www.youtube.com/embed/xAc0dH7_s20" }
+          ]
+        },
+        {
+          "enabled": true,
+          "title": "Propaganda",
+          "thumbnail": "https://i.ytimg.com/vi/gxHxaNM6r8s/hqdefault.jpg",
+          "description": "Criação de vídeos publicitários, desde a concepção da ideia até a edição final, para marcas e eventos.",
+          "media": [
+            { "type": "video", "url": "https://www.youtube.com/embed/gxHxaNM6r8s" },
+            { "type": "video", "url": "https://www.youtube.com/embed/eOhgGvFGfy8" }
+          ]
+        },
+        {
+          "enabled": true,
+          "title": "Eventos",
+          "thumbnail": "https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEjSyE4ZjnlOygUTPSkHyrFGDRtYg15F-Al8o51uPx4CfyzLwE4kcOGtcWbyPYoXZUvrzHhFwSgJDPHbvwcEtHBqYjX1qEPFwdbVJgw4xUQuKwAvsY4pxVWpGGTuRJm4F6TCZEnoM2HfPQ/s1600/DSC00702.jpeg",
+          "description": "Cobertura audiovisual de eventos, com especialidade em vídeos que capturam a transformação e a energia do momento.",
+          "media": [
+            { "type": "video", "url": "https://www.youtube.com/embed/eOhgGvFGfy8" },
+            { "type": "video", "url": "https://www.youtube.com/embed/vG-zQPAqT6A" }
+          ]
+        },
+        {
+          "enabled": true,
+          "title": "Fotografia de Produto (Still)",
+          "thumbnail": "https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEgz509eNvZ19wUwVuWqr2he8mWBFUdZWXYxc93-ynTMMReh7b46wCdlU-OXbdancRZdNoKV8Z2mzc6I6lmVJ1adL9IBefQEetG8UklGsY3ul-o2_IniOEES8klthmIfqpu7vcDJM3APAQ/s1600/jubolinha.cadernos_27582150_280261919171533_2056272342362882048_n.jpg",
+          "description": "Fotografia de produtos (Still) para diversas finalidades, desde alimentos até peças de cerâmica, com foco em destacar os detalhes e a qualidade.",
+          "media": [
+            { "type": "image", "url": "https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEgz509eNvZ19wUwVuWqr2he8mWBFUdZWXYxc93-ynTMMReh7b46wCdlU-OXbdancRZdNoKV8Z2mzc6I6lmVJ1adL9IBefQEetG8UklGsY3ul-o2_IniOEES8klthmIfqpu7vcDJM3APAQ/s1600/jubolinha.cadernos_27582150_280261919171533_2056272342362882048_n.jpg" },
+            { "type": "image", "url": "https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEhCz1GdL5pnc0S1hB0tTvBpKqwe2f2zBXsexLa57UgNNHcx1L0bCzzokjcyk5it7o0EM8jUFKXtvJJxe_0_j_Qy6EaaOql1JIwJE1ddVWbMHX4FzBn22_fM9gEZBg2uLq2bBSD3b0ZeEQ/s1600/WhatsApp+Image+2018-12-20+at+17.22.39.jpeg" },
+            { "type": "image", "url": "https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEhpA3ETz7JV2efnCVog0IIUGRbaAJMw4UWVxNptl9NPOPUw-_eeg5Ahyphenhyphen6qS1CDcpH2ppnb1jbVwVonF2JQZWf_CBn9nBjC2lSC-eaAcwk542dUmfecqiek68A5Z0P5b65JpycCb5e_Gog/s1600/bernardobotafogo_22221015_283703642117591_6089397468263350272_n.jpg" },
+            { "type": "image", "url": "https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEhieQ-4HpkTeZNXvGF7L3K2vc6JP68GQ6WhxCDSENPnBB2B7Rz6S23peYkVFBJexsSBbQJuREN4JVeh0AQuJj7313S8f2Qpxpla4W6Tqx285AGGDa3zcWpWKjNJE3mQX01J7d5geo3zsw/s1600/bernardobotafogo_31270424_2045604535726934_348753431789305856_n.jpg" },
+            { "type": "image", "url": "https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEjo9kg25jCaj2dnV7tXJropUhmdKOGpUJDL6IcPP7o1NGR6bqCCd5wAUUae50EvmXMtq4R6oQPgf8tk9yVfjUn9GDSdnmcZlQdqJiY1bQwYxPI-boisYmgaPpjlzp3GEJ5DRNM6cbnAxQ/s1600/DSC01907.jpg" },
+            { "type": "image", "url": "https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEjorJH_oczjjO3PuSx_h7QS4g4ffthJyU1-ySSnvZjrNzM2p_n_Yu3U_NWR_hOwLtze0cQ0KFeB8xXMcUl00zslKJ8L81vUhWAb1u4rvy1TVWGsvhyA7fsLj6_eMl1nNmPE5nb6gPjP2Q/s1600/bernardobotafogo_28152215_342772286217990_2691797029654364160_n.jpg" }
+          ]
+        },
+        { "enabled": false, "title": "Podcasts" },
+        { "enabled": false, "title": "Fotografia Noturna" },
+        { "enabled": false, "title": "Fotografia Macro" }
+      ],
+      "curriculum": {
+        "name": "Bernardo Botafogo",
+        "role": "Fotógrafo e Editor",
+        "photo": "https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEgisBTlbze9Ny8Mj_uQPylqNOxCLMrVzPbf-B3_OCJ5CTWOipVuMp0KvetCU-Am5zv1vDCDNUwCiangy8tu03SERJaaT3IR_TBsVR5KglXS7-eg4CmZvdtIxM5RhtXRVJrOjyWnEb157qVrsiw0vTxQxlsNwHy8ATWB2ahYAH1HQ2R8EGyf9sZnBcMccA/s1600/eu.png",
+        "contacts": {
+          "email": "bmbotafogo86@gmail.com",
+          "phone": "(24) 97405-6483",
+          "website": "http://www.bernardobotafogo.com.br"
+        },
+        "personalInfo": "Comecei há 11 anos na area de fotografia e cinema, com projetos pessoais do universo nerd, como filmmaker e fotógrafo, já participando de quase todo o processo de criação de filmes (roteiro, produção, filmagem, cenário, captação de audio e video, cenografia, pós-produção edição e efeitos especiais). Atualmente, também dou consultoria para produtores de vídeos iniciantes (youtube, cinema, propaganda etc). Trabalhei também com design de peças publicitárias e drops de conteúdo para redes sociais.",
+        "experience": [
+          {
+            "date": "Novembro de 2020 - Hoje",
+            "title": "Editor de vídeo, gerente de mídias sociais e design",
+            "company": "Medo e Delírio em Brasília",
+            "description": "Cuido de toda a produção de conteúdo para as redes desde imagens para posts e vídeos para o Canal do youtube, tiktok, instagram e telegram."
+          },
+          {
+            "date": "Setembro de 2014 - Outubro de 2017",
+            "title": "Técnico em Manutenção",
+            "company": "Ovnipix conteúdo WEB LTDA",
+            "description": "Fiz a captação e edição de coberturas para eventos, canais do youtube como (Reynold Romão e David Mafra), Locução de comerciais para rádio, e drops de conteúdo para redes sociais do portal."
+          },
+          {
+            "date": "Março de 2010 - Agosto de 2017",
+            "title": "Editor de Video, Cameraman e redes sociais",
+            "company": "Nerdice.com",
+            "description": "Fiz a captação e edição de todo o material audiovisual dos canais do portal Nerdice.com. Fiz também a alimentação com drops de conteúdo nas redes sociais do portal."
+          }
+        ],
+        "education": [
+          {
+            "date": "2008 - 2010",
+            "degree": "Tecnólogo de WEB (Superior incompleto)",
+            "institution": "CEFET-RJ"
+          },
+          {
+            "date": "2004",
+            "degree": "Técnico em Informática",
+            "institution": "Liceu São José de Itaipava"
+          }
+        ],
+        "skills": [
+          "Fotografia",
+          "Edição de Fotos",
+          "Filmagem",
+          "Edição de Vídeo",
+          "Edição de Áudio"
+        ],
+        "tools": [
+          "Premiere Pro",
+          "Final Cut",
+          "Photoshop",
+          "Audition",
+          "Lightroom",
+          "Ilustrator",
+          "Redes Sociais"
+        ],
+        "courses": [
+          {
+            "name": "Ruby on Rails - Desenvolvimento Ágil para Web 2.0",
+            "institution": "Caelum (2013)"
+          },
+          {
+            "name": "Autocad Básico e 3D",
+            "institution": "SENAI (2005)"
+          },
+          {
+            "name": "Cursos diversos de fotografia, filmagem, edição e montagem",
+            "institution": "Internet"
+          }
+        ],
+        "hobbies": [
+          "Vloger e Podcast"
+        ]
+      }
+    }
+    </script>
+
     <!-- Script Principal da Aplicação -->
     <script>
         document.addEventListener('DOMContentLoaded', () => {
@@ -166,29 +291,27 @@
                     sidebarHeader: document.getElementById('sidebar-header'),
                     desktopBioContainer: document.getElementById('desktop-bio-container'),
                     mainNav: document.getElementById('main-nav'),
-                    // errorMessage: document.getElementById('error-message'), // REMOVIDO
                     modalContainer: document.getElementById('modal-container'),
                     modalContent: document.getElementById('modal-content'),
-                    bioView: document.getElementById('bio-view'),
                     projectsView: document.getElementById('projects-view'),
                     curriculumView: document.getElementById('curriculum-view'),
                     navLinks: document.querySelectorAll('.nav-link')
                 },
 
                 // Inicialização
-                async init() {
-                    this.addEventListeners();
-                    try {
-                        const response = await fetch('data.json');
-                        if (!response.ok) throw new Error(`HTTP error! status: ${response.status}`);
-                        this.data = await response.json();
-                        
-                        this.renderAll();
-                        this.switchView(this.state.currentView);
-                    } catch (error) {
-                        console.error("Erro ao carregar data.json:", error);
-                        // Nenhuma mensagem de erro visível, apenas placeholders
+                init() {
+                    // Carrega os dados incorporados
+                    const dataElement = document.getElementById('app-data');
+                    if (dataElement) {
+                        this.data = JSON.parse(dataElement.textContent);
+                    } else {
+                        console.error("Erro: Elemento de dados JSON não encontrado.");
+                        return; // Para a execução se não houver dados
                     }
+                    
+                    this.addEventListeners();
+                    this.renderAll();
+                    this.switchView(this.state.currentView);
                 },
 
                 // Adiciona todos os ouvintes de eventos
@@ -218,8 +341,7 @@
                 // Renderiza todos os componentes
                 renderAll() {
                     this.renderSidebar();
-                    this.renderDesktopBio(); // Nova função
-                    this.renderBioView();
+                    this.renderDesktopBio(); // Bio na sidebar
                     this.renderProjectsView();
                     this.renderCurriculumView();
                     feather.replace();
@@ -231,7 +353,7 @@
                     this.elements.sidebarHeader.innerHTML = `<h1 class="text-3xl font-bold text-white leading-tight">${this.data.profile.name}</h1>`;
                 },
 
-                // (NOVA FUNÇÃO) Renderiza a bio na sidebar (apenas desktop)
+                // Renderiza a bio na sidebar (apenas desktop)
                 renderDesktopBio() {
                     if (!this.data.profile) return;
                     const { name, jobTitle, photoUrl, bio, contacts } = this.data.profile;
@@ -252,51 +374,6 @@
                                 </div>
                             </div>
                         </div>
-                    `;
-                },
-
-
-                // Renderiza a view "Bio" (Perfil + Serviços)
-                renderBioView() {
-                    if (!this.data.profile || !this.data.services) return;
-                    const { name, jobTitle, photoUrl, bio, contacts } = this.data.profile;
-
-                    this.elements.bioView.innerHTML = `
-                        <!-- Seção Perfil (Apenas Mobile - 'md:hidden' adicionado) -->
-                        <section class="flex flex-col md:hidden items-center gap-6 md:gap-10 mb-12 md:mb-16">
-                             <img src="${photoUrl}" alt="Foto de ${name}" class="w-32 h-32 md:w-40 md:h-40 rounded-full object-cover border-4 border-indigo-600 shadow-lg">
-                            <div class="text-center md:text-left">
-                                <h2 class="text-4xl md:text-5xl font-extrabold text-white text-glow">${name}</h2>
-                                <h3 class="text-xl md:text-2xl font-medium text-indigo-400 mt-1">${jobTitle}</h3>
-                                <p class="text-lg text-gray-300 max-w-2xl mx-auto md:mx-0 mt-4">${bio}</p>
-                                <div class="flex items-center justify-center md:justify-start gap-3 mt-6">
-                                    <a href="mailto:${contacts.email}" class="flex items-center gap-2 bg-indigo-600 hover:bg-indigo-500 text-white font-bold py-2 px-4 rounded-lg transition-colors duration-300">
-                                        <i data-feather="mail" class="w-5 h-5"></i> E-mail
-                                    </a>
-                                    <a href="https://wa.me/${contacts.whatsapp}" target="_blank" class="flex items-center gap-2 bg-green-600 hover:bg-green-500 text-white font-bold py-2 px-4 rounded-lg transition-colors duration-300">
-                                        <i data-feather="message-circle" class="w-5 h-5"></i> WhatsApp
-                                    </a>
-                                </div>
-                            </div>
-                        </section>
-
-                        <!-- Seção Serviços -->
-                        <section>
-                            <h2 class="text-3xl font-bold text-center text-white mb-8 text-glow">Serviços</h2>
-                            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-2 gap-6">
-                                ${this.data.services.map(service => `
-                                    <div class="bg-gray-800 p-6 rounded-lg border border-gray-700 transition-all duration-300 hover:border-indigo-500 hover:shadow-lg">
-                                        <div class="flex items-center gap-4">
-                                            <div class="bg-indigo-600 p-3 rounded-full">
-                                                <i data-feather="${service.icon}" class="w-6 h-6 text-white"></i>
-                                            </div>
-                                            <h3 class="text-2xl font-bold text-white">${service.title}</h3>
-                                        </div>
-                                        <p class="text-gray-400 mt-4">${service.description}</p>
-                                    </div>
-                                `).join('')}
-                            </div>
-                        </section>
                     `;
                 },
 
