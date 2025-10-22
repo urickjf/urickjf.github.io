@@ -5,11 +5,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Portfólio</title>
     
-    <!-- Carrega o Tailwind CSS -->
-    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Carrega o Tailwind CSS --><script src="https://cdn.tailwindcss.com"></script>
     
-    <!-- Carrega a fonte Inter -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <!-- Carrega a fonte Inter --><link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
     
@@ -45,17 +43,13 @@
 <body class="antialiased">
 
     <div class="flex flex-col md:flex-row min-h-screen">
-        <!-- Sidebar / Header -->
-        <aside class="w-full md:w-64 md:min-h-screen md:fixed md:flex flex-col p-6 bg-gray-900 border-b md:border-b-0 md:border-r border-gray-700 z-10">
+        <!-- Sidebar / Header --><aside class="w-full md:w-64 md:min-h-screen md:fixed md:flex flex-col p-6 bg-gray-900 border-b md:border-b-0 md:border-r border-gray-700 z-10">
             <div id="sidebar-header" class="flex-grow">
-                <!-- Nome será inserido aqui -->
-                <h1 class="text-3xl font-bold text-white leading-tight animate-pulse bg-gray-700 rounded w-3/4 h-10"></h1>
+                <!-- Nome será inserido aqui --><h1 class="text-3xl font-bold text-white leading-tight animate-pulse bg-gray-700 rounded w-3/4 h-10"></h1>
             </div>
 
-            <!-- Desktop Bio (in Sidebar) -->
-            <div id="desktop-bio-container" class="hidden md:block flex-grow-[2] my-8">
-                <!-- Placeholder Desktop Bio -->
-                <div class="flex flex-col items-center text-center animate-pulse">
+            <!-- Desktop Bio (in Sidebar) --><div id="desktop-bio-container" class="hidden md:block flex-grow-[2] my-8">
+                <!-- Placeholder Desktop Bio --><div class="flex flex-col items-center text-center animate-pulse">
                     <div class="w-32 h-32 rounded-full bg-gray-800 border-4 border-gray-700 mb-4"></div>
                     <div class="h-6 bg-gray-800 rounded w-1/2 mb-3"></div>
                     <div class="h-4 bg-gray-800 rounded w-5/6 mb-2"></div>
@@ -75,13 +69,10 @@
             </footer>
         </aside>
 
-        <!-- Área de Conteúdo Principal -->
-        <main class="w-full md:ml-64 p-4 sm:p-6 md:p-8">
+        <!-- Área de Conteúdo Principal --><main class="w-full md:ml-64 p-4 sm:p-6 md:p-8">
 
-            <!-- Views de Conteúdo -->
-            <div id="projects-view" class="content-view">
-                <!-- Placeholder Projetos -->
-                <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-2 sm:gap-4">
+            <!-- Views de Conteúdo --><div id="projects-view" class="content-view">
+                <!-- Placeholder Projetos --><div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-2 sm:gap-4">
                     <div class="aspect-square w-full h-full bg-gray-800 rounded-md animate-pulse"></div>
                     <div class="aspect-square w-full h-full bg-gray-800 rounded-md animate-pulse"></div>
                     <div class="aspect-square w-full h-full bg-gray-800 rounded-md animate-pulse"></div>
@@ -93,8 +84,7 @@
                 </div>
             </div>
             <div id="curriculum-view" class="content-view">
-                <!-- Placeholder Currículo -->
-                <div class="bg-gray-800 p-6 sm:p-8 rounded-lg border border-gray-700 animate-pulse">
+                <!-- Placeholder Currículo --><div class="bg-gray-800 p-6 sm:p-8 rounded-lg border border-gray-700 animate-pulse">
                      <div class="h-10 bg-gray-700 rounded w-1/3 mb-8"></div>
                      <div class="mb-8">
                         <div class="h-8 bg-gray-700 rounded w-1/4 mb-4"></div>
@@ -112,22 +102,18 @@
         </main>
     </div>
 
-    <!-- Modal de Projeto -->
-    <div id="modal-container" class="fixed inset-0 bg-black/80 backdrop-blur-sm flex items-center justify-center p-4 z-50 hidden fade-in" aria-labelledby="modal-title" role="dialog" aria-modal="true">
+    <!-- Modal de Projeto --><div id="modal-container" class="fixed inset-0 bg-black/80 backdrop-blur-sm flex items-center justify-center p-4 z-50 hidden fade-in" aria-labelledby="modal-title" role="dialog" aria-modal="true">
         <div id="modal-content" class="bg-gray-900 border border-gray-700 rounded-xl shadow-2xl w-full max-w-5xl max-h-[90vh] flex flex-col overflow-hidden">
-            <!-- Conteúdo do Modal será injetado aqui -->
-        </div>
+            <!-- Conteúdo do Modal será injetado aqui --></div>
     </div>
 
-    <!-- Carrega o script de ícones (Feather Icons) -->
-    <script src="https://cdn.jsdelivr.net/npm/feather-icons/dist/feather.min.js"></script>
+    <!-- Carrega o script de ícones (Feather Icons) --><script src="https://cdn.jsdelivr.net/npm/feather-icons/dist/feather.min.js"></script>
 
     <!-- 
       DADOS DA APLICAÇÃO (INCORPORADOS)
       O JSON que antes estava no arquivo 'data.json' agora está aqui.
       Isso evita erros de 'fetch' ao abrir o arquivo 'index.html' localmente.
-    -->
-    <script id="app-data" type="application/json">
+    --><script id="app-data" type="application/json">
     {
       "profile": {
         "name": "Bernardo Botafogo",
@@ -185,7 +171,7 @@
             { "type": "image", "url": "https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEgz509eNvZ19wUwVuWqr2he8mWBFUdZWXYxc93-ynTMMReh7b46wCdlU-OXbdancRZdNoKV8Z2mzc6I6lmVJ1adL9IBefQEetG8UklGsY3ul-o2_IniOEES8klthmIfqpu7vcDJM3APAQ/s1600/jubolinha.cadernos_27582150_280261919171533_2056272342362882048_n.jpg" },
             { "type": "image", "url": "https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEhCz1GdL5pnc0S1hB0tTvBpKqwe2f2zBXsexLa57UgNNHcx1L0bCzzokjcyk5it7o0EM8jUFKXtvJJxe_0_j_Qy6EaaOql1JIwJE1ddVWbMHX4FzBn22_fM9gEZBg2uLq2bBSD3b0ZeEQ/s1600/WhatsApp+Image+2018-12-20+at+17.22.39.jpeg" },
             { "type": "image", "url": "https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEhpA3ETz7JV2efnCVog0IIUGRbaAJMw4UWVxNptl9NPOPUw-_eeg5Ahyphenhyphen6qS1CDcpH2ppnb1jbVwVonF2JQZWf_CBn9nBjC2lSC-eaAcwk542dUmfecqiek68A5Z0P5b65JpycCb5e_Gog/s1600/bernardobotafogo_22221015_283703642117591_6089397468263350272_n.jpg" },
-            { "type": "image", "url": "https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEhieQ-4HpkTeZNXvGF7L3K2vc6JP68GQ6WhxCDSENPnBB2B7Rz6S23peYkVFBJexsSBbQJuREN4JVeh0AQuJj7313S8f2Qpxpla4W6Tqx285AGGDa3zcWpWKjNJE3mQX01J7d5geo3zsw/s1600/bernardobotafogo_31270424_2045604535726934_348753431789305856_n.jpg" },
+            { "type": "image", "url": "https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEhieQ-4HpkTeZNXvGF7L3K2vc6JP68GQ6WhxCDSENPnBB2B7Rz6S23peYkVFBJexsSBbQJuREN4JVeh0AQuJj7313S8f2Qpxpla4W6Tqx285AGGDa3zcWpWKjNJE3mQX01J7d5geo3zsw/s1600/bernardobotafogo_31270424_2045604535726934_348753431789305656_n.jpg" },
             { "type": "image", "url": "https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEjo9kg25jCaj2dnV7tXJropUhmdKOGpUJDL6IcPP7o1NGR6bqCCd5wAUUae50EvmXMtq4R6oQPgf8tk9yVfjUn9GDSdnmcZlQdqJiY1bQwYxPI-boisYmgaPpjlzp3GEJ5DRNM6cbnAxQ/s1600/DSC01907.jpg" },
             { "type": "image", "url": "https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEjorJH_oczjjO3PuSx_h7QS4g4ffthJyU1-ySSnvZjrNzM2p_n_Yu3U_NWR_hOwLtze0cQ0KFeB8xXMcUl00zslKJ8L81vUhWAb1u4rvy1TVWGsvhyA7fsLj6_eMl1nNmPE5nb6gPjP2Q/s1600/bernardobotafogo_28152215_342772286217990_2691797029654364160_n.jpg" }
           ]
@@ -273,8 +259,7 @@
     }
     </script>
 
-    <!-- Script Principal da Aplicação -->
-    <script>
+    <!-- Script Principal da Aplicação --><script>
         document.addEventListener('DOMContentLoaded', () => {
             const app = {
                 // Estado da aplicação
@@ -384,7 +369,7 @@
                     this.elements.projectsView.innerHTML = `
                         <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-2 sm:gap-4">
                             ${this.data.projects.filter(p => p.enabled).map((project, index) => `
-                                <a href="#" class="project-thumb aspect-square w-full h-full block group" data-index="${index}">
+                                <a href="#" class="project-thumb aspect-square w-full h-full block group overflow-hidden" data-index="${index}">
                                     <img src="${project.thumbnail}" 
                                          alt="Thumbnail ${project.title}" 
                                          class="w-full h-full object-cover rounded-md transition-all duration-300 ease-in-out group-hover:opacity-75 group-hover:shadow-2xl group-hover:shadow-indigo-500/30">
@@ -422,8 +407,7 @@
 
                     this.elements.curriculumView.innerHTML = `
                         <div class="bg-gray-800 p-6 sm:p-10 rounded-lg border border-gray-700 max-w-4xl mx-auto">
-                            <!-- Cabeçalho CV -->
-                            <div class="flex flex-col sm:flex-row items-center gap-6 mb-10">
+                            <!-- Cabeçalho CV --><div class="flex flex-col sm:flex-row items-center gap-6 mb-10">
                                 <img src="${cv.photo}" alt="Foto ${cv.name}" class="w-32 h-32 rounded-full object-cover border-4 border-indigo-600">
                                 <div class="text-center sm:text-left">
                                     <h2 class="text-4xl font-extrabold text-white">${cv.name}</h2>
@@ -436,14 +420,12 @@
                                 </div>
                             </div>
                             
-                            <!-- Resumo -->
-                            <div class="mb-8">
+                            <!-- Resumo --><div class="mb-8">
                                 <h3 class="text-2xl font-bold text-white border-b-2 border-indigo-600 pb-2 mb-4">Resumo</h3>
                                 <p class="text-gray-300 leading-relaxed">${cv.personalInfo}</p>
                             </div>
 
-                            <!-- Experiência -->
-                            <div class="mb-8">
+                            <!-- Experiência --><div class="mb-8">
                                 <h3 class="text-2xl font-bold text-white border-b-2 border-indigo-600 pb-2 mb-4">Experiência Profissional</h3>
                                 <div class="space-y-6">
                                     ${cv.experience.map(exp => `
@@ -456,8 +438,7 @@
                                 </div>
                             </div>
                             
-                            <!-- Formação -->
-                            <div class="mb-8">
+                            <!-- Formação --><div class="mb-8">
                                 <h3 class="text-2xl font-bold text-white border-b-2 border-indigo-600 pb-2 mb-4">Formação Acadêmica</h3>
                                 <div class="space-y-4">
                                     ${cv.education.map(edu => `
@@ -469,14 +450,12 @@
                                 </div>
                             </div>
 
-                            <!-- Habilidades e Ferramentas -->
-                            <div class="grid grid-cols-1 md:grid-cols-2 gap-8 mb-8">
+                            <!-- Habilidades e Ferramentas --><div class="grid grid-cols-1 md:grid-cols-2 gap-8 mb-8">
                                 ${renderList('Habilidades', cv.skills)}
                                 ${renderList('Ferramentas', cv.tools)}
                             </div>
 
-                            <!-- Cursos -->
-                            <div class="mb-8">
+                            <!-- Cursos --><div class="mb-8">
                                 <h3 class="text-2xl font-bold text-white border-b-2 border-indigo-600 pb-2 mb-4">Cursos e Certificações</h3>
                                 <div class="space-y-4">
                                     ${cv.courses.map(course => `
@@ -546,26 +525,23 @@
                     if (media.type === 'video') {
                         mediaElement = `<iframe class="w-full h-full aspect-video" src="${media.url}" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>`;
                     } else { // image
-                        mediaElement = `<img src="${media.url}" alt="${project.title}" class="w-full h-full object-contain">`;
+                        // Removido 'object-contain' daqui para 'object-cover' para preencher o espaço
+                        mediaElement = `<img src="${media.url}" alt="${project.title}" class="w-full h-full object-cover">`; 
                     }
 
                     this.elements.modalContent.innerHTML = `
-                        <!-- Cabeçalho do Modal -->
-                        <header class="flex items-center justify-between p-4 border-b border-gray-700 flex-shrink-0">
+                        <!-- Cabeçalho do Modal --><header class="flex items-center justify-between p-4 border-b border-gray-700 flex-shrink-0">
                             <h2 id="modal-title" class="text-2xl font-bold text-white">${project.title}</h2>
                             <button id="close-modal-btn" class="text-gray-400 hover:text-white transition-colors">
                                 <i data-feather="x" class="w-8 h-8"></i>
                             </button>
                         </header>
 
-                        <!-- Corpo do Modal -->
-                        <div class="flex flex-col lg:flex-row flex-1 overflow-hidden">
-                            <!-- Mídia Principal -->
-                            <div class="w-full lg:w-3/4 bg-black flex items-center justify-center relative overflow-hidden">
+                        <!-- Corpo do Modal --><div class="flex flex-col lg:flex-row flex-1 overflow-hidden">
+                            <!-- Mídia Principal --><div class="w-full lg:w-3/4 bg-black flex items-center justify-center relative overflow-hidden">
                                 ${mediaElement}
                                 
-                                <!-- Controles de Navegação (se houver) -->
-                                ${hasMultipleMedia ? `
+                                <!-- Controles de Navegação (se houver) -->${hasMultipleMedia ? `
                                     <button class="modal-nav-btn absolute left-4 top-1/2 -translate-y-1/2 bg-black/50 text-white p-2 rounded-full hover:bg-black/80 transition-opacity ${this.state.currentMediaIndex === 0 ? 'opacity-30 cursor-not-allowed' : ''}" data-direction="-1">
                                         <i data-feather="chevron-left" class="w-6 h-6"></i>
                                     </button>
@@ -575,12 +551,10 @@
                                 ` : ''}
                             </div>
 
-                            <!-- Barra Lateral de Informações -->
-                            <aside class="w-full lg:w-1/4 p-6 overflow-y-auto modal-content-inner flex-shrink-0 lg:max-h-full">
+                            <!-- Barra Lateral de Informações --><aside class="w-full lg:w-1/4 p-6 overflow-y-auto modal-content-inner flex-shrink-0 lg:max-h-full">
                                 <p class="text-gray-300 leading-relaxed">${project.description}</p>
                                 
-                                <!-- Galeria de Miniaturas (se houver) -->
-                                ${hasMultipleMedia ? `
+                                <!-- Galeria de Miniaturas (se houver) -->${hasMultipleMedia ? `
                                     <div class="mt-6">
                                         <h4 class="text-sm font-semibold text-gray-400 uppercase mb-3">Mídia</h4>
                                         <div class="grid grid-cols-3 gap-2">
