@@ -1,64 +1,44 @@
 <!DOCTYPE html>
-<html lang="pt-br" class="scroll-smooth">
+<html lang="pt-br" class="dark">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Portfólio - Bernardo Botafogo</title>
-
-    <!-- Tailwind CSS -->
+    <title>Portfólio</title>
+    
+    <!-- Carrega o Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
-
-    <!-- Google Fonts: Inter -->
+    
+    <!-- Carrega a fonte Inter -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700;800&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
     
-    <!-- Feather Icons -->
-    <script src="https://unpkg.com/feather-icons"></script>
-
     <style>
-        /* Estilos personalizados */
+        /* Estilo base com a fonte Inter e fundo escuro */
         body {
             font-family: 'Inter', sans-serif;
-            background-color: #111827; /* gray-900 */
-            color: #d1d5db; /* gray-300 */
+            background-color: #111827; /* bg-gray-900 */
+            color: #e5e7eb; /* text-gray-200 */
         }
-
-        /* Efeito de brilho sutil nos títulos */
+        /* Efeito de brilho para títulos */
         .text-glow {
-            text-shadow: 0 0 8px rgba(255, 255, 255, 0.2);
+            text-shadow: 0 0 8px rgba(99, 102, 241, 0.5), 0 0 20px rgba(99, 102, 241, 0.3);
         }
-        
-        /* Estilo para links de navegação ativos */
-        .nav-link.active {
-            color: #ffffff;
-            font-weight: 700;
+        /* Animação de fade-in */
+        .fade-in {
+            animation: fadeIn 0.5s ease-out forwards;
         }
-
-        /* Mantém a proporção quadrada das miniaturas */
-        .aspect-square {
-            aspect-ratio: 1 / 1;
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
         }
-        
-        /* Animações do Modal */
-        #modal-container.hidden { display: none; }
-        .modal-fade-in { animation: fadeIn 0.3s ease-out forwards; }
-        .modal-fade-out { animation: fadeOut 0.3s ease-out forwards; }
-        @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
-        @keyframes fadeOut { from { opacity: 1; } to { opacity: 0; } }
-
-        /* Estilo da barra de rolagem */
-        ::-webkit-scrollbar { width: 8px; }
-        ::-webkit-scrollbar-track { background: #1f2937; }
-        ::-webkit-scrollbar-thumb { background: #4f46e5; border-radius: 10px; }
-        ::-webkit-scrollbar-thumb:hover { background: #6366f1; }
-        
-        /* Esconde as views de conteúdo por padrão */
-        .content-view {
+        /* Esconde a scrollbar no modal */
+        .modal-content-inner::-webkit-scrollbar {
             display: none;
         }
-        .content-view.active {
-            display: block;
+        .modal-content-inner {
+            -ms-overflow-style: none;
+            scrollbar-width: none;
         }
     </style>
 </head>
@@ -69,12 +49,30 @@
         <aside class="w-full md:w-64 md:min-h-screen md:fixed md:flex flex-col p-6 bg-gray-900 border-b md:border-b-0 md:border-r border-gray-700 z-10">
             <div id="sidebar-header" class="flex-grow">
                 <!-- Nome será inserido aqui -->
+                <h1 class="text-3xl font-bold text-white leading-tight animate-pulse bg-gray-700 rounded w-3/4 h-10"></h1>
             </div>
+
+            <!-- Desktop Bio (in Sidebar) -->
+            <div id="desktop-bio-container" class="hidden md:block flex-grow-[2] my-8">
+                <!-- Placeholder Desktop Bio -->
+                <div class="flex flex-col items-center text-center animate-pulse">
+                    <div class="w-32 h-32 rounded-full bg-gray-800 border-4 border-gray-700 mb-4"></div>
+                    <div class="h-6 bg-gray-800 rounded w-1/2 mb-3"></div>
+                    <div class="h-4 bg-gray-800 rounded w-5/6 mb-2"></div>
+                    <div class="h-4 bg-gray-800 rounded w-full"></div>
+                </div>
+            </div>
+
             <nav id="main-nav" class="flex-grow my-8 md:my-0">
                 
                 <ul>
                     <li><a href="#" data-target="projects" class="nav-link text-lg text-gray-400 hover:text-white transition-colors duration-200">Projetos</a></li>
-                    <li><a href="#" data-target="bio" class="nav-link text-lg text-gray-400 hover:text-white transition-colors duration-200">Bio</a></li>
+                    <li>
+                        <!-- Link "Bio" para Mobile -->
+                        <a href="#" data-target="bio" class="nav-link text-lg text-gray-400 hover:text-white transition-colors duration-200 md:hidden">Bio</a>
+                        <!-- Link "Serviços" para Desktop (leva ao mesmo lugar) -->
+                        <a href="#" data-target="bio" class="nav-link text-lg text-gray-400 hover:text-white transition-colors duration-200 hidden md:block">Serviços</a>
+                    </li>
                     <li><a href="#" data-target="curriculum" class="nav-link text-lg text-gray-400 hover:text-white transition-colors duration-200">Currículo</a></li>
                 </ul>
             </nav>
@@ -85,75 +83,142 @@
 
         <!-- Área de Conteúdo Principal -->
         <main class="w-full md:ml-64 p-4 sm:p-6 md:p-8">
-            <!-- Mensagem de Erro -->
-            <div id="error-message" class="hidden bg-red-800 border border-red-600 text-white px-4 py-3 rounded-lg relative mb-6" role="alert">
-                <strong class="font-bold">Erro:</strong>
-                <span class="block sm:inline">Não foi possível carregar os dados do portfólio. Verifique o arquivo `data.json`.</span>
-            </div>
 
             <!-- Views de Conteúdo -->
-            <div id="bio-view" class="content-view"></div>
-            <div id="projects-view" class="content-view"></div>
-            <div id="curriculum-view" class="content-view"></div>
+            <div id="bio-view" class="content-view">
+                <!-- Placeholder Bio (Mobile) -->
+                <section class="flex flex-col md:hidden items-center gap-6 md:gap-10 mb-12 md:mb-16 animate-pulse">
+                     <div class="w-32 h-32 md:w-40 md:h-40 rounded-full bg-gray-800 border-4 border-gray-700"></div>
+                    <div class="text-center md:text-left flex-1 w-full">
+                        <div class="h-12 bg-gray-800 rounded w-3/4 mx-auto md:mx-0 mb-3"></div>
+                        <div class="h-6 bg-gray-800 rounded w-1/2 mx-auto md:mx-0 mb-4"></div>
+                        <div class="h-4 bg-gray-800 rounded w-full mb-2"></div>
+                        <div class="h-4 bg-gray-800 rounded w-5/6 mx-auto md:mx-0"></div>
+                    </div>
+                </section>
+                <!-- Placeholder Serviços (Mobile/Desktop) -->
+                <section class="animate-pulse">
+                    <div class="h-9 bg-gray-800 rounded w-1/3 mx-auto mb-8"></div>
+                    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-2 gap-6">
+                        <div class="bg-gray-800 p-6 rounded-lg border border-gray-700 h-36"></div>
+                        <div class="bg-gray-800 p-6 rounded-lg border border-gray-700 h-36"></div>
+                    </div>
+                </section>
+            </div>
+            <div id="projects-view" class="content-view">
+                <!-- Placeholder Projetos -->
+                <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-2 sm:gap-4">
+                    <div class="aspect-square w-full h-full bg-gray-800 rounded-md animate-pulse"></div>
+                    <div class="aspect-square w-full h-full bg-gray-800 rounded-md animate-pulse"></div>
+                    <div class="aspect-square w-full h-full bg-gray-800 rounded-md animate-pulse"></div>
+                    <div class="aspect-square w-full h-full bg-gray-800 rounded-md animate-pulse"></div>
+                    <div class="aspect-square w-full h-full bg-gray-800 rounded-md animate-pulse"></div>
+                    <div class="aspect-square w-full h-full bg-gray-800 rounded-md animate-pulse"></div>
+                    <div class="aspect-square w-full h-full bg-gray-800 rounded-md animate-pulse"></div>
+                    <div class="aspect-square w-full h-full bg-gray-800 rounded-md animate-pulse"></div>
+                </div>
+            </div>
+            <div id="curriculum-view" class="content-view">
+                <!-- Placeholder Currículo -->
+                <div class="bg-gray-800 p-6 sm:p-8 rounded-lg border border-gray-700 animate-pulse">
+                     <div class="h-10 bg-gray-700 rounded w-1/3 mb-8"></div>
+                     <div class="mb-8">
+                        <div class="h-8 bg-gray-700 rounded w-1/4 mb-4"></div>
+                        <div class="h-4 bg-gray-700 rounded w-full mb-2"></div>
+                        <div class="h-4 bg-gray-700 rounded w-5/6 mb-2"></div>
+                        <div class="h-4 bg-gray-700 rounded w-full"></div>
+                     </div>
+                     <div class="mb-8">
+                        <div class="h-8 bg-gray-700 rounded w-1/4 mb-4"></div>
+                        <div class="h-4 bg-gray-700 rounded w-full mb-2"></div>
+                        <div class="h-4 bg-gray-700 rounded w-5/6"></div>
+                     </div>
+                </div>
+            </div>
         </main>
     </div>
 
-    <!-- Modal para Visualização de Projetos -->
-    <div id="modal-container" class="hidden fixed inset-0 bg-black bg-opacity-80 backdrop-blur-sm z-50 flex items-center justify-center p-4">
-        <div id="modal-content" class="bg-gray-900 border border-gray-700 rounded-lg w-full max-w-4xl max-h-[90vh] flex flex-col relative">
-            <!-- Conteúdo do modal será injetado aqui -->
+    <!-- Modal de Projeto -->
+    <div id="modal-container" class="fixed inset-0 bg-black/80 backdrop-blur-sm flex items-center justify-center p-4 z-50 hidden fade-in" aria-labelledby="modal-title" role="dialog" aria-modal="true">
+        <div id="modal-content" class="bg-gray-900 border border-gray-700 rounded-xl shadow-2xl w-full max-w-5xl max-h-[90vh] flex flex-col overflow-hidden">
+            <!-- Conteúdo do Modal será injetado aqui -->
         </div>
     </div>
 
+    <!-- Carrega o script de ícones (Feather Icons) -->
+    <script src="https://cdn.jsdelivr.net/npm/feather-icons/dist/feather.min.js"></script>
 
+    <!-- Script Principal da Aplicação -->
     <script>
         document.addEventListener('DOMContentLoaded', () => {
             const app = {
+                // Estado da aplicação
+                data: {},
+                state: {
+                    currentView: 'projects',
+                    modalOpen: false,
+                    currentProject: null,
+                    currentMediaIndex: 0
+                },
+
                 // Elementos do DOM
                 elements: {
                     sidebarHeader: document.getElementById('sidebar-header'),
+                    desktopBioContainer: document.getElementById('desktop-bio-container'),
                     mainNav: document.getElementById('main-nav'),
-                    errorMessage: document.getElementById('error-message'),
+                    // errorMessage: document.getElementById('error-message'), // REMOVIDO
                     modalContainer: document.getElementById('modal-container'),
                     modalContent: document.getElementById('modal-content'),
                     bioView: document.getElementById('bio-view'),
                     projectsView: document.getElementById('projects-view'),
                     curriculumView: document.getElementById('curriculum-view'),
-                },
-                // Dados do JSON
-                data: {},
-                // Estado do App
-                state: {
-                    currentView: 'projects', // Visão inicial
-                    slider: {
-                        currentIndex: 0,
-                        media: []
-                    }
+                    navLinks: document.querySelectorAll('.nav-link')
                 },
 
-                // Função de inicialização
-                init() {
-                    this.loadData();
-                    this.setupEventListeners();
-                },
-
-                // Carrega dados do data.json
-                async loadData() {
+                // Inicialização
+                async init() {
+                    this.addEventListeners();
                     try {
                         const response = await fetch('data.json');
                         if (!response.ok) throw new Error(`HTTP error! status: ${response.status}`);
                         this.data = await response.json();
+                        
                         this.renderAll();
                         this.switchView(this.state.currentView);
                     } catch (error) {
                         console.error("Erro ao carregar data.json:", error);
-                        this.elements.errorMessage.classList.remove('hidden');
+                        // Nenhuma mensagem de erro visível, apenas placeholders
                     }
                 },
-                
+
+                // Adiciona todos os ouvintes de eventos
+                addEventListeners() {
+                    // Links de navegação
+                    this.elements.navLinks.forEach(link => {
+                        link.addEventListener('click', (e) => {
+                            e.preventDefault();
+                            const view = e.target.getAttribute('data-target');
+                            this.switchView(view);
+                        });
+                    });
+
+                    // Fechar modal
+                    this.elements.modalContainer.addEventListener('click', (e) => {
+                        if (e.target === this.elements.modalContainer) {
+                            this.closeModal();
+                        }
+                    });
+                    document.addEventListener('keydown', (e) => {
+                        if (e.key === 'Escape' && this.state.modalOpen) {
+                            this.closeModal();
+                        }
+                    });
+                },
+
                 // Renderiza todos os componentes
                 renderAll() {
                     this.renderSidebar();
+                    this.renderDesktopBio(); // Nova função
                     this.renderBioView();
                     this.renderProjectsView();
                     this.renderCurriculumView();
@@ -166,38 +231,68 @@
                     this.elements.sidebarHeader.innerHTML = `<h1 class="text-3xl font-bold text-white leading-tight">${this.data.profile.name}</h1>`;
                 },
 
+                // (NOVA FUNÇÃO) Renderiza a bio na sidebar (apenas desktop)
+                renderDesktopBio() {
+                    if (!this.data.profile) return;
+                    const { name, jobTitle, photoUrl, bio, contacts } = this.data.profile;
+
+                    this.elements.desktopBioContainer.innerHTML = `
+                        <div class="flex flex-col items-center text-center">
+                            <img src="${photoUrl}" alt="Foto de ${name}" class="w-32 h-32 rounded-full object-cover border-4 border-indigo-600 shadow-lg mb-4">
+                            <div>
+                                <h3 class="text-xl font-bold text-white">${jobTitle}</h3>
+                                <p class="mt-4 text-sm text-gray-400">${bio}</p>
+                                <div class="flex flex-col items-center gap-2 mt-6">
+                                    <a href="mailto:${contacts.email}" class="w-full flex items-center justify-center gap-2 bg-gray-800 hover:bg-indigo-600 text-white font-bold py-2 px-3 rounded-lg transition-colors duration-300 text-sm">
+                                        <i data-feather="mail" class="w-4 h-4"></i> E-mail
+                                    </a>
+                                    <a href="https://wa.me/${contacts.whatsapp}" target="_blank" class="w-full flex items-center justify-center gap-2 bg-gray-800 hover:bg-green-500 text-white font-bold py-2 px-3 rounded-lg transition-colors duration-300 text-sm">
+                                        <i data-feather="message-circle" class="w-4 h-4"></i> WhatsApp
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    `;
+                },
+
+
                 // Renderiza a view "Bio" (Perfil + Serviços)
                 renderBioView() {
                     if (!this.data.profile || !this.data.services) return;
                     const { name, jobTitle, photoUrl, bio, contacts } = this.data.profile;
 
                     this.elements.bioView.innerHTML = `
-                        <!-- Seção Perfil -->
-                        <section class="flex flex-col md:flex-row items-center gap-6 md:gap-10 mb-12 md:mb-16">
+                        <!-- Seção Perfil (Apenas Mobile - 'md:hidden' adicionado) -->
+                        <section class="flex flex-col md:hidden items-center gap-6 md:gap-10 mb-12 md:mb-16">
                              <img src="${photoUrl}" alt="Foto de ${name}" class="w-32 h-32 md:w-40 md:h-40 rounded-full object-cover border-4 border-indigo-600 shadow-lg">
                             <div class="text-center md:text-left">
                                 <h2 class="text-4xl md:text-5xl font-extrabold text-white text-glow">${name}</h2>
                                 <h3 class="text-xl md:text-2xl font-medium text-indigo-400 mt-1">${jobTitle}</h3>
-                                <p class="mt-4 max-w-2xl text-gray-400">${bio}</p>
-                                <div class="flex items-center justify-center md:justify-start gap-4 mt-6">
-                                    <a href="mailto:${contacts.email}" class="flex items-center gap-2 bg-gray-800 hover:bg-indigo-600 text-white font-bold py-2 px-4 rounded-lg transition-colors duration-300">
+                                <p class="text-lg text-gray-300 max-w-2xl mx-auto md:mx-0 mt-4">${bio}</p>
+                                <div class="flex items-center justify-center md:justify-start gap-3 mt-6">
+                                    <a href="mailto:${contacts.email}" class="flex items-center gap-2 bg-indigo-600 hover:bg-indigo-500 text-white font-bold py-2 px-4 rounded-lg transition-colors duration-300">
                                         <i data-feather="mail" class="w-5 h-5"></i> E-mail
                                     </a>
-                                    <a href="https://wa.me/${contacts.whatsapp}" target="_blank" class="flex items-center gap-2 bg-gray-800 hover:bg-green-500 text-white font-bold py-2 px-4 rounded-lg transition-colors duration-300">
+                                    <a href="https://wa.me/${contacts.whatsapp}" target="_blank" class="flex items-center gap-2 bg-green-600 hover:bg-green-500 text-white font-bold py-2 px-4 rounded-lg transition-colors duration-300">
                                         <i data-feather="message-circle" class="w-5 h-5"></i> WhatsApp
                                     </a>
                                 </div>
                             </div>
                         </section>
+
                         <!-- Seção Serviços -->
                         <section>
-                             <h3 class="text-3xl font-bold text-white text-center mb-8 text-glow">Serviços</h3>
+                            <h2 class="text-3xl font-bold text-center text-white mb-8 text-glow">Serviços</h2>
                             <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-2 gap-6">
                                 ${this.data.services.map(service => `
-                                    <div class="bg-gray-800 p-6 rounded-lg border border-gray-700 hover:border-indigo-500 transition-colors duration-300">
-                                        <i data-feather="${service.icon}" class="w-10 h-10 text-indigo-400 mb-4"></i>
-                                        <h4 class="text-xl font-bold text-white">${service.title}</h4>
-                                        <p class="text-gray-400 mt-2">${service.description}</p>
+                                    <div class="bg-gray-800 p-6 rounded-lg border border-gray-700 transition-all duration-300 hover:border-indigo-500 hover:shadow-lg">
+                                        <div class="flex items-center gap-4">
+                                            <div class="bg-indigo-600 p-3 rounded-full">
+                                                <i data-feather="${service.icon}" class="w-6 h-6 text-white"></i>
+                                            </div>
+                                            <h3 class="text-2xl font-bold text-white">${service.title}</h3>
+                                        </div>
+                                        <p class="text-gray-400 mt-4">${service.description}</p>
                                     </div>
                                 `).join('')}
                             </div>
@@ -205,184 +300,258 @@
                     `;
                 },
 
-                // Renderiza a view de Projetos
+                // Renderiza a view "Projetos"
                 renderProjectsView() {
                     if (!this.data.projects) return;
+
                     this.elements.projectsView.innerHTML = `
                         <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-2 sm:gap-4">
-                            ${this.data.projects.map((project, index) => `
-                                <div class="group relative rounded-md overflow-hidden cursor-pointer" onclick="app.showModal(${index})">
-                                    <img src="${project.thumbnail}" alt="${project.title}" class="aspect-square w-full h-full object-cover group-hover:scale-110 transition-transform duration-300">
-                                    <div class="absolute inset-0 bg-black bg-opacity-60 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                                        <h4 class="text-white text-lg font-bold text-center p-4">${project.title}</h4>
-                                    </div>
-                                </div>
+                            ${this.data.projects.filter(p => p.enabled).map((project, index) => `
+                                <a href="#" class="project-thumb aspect-square w-full h-full block group" data-index="${index}">
+                                    <img src="${project.thumbnail}" 
+                                         alt="Thumbnail ${project.title}" 
+                                         class="w-full h-full object-cover rounded-md transition-all duration-300 ease-in-out group-hover:opacity-75 group-hover:shadow-2xl group-hover:shadow-indigo-500/30">
+                                </a>
                             `).join('')}
                         </div>
                     `;
+
+                    // Adicionar ouvintes de eventos para os novos thumbnails
+                    document.querySelectorAll('.project-thumb').forEach(thumb => {
+                        thumb.addEventListener('click', (e) => {
+                            e.preventDefault();
+                            const projectIndex = parseInt(e.currentTarget.getAttribute('data-index'), 10);
+                            this.openModal(projectIndex);
+                        });
+                    });
                 },
 
-                // Renderiza a view de Currículo
+                // Renderiza a view "Currículo"
                 renderCurriculumView() {
                     if (!this.data.curriculum) return;
-                    const { summary, contact, experience, education, skills, tools, courses, hobbies } = this.data.curriculum;
-                    const renderSection = (title, content) => {
-                        if(!content || (Array.isArray(content) && content.length === 0)) return '';
-                        return `<div class="mb-8"><h3 class="text-2xl font-bold text-indigo-400 border-b-2 border-indigo-500 pb-2 mb-4">${title}</h3>${content}</div>`;
+                    const cv = this.data.curriculum;
+
+                    const renderList = (title, items) => {
+                        if (!items || items.length === 0) return '';
+                        return `
+                            <div class="mb-8">
+                                <h3 class="text-2xl font-bold text-white border-b-2 border-indigo-600 pb-2 mb-4">${title}</h3>
+                                <ul class="list-disc list-inside space-y-2 text-gray-300">
+                                    ${items.map(item => `<li>${item}</li>`).join('')}
+                                </ul>
+                            </div>
+                        `;
                     };
-                    const experienceContent = experience.map(exp => `<div class="mb-4"><h4 class="text-xl font-semibold text-white">${exp.role}</h4><p class="text-md text-gray-400">${exp.company} | ${exp.period}</p><p class="text-gray-400 mt-2">${exp.description}</p></div>`).join('');
-                    const educationContent = education.map(edu => `<div class="mb-4"><h4 class="text-xl font-semibold text-white">${edu.course}</h4><p class="text-md text-gray-400">${edu.institution} | ${edu.period}</p></div>`).join('');
-                    const coursesContent = courses.map(course => `<p class="text-gray-300 mb-2"><span class="font-semibold text-white">${course.name}</span> - ${course.institution}</p>`).join('');
-                    const listContent = (items) => `<div class="flex flex-wrap gap-2">${items.map(item => `<span class="bg-gray-700 text-indigo-300 text-sm font-medium px-3 py-1 rounded-full">${item}</span>`).join('')}</div>`;
 
                     this.elements.curriculumView.innerHTML = `
-                        <div class="bg-gray-800 p-6 sm:p-8 rounded-lg border border-gray-700">
-                             <h2 class="text-4xl font-extrabold text-white text-glow mb-8">Currículo</h2>
-                            ${renderSection('Resumo', `<p class="text-gray-300">${summary}</p>`)}
-                            ${renderSection('Contato', `<p class="text-gray-300"><strong>Email:</strong> ${contact.email} | <strong>Telefone:</strong> ${contact.phone} | <strong>Website:</strong> ${contact.website}</p>`)}
-                            ${renderSection('Experiência Profissional', experienceContent)}
-                            ${renderSection('Formação Académica', educationContent)}
-                            ${renderSection('Habilidades', listContent(skills))}
-                            ${renderSection('Ferramentas', listContent(tools))}
-                            ${renderSection('Cursos e Certificações', coursesContent)}
-                            ${renderSection('Hobbies e Interesses', `<p class="text-gray-300">${hobbies.join(', ')}</p>`)}
-                        </div>`;
-                },
-                
-                // Lógica de navegação entre views
-                switchView(targetId) {
-                    this.state.currentView = targetId;
-                    
-                    // Esconde todas as views
-                    document.querySelectorAll('.content-view').forEach(view => view.classList.remove('active'));
-                    
-                    // Mostra a view alvo
-                    const targetView = document.getElementById(`${targetId}-view`);
-                    if (targetView) targetView.classList.add('active');
+                        <div class="bg-gray-800 p-6 sm:p-10 rounded-lg border border-gray-700 max-w-4xl mx-auto">
+                            <!-- Cabeçalho CV -->
+                            <div class="flex flex-col sm:flex-row items-center gap-6 mb-10">
+                                <img src="${cv.photo}" alt="Foto ${cv.name}" class="w-32 h-32 rounded-full object-cover border-4 border-indigo-600">
+                                <div class="text-center sm:text-left">
+                                    <h2 class="text-4xl font-extrabold text-white">${cv.name}</h2>
+                                    <h3 class="text-2xl font-medium text-indigo-400">${cv.role}</h3>
+                                    <div class="flex flex-wrap justify-center sm:justify-start gap-x-6 gap-y-2 text-gray-400 mt-4">
+                                        <span><i data-feather="mail" class="w-4 h-4 inline-block -mt-1 mr-1"></i> ${cv.contacts.email}</span>
+                                        <span><i data-feather="phone" class="w-4 h-4 inline-block -mt-1 mr-1"></i> ${cv.contacts.phone}</span>
+                                        <span><i data-feather="globe" class="w-4 h-4 inline-block -mt-1 mr-1"></i> ${cv.contacts.website}</span>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <!-- Resumo -->
+                            <div class="mb-8">
+                                <h3 class="text-2xl font-bold text-white border-b-2 border-indigo-600 pb-2 mb-4">Resumo</h3>
+                                <p class="text-gray-300 leading-relaxed">${cv.personalInfo}</p>
+                            </div>
 
-                    // Atualiza o estado ativo dos links
-                    document.querySelectorAll('.nav-link').forEach(link => {
-                        link.classList.remove('active');
-                        if (link.dataset.target === targetId) {
-                            link.classList.add('active');
-                        }
-                    });
-                    window.scrollTo(0, 0);
-                },
+                            <!-- Experiência -->
+                            <div class="mb-8">
+                                <h3 class="text-2xl font-bold text-white border-b-2 border-indigo-600 pb-2 mb-4">Experiência Profissional</h3>
+                                <div class="space-y-6">
+                                    ${cv.experience.map(exp => `
+                                        <div>
+                                            <h4 class="text-xl font-semibold text-indigo-300">${exp.title}</h4>
+                                            <p class="font-medium text-gray-200">${exp.company} <span class="text-gray-400 text-sm ml-2">(${exp.date})</span></p>
+                                            <p class="text-gray-400 mt-1">${exp.description}</p>
+                                        </div>
+                                    `).join('')}
+                                </div>
+                            </div>
+                            
+                            <!-- Formação -->
+                            <div class="mb-8">
+                                <h3 class="text-2xl font-bold text-white border-b-2 border-indigo-600 pb-2 mb-4">Formação Acadêmica</h3>
+                                <div class="space-y-4">
+                                    ${cv.education.map(edu => `
+                                        <div>
+                                            <h4 class="text-xl font-semibold text-indigo-300">${edu.degree}</h4>
+                                            <p class="font-medium text-gray-200">${edu.institution} <span class="text-gray-400 text-sm ml-2">(${edu.date})</span></p>
+                                        </div>
+                                    `).join('')}
+                                </div>
+                            </div>
 
-                // Mostra o modal do projeto
-                showModal(index) {
-                    const project = this.data.projects[index];
-                    this.state.slider.media = project.media;
-                    this.state.slider.currentIndex = 0;
+                            <!-- Habilidades e Ferramentas -->
+                            <div class="grid grid-cols-1 md:grid-cols-2 gap-8 mb-8">
+                                ${renderList('Habilidades', cv.skills)}
+                                ${renderList('Ferramentas', cv.tools)}
+                            </div>
 
-                    this.elements.modalContainer.classList.remove('hidden');
-                    this.elements.modalContainer.classList.remove('modal-fade-out');
-                    this.elements.modalContainer.classList.add('modal-fade-in');
-                    document.body.style.overflow = 'hidden';
-                    
-                    this.renderModalContent();
-                },
-                
-                // Renderiza o conteúdo interno do modal
-                renderModalContent() {
-                    const project = this.data.projects.find(p => p.media === this.state.slider.media);
-                    if(!project) return;
-                    
-                    this.elements.modalContent.innerHTML = `
-                        <button onclick="app.closeModal()" class="absolute top-3 right-3 text-gray-400 hover:text-white z-20">
-                            <i data-feather="x" class="w-8 h-8"></i>
-                        </button>
-                        <div class="p-6 md:p-8 flex-grow overflow-y-auto">
-                            <h3 class="text-3xl font-bold text-white mb-4 text-glow">${project.title}</h3>
-                            <p class="text-gray-400 mb-6">${project.description}</p>
+                            <!-- Cursos -->
+                            <div class="mb-8">
+                                <h3 class="text-2xl font-bold text-white border-b-2 border-indigo-600 pb-2 mb-4">Cursos e Certificações</h3>
+                                <div class="space-y-4">
+                                    ${cv.courses.map(course => `
+                                        <div>
+                                            <h4 class="text-xl font-semibold text-indigo-300">${course.name}</h4>
+                                            <p class="font-medium text-gray-200">${course.institution}</p>
+                                        </div>
+                                    `).join('')}
+                                </div>
+                            </div>
+
+                            ${renderList('Hobbies', cv.hobbies)}
+
                         </div>
-                        <div id="media-display" class="relative w-full bg-black flex-shrink-0"></div>
                     `;
-                    this.updateSlider();
                 },
-                
-                // Fecha o modal
+
+                // Lógica de navegação
+                switchView(view) {
+                    this.state.currentView = view;
+                    document.querySelectorAll('.content-view').forEach(v => {
+                        v.style.display = 'none';
+                    });
+                    
+                    if (this.elements[view + 'View']) {
+                        this.elements[view + 'View'].style.display = 'block';
+                    }
+
+                    // Atualiza link ativo
+                    this.elements.navLinks.forEach(link => {
+                        if (link.getAttribute('data-target') === view) {
+                            link.classList.add('text-white', 'font-bold');
+                            link.classList.remove('text-gray-400');
+                        } else {
+                            link.classList.add('text-gray-400');
+                            link.classList.remove('text-white', 'font-bold');
+                        }
+                    });
+                },
+
+                // Lógica do Modal
+                openModal(projectIndex) {
+                    const project = this.data.projects.filter(p => p.enabled)[projectIndex];
+                    if (!project) return;
+                    
+                    this.state.modalOpen = true;
+                    this.state.currentProject = project;
+                    this.state.currentMediaIndex = 0;
+                    
+                    this.renderModalContent();
+                    this.elements.modalContainer.style.display = 'flex';
+                },
+
                 closeModal() {
-                    this.elements.modalContainer.classList.add('modal-fade-out');
-                    this.elements.modalContainer.classList.remove('modal-fade-in');
-                    setTimeout(() => {
-                        this.elements.modalContainer.classList.add('hidden');
-                        document.body.style.overflow = 'auto';
-                        this.elements.modalContent.innerHTML = '';
-                    }, 300);
+                    this.state.modalOpen = false;
+                    this.state.currentProject = null;
+                    this.elements.modalContainer.style.display = 'none';
+                    this.elements.modalContent.innerHTML = '';
+                },
+
+                renderModalContent() {
+                    const project = this.state.currentProject;
+                    const media = project.media[this.state.currentMediaIndex];
+                    const hasMultipleMedia = project.media.length > 1;
+
+                    let mediaElement = '';
+                    if (media.type === 'video') {
+                        mediaElement = `<iframe class="w-full h-full aspect-video" src="${media.url}" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>`;
+                    } else { // image
+                        mediaElement = `<img src="${media.url}" alt="${project.title}" class="w-full h-full object-contain">`;
+                    }
+
+                    this.elements.modalContent.innerHTML = `
+                        <!-- Cabeçalho do Modal -->
+                        <header class="flex items-center justify-between p-4 border-b border-gray-700 flex-shrink-0">
+                            <h2 id="modal-title" class="text-2xl font-bold text-white">${project.title}</h2>
+                            <button id="close-modal-btn" class="text-gray-400 hover:text-white transition-colors">
+                                <i data-feather="x" class="w-8 h-8"></i>
+                            </button>
+                        </header>
+
+                        <!-- Corpo do Modal -->
+                        <div class="flex flex-col lg:flex-row flex-1 overflow-hidden">
+                            <!-- Mídia Principal -->
+                            <div class="w-full lg:w-3/4 bg-black flex items-center justify-center relative overflow-hidden">
+                                ${mediaElement}
+                                
+                                <!-- Controles de Navegação (se houver) -->
+                                ${hasMultipleMedia ? `
+                                    <button class="modal-nav-btn absolute left-4 top-1/2 -translate-y-1/2 bg-black/50 text-white p-2 rounded-full hover:bg-black/80 transition-opacity ${this.state.currentMediaIndex === 0 ? 'opacity-30 cursor-not-allowed' : ''}" data-direction="-1">
+                                        <i data-feather="chevron-left" class="w-6 h-6"></i>
+                                    </button>
+                                    <button class="modal-nav-btn absolute right-4 top-1/2 -translate-y-1/2 bg-black/50 text-white p-2 rounded-full hover:bg-black/80 transition-opacity ${this.state.currentMediaIndex === project.media.length - 1 ? 'opacity-30 cursor-not-allowed' : ''}" data-direction="1">
+                                        <i data-feather="chevron-right" class="w-6 h-6"></i>
+                                    </button>
+                                ` : ''}
+                            </div>
+
+                            <!-- Barra Lateral de Informações -->
+                            <aside class="w-full lg:w-1/4 p-6 overflow-y-auto modal-content-inner flex-shrink-0 lg:max-h-full">
+                                <p class="text-gray-300 leading-relaxed">${project.description}</p>
+                                
+                                <!-- Galeria de Miniaturas (se houver) -->
+                                ${hasMultipleMedia ? `
+                                    <div class="mt-6">
+                                        <h4 class="text-sm font-semibold text-gray-400 uppercase mb-3">Mídia</h4>
+                                        <div class="grid grid-cols-3 gap-2">
+                                            ${project.media.map((m, index) => `
+                                                <button class="media-thumb-btn aspect-square rounded-md overflow-hidden border-2 ${index === this.state.currentMediaIndex ? 'border-indigo-500' : 'border-transparent hover:border-gray-500'}" data-index="${index}">
+                                                    <img src="${m.thumbnail || (m.type === 'image' ? m.url : project.thumbnail)}" alt="Mídia ${index + 1}" class="w-full h-full object-cover">
+                                                </button>
+                                            `).join('')}
+                                        </div>
+                                    </div>
+                                ` : ''}
+                            </aside>
+                        </div>
+                    `;
+
+                    // Adiciona eventos aos novos botões
+                    feather.replace();
+                    document.getElementById('close-modal-btn').addEventListener('click', () => this.closeModal());
+                    
+                    document.querySelectorAll('.modal-nav-btn').forEach(btn => {
+                        btn.addEventListener('click', (e) => {
+                            const direction = parseInt(e.currentTarget.getAttribute('data-direction'), 10);
+                            this.navigateMedia(direction);
+                        });
+                    });
+                    
+                    document.querySelectorAll('.media-thumb-btn').forEach(btn => {
+                        btn.addEventListener('click', (e) => {
+                            const index = parseInt(e.currentTarget.getAttribute('data-index'), 10);
+                            this.state.currentMediaIndex = index;
+                            this.renderModalContent();
+                        });
+                    });
                 },
                 
-                // Atualiza o slider de mídia no modal
-                updateSlider() {
-                    const mediaDisplay = document.getElementById('media-display');
-                    if (!mediaDisplay) return;
-
-                    const currentMedia = this.state.slider.media[this.state.slider.currentIndex];
-                    let mediaHTML = '';
-                    if (currentMedia.type === 'video') {
-                        mediaHTML = `<div class="aspect-[16/9]"><iframe class="w-full h-full" src="${currentMedia.url}" frameborder="0" allow="autoplay; fullscreen; picture-in-picture" allowfullscreen></iframe></div>`;
-                    } else {
-                        mediaHTML = `<div class="aspect-[16/9]"><img src="${currentMedia.url}" class="w-full h-full object-contain"></div>`;
+                navigateMedia(direction) {
+                    const newIndex = this.state.currentMediaIndex + direction;
+                    if (newIndex >= 0 && newIndex < this.state.currentProject.media.length) {
+                        this.state.currentMediaIndex = newIndex;
+                        this.renderModalContent();
                     }
-                    if (this.state.slider.media.length > 1) {
-                        mediaHTML += `
-                            <button onclick="app.navigateSlider(-1)" class="absolute left-2 top-1/2 -translate-y-1/2 bg-black bg-opacity-50 text-white p-2 rounded-full hover:bg-opacity-75 transition-colors"><i data-feather="chevron-left"></i></button>
-                            <button onclick="app.navigateSlider(1)" class="absolute right-2 top-1/2 -translate-y-1/2 bg-black bg-opacity-50 text-white p-2 rounded-full hover:bg-opacity-75 transition-colors"><i data-feather="chevron-right"></i></button>`;
-                    }
-                    mediaDisplay.innerHTML = mediaHTML;
-
-                    if (this.state.slider.media.length > 1) {
-                        const thumbnailsHTML = this.state.slider.media.map((media, index) => {
-                            const borderClass = index === this.state.slider.currentIndex ? 'border-indigo-500' : 'border-transparent';
-                            const icon = media.type === 'video' ? `<i data-feather="youtube" class="w-6 h-6 text-white absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2"></i>` : '';
-                            const thumbnailSrc = media.type === 'video' ? `https://img.youtube.com/vi/${media.url.split('/').pop().split('?')[0]}/mqdefault.jpg` : media.url;
-                            return `<div class="relative cursor-pointer w-24 h-14 flex-shrink-0" onclick="app.jumpToSlide(${index})"><img src="${thumbnailSrc}" class="w-full h-full object-cover rounded border-2 ${borderClass}">${icon}</div>`;
-                        }).join('');
-                        mediaDisplay.insertAdjacentHTML('afterend', `<div class="flex-shrink-0 bg-gray-900 p-2 overflow-x-auto"><div class="flex gap-2">${thumbnailsHTML}</div></div>`);
-                    }
-                    feather.replace();
-                },
-
-                navigateSlider(direction) {
-                    const newIndex = this.state.slider.currentIndex + direction;
-                    const total = this.state.slider.media.length;
-                    if(newIndex < 0) this.state.slider.currentIndex = total - 1;
-                    else if (newIndex >= total) this.state.slider.currentIndex = 0;
-                    else this.state.slider.currentIndex = newIndex;
-                    this.renderModalContent();
-                },
-
-                jumpToSlide(index) {
-                    this.state.slider.currentIndex = index;
-                    this.renderModalContent();
-                },
-
-                // Configura os event listeners
-                setupEventListeners() {
-                    // Navegação
-                    this.elements.mainNav.addEventListener('click', (e) => {
-                        if (e.target.tagName === 'A' && e.target.dataset.target) {
-                            e.preventDefault();
-                            this.switchView(e.target.dataset.target);
-                        }
-                    });
-                    // Modal
-                    window.addEventListener('keydown', (e) => {
-                        if (e.key === 'Escape' && !this.elements.modalContainer.classList.contains('hidden')) {
-                            this.closeModal();
-                        }
-                    });
-                    this.elements.modalContainer.addEventListener('click', (e) => {
-                        if (e.target === this.elements.modalContainer) this.closeModal();
-                    });
                 }
             };
-            window.app = app;
+
             app.init();
         });
     </script>
+
 </body>
 </html>
-
 
