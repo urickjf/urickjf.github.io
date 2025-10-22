@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Portfólio</title>
+    <title>Portfólio - Bernardo Botafogo</title>
 
     <!-- Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
@@ -17,7 +17,7 @@
     <script src="https://unpkg.com/feather-icons"></script>
 
     <style>
-        /* Estilos personalizados e micro-interações */
+        /* Estilos personalizados */
         body {
             font-family: 'Inter', sans-serif;
             background-color: #111827; /* gray-900 */
@@ -26,89 +26,76 @@
 
         /* Efeito de brilho sutil nos títulos */
         .text-glow {
-            text-shadow: 0 0 8px rgba(99, 102, 241, 0.5), 0 0 20px rgba(167, 139, 250, 0.3);
-        }
-
-        /* Mantém a proporção das miniaturas dos projetos */
-        .aspect-16-9 {
-            aspect-ratio: 16 / 9;
+            text-shadow: 0 0 8px rgba(255, 255, 255, 0.2);
         }
         
-        /* Estilos para o modal */
-        #modal-container.hidden {
-            display: none;
+        /* Estilo para links de navegação ativos */
+        .nav-link.active {
+            color: #ffffff;
+            font-weight: 700;
         }
 
-        /* Animação de fade-in para o modal */
-        .modal-fade-in {
-            animation: fadeIn 0.3s ease-out forwards;
-        }
-
-        @keyframes fadeIn {
-            from { opacity: 0; }
-            to { opacity: 1; }
+        /* Mantém a proporção quadrada das miniaturas */
+        .aspect-square {
+            aspect-ratio: 1 / 1;
         }
         
-        /* Animação de fade-out para o modal */
-        .modal-fade-out {
-            animation: fadeOut 0.3s ease-out forwards;
-        }
-        @keyframes fadeOut {
-            from { opacity: 1; }
-            to { opacity: 0; }
-        }
+        /* Animações do Modal */
+        #modal-container.hidden { display: none; }
+        .modal-fade-in { animation: fadeIn 0.3s ease-out forwards; }
+        .modal-fade-out { animation: fadeOut 0.3s ease-out forwards; }
+        @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+        @keyframes fadeOut { from { opacity: 1; } to { opacity: 0; } }
 
         /* Estilo da barra de rolagem */
-        ::-webkit-scrollbar {
-            width: 8px;
-        }
-        ::-webkit-scrollbar-track {
-            background: #1f2937; /* gray-800 */
-        }
-        ::-webkit-scrollbar-thumb {
-            background: #4f46e5; /* indigo-600 */
-            border-radius: 10px;
-        }
-        ::-webkit-scrollbar-thumb:hover {
-            background: #6366f1; /* indigo-500 */
-        }
-
-        /* Oculta o conteúdo principal quando a visão do currículo está ativa */
-        .main-content.hidden {
-            display: none;
-        }
+        ::-webkit-scrollbar { width: 8px; }
+        ::-webkit-scrollbar-track { background: #1f2937; }
+        ::-webkit-scrollbar-thumb { background: #4f46e5; border-radius: 10px; }
+        ::-webkit-scrollbar-thumb:hover { background: #6366f1; }
         
-        /* Oculta a visão do currículo por padrão */
-        .curriculum-view.hidden {
+        /* Esconde as views de conteúdo por padrão */
+        .content-view {
             display: none;
+        }
+        .content-view.active {
+            display: block;
         }
     </style>
 </head>
 <body class="antialiased">
 
-    <div id="app" class="container mx-auto max-w-6xl p-4 sm:p-6 md:p-8">
-        
-        <!-- Mensagem de Erro -->
-        <div id="error-message" class="hidden bg-red-800 border border-red-600 text-white px-4 py-3 rounded-lg relative mb-6" role="alert">
-            <strong class="font-bold">Erro:</strong>
-            <span class="block sm:inline">Não foi possível carregar os dados do portfólio. Verifique o arquivo `data.json`.</span>
-        </div>
+    <div class="flex flex-col md:flex-row min-h-screen">
+        <!-- Sidebar / Header -->
+        <aside class="w-full md:w-64 md:min-h-screen md:fixed md:flex flex-col p-6 bg-gray-900 border-b md:border-b-0 md:border-r border-gray-700 z-10">
+            <div id="sidebar-header" class="flex-grow">
+                <!-- Nome será inserido aqui -->
+            </div>
+            <nav id="main-nav" class="flex-grow my-8 md:my-0">
+                
+                <ul>
+                    <li><a href="#" data-target="projects" class="nav-link text-lg text-gray-400 hover:text-white transition-colors duration-200">Projetos</a></li>
+                    <li><a href="#" data-target="bio" class="nav-link text-lg text-gray-400 hover:text-white transition-colors duration-200">Bio</a></li>
+                    <li><a href="#" data-target="curriculum" class="nav-link text-lg text-gray-400 hover:text-white transition-colors duration-200">Currículo</a></li>
+                </ul>
+            </nav>
+            <footer class="text-sm text-gray-500">
+                
+            </footer>
+        </aside>
 
-        <!-- Conteúdo Principal (Portfólio) -->
-        <main id="main-content" class="main-content">
-            <!-- Seção Perfil -->
-            <header id="profile" class="flex flex-col md:flex-row items-center gap-6 md:gap-10 mb-12 md:mb-16"></header>
+        <!-- Área de Conteúdo Principal -->
+        <main class="w-full md:ml-64 p-4 sm:p-6 md:p-8">
+            <!-- Mensagem de Erro -->
+            <div id="error-message" class="hidden bg-red-800 border border-red-600 text-white px-4 py-3 rounded-lg relative mb-6" role="alert">
+                <strong class="font-bold">Erro:</strong>
+                <span class="block sm:inline">Não foi possível carregar os dados do portfólio. Verifique o arquivo `data.json`.</span>
+            </div>
 
-            <!-- Seção Serviços -->
-            <section id="services" class="mb-12 md:mb-16"></section>
-
-            <!-- Seção Projetos -->
-            <section id="projects"></section>
+            <!-- Views de Conteúdo -->
+            <div id="bio-view" class="content-view"></div>
+            <div id="projects-view" class="content-view"></div>
+            <div id="curriculum-view" class="content-view"></div>
         </main>
-
-        <!-- Visualização do Currículo -->
-        <div id="curriculum-view" class="curriculum-view hidden"></div>
-
     </div>
 
     <!-- Modal para Visualização de Projetos -->
@@ -122,181 +109,135 @@
     <script>
         document.addEventListener('DOMContentLoaded', () => {
             const app = {
-                // Seletores de elementos do DOM
+                // Elementos do DOM
                 elements: {
-                    profile: document.getElementById('profile'),
-                    services: document.getElementById('services'),
-                    projects: document.getElementById('projects'),
+                    sidebarHeader: document.getElementById('sidebar-header'),
+                    mainNav: document.getElementById('main-nav'),
                     errorMessage: document.getElementById('error-message'),
                     modalContainer: document.getElementById('modal-container'),
                     modalContent: document.getElementById('modal-content'),
-                    mainContent: document.getElementById('main-content'),
+                    bioView: document.getElementById('bio-view'),
+                    projectsView: document.getElementById('projects-view'),
                     curriculumView: document.getElementById('curriculum-view'),
                 },
-                // Armazena os dados carregados do JSON
+                // Dados do JSON
                 data: {},
-                // Estado atual do slider no modal
-                sliderState: {
-                    currentIndex: 0,
-                    media: []
+                // Estado do App
+                state: {
+                    currentView: 'projects', // Visão inicial
+                    slider: {
+                        currentIndex: 0,
+                        media: []
+                    }
                 },
 
-                // Função principal de inicialização
+                // Função de inicialização
                 init() {
                     this.loadData();
                     this.setupEventListeners();
-                    this.router(); // Executa o roteador na inicialização
                 },
 
-                // Carrega os dados do arquivo data.json
+                // Carrega dados do data.json
                 async loadData() {
                     try {
                         const response = await fetch('data.json');
-                        if (!response.ok) {
-                            throw new Error(`HTTP error! status: ${response.status}`);
-                        }
+                        if (!response.ok) throw new Error(`HTTP error! status: ${response.status}`);
                         this.data = await response.json();
-                        this.render();
+                        this.renderAll();
+                        this.switchView(this.state.currentView);
                     } catch (error) {
                         console.error("Erro ao carregar data.json:", error);
                         this.elements.errorMessage.classList.remove('hidden');
                     }
                 },
                 
-                // Roteador para alternar entre portfólio e currículo
-                router() {
-                    const hash = window.location.hash;
-                    if (hash === '#curriculo') {
-                        this.elements.mainContent.classList.add('hidden');
-                        this.elements.curriculumView.classList.remove('hidden');
-                        this.renderCurriculum();
-                    } else {
-                        this.elements.mainContent.classList.remove('hidden');
-                        this.elements.curriculumView.classList.add('hidden');
-                        // Renderiza o portfólio se os dados já estiverem carregados
-                        if (this.data.profile) {
-                            this.renderPortfolio();
-                        }
-                    }
-                    window.scrollTo(0, 0);
+                // Renderiza todos os componentes
+                renderAll() {
+                    this.renderSidebar();
+                    this.renderBioView();
+                    this.renderProjectsView();
+                    this.renderCurriculumView();
+                    feather.replace();
                 },
 
-                // Renderiza todas as seções do portfólio
-                render() {
-                    this.router(); // Deixa o roteador decidir o que renderizar
+                // Renderiza o cabeçalho da Sidebar
+                renderSidebar() {
+                    if (!this.data.profile) return;
+                    this.elements.sidebarHeader.innerHTML = `<h1 class="text-3xl font-bold text-white leading-tight">${this.data.profile.name}</h1>`;
                 },
-                
-                renderPortfolio() {
-                    this.renderProfile();
-                    this.renderServices();
-                    this.renderProjects();
-                    feather.replace(); // Atualiza os ícones
-                },
-                
-                // Renderiza a seção de Perfil
-                renderProfile() {
+
+                // Renderiza a view "Bio" (Perfil + Serviços)
+                renderBioView() {
+                    if (!this.data.profile || !this.data.services) return;
                     const { name, jobTitle, photoUrl, bio, contacts } = this.data.profile;
-                    this.elements.profile.innerHTML = `
-                        <img src="${photoUrl}" alt="Foto de ${name}" class="w-32 h-32 md:w-40 md:h-40 rounded-full object-cover border-4 border-indigo-600 shadow-lg">
-                        <div class="text-center md:text-left">
-                            <h1 class="text-4xl md:text-5xl font-extrabold text-white text-glow">${name}</h1>
-                            <h2 class="text-xl md:text-2xl font-medium text-indigo-400 mt-1">${jobTitle}</h2>
-                            <p class="mt-4 max-w-2xl text-gray-400">${bio}</p>
-                            <div class="flex items-center justify-center md:justify-start gap-4 mt-6">
-                                <a href="mailto:${contacts.email}" class="flex items-center gap-2 bg-gray-800 hover:bg-indigo-600 text-white font-bold py-2 px-4 rounded-lg transition-colors duration-300">
-                                    <i data-feather="mail" class="w-5 h-5"></i> E-mail
-                                </a>
-                                <a href="https://wa.me/${contacts.whatsapp}" target="_blank" class="flex items-center gap-2 bg-gray-800 hover:bg-green-500 text-white font-bold py-2 px-4 rounded-lg transition-colors duration-300">
-                                    <i data-feather="message-circle" class="w-5 h-5"></i> WhatsApp
-                                </a>
-                                <a href="#curriculo" class="flex items-center gap-2 bg-gray-800 hover:bg-purple-600 text-white font-bold py-2 px-4 rounded-lg transition-colors duration-300">
-                                    <i data-feather="file-text" class="w-5 h-5"></i> Currículo
-                                </a>
-                            </div>
-                        </div>
-                    `;
-                },
 
-                // Renderiza a seção de Serviços
-                renderServices() {
-                    let servicesHTML = `
-                        <h3 class="text-3xl font-bold text-white text-center mb-8 text-glow">Serviços</h3>
-                        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
-                            ${this.data.services.map(service => `
-                                <div class="bg-gray-800 p-6 rounded-lg border border-gray-700 hover:border-indigo-500 hover:scale-105 transition-all duration-300">
-                                    <i data-feather="${service.icon}" class="w-10 h-10 text-indigo-400 mb-4"></i>
-                                    <h4 class="text-xl font-bold text-white">${service.title}</h4>
-                                    <p class="text-gray-400 mt-2 hidden sm:block">${service.description}</p>
+                    this.elements.bioView.innerHTML = `
+                        <!-- Seção Perfil -->
+                        <section class="flex flex-col md:flex-row items-center gap-6 md:gap-10 mb-12 md:mb-16">
+                             <img src="${photoUrl}" alt="Foto de ${name}" class="w-32 h-32 md:w-40 md:h-40 rounded-full object-cover border-4 border-indigo-600 shadow-lg">
+                            <div class="text-center md:text-left">
+                                <h2 class="text-4xl md:text-5xl font-extrabold text-white text-glow">${name}</h2>
+                                <h3 class="text-xl md:text-2xl font-medium text-indigo-400 mt-1">${jobTitle}</h3>
+                                <p class="mt-4 max-w-2xl text-gray-400">${bio}</p>
+                                <div class="flex items-center justify-center md:justify-start gap-4 mt-6">
+                                    <a href="mailto:${contacts.email}" class="flex items-center gap-2 bg-gray-800 hover:bg-indigo-600 text-white font-bold py-2 px-4 rounded-lg transition-colors duration-300">
+                                        <i data-feather="mail" class="w-5 h-5"></i> E-mail
+                                    </a>
+                                    <a href="https://wa.me/${contacts.whatsapp}" target="_blank" class="flex items-center gap-2 bg-gray-800 hover:bg-green-500 text-white font-bold py-2 px-4 rounded-lg transition-colors duration-300">
+                                        <i data-feather="message-circle" class="w-5 h-5"></i> WhatsApp
+                                    </a>
                                 </div>
-                            `).join('')}
-                        </div>
+                            </div>
+                        </section>
+                        <!-- Seção Serviços -->
+                        <section>
+                             <h3 class="text-3xl font-bold text-white text-center mb-8 text-glow">Serviços</h3>
+                            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-2 gap-6">
+                                ${this.data.services.map(service => `
+                                    <div class="bg-gray-800 p-6 rounded-lg border border-gray-700 hover:border-indigo-500 transition-colors duration-300">
+                                        <i data-feather="${service.icon}" class="w-10 h-10 text-indigo-400 mb-4"></i>
+                                        <h4 class="text-xl font-bold text-white">${service.title}</h4>
+                                        <p class="text-gray-400 mt-2">${service.description}</p>
+                                    </div>
+                                `).join('')}
+                            </div>
+                        </section>
                     `;
-                    this.elements.services.innerHTML = servicesHTML;
                 },
 
-                // Renderiza a seção de Projetos
-                renderProjects() {
-                    let projectsHTML = `
-                        <h3 class="text-3xl font-bold text-white text-center mb-8 text-glow">Projetos</h3>
-                        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+                // Renderiza a view de Projetos
+                renderProjectsView() {
+                    if (!this.data.projects) return;
+                    this.elements.projectsView.innerHTML = `
+                        <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-2 sm:gap-4">
                             ${this.data.projects.map((project, index) => `
-                                <div class="group relative rounded-lg overflow-hidden cursor-pointer" onclick="app.showModal(${index})">
-                                    <img src="${project.thumbnail}" alt="${project.title}" class="aspect-16-9 w-full h-full object-cover group-hover:scale-110 transition-transform duration-300">
-                                    <div class="absolute inset-0 bg-black bg-opacity-50 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                                <div class="group relative rounded-md overflow-hidden cursor-pointer" onclick="app.showModal(${index})">
+                                    <img src="${project.thumbnail}" alt="${project.title}" class="aspect-square w-full h-full object-cover group-hover:scale-110 transition-transform duration-300">
+                                    <div class="absolute inset-0 bg-black bg-opacity-60 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300">
                                         <h4 class="text-white text-lg font-bold text-center p-4">${project.title}</h4>
                                     </div>
                                 </div>
                             `).join('')}
                         </div>
                     `;
-                    this.elements.projects.innerHTML = projectsHTML;
                 },
-                
-                // Renderiza a página de Currículo
-                renderCurriculum() {
+
+                // Renderiza a view de Currículo
+                renderCurriculumView() {
                     if (!this.data.curriculum) return;
                     const { summary, contact, experience, education, skills, tools, courses, hobbies } = this.data.curriculum;
-                    
                     const renderSection = (title, content) => {
                         if(!content || (Array.isArray(content) && content.length === 0)) return '';
-                        return `
-                            <div class="mb-8">
-                                <h3 class="text-2xl font-bold text-indigo-400 border-b-2 border-indigo-500 pb-2 mb-4">${title}</h3>
-                                ${content}
-                            </div>
-                        `;
+                        return `<div class="mb-8"><h3 class="text-2xl font-bold text-indigo-400 border-b-2 border-indigo-500 pb-2 mb-4">${title}</h3>${content}</div>`;
                     };
-
-                    const experienceContent = experience.map(exp => `
-                        <div class="mb-4">
-                            <h4 class="text-xl font-semibold text-white">${exp.role}</h4>
-                            <p class="text-md text-gray-400">${exp.company} | ${exp.period}</p>
-                            <p class="text-gray-400 mt-2">${exp.description}</p>
-                        </div>
-                    `).join('');
-
-                    const educationContent = education.map(edu => `
-                        <div class="mb-4">
-                            <h4 class="text-xl font-semibold text-white">${edu.course}</h4>
-                            <p class="text-md text-gray-400">${edu.institution} | ${edu.period}</p>
-                        </div>
-                    `).join('');
-                    
-                    const coursesContent = courses.map(course => `
-                        <p class="text-gray-300 mb-2"><span class="font-semibold text-white">${course.name}</span> - ${course.institution}</p>
-                    `).join('');
-
+                    const experienceContent = experience.map(exp => `<div class="mb-4"><h4 class="text-xl font-semibold text-white">${exp.role}</h4><p class="text-md text-gray-400">${exp.company} | ${exp.period}</p><p class="text-gray-400 mt-2">${exp.description}</p></div>`).join('');
+                    const educationContent = education.map(edu => `<div class="mb-4"><h4 class="text-xl font-semibold text-white">${edu.course}</h4><p class="text-md text-gray-400">${edu.institution} | ${edu.period}</p></div>`).join('');
+                    const coursesContent = courses.map(course => `<p class="text-gray-300 mb-2"><span class="font-semibold text-white">${course.name}</span> - ${course.institution}</p>`).join('');
                     const listContent = (items) => `<div class="flex flex-wrap gap-2">${items.map(item => `<span class="bg-gray-700 text-indigo-300 text-sm font-medium px-3 py-1 rounded-full">${item}</span>`).join('')}</div>`;
 
                     this.elements.curriculumView.innerHTML = `
                         <div class="bg-gray-800 p-6 sm:p-8 rounded-lg border border-gray-700">
-                             <div class="flex justify-between items-center mb-8">
-                                <h2 class="text-4xl font-extrabold text-white text-glow">Currículo</h2>
-                                <a href="#" class="flex items-center gap-2 bg-indigo-600 hover:bg-indigo-700 text-white font-bold py-2 px-4 rounded-lg transition-colors duration-300">
-                                    <i data-feather="arrow-left" class="w-5 h-5"></i> Voltar
-                                </a>
-                            </div>
-
+                             <h2 class="text-4xl font-extrabold text-white text-glow mb-8">Currículo</h2>
                             ${renderSection('Resumo', `<p class="text-gray-300">${summary}</p>`)}
                             ${renderSection('Contato', `<p class="text-gray-300"><strong>Email:</strong> ${contact.email} | <strong>Telefone:</strong> ${contact.phone} | <strong>Website:</strong> ${contact.website}</p>`)}
                             ${renderSection('Experiência Profissional', experienceContent)}
@@ -305,18 +246,50 @@
                             ${renderSection('Ferramentas', listContent(tools))}
                             ${renderSection('Cursos e Certificações', coursesContent)}
                             ${renderSection('Hobbies e Interesses', `<p class="text-gray-300">${hobbies.join(', ')}</p>`)}
-                        </div>
-                    `;
-                    feather.replace();
+                        </div>`;
+                },
+                
+                // Lógica de navegação entre views
+                switchView(targetId) {
+                    this.state.currentView = targetId;
+                    
+                    // Esconde todas as views
+                    document.querySelectorAll('.content-view').forEach(view => view.classList.remove('active'));
+                    
+                    // Mostra a view alvo
+                    const targetView = document.getElementById(`${targetId}-view`);
+                    if (targetView) targetView.classList.add('active');
+
+                    // Atualiza o estado ativo dos links
+                    document.querySelectorAll('.nav-link').forEach(link => {
+                        link.classList.remove('active');
+                        if (link.dataset.target === targetId) {
+                            link.classList.add('active');
+                        }
+                    });
+                    window.scrollTo(0, 0);
                 },
 
-                // Mostra o modal com os detalhes do projeto
+                // Mostra o modal do projeto
                 showModal(index) {
                     const project = this.data.projects[index];
-                    this.sliderState.media = project.media;
-                    this.sliderState.currentIndex = 0;
+                    this.state.slider.media = project.media;
+                    this.state.slider.currentIndex = 0;
 
-                    let modalHTML = `
+                    this.elements.modalContainer.classList.remove('hidden');
+                    this.elements.modalContainer.classList.remove('modal-fade-out');
+                    this.elements.modalContainer.classList.add('modal-fade-in');
+                    document.body.style.overflow = 'hidden';
+                    
+                    this.renderModalContent();
+                },
+                
+                // Renderiza o conteúdo interno do modal
+                renderModalContent() {
+                    const project = this.data.projects.find(p => p.media === this.state.slider.media);
+                    if(!project) return;
+                    
+                    this.elements.modalContent.innerHTML = `
                         <button onclick="app.closeModal()" class="absolute top-3 right-3 text-gray-400 hover:text-white z-20">
                             <i data-feather="x" class="w-8 h-8"></i>
                         </button>
@@ -324,149 +297,92 @@
                             <h3 class="text-3xl font-bold text-white mb-4 text-glow">${project.title}</h3>
                             <p class="text-gray-400 mb-6">${project.description}</p>
                         </div>
-                        <div id="media-display" class="relative w-full bg-black flex-shrink-0">
-                            <!-- A mídia será inserida aqui -->
-                        </div>
+                        <div id="media-display" class="relative w-full bg-black flex-shrink-0"></div>
                     `;
-                    this.elements.modalContent.innerHTML = modalHTML;
-                    
                     this.updateSlider();
-                    feather.replace();
-
-                    this.elements.modalContainer.classList.remove('hidden');
-                    this.elements.modalContainer.classList.add('modal-fade-in');
-                    this.elements.modalContainer.classList.remove('modal-fade-out');
-                    document.body.style.overflow = 'hidden'; // Impede o scroll do fundo
                 },
                 
                 // Fecha o modal
                 closeModal() {
                     this.elements.modalContainer.classList.add('modal-fade-out');
                     this.elements.modalContainer.classList.remove('modal-fade-in');
-
-                    // Aguarda o fim da animação para esconder o elemento
                     setTimeout(() => {
                         this.elements.modalContainer.classList.add('hidden');
                         document.body.style.overflow = 'auto';
-                        this.elements.modalContent.innerHTML = ''; // Limpa o conteúdo
+                        this.elements.modalContent.innerHTML = '';
                     }, 300);
                 },
                 
-                // Atualiza o conteúdo do slider (mídia principal, botões e thumbs)
+                // Atualiza o slider de mídia no modal
                 updateSlider() {
                     const mediaDisplay = document.getElementById('media-display');
                     if (!mediaDisplay) return;
 
-                    const currentMedia = this.sliderState.media[this.sliderState.currentIndex];
+                    const currentMedia = this.state.slider.media[this.state.slider.currentIndex];
                     let mediaHTML = '';
-
                     if (currentMedia.type === 'video') {
-                        mediaHTML = `<div class="aspect-16-9"><iframe class="w-full h-full" src="${currentMedia.url}" frameborder="0" allow="autoplay; fullscreen; picture-in-picture" allowfullscreen></iframe></div>`;
+                        mediaHTML = `<div class="aspect-[16/9]"><iframe class="w-full h-full" src="${currentMedia.url}" frameborder="0" allow="autoplay; fullscreen; picture-in-picture" allowfullscreen></iframe></div>`;
                     } else {
-                        mediaHTML = `<div class="aspect-16-9"><img src="${currentMedia.url}" class="w-full h-full object-contain"></div>`;
+                        mediaHTML = `<div class="aspect-[16/9]"><img src="${currentMedia.url}" class="w-full h-full object-contain"></div>`;
                     }
-                    
-                    // Adiciona botões de navegação se houver mais de uma mídia
-                    if (this.sliderState.media.length > 1) {
+                    if (this.state.slider.media.length > 1) {
                         mediaHTML += `
                             <button onclick="app.navigateSlider(-1)" class="absolute left-2 top-1/2 -translate-y-1/2 bg-black bg-opacity-50 text-white p-2 rounded-full hover:bg-opacity-75 transition-colors"><i data-feather="chevron-left"></i></button>
-                            <button onclick="app.navigateSlider(1)" class="absolute right-2 top-1/2 -translate-y-1/2 bg-black bg-opacity-50 text-white p-2 rounded-full hover:bg-opacity-75 transition-colors"><i data-feather="chevron-right"></i></button>
-                        `;
+                            <button onclick="app.navigateSlider(1)" class="absolute right-2 top-1/2 -translate-y-1/2 bg-black bg-opacity-50 text-white p-2 rounded-full hover:bg-opacity-75 transition-colors"><i data-feather="chevron-right"></i></button>`;
                     }
-                    
                     mediaDisplay.innerHTML = mediaHTML;
-                    
-                    // Adiciona a galeria de miniaturas se houver mais de uma mídia
-                    if (this.sliderState.media.length > 1) {
-                        const thumbnailsHTML = this.sliderState.media.map((media, index) => {
-                            const borderClass = index === this.sliderState.currentIndex ? 'border-indigo-500' : 'border-transparent';
+
+                    if (this.state.slider.media.length > 1) {
+                        const thumbnailsHTML = this.state.slider.media.map((media, index) => {
+                            const borderClass = index === this.state.slider.currentIndex ? 'border-indigo-500' : 'border-transparent';
                             const icon = media.type === 'video' ? `<i data-feather="youtube" class="w-6 h-6 text-white absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2"></i>` : '';
                             const thumbnailSrc = media.type === 'video' ? `https://img.youtube.com/vi/${media.url.split('/').pop().split('?')[0]}/mqdefault.jpg` : media.url;
-                            
-                            return `<div class="relative cursor-pointer w-24 h-14 flex-shrink-0" onclick="app.jumpToSlide(${index})">
-                                        <img src="${thumbnailSrc}" class="w-full h-full object-cover rounded border-2 ${borderClass}">
-                                        ${icon}
-                                    </div>`;
+                            return `<div class="relative cursor-pointer w-24 h-14 flex-shrink-0" onclick="app.jumpToSlide(${index})"><img src="${thumbnailSrc}" class="w-full h-full object-cover rounded border-2 ${borderClass}">${icon}</div>`;
                         }).join('');
-
-                        mediaDisplay.insertAdjacentHTML('afterend', `
-                            <div class="flex-shrink-0 bg-gray-900 p-2 overflow-x-auto">
-                                <div class="flex gap-2">${thumbnailsHTML}</div>
-                            </div>
-                        `);
+                        mediaDisplay.insertAdjacentHTML('afterend', `<div class="flex-shrink-0 bg-gray-900 p-2 overflow-x-auto"><div class="flex gap-2">${thumbnailsHTML}</div></div>`);
                     }
-                    
                     feather.replace();
                 },
 
-                // Navega para o slide anterior ou próximo
                 navigateSlider(direction) {
-                    const newIndex = this.sliderState.currentIndex + direction;
-                    const total = this.sliderState.media.length;
-                    
-                    if(newIndex < 0) {
-                        this.sliderState.currentIndex = total - 1;
-                    } else if (newIndex >= total) {
-                        this.sliderState.currentIndex = 0;
-                    } else {
-                        this.sliderState.currentIndex = newIndex;
-                    }
-                    this.refreshModalContent();
+                    const newIndex = this.state.slider.currentIndex + direction;
+                    const total = this.state.slider.media.length;
+                    if(newIndex < 0) this.state.slider.currentIndex = total - 1;
+                    else if (newIndex >= total) this.state.slider.currentIndex = 0;
+                    else this.state.slider.currentIndex = newIndex;
+                    this.renderModalContent();
                 },
 
-                // Salta para um slide específico
                 jumpToSlide(index) {
-                    this.sliderState.currentIndex = index;
-                    this.refreshModalContent();
-                },
-                
-                // Re-renderiza o conteúdo do modal para refletir a mudança de slide
-                refreshModalContent() {
-                    const projectIndex = this.data.projects.findIndex(p => p.media === this.sliderState.media);
-                    if (projectIndex !== -1) {
-                        const project = this.data.projects[projectIndex];
-                         let modalHTML = `
-                            <button onclick="app.closeModal()" class="absolute top-3 right-3 text-gray-400 hover:text-white z-20">
-                                <i data-feather="x" class="w-8 h-8"></i>
-                            </button>
-                            <div class="p-6 md:p-8 flex-grow overflow-y-auto">
-                                <h3 class="text-3xl font-bold text-white mb-4 text-glow">${project.title}</h3>
-                                <p class="text-gray-400 mb-6">${project.description}</p>
-                            </div>
-                            <div id="media-display" class="relative w-full bg-black flex-shrink-0">
-                                <!-- A mídia será inserida aqui -->
-                            </div>
-                        `;
-                        this.elements.modalContent.innerHTML = modalHTML;
-                        this.updateSlider();
-                    }
+                    this.state.slider.currentIndex = index;
+                    this.renderModalContent();
                 },
 
-                // Configura os event listeners globais
+                // Configura os event listeners
                 setupEventListeners() {
-                    // Fechar modal com a tecla 'Esc'
+                    // Navegação
+                    this.elements.mainNav.addEventListener('click', (e) => {
+                        if (e.target.tagName === 'A' && e.target.dataset.target) {
+                            e.preventDefault();
+                            this.switchView(e.target.dataset.target);
+                        }
+                    });
+                    // Modal
                     window.addEventListener('keydown', (e) => {
                         if (e.key === 'Escape' && !this.elements.modalContainer.classList.contains('hidden')) {
                             this.closeModal();
                         }
                     });
-
-                    // Fechar modal ao clicar no fundo
                     this.elements.modalContainer.addEventListener('click', (e) => {
-                        if (e.target === this.elements.modalContainer) {
-                            this.closeModal();
-                        }
+                        if (e.target === this.elements.modalContainer) this.closeModal();
                     });
-                    
-                    // Monitorar mudanças na hash da URL para o roteador
-                    window.addEventListener('hashchange', () => this.router());
                 }
             };
-
-            // Inicia a aplicação
             window.app = app;
             app.init();
         });
     </script>
 </body>
 </html>
+
+
