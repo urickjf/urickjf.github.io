@@ -51,6 +51,20 @@
             transform: translateY(0);
             display: block;
         }
+        /* AJUSTE: Reduzir padding superior do main */
+        main {
+            padding-top: 1rem; /* Equivalente a p-4 */
+        }
+        @media (min-width: 640px) { /* sm */
+            main {
+                padding-top: 1.5rem; /* Equivalente a sm:p-6 */
+            }
+        }
+         @media (min-width: 768px) { /* md */
+            main {
+                padding-top: 2rem; /* Equivalente a md:p-8, mas só top */
+            }
+        }
     </style>
 </head>
 <body class="antialiased md:pl-64"> <!-- CORREÇÃO: Aplicado padding no body em desktop -->
@@ -86,7 +100,7 @@
                 </nav>
             </header>
 
-            <!-- Área de Conteúdo Principal --><main class="w-full p-4 sm:p-6 md:p-8">
+            <!-- Área de Conteúdo Principal --><main class="w-full px-4 pb-4 sm:px-6 sm:pb-6 md:px-8 md:pb-8"> <!-- AJUSTE: Removido padding-top daqui -->
 
                 <!-- Views de Conteúdo --><div id="projects-view" class="content-view">
                     <!-- Placeholder Projetos --><div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-2 sm:gap-4">
