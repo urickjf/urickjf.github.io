@@ -10,53 +10,45 @@
       "phone": "(24) 97405-6483"
     }
   },
-  "services": [
-    {
-      "icon": "camera",
-      "title": "Fotografia & Filmagem",
-      "description": "Captação de imagem e vídeo para eventos, ensaios e projetos audiovisuais, com foco na qualidade e narrativa visual."
-    },
-    {
-      "icon": "video",
-      "title": "Edição e Pós-Produção",
-      "description": "Edição de vídeo, tratamento de cor, motion graphics e efeitos especiais para transformar suas ideias em peças impactantes."
-    }
-  ],
   "projects": [
     {
+      "enabled": true,
       "title": "Canais do YouTube",
       "description": "Produção de conteúdo para diversos canais do YouTube, incluindo roteiro, pesquisa, artes, edição, animações e locução.",
       "thumbnail": "https://i.ytimg.com/vi/Cq4IOx-FAPE/hqdefault.jpg",
       "media": [
-        { "type": "video", "url": "https://www.youtube.com/embed/Cq4IOx-FAPE" },
-        { "type": "video", "url": "https://www.youtube.com/embed/193bNKiKQGc" },
-        { "type": "video", "url": "https://www.youtube.com/embed/ytAdKLAPzGU" },
-        { "type": "video", "url": "https://www.youtube.com/embed/PZ3YYWKlDmE" },
-        { "type": "video", "url": "https://www.youtube.com/embed/MJN8DCs-seM" },
-        { "type": "video", "url": "https://www.youtube.com/embed/bJ25ebDopBQ" },
-        { "type": "video", "url": "https://www.youtube.com/embed/O0XUtU_0GoM" },
-        { "type": "video", "url": "https://www.youtube.com/embed/xAc0dH7_s20" }
+        { "type": "video", "url": "https://www.youtube.com/embed/Cq4IOx-FAPE", "thumbnail": "https://i.ytimg.com/vi/Cq4IOx-FAPE/hqdefault.jpg" },
+        { "type": "video", "url": "https://www.youtube.com/embed/193bNKiKQGc", "thumbnail": "https://i.ytimg.com/vi/193bNKiKQGc/hqdefault.jpg" },
+        { "type": "video", "url": "https://www.youtube.com/embed/ytAdKLAPzGU", "thumbnail": "https://i.ytimg.com/vi/ytAdKLAPzGU/hqdefault.jpg" },
+        { "type": "video", "url": "https://www.youtube.com/embed/PZ3YYWKlDmE", "thumbnail": "https://i.ytimg.com/vi/PZ3YYWKlDmE/hqdefault.jpg" },
+        { "type": "video", "url": "https://www.youtube.com/embed/MJN8DCs-seM", "thumbnail": "https://i.ytimg.com/vi/MJN8DCs-seM/hqdefault.jpg" },
+        { "type": "video", "url": "https://www.youtube.com/embed/bJ25ebDopBQ", "thumbnail": "https://i.ytimg.com/vi/bJ25ebDopBQ/hqdefault.jpg" },
+        { "type": "video", "url": "https://www.youtube.com/embed/O0XUtU_0GoM", "thumbnail": "https://i.ytimg.com/vi/O0XUtU_0GoM/hqdefault.jpg" },
+        { "type": "video", "url": "https://www.youtube.com/embed/xAc0dH7_s20", "thumbnail": "https://i.ytimg.com/vi/xAc0dH7_s20/hqdefault.jpg" }
       ]
     },
     {
+      "enabled": true,
       "title": "Propaganda",
       "description": "Criação de vídeos publicitários, desde a concepção da ideia até a edição final, para marcas e eventos.",
       "thumbnail": "https://i.ytimg.com/vi/gxHxaNM6r8s/hqdefault.jpg",
       "media": [
-        { "type": "video", "url": "https://www.youtube.com/embed/gxHxaNM6r8s" },
-        { "type": "video", "url": "https://www.youtube.com/embed/eOhgGvFGfy8" }
+        { "type": "video", "url": "https://www.youtube.com/embed/gxHxaNM6r8s", "thumbnail": "https://i.ytimg.com/vi/gxHxaNM6r8s/hqdefault.jpg" },
+        { "type": "video", "url": "https://www.youtube.com/embed/eOhgGvFGfy8", "thumbnail": "https://i.ytimg.com/vi/eOhgGvFGfy8/hqdefault.jpg" }
       ]
     },
     {
+      "enabled": true,
       "title": "Eventos",
       "description": "Cobertura audiovisual de eventos, com especialidade em vídeos que capturam a transformação e a energia do momento.",
       "thumbnail": "https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEjSyE4ZjnlOygUTPSkHyrFGDRtYg15F-Al8o51uPx4CfyzLwE4kcOGtcWbyPYoXZUvrzHhFwSgJDPHbvwcEtHBqYjX1qEPFwdbVJgw4xUQuKwAvsY4pxVWpGGTuRJm4F6TCZEnoM2HfPQ/s1600/DSC00702.jpeg",
       "media": [
-        { "type": "video", "url": "https://www.youtube.com/embed/eOhgGvFGfy8" },
-        { "type": "video", "url": "https://www.youtube.com/embed/vG-zQPAqT6A" }
+        { "type": "video", "url": "https://www.youtube.com/embed/eOhgGvFGfy8", "thumbnail": "https://i.ytimg.com/vi/eOhgGvFGfy8/hqdefault.jpg" },
+        { "type": "video", "url": "https://www.youtube.com/embed/vG-zQPAqT6A", "thumbnail": "https://i.ytimg.com/vi/vG-zQPAqT6A/hqdefault.jpg" }
       ]
     },
     {
+      "enabled": true,
       "title": "Fotografia de Produto (Still)",
       "description": "Fotografia de produtos (Still) para diversas finalidades, desde alimentos até peças de cerâmica, com foco em destacar os detalhes e a qualidade.",
       "thumbnail": "https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEgz509eNvZ19wUwVuWqr2he8mWBFUdZWXYxc93-ynTMMReh7b46wCdlU-OXbdancRZdNoKV8Z2mzc6I6lmVJ1adL9IBefQEetG8UklGsY3ul-o2_IniOEES8klthmIfqpu7vcDJM3APAQ/s1600/jubolinha.cadernos_27582150_280261919171533_2056272342362882048_n.jpg",
@@ -64,49 +56,52 @@
         { "type": "image", "url": "https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEgz509eNvZ19wUwVuWqr2he8mWBFUdZWXYxc93-ynTMMReh7b46wCdlU-OXbdancRZdNoKV8Z2mzc6I6lmVJ1adL9IBefQEetG8UklGsY3ul-o2_IniOEES8klthmIfqpu7vcDJM3APAQ/s1600/jubolinha.cadernos_27582150_280261919171533_2056272342362882048_n.jpg" },
         { "type": "image", "url": "https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEhCz1GdL5pnc0S1hB0tTvBpKqwe2f2zBXsexLa57UgNNHcx1L0bCzzokjcyk5it7o0EM8jUFKXtvJJxe_0_j_Qy6EaaOql1JIwJE1ddVWbMHX4FzBn22_fM9gEZBg2uLq2bBSD3b0ZeEQ/s1600/WhatsApp+Image+2018-12-20+at+17.22.39.jpeg" },
         { "type": "image", "url": "https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEhpA3ETz7JV2efnCVog0IIUGRbaAJMw4UWVxNptl9NPOPUw-_eeg5Ahyphenhyphen6qS1CDcpH2ppnb1jbVwVonF2JQZWf_CBn9nBjC2lSC-eaAcwk542dUmfecqiek68A5Z0P5b65JpycCb5e_Gog/s1600/bernardobotafogo_22221015_283703642117591_6089397468263350272_n.jpg" },
-        { "type": "image", "url": "https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEhieQ-4HpkTeZNXvGF7L3K2vc6JP68GQ6WhxCDSENPnBB2B7Rz6S23peYkVFBJexsSBbQJuREN4JVeh0AQuJj7313S8f2Qpxpla4W6Tqx285AGGDa3zcWpWKjNJE3mQX01J7d5geo3zsw/s1600/bernardobotafogo_31270424_2045604535726934_348753431789305856_n.jpg" },
+        { "type": "image", "url": "https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEhieQ-4HpkTeZNXvGF7L3K2vc6JP68GQ6WhxCDSENPnBB2B7Rz6S23peYkVFBJexsSBbQJuREN4JVeh0AQuJj7313S8f2Qpxpla4W6Tqx285AGGDa3zcWpWKjNJE3mQX01J7d5geo3zsw/s1600/bernardobotafogo_31270424_2045604535726934_348753431789305656_n.jpg" },
         { "type": "image", "url": "https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEjo9kg25jCaj2dnV7tXJropUhmdKOGpUJDL6IcPP7o1NGR6bqCCd5wAUUae50EvmXMtq4R6oQPgf8tk9yVfjUn9GDSdnmcZlQdqJiY1bQwYxPI-boisYmgaPpjlzp3GEJ5DRNM6cbnAxQ/s1600/DSC01907.jpg" },
         { "type": "image", "url": "https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEjorJH_oczjjO3PuSx_h7QS4g4ffthJyU1-ySSnvZjrNzM2p_n_Yu3U_NWR_hOwLtze0cQ0KFeB8xXMcUl00zslKJ8L81vUhWAb1u4rvy1TVWGsvhyA7fsLj6_eMl1nNmPE5nb6gPjP2Q/s1600/bernardobotafogo_28152215_342772286217990_2691797029654364160_n.jpg" }
       ]
     }
   ],
   "curriculum": {
-    "summary": "Profissional de audiovisual com 14 anos de experiência em cinema e fotografia. Expertise na condução de projetos completos (end-to-end), desde o roteiro, produção e filmagem até a pós-produção (edição e efeitos especiais). Atua também como consultor para produtores de conteúdo iniciantes (YouTube, cinema, publicidade) e possui experiência em design gráfico e criação de conteúdo para redes sociais.",
-    "contact": {
+    "name": "Bernardo Botafogo",
+    "role": "Fotógrafo e Editor",
+    "photo": "https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEgisBTlbze9Ny8Mj_uQPylqNOxCLMrVzPbf-B3_OCJ5CTWOipVuMp0KvetCU-Am5zv1vDCDNUwCiangy8tu03SERJaaT3IR_TBsVR5KglXS7-eg4CmZvdtIxM5RhtXRVJrOjyWnEb157qVrsiw0vTxQxlsNwHy8ATWB2ahYAH1HQ2R8EGyf9sZnBcMccA/s1600/eu.png",
+    "personalInfo": "Profissional de audiovisual com 14 anos de experiência em cinema e fotografia. Expertise na condução de projetos completos (end-to-end), desde o roteiro, produção e filmagem até a pós-produção (edição e efeitos especiais). Atua também como consultor para produtores de conteúdo iniciantes (YouTube, cinema, publicidade) e possui experiência em design gráfico e criação de conteúdo para redes sociais.",
+    "contacts": {
       "email": "bmbotafogo86@gmail.com",
       "phone": "(24) 97405-6483",
       "website": "http://www.bernardobotafogo.com.br"
     },
     "experience": [
       {
-        "role": "Editor de vídeo, gerente de mídias sociais e design",
+        "title": "Editor de vídeo, gerente de mídias sociais e design",
         "company": "Medo e Delírio em Brasília",
-        "period": "Novembro de 2020 - Dezembro 2024",
+        "date": "Novembro de 2020 - Dezembro 2024",
         "description": "Cuidava de toda a produção de conteúdo para as redes desde imagens para posts e vídeos para o Canal do youtube, tiktok, instagram e telegram."
       },
       {
-        "role": "Fotografo, cameraman e editor",
+        "title": "Fotografo, cameraman e editor",
         "company": "Ovnipix conteúdo WEB LTDA",
-        "period": "Setembro de 2014 - Outubro de 2017",
+        "date": "Setembro de 2014 - Outubro de 2017",
         "description": "Fiz a captação e edição de coberturas para eventos, canais do youtube como (Reynold Romão e David Mafra), Locução de comerciais para rádio, e drops de conteúdo para redes sociais do portal."
       },
       {
-        "role": "Editor de Video, Cameraman e redes sociais",
+        "title": "Editor de Video, Cameraman e redes sociais",
         "company": "Nerdice.com",
-        "period": "Março de 2010 - Agosto de 2017",
+        "date": "Março de 2010 - Agosto de 2017",
         "description": "Fiz a captação e edição de todo o material audiovisual dos canais do portal Nerdice.com. Fiz também a alimentação com drops de conteúdo nas redes sociais do portal."
       }
     ],
     "education": [
       {
-        "course": "Tecnólogo de WEB (Superior incompleto)",
+        "degree": "Tecnólogo de WEB (Superior incompleto)",
         "institution": "CEFET-RJ",
-        "period": "2008 - 2010"
+        "date": "2008 - 2010"
       },
       {
-        "course": "Técnico em Informática",
+        "degree": "Técnico em Informática",
         "institution": "Liceu São José de Itaipava",
-        "period": "2004"
+        "date": "2004"
       }
     ],
     "skills": [
@@ -144,6 +139,4 @@
     ]
   }
 }
-
-
 
