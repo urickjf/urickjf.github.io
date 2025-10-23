@@ -38,6 +38,19 @@
             -ms-overflow-style: none;
             scrollbar-width: none;
         }
+
+        /* NOVAS CLASSES DE TRANSIÇÃO DE VIEW */
+        .content-view {
+            transition: opacity 0.25s ease-out, transform 0.25s ease-out;
+            opacity: 0;
+            transform: translateY(15px);
+            display: none; /* Começa escondido por padrão */
+        }
+        .content-view.active {
+            opacity: 1;
+            transform: translateY(0);
+            display: block;
+        }
     </style>
 </head>
 <body class="antialiased">
@@ -151,7 +164,7 @@
                         // Se carregar com sucesso, renderiza o conteúdo
                         this.addEventListeners();
                         this.renderAll();
-                        this.switchView(this.state.currentView);
+                        this.switchView(this.state.currentView, true); // true = primeira carga
 
                     } catch (error) {
                         // Se falhar, renderiza a mensagem de erro visual
@@ -253,6 +266,9 @@
                 renderCurriculumView() {
                     if (!this.data.curriculum) return;
                     const cv = this.data.curriculum;
+                    
+                    // Verificação para garantir que cv.contacts exista
+                    const contacts = cv.contacts || {};
 
                     const renderList = (title, items) => {
                         if (!items || items.length === 0) return '';
@@ -274,9 +290,9 @@
                                     <h2 class="text-4xl font-extrabold text-white">${cv.name}</h2>
                                     <h3 class="text-2xl font-medium text-indigo-400">${cv.role}</h3>
                                     <div class="flex flex-wrap justify-center sm:justify-start gap-x-6 gap-y-2 text-gray-400 mt-4">
-                                        <span><i data-feather="mail" class="w-4 h-4 inline-block -mt-1 mr-1"></i> ${cv.contacts.email}</span>
-                                        <span><i data-feather="phone" class="w-4 h-4 inline-block -mt-1 mr-1"></i> ${cv.contacts.phone}</span>
-                                        <span><i data-feather="globe" class="w-4 h-4 inline-block -mt-1 mr-1"></i> ${cv.contacts.website}</span>
+                                        ${contacts.email ? `<span><i data-feather="mail" class="w-4 h-4 inline-block -mt-1 mr-1"></i> ${contacts.email}</span>` : ''}
+                                        ${contacts.phone ? `<span><i data-feather="phone" class="w-4 h-4 inline-block -mt-1 mr-1"></i> ${contacts.phone}</span>` : ''}
+                                        ${contacts.website ? `<span><i data-feather="globe" class="w-4 h-4 inline-block -mt-1 mr-1"></i> ${contacts.website}</span>` : ''}
                                     </div>
                                 </div>
                             </div>
@@ -334,18 +350,39 @@
                     `;
                 },
 
-                // Lógica de navegação
-                switchView(view) {
-                    this.state.currentView = view;
-                    document.querySelectorAll('.content-view').forEach(v => {
-                        v.style.display = 'none';
-                    });
+                // Lógica de navegação (MODIFICADA para transição)
+                switchView(view, isFirstLoad = false) {
+                    // Não faz nada se clicar na view que já está ativa
+                    if (!isFirstLoad && view === this.state.currentView) return; 
+
+                    let oldView = null;
+                    if (this.state.currentView && this.elements[this.state.currentView + 'View']) {
+                         oldView = this.elements[this.state.currentView + 'View'];
+                    }
                     
-                    if (this.elements[view + 'View']) {
-                        this.elements[view + 'View'].style.display = 'block';
+                    const newView = this.elements[view + 'View'];
+
+                    // Esconde a view antiga (se houver)
+                    if (oldView) {
+                        oldView.classList.remove('active');
+                        // Espera a transição para esconder (CSS transition duration)
+                        setTimeout(() => {
+                            if (this.state.currentView !== view) { // Garante que não é a view atual
+                                 oldView.style.display = 'none';
+                            }
+                        }, 250); // Duração da transição
+                    }
+                    
+                    // Mostra a view nova
+                    if (newView) {
+                        newView.style.display = 'block'; // Mostra primeiro
+                        setTimeout(() => { // Aplica a classe de fade-in
+                            newView.classList.add('active');
+                        }, 10); // Pequeno delay para o browser aplicar o display:block
                     }
 
-                    // Atualiza link ativo
+                    // Atualiza o estado e os links ativos
+                    this.state.currentView = view;
                     this.elements.navLinks.forEach(link => {
                         if (link.getAttribute('data-target') === view) {
                             link.classList.add('text-white', 'font-bold');
