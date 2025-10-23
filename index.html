@@ -141,10 +141,10 @@
                 // Inicialização (agora é async para aguardar o fetch)
                 async init() {
                     try {
-                        // Tenta carregar os dados do data.json
-                        const response = await fetch('data.json');
+                        // Adiciona um "cache-buster" para sempre pegar o JSON mais recente
+                        const response = await fetch('data.json?v=' + new Date().getTime());
                         if (!response.ok) {
-                            throw new Error(`HTTP error! status: ${response.status}`);
+                            throw new Error(`HTTP error! Status: ${response.status} (${response.statusText})`);
                         }
                         this.data = await response.json();
                         
@@ -154,9 +154,9 @@
                         this.switchView(this.state.currentView);
 
                     } catch (error) {
-                        // Se falhar (ex: arquivo não encontrado), exibe um erro no console
-                        // O site continuará exibindo os placeholders animados
+                        // Se falhar, renderiza a mensagem de erro visual
                         console.error("Erro fatal: Não foi possível carregar o arquivo data.json.", error);
+                        this.renderError(error); // Chama a função de erro
                     }
                 },
 
@@ -186,8 +186,8 @@
 
                 // Renderiza todos os componentes
                 renderAll() {
-                    this.renderSidebarHeader(); // Nomeado para mais clareza
-                    this.renderSidebarBio(); // Bio na sidebar
+                    this.renderSidebarHeader(); 
+                    this.renderSidebarBio(); 
                     this.renderProjectsView();
                     this.renderCurriculumView();
                     feather.replace();
@@ -199,7 +199,7 @@
                     this.elements.sidebarHeader.innerHTML = `<h1 class="text-3xl font-bold text-white leading-tight">${this.data.profile.name}</h1>`;
                 },
 
-                // Renderiza a bio na sidebar (apenas desktop)
+                // Renderiza a bio na sidebar
                 renderSidebarBio() {
                     if (!this.data.profile) return;
                     const { name, jobTitle, photoUrl, bio, contacts } = this.data.profile;
@@ -386,7 +386,6 @@
                     if (media.type === 'video') {
                         mediaElement = `<iframe class="w-full h-full aspect-video" src="${media.url}" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>`;
                     } else { // image
-                        // Removido 'object-contain' daqui para 'object-cover' para preencher o espaço
                         mediaElement = `<img src="${media.url}" alt="${project.title}" class="w-full h-full object-cover">`; 
                     }
 
@@ -457,6 +456,37 @@
                         this.state.currentMediaIndex = newIndex;
                         this.renderModalContent();
                     }
+                },
+                
+                // NOVA FUNÇÃO: renderError
+                renderError(error) {
+                    const mainContent = document.querySelector('main');
+                    // Esconde a navegação principal, já que o site falhou
+                    if (this.elements.mainNav) {
+                        this.elements.mainNav.style.display = 'none';
+                    }
+                    // Limpa os placeholders da sidebar
+                    if (this.elements.sidebarHeader) {
+                        this.elements.sidebarHeader.innerHTML = '<h1 class="text-3xl font-bold text-red-400">Erro!</h1>';
+                    }
+                    if (this.elements.sidebarBioContainer) {
+                        this.elements.sidebarBioContainer.innerHTML = '';
+                    }
+
+                    mainContent.innerHTML = `
+                        <div id="error-message" class="bg-red-900 border border-red-700 text-red-100 p-8 rounded-lg max-w-3xl mx-auto my-10 shadow-2xl">
+                            <div class="flex items-center mb-4">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="w-10 h-10 text-red-300 mr-4 flex-shrink-0"><circle cx="12" cy="12" r="10"></circle><line x1="12" y1="8" x2="12" y2="12"></line><line x1="12" y1="16" x2="12.01" y2="16"></line></svg>
+                                <h2 class="text-3xl font-bold text-white">Erro ao Carregar o Site</h2>
+                            </div>
+                            <p class="text-lg mb-3 text-red-100">Não foi possível carregar o arquivo de conteúdo (<span class="font-mono bg-red-800 px-1 py-0.5 rounded-md">data.json</span>).</p>
+                            <p class="text-sm text-red-200 mb-5">Isto acontece por dois motivos principais: 1) O arquivo não foi encontrado no servidor, ou 2) O arquivo contém um erro de sintaxe (JSON inválido, como uma vírgula sobrando).</p>
+                            <strong class="text-white">Detalhes do Erro:</strong>
+                            <code class="block bg-gray-900 text-red-300 p-4 rounded-md text-xs overflow-auto mt-2">${error.message}</code>
+                        </div>
+                    `;
+                    // Substitui ícones de erro
+                    feather.replace();
                 }
             };
 
