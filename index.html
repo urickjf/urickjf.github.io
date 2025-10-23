@@ -53,10 +53,10 @@
         }
     </style>
 </head>
-<body class="antialiased">
+<body class="antialiased md:pl-64"> <!-- CORREÇÃO: Aplicado padding no body em desktop -->
 
-    <div class="flex flex-col md:flex-row min-h-screen">
-        <!-- Sidebar (Bio) --><aside class="w-full md:w-64 md:min-h-screen md:fixed md:flex flex-col p-6 bg-gray-900 border-b md:border-b-0 md:border-r border-gray-700 z-10">
+    <div class="flex flex-col min-h-screen"> <!-- Removido md:flex-row daqui -->
+        <!-- Sidebar (Bio) --><aside class="w-full md:w-64 md:min-h-screen md:fixed md:left-0 md:top-0 md:flex flex-col p-6 bg-gray-900 border-b md:border-b-0 md:border-r border-gray-700 z-10">
             <div id="sidebar-header" class="flex-grow">
                 <!-- Nome será inserido aqui --><h1 class="text-3xl font-bold text-white leading-tight animate-pulse bg-gray-700 rounded w-3/4 h-10"></h1>
             </div>
@@ -75,7 +75,7 @@
             </footer>
         </aside>
 
-        <!-- Div Principal (Header + Main) --><div class="w-full md:ml-64">
+        <!-- Div Principal (Header + Main) --><div class="w-full"> <!-- CORREÇÃO: Removido md:ml-64 -->
             
             <!-- Header (Menu) --><header class="w-full sticky top-0 p-6 bg-gray-900 border-b border-gray-700 z-10 md:bg-opacity-80 md:backdrop-blur-lg">
                 <nav id="main-nav" class="flex-grow">
@@ -513,7 +513,7 @@
                     mainContent.innerHTML = `
                         <div id="error-message" class="bg-red-900 border border-red-700 text-red-100 p-8 rounded-lg max-w-3xl mx-auto my-10 shadow-2xl">
                             <div class="flex items-center mb-4">
-                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="w-10 h-10 text-red-300 mr-4 flex-shrink-0"><circle cx="12" cy="12" r="10"></circle><line x1="12" y1="8" x2="12" y2="12"></line><line x1="12" y1="16" x2="12.01" y2="16"></line></svg>
+                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="w-10 h-10 text-red-300 mr-4 flex-shrink-0"><circle cx="12" cy="12" r="10"></circle><line x1="12" y1="8" x2="12" y2="12"></line><line x1="12" y1="16" x2="12.01" y2="16"></line></svg>
                                 <h2 class="text-3xl font-bold text-white">Erro ao Carregar o Site</h2>
                             </div>
                             <p class="text-lg mb-3 text-red-100">Não foi possível carregar o arquivo de conteúdo (<span class="font-mono bg-red-800 px-1 py-0.5 rounded-md">data.json</span>).</p>
