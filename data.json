@@ -1,536 +1,141 @@
-<!DOCTYPE html>
-<html lang="pt-br" class="dark">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Portfólio</title>
-    
-    <!-- Carrega o Tailwind CSS --><script src="https://cdn.tailwindcss.com"></script>
-    
-    <!-- Carrega a fonte Inter --><link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
-    
-    <style>
-        /* Estilo base com a fonte Inter e fundo escuro */
-        body {
-            font-family: 'Inter', sans-serif;
-            background-color: #111827; /* bg-gray-900 */
-            color: #e5e7eb; /* text-gray-200 */
-        }
-        /* Efeito de brilho para títulos */
-        .text-glow {
-            text-shadow: 0 0 8px rgba(99, 102, 241, 0.5), 0 0 20px rgba(99, 102, 241, 0.3);
-        }
-        /* Animação de fade-in */
-        .fade-in {
-            animation: fadeIn 0.5s ease-out forwards;
-        }
-        @keyframes fadeIn {
-            from { opacity: 0; }
-            to { opacity: 1; }
-        }
-        /* Esconde a scrollbar no modal */
-        .modal-content-inner::-webkit-scrollbar {
-            display: none;
-        }
-        .modal-content-inner {
-            -ms-overflow-style: none;
-            scrollbar-width: none;
-        }
-
-        /* NOVAS CLASSES DE TRANSIÇÃO DE VIEW */
-        .content-view {
-            transition: opacity 0.25s ease-out, transform 0.25s ease-out;
-            opacity: 0;
-            transform: translateY(15px);
-            display: none; /* Começa escondido por padrão */
-        }
-        .content-view.active {
-            opacity: 1;
-            transform: translateY(0);
-            display: block;
-        }
-    </style>
-</head>
-<body class="antialiased">
-
-    <div class="flex flex-col md:flex-row min-h-screen">
-        <!-- Sidebar (Bio) --><aside class="w-full md:w-64 md:min-h-screen md:fixed md:flex flex-col p-6 bg-gray-900 border-b md:border-b-0 md:border-r border-gray-700 z-10">
-            <div id="sidebar-header" class="flex-grow">
-                <!-- Nome será inserido aqui --><h1 class="text-3xl font-bold text-white leading-tight animate-pulse bg-gray-700 rounded w-3/4 h-10"></h1>
-            </div>
-
-            <!-- Bio na Sidebar (Visível em todos os tamanhos) --><div id="sidebar-bio-container" class="flex-grow-[2] my-8">
-                <!-- Placeholder Bio --><div class="flex flex-col items-center text-center animate-pulse">
-                    <div class="w-32 h-32 rounded-full bg-gray-800 border-4 border-gray-700 mb-4"></div>
-                    <div class="h-6 bg-gray-800 rounded w-1/2 mb-3"></div>
-                    <div class="h-4 bg-gray-800 rounded w-5/6 mb-2"></div>
-                    <div class="h-4 bg-gray-800 rounded w-full"></div>
-                </div>
-            </div>
-            
-            <footer class="text-sm text-gray-500">
-                
-            </footer>
-        </aside>
-
-        <!-- Div Principal (Header + Main) --><div class="w-full md:ml-64">
-            
-            <!-- Header (Menu) --><header class="w-full sticky top-0 p-6 bg-gray-900 border-b border-gray-700 z-10 md:bg-opacity-80 md:backdrop-blur-lg">
-                <nav id="main-nav" class="flex-grow">
-                    <ul class="flex flex-col md:flex-row md:gap-6">
-                        <li><a href="#" data-target="projects" class="nav-link text-lg text-gray-400 hover:text-white transition-colors duration-200">Projetos</a></li>
-                        <li><a href="#" data-target="curriculum" class="nav-link text-lg text-gray-400 hover:text-white transition-colors duration-200">Currículo</a></li>
-                    </ul>
-                </nav>
-            </header>
-
-            <!-- Área de Conteúdo Principal --><main class="w-full p-4 sm:p-6 md:p-8">
-
-                <!-- Views de Conteúdo --><div id="projects-view" class="content-view">
-                    <!-- Placeholder Projetos --><div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-2 sm:gap-4">
-                        <div class="aspect-square w-full h-full bg-gray-800 rounded-md animate-pulse"></div>
-                        <div class="aspect-square w-full h-full bg-gray-800 rounded-md animate-pulse"></div>
-                        <div class="aspect-square w-full h-full bg-gray-800 rounded-md animate-pulse"></div>
-                        <div class="aspect-square w-full h-full bg-gray-800 rounded-md animate-pulse"></div>
-                        <div class="aspect-square w-full h-full bg-gray-800 rounded-md animate-pulse"></div>
-                        <div class="aspect-square w-full h-full bg-gray-800 rounded-md animate-pulse"></div>
-                        <div class="aspect-square w-full h-full bg-gray-800 rounded-md animate-pulse"></div>
-                        <div class="aspect-square w-full h-full bg-gray-800 rounded-md animate-pulse"></div>
-                    </div>
-                </div>
-                <div id="curriculum-view" class="content-view">
-                    <!-- Placeholder Currículo --><div class="bg-gray-800 p-6 sm:p-8 rounded-lg border border-gray-700 animate-pulse">
-                         <div class="h-10 bg-gray-700 rounded w-1/3 mb-8"></div>
-                         <div class="mb-8">
-                            <div class="h-8 bg-gray-700 rounded w-1/4 mb-4"></div>
-                            <div class="h-4 bg-gray-700 rounded w-full mb-2"></div>
-                            <div class="h-4 bg-gray-700 rounded w-5/6 mb-2"></div>
-                            <div class="h-4 bg-gray-700 rounded w-full"></div>
-                         </div>
-                         <div class="mb-8">
-                            <div class="h-8 bg-gray-700 rounded w-1/4 mb-4"></div>
-                            <div class="h-4 bg-gray-700 rounded w-full mb-2"></div>
-                            <div class="h-4 bg-gray-700 rounded w-5/6"></div>
-                         </div>
-                    </div>
-                </div>
-            </main>
-        </div>
-    </div>
-
-    <!-- Modal de Projeto --><div id="modal-container" class="fixed inset-0 bg-black/80 backdrop-blur-sm flex items-center justify-center p-4 z-50 hidden fade-in" aria-labelledby="modal-title" role="dialog" aria-modal="true">
-        <div id="modal-content" class="bg-gray-900 border border-gray-700 rounded-xl shadow-2xl w-full max-w-7xl max-h-[95vh] flex flex-col overflow-hidden">
-            <!-- Conteúdo do Modal será injetado aqui --></div>
-    </div>
-
-    <!-- Carrega o script de ícones (Feather Icons) --><script src="https://cdn.jsdelivr.net/npm/feather-icons/dist/feather.min.js"></script>
-
-    <!-- Script Principal da Aplicação --><script>
-        document.addEventListener('DOMContentLoaded', () => {
-            const app = {
-                // Estado da aplicação
-                data: {},
-                state: {
-                    currentView: 'projects', // Alterado para 'projects' como padrão
-                    modalOpen: false,
-                    currentProject: null,
-                    currentMediaIndex: 0
-                },
-
-                // Elementos do DOM
-                elements: {
-                    sidebarHeader: document.getElementById('sidebar-header'),
-                    sidebarBioContainer: document.getElementById('sidebar-bio-container'), // ID atualizado
-                    mainNav: document.getElementById('main-nav'),
-                    modalContainer: document.getElementById('modal-container'),
-                    modalContent: document.getElementById('modal-content'),
-                    projectsView: document.getElementById('projects-view'),
-                    curriculumView: document.getElementById('curriculum-view'),
-                    navLinks: document.querySelectorAll('.nav-link')
-                },
-
-                // Inicialização (agora é async para aguardar o fetch)
-                async init() {
-                    try {
-                        // Adiciona um "cache-buster" para sempre pegar o JSON mais recente
-                        const response = await fetch('data.json?v=' + new Date().getTime());
-                        if (!response.ok) {
-                            throw new Error(`HTTP error! Status: ${response.status} (${response.statusText})`);
-                        }
-                        this.data = await response.json();
-                        
-                        // Se carregar com sucesso, renderiza o conteúdo
-                        this.addEventListeners();
-                        this.renderAll();
-                        this.switchView(this.state.currentView, true); // true = primeira carga
-
-                    } catch (error) {
-                        // Se falhar, renderiza a mensagem de erro visual
-                        console.error("Erro fatal: Não foi possível carregar o arquivo data.json.", error);
-                        this.renderError(error); // Chama a função de erro
-                    }
-                },
-
-                // Adiciona todos os ouvintes de eventos
-                addEventListeners() {
-                    // Links de navegação
-                    this.elements.navLinks.forEach(link => {
-                        link.addEventListener('click', (e) => {
-                            e.preventDefault();
-                            const view = e.target.getAttribute('data-target');
-                            this.switchView(view);
-                        });
-                    });
-
-                    // Fechar modal
-                    this.elements.modalContainer.addEventListener('click', (e) => {
-                        if (e.target === this.elements.modalContainer) {
-                            this.closeModal();
-                        }
-                    });
-                    document.addEventListener('keydown', (e) => {
-                        if (e.key === 'Escape' && this.state.modalOpen) {
-                            this.closeModal();
-                        }
-                    });
-                },
-
-                // Renderiza todos os componentes
-                renderAll() {
-                    this.renderSidebarHeader(); 
-                    this.renderSidebarBio(); 
-                    this.renderProjectsView();
-                    this.renderCurriculumView();
-                    feather.replace();
-                },
-
-                // Renderiza o cabeçalho da Sidebar
-                renderSidebarHeader() {
-                    if (!this.data.profile) return;
-                    this.elements.sidebarHeader.innerHTML = `<h1 class="text-3xl font-bold text-white leading-tight">${this.data.profile.name}</h1>`;
-                },
-
-                // Renderiza a bio na sidebar
-                renderSidebarBio() {
-                    if (!this.data.profile) return;
-                    const { name, jobTitle, photoUrl, bio, contacts } = this.data.profile;
-
-                    this.elements.sidebarBioContainer.innerHTML = `
-                        <div class="flex flex-col items-center text-center">
-                            <img src="${photoUrl}" alt="Foto de ${name}" class="w-32 h-32 rounded-full object-cover border-4 border-indigo-600 shadow-lg mb-4">
-                            <div>
-                                <h3 class="text-xl font-bold text-white">${jobTitle}</h3>
-                                <p class="mt-4 text-base text-gray-300">${bio}</p>
-                                <div class="flex flex-col items-center gap-2 mt-6">
-                                    <a href="mailto:${contacts.email}" class="w-full flex items-center justify-center gap-2 bg-gray-800 hover:bg-indigo-600 text-white font-bold py-2 px-3 rounded-lg transition-colors duration-300 text-sm">
-                                        <i data-feather="mail" class="w-4 h-4"></i> E-mail
-                                    </a>
-                                    <a href="https://wa.me/${contacts.whatsapp}" target="_blank" class="w-full flex items-center justify-center gap-2 bg-gray-800 hover:bg-green-500 text-white font-bold py-2 px-3 rounded-lg transition-colors duration-300 text-sm">
-                                        <i data-feather="message-circle" class="w-4 h-4"></i> WhatsApp
-                                    </a>
-                                </div>
-                            </div>
-                        </div>
-                    `;
-                },
-
-                // Renderiza a view "Projetos"
-                renderProjectsView() {
-                    if (!this.data.projects) return;
-
-                    this.elements.projectsView.innerHTML = `
-                        <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-2 sm:gap-4">
-                            ${this.data.projects.filter(p => p.enabled).map((project, index) => `
-                                <a href="#" class="project-thumb aspect-square w-full h-full block group overflow-hidden" data-index="${index}">
-                                    <img src="${project.thumbnail}" 
-                                         alt="Thumbnail ${project.title}" 
-                                         class="w-full h-full object-cover rounded-md transition-all duration-300 ease-in-out group-hover:opacity-75 group-hover:shadow-2xl group-hover:shadow-indigo-500/30">
-                                </a>
-                            `).join('')}
-                        </div>
-                    `;
-
-                    // Adicionar ouvintes de eventos para os novos thumbnails
-                    document.querySelectorAll('.project-thumb').forEach(thumb => {
-                        thumb.addEventListener('click', (e) => {
-                            e.preventDefault();
-                            const projectIndex = parseInt(e.currentTarget.getAttribute('data-index'), 10);
-                            this.openModal(projectIndex);
-                        });
-                    });
-                },
-
-                // Renderiza a view "Currículo"
-                renderCurriculumView() {
-                    if (!this.data.curriculum) return;
-                    const cv = this.data.curriculum;
-                    
-                    // Verificação para garantir que cv.contacts exista
-                    const contacts = cv.contacts || {};
-
-                    const renderList = (title, items) => {
-                        if (!items || items.length === 0) return '';
-                        return `
-                            <div class="mb-8">
-                                <h3 class="text-2xl font-bold text-white border-b-2 border-indigo-600 pb-2 mb-4">${title}</h3>
-                                <ul class="list-disc list-inside space-y-2 text-gray-300">
-                                    ${items.map(item => `<li>${item}</li>`).join('')}
-                                </ul>
-                            </div>
-                        `;
-                    };
-
-                    this.elements.curriculumView.innerHTML = `
-                        <div class="bg-gray-800 p-6 sm:p-10 rounded-lg border border-gray-700 max-w-4xl mx-auto">
-                            <!-- Cabeçalho CV --><div class="flex flex-col sm:flex-row items-center gap-6 mb-10">
-                                <img src="${cv.photo}" alt="Foto ${cv.name}" class="w-32 h-32 rounded-full object-cover border-4 border-indigo-600">
-                                <div class="text-center sm:text-left">
-                                    <h2 class="text-4xl font-extrabold text-white">${cv.name}</h2>
-                                    <h3 class="text-2xl font-medium text-indigo-400">${cv.role}</h3>
-                                    <div class="flex flex-wrap justify-center sm:justify-start gap-x-6 gap-y-2 text-gray-400 mt-4">
-                                        ${contacts.email ? `<span><i data-feather="mail" class="w-4 h-4 inline-block -mt-1 mr-1"></i> ${contacts.email}</span>` : ''}
-                                        ${contacts.phone ? `<span><i data-feather="phone" class="w-4 h-4 inline-block -mt-1 mr-1"></i> ${contacts.phone}</span>` : ''}
-                                        ${contacts.website ? `<span><i data-feather="globe" class="w-4 h-4 inline-block -mt-1 mr-1"></i> ${contacts.website}</span>` : ''}
-                                    </div>
-                                </div>
-                            </div>
-                            
-                            <!-- Resumo --><div class="mb-8">
-                                <h3 class="text-2xl font-bold text-white border-b-2 border-indigo-600 pb-2 mb-4">Resumo</h3>
-                                <p class="text-gray-300 leading-relaxed">${cv.personalInfo}</p>
-                            </div>
-
-                            <!-- Experiência --><div class="mb-8">
-                                <h3 class="text-2xl font-bold text-white border-b-2 border-indigo-600 pb-2 mb-4">Experiência Profissional</h3>
-                                <div class="space-y-6">
-                                    ${cv.experience.map(exp => `
-                                        <div>
-                                            <h4 class="text-xl font-semibold text-indigo-300">${exp.title}</h4>
-                                            <p class="font-medium text-gray-200">${exp.company} <span class="text-gray-400 text-sm ml-2">(${exp.date})</span></p>
-                                            <p class="text-gray-400 mt-1">${exp.description}</p>
-                                        </div>
-                                    `).join('')}
-                                </div>
-                            </div>
-                            
-                            <!-- Formação --><div class="mb-8">
-                                <h3 class="text-2xl font-bold text-white border-b-2 border-indigo-600 pb-2 mb-4">Formação Acadêmica</h3>
-                                <div class="space-y-4">
-                                    ${cv.education.map(edu => `
-                                        <div>
-                                            <h4 class="text-xl font-semibold text-indigo-300">${edu.degree}</h4>
-                                            <p class="font-medium text-gray-200">${edu.institution} <span class="text-gray-400 text-sm ml-2">(${edu.date})</span></p>
-                                        </div>
-                                    `).join('')}
-                                </div>
-                            </div>
-
-                            <!-- Habilidades e Ferramentas --><div class="grid grid-cols-1 md:grid-cols-2 gap-8 mb-8">
-                                ${renderList('Habilidades', cv.skills)}
-                                ${renderList('Ferramentas', cv.tools)}
-                            </div>
-
-                            <!-- Cursos --><div class="mb-8">
-                                <h3 class="text-2xl font-bold text-white border-b-2 border-indigo-600 pb-2 mb-4">Cursos e Certificações</h3>
-                                <div class="space-y-4">
-                                    ${cv.courses.map(course => `
-                                        <div>
-                                            <h4 class="text-xl font-semibold text-indigo-300">${course.name}</h4>
-                                            <p class="font-medium text-gray-200">${course.institution}</p>
-                                        </div>
-                                    `).join('')}
-                                </div>
-                            </div>
-
-                            ${renderList('Hobbies', cv.hobbies)}
-
-                        </div>
-                    `;
-                },
-
-                // Lógica de navegação (MODIFICADA para transição)
-                switchView(view, isFirstLoad = false) {
-                    // Não faz nada se clicar na view que já está ativa
-                    if (!isFirstLoad && view === this.state.currentView) return; 
-
-                    let oldView = null;
-                    if (this.state.currentView && this.elements[this.state.currentView + 'View']) {
-                         oldView = this.elements[this.state.currentView + 'View'];
-                    }
-                    
-                    const newView = this.elements[view + 'View'];
-
-                    // Esconde a view antiga (se houver)
-                    if (oldView) {
-                        oldView.classList.remove('active');
-                        // Espera a transição para esconder (CSS transition duration)
-                        setTimeout(() => {
-                            if (this.state.currentView !== view) { // Garante que não é a view atual
-                                 oldView.style.display = 'none';
-                            }
-                        }, 250); // Duração da transição
-                    }
-                    
-                    // Mostra a view nova
-                    if (newView) {
-                        newView.style.display = 'block'; // Mostra primeiro
-                        setTimeout(() => { // Aplica a classe de fade-in
-                            newView.classList.add('active');
-                        }, 10); // Pequeno delay para o browser aplicar o display:block
-                    }
-
-                    // Atualiza o estado e os links ativos
-                    this.state.currentView = view;
-                    this.elements.navLinks.forEach(link => {
-                        if (link.getAttribute('data-target') === view) {
-                            link.classList.add('text-white', 'font-bold');
-                            link.classList.remove('text-gray-400');
-                        } else {
-                            link.classList.add('text-gray-400');
-                            link.classList.remove('text-white', 'font-bold');
-                        }
-                    });
-                },
-
-                // Lógica do Modal
-                openModal(projectIndex) {
-                    const project = this.data.projects.filter(p => p.enabled)[projectIndex];
-                    if (!project) return;
-                    
-                    this.state.modalOpen = true;
-                    this.state.currentProject = project;
-                    this.state.currentMediaIndex = 0;
-                    
-                    this.renderModalContent();
-                    this.elements.modalContainer.style.display = 'flex';
-                },
-
-                closeModal() {
-                    this.state.modalOpen = false;
-                    this.state.currentProject = null;
-                    this.elements.modalContainer.style.display = 'none';
-                    this.elements.modalContent.innerHTML = '';
-                },
-
-                renderModalContent() {
-                    const project = this.state.currentProject;
-                    const media = project.media[this.state.currentMediaIndex];
-                    const hasMultipleMedia = project.media.length > 1;
-
-                    let mediaElement = '';
-                    if (media.type === 'video') {
-                        mediaElement = `<iframe class="w-full h-full aspect-video" src="${media.url}" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>`;
-                    } else { // image
-                        mediaElement = `<img src="${media.url}" alt="${project.title}" class="w-full h-full object-cover">`; 
-                    }
-
-                    this.elements.modalContent.innerHTML = `
-                        <!-- Cabeçalho do Modal --><header class="flex items-center justify-between p-4 border-b border-gray-700 flex-shrink-0">
-                            <h2 id="modal-title" class="text-2xl font-bold text-white">${project.title}</h2>
-                            <button id="close-modal-btn" class="text-gray-400 hover:text-white transition-colors">
-                                <i data-feather="x" class="w-8 h-8"></i>
-                            </button>
-                        </header>
-
-                        <!-- Corpo do Modal --><div class="flex flex-col lg:flex-row flex-1 overflow-hidden">
-                            <!-- Mídia Principal --><div class="w-full lg:w-3/4 bg-black flex items-center justify-center relative overflow-hidden">
-                                ${mediaElement}
-                                
-                                <!-- Controles de Navegação (se houver) -->${hasMultipleMedia ? `
-                                    <button class="modal-nav-btn absolute left-4 top-1/2 -translate-y-1/2 bg-black/50 text-white p-2 rounded-full hover:bg-black/80 transition-opacity ${this.state.currentMediaIndex === 0 ? 'opacity-30 cursor-not-allowed' : ''}" data-direction="-1">
-                                        <i data-feather="chevron-left" class="w-6 h-6"></i>
-                                    </button>
-                                    <button class="modal-nav-btn absolute right-4 top-1/2 -translate-y-1/2 bg-black/50 text-white p-2 rounded-full hover:bg-black/80 transition-opacity ${this.state.currentMediaIndex === project.media.length - 1 ? 'opacity-30 cursor-not-allowed' : ''}" data-direction="1">
-                                        <i data-feather="chevron-right" class="w-6 h-6"></i>
-                                    </button>
-                                ` : ''}
-                            </div>
-
-                            <!-- Barra Lateral de Informações --><aside class="w-full lg:w-1/4 p-6 overflow-y-auto modal-content-inner flex-shrink-0 lg:max-h-full">
-                                <p class="text-gray-300 leading-relaxed">${project.description}</p>
-                                
-                                <!-- Galeria de Miniaturas (se houver) -->${hasMultipleMedia ? `
-                                    <div class="mt-6">
-                                        <h4 class="text-sm font-semibold text-gray-400 uppercase mb-3">Mídia</h4>
-                                        <div class="grid grid-cols-3 gap-2">
-                                            ${project.media.map((m, index) => `
-                                                <button class="media-thumb-btn aspect-square rounded-md overflow-hidden border-2 ${index === this.state.currentMediaIndex ? 'border-indigo-500' : 'border-transparent hover:border-gray-500'}" data-index="${index}">
-                                                    <img src="${m.thumbnail || (m.type === 'image' ? m.url : project.thumbnail)}" alt="Mídia ${index + 1}" class="w-full h-full object-cover">
-                                                </button>
-                                            `).join('')}
-                                        </div>
-                                    </div>
-                                ` : ''}
-                            </aside>
-                        </div>
-                    `;
-
-                    // Adiciona eventos aos novos botões
-                    feather.replace();
-                    document.getElementById('close-modal-btn').addEventListener('click', () => this.closeModal());
-                    
-                    document.querySelectorAll('.modal-nav-btn').forEach(btn => {
-                        btn.addEventListener('click', (e) => {
-                            const direction = parseInt(e.currentTarget.getAttribute('data-direction'), 10);
-                            this.navigateMedia(direction);
-                        });
-                    });
-                    
-                    document.querySelectorAll('.media-thumb-btn').forEach(btn => {
-                        btn.addEventListener('click', (e) => {
-                            const index = parseInt(e.currentTarget.getAttribute('data-index'), 10);
-                            this.state.currentMediaIndex = index;
-                            this.renderModalContent();
-                        });
-                    });
-                },
-                
-                navigateMedia(direction) {
-                    const newIndex = this.state.currentMediaIndex + direction;
-                    if (newIndex >= 0 && newIndex < this.state.currentProject.media.length) {
-                        this.state.currentMediaIndex = newIndex;
-                        this.renderModalContent();
-                    }
-                },
-                
-                // NOVA FUNÇÃO: renderError
-                renderError(error) {
-                    const mainContent = document.querySelector('main');
-                    // Esconde a navegação principal, já que o site falhou
-                    if (this.elements.mainNav) {
-                        this.elements.mainNav.style.display = 'none';
-                    }
-                    // Limpa os placeholders da sidebar
-                    if (this.elements.sidebarHeader) {
-                        this.elements.sidebarHeader.innerHTML = '<h1 class="text-3xl font-bold text-red-400">Erro!</h1>';
-                    }
-                    if (this.elements.sidebarBioContainer) {
-                        this.elements.sidebarBioContainer.innerHTML = '';
-                    }
-
-                    mainContent.innerHTML = `
-                        <div id="error-message" class="bg-red-900 border border-red-700 text-red-100 p-8 rounded-lg max-w-3xl mx-auto my-10 shadow-2xl">
-                            <div class="flex items-center mb-4">
-                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="w-10 h-10 text-red-300 mr-4 flex-shrink-0"><circle cx="12" cy="12" r="10"></circle><line x1="12" y1="8" x2="12" y2="12"></line><line x1="12" y1="16" x2="12.01" y2="16"></line></svg>
-                                <h2 class="text-3xl font-bold text-white">Erro ao Carregar o Site</h2>
-                            </div>
-                            <p class="text-lg mb-3 text-red-100">Não foi possível carregar o arquivo de conteúdo (<span class="font-mono bg-red-800 px-1 py-0.5 rounded-md">data.json</span>).</p>
-                            <p class="text-sm text-red-200 mb-5">Isto acontece por dois motivos principais: 1) O arquivo não foi encontrado no servidor, ou 2) O arquivo contém um erro de sintaxe (JSON inválido, como uma vírgula sobrando).</p>
-                            <strong class="text-white">Detalhes do Erro:</strong>
-                            <code class="block bg-gray-900 text-red-300 p-4 rounded-md text-xs overflow-auto mt-2">${error.message}</code>
-                        </div>
-                    `;
-                    // Substitui ícones de erro
-                    feather.replace();
-                }
-            };
-
-            app.init();
-        });
-    </script>
-
-</body>
-</html>
-
+{
+  "profile": {
+    "name": "Bernardo Botafogo",
+    "jobTitle": "Videomaker & Fotógrafo",
+    "photoUrl": "https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEgisBTlbze9Ny8Mj_uQPylqNOxCLMrVzPbf-B3_OCJ5CTWOipVuMp0KvetCU-Am5zv1vDCDNUwCiangy8tu03SERJaaT3IR_TBsVR5KglXS7-eg4CmZvdtIxM5RhtXRVJrOjyWnEb157qVrsiw0vTxQxlsNwHy8ATWB2ahYAH1HQ2R8EGyf9sZnBcMccA/s1600/eu.png",
+    "bio": "Com 14 anos de experiência trabalhando na criação de conteúdo para internet, criando desde memes, posts em blogs, video de esquetes de humor, clips musicais, podcasts, propaganda, etc.",
+    "contacts": {
+      "email": "bmbotafogo86@gmail.com",
+      "whatsapp": "5524974056483",
+      "phone": "(24) 97405-6483"
+    }
+  },
+  "projects": [
+    {
+      "enabled": true,
+      "title": "Canais do YouTube",
+      "description": "Produção de conteúdo para diversos canais do YouTube, incluindo roteiro, pesquisa, artes, edição, animações e locução.",
+      "thumbnail": "https://i.ytimg.com/vi/Cq4IOx-FAPE/hqdefault.jpg",
+      "media": [
+        { "type": "video", "url": "https://www.youtube.com/embed/Cq4IOx-FAPE", "thumbnail": "https://i.ytimg.com/vi/Cq4IOx-FAPE/hqdefault.jpg" },
+        { "type": "video", "url": "https://www.youtube.com/embed/193bNKiKQGc", "thumbnail": "https://i.ytimg.com/vi/193bNKiKQGc/hqdefault.jpg" },
+        { "type": "video", "url": "https://www.youtube.com/embed/ytAdKLAPzGU", "thumbnail": "https://i.ytimg.com/vi/ytAdKLAPzGU/hqdefault.jpg" },
+        { "type": "video", "url": "https://www.youtube.com/embed/PZ3YYWKlDmE", "thumbnail": "https://i.ytimg.com/vi/PZ3YYWKlDmE/hqdefault.jpg" },
+        { "type": "video", "url": "https://www.youtube.com/embed/MJN8DCs-seM", "thumbnail": "https://i.ytimg.com/vi/MJN8DCs-seM/hqdefault.jpg" },
+        { "type": "video", "url": "https://www.youtube.com/embed/bJ25ebDopBQ", "thumbnail": "https://i.ytimg.com/vi/bJ25ebDopBQ/hqdefault.jpg" },
+        { "type": "video", "url": "https://www.youtube.com/embed/O0XUtU_0GoM", "thumbnail": "https://i.ytimg.com/vi/O0XUtU_0GoM/hqdefault.jpg" },
+        { "type": "video", "url": "https://www.youtube.com/embed/xAc0dH7_s20", "thumbnail": "https://i.ytimg.com/vi/xAc0dH7_s20/hqdefault.jpg" }
+      ]
+    },
+    {
+      "enabled": true,
+      "title": "Propaganda",
+      "description": "Criação de vídeos publicitários, desde a concepção da ideia até a edição final, para marcas e eventos.",
+      "thumbnail": "https://i.ytimg.com/vi/gxHxaNM6r8s/hqdefault.jpg",
+      "media": [
+        { "type": "video", "url": "https://www.youtube.com/embed/gxHxaNM6r8s", "thumbnail": "https://i.ytimg.com/vi/gxHxaNM6r8s/hqdefault.jpg" },
+        { "type": "video", "url": "https://www.youtube.com/embed/eOhgGvFGfy8", "thumbnail": "https://i.ytimg.com/vi/eOhgGvFGfy8/hqdefault.jpg" }
+      ]
+    },
+    {
+      "enabled": true,
+      "title": "Eventos",
+      "description": "Cobertura audiovisual de eventos, com especialidade em vídeos que capturam a transformação e a energia do momento.",
+      "thumbnail": "https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEjSyE4ZjnlOygUTPSkHyrFGDRtYg15F-Al8o51uPx4CfyzLwE4kcOGtcWbyPYoXZUvrzHhFwSgJDPHbvwcEtHBqYjX1qEPFwdbVJgw4xUQuKwAvsY4pxVWpGGTuRJm4F6TCZEnoM2HfPQ/s1600/DSC00702.jpeg",
+      "media": [
+        { "type": "video", "url": "https://www.youtube.com/embed/eOhgGvFGfy8", "thumbnail": "https://i.ytimg.com/vi/eOhgGvFGfy8/hqdefault.jpg" },
+        { "type": "video", "url": "https://www.youtube.com/embed/vG-zQPAqT6A", "thumbnail": "https://i.ytimg.com/vi/vG-zQPAqT6A/hqdefault.jpg" }
+      ]
+    },
+    {
+      "enabled": true,
+      "title": "Fotografia de Produto (Still)",
+      "description": "Fotografia de produtos (Still) para diversas finalidades, desde alimentos até peças de cerâmica, com foco em destacar os detalhes e a qualidade.",
+      "thumbnail": "https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEgz509eNvZ19wUwVuWqr2he8mWBFUdZWXYxc93-ynTMMReh7b46wCdlU-OXbdancRZdNoKV8Z2mzc6I6lmVJ1adL9IBefQEetG8UklGsY3ul-o2_IniOEES8klthmIfqpu7vcDJM3APAQ/s1600/jubolinha.cadernos_27582150_280261919171533_2056272342362882048_n.jpg",
+      "media": [
+        { "type": "image", "url": "https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEgz509eNvZ19wUwVuWqr2he8mWBFUdZWXYxc93-ynTMMReh7b46wCdlU-OXbdancRZdNoKV8Z2mzc6I6lmVJ1adL9IBefQEetG8UklGsY3ul-o2_IniOEES8klthmIfqpu7vcDJM3APAQ/s1600/jubolinha.cadernos_27582150_280261919171533_2056272342362882048_n.jpg" },
+        { "type": "image", "url": "https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEhCz1GdL5pnc0S1hB0tTvBpKqwe2f2zBXsexLa57UgNNHcx1L0bCzzokjcyk5it7o0EM8jUFKXtvJJxe_0_j_Qy6EaaOql1JIwJE1ddVWbMHX4FzBn22_fM9gEZBg2uLq2bBSD3b0ZeEQ/s1600/WhatsApp+Image+2018-12-20+at+17.22.39.jpeg" },
+        { "type": "image", "url": "https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEhpA3ETz7JV2efnCVog0IIUGRbaAJMw4UWVxNptl9NPOPUw-_eeg5Ahyphenhyphen6qS1CDcpH2ppnb1jbVwVonF2JQZWf_CBn9nBjC2lSC-eaAcwk542dUmfecqiek68A5Z0P5b65JpycCb5e_Gog/s1600/bernardobotafogo_22221015_283703642117591_6089397468263350272_n.jpg" },
+        { "type": "image", "url": "https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEhieQ-4HpkTeZNXvGF7L3K2vc6JP68GQ6WhxCDSENPnBB2B7Rz6S23peYkVFBJexsSBbQJuREN4JVeh0AQuJj7313S8f2Qpxpla4W6Tqx285AGGDa3zcWpWKjNJE3mQX01J7d5geo3zsw/s1600/bernardobotafogo_31270424_2045604535726934_348753431789305656_n.jpg" },
+        { "type": "image", "url": "https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEjo9kg25jCaj2dnV7tXJropUhmdKOGpUJDL6IcPP7o1NGR6bqCCd5wAUUae50EvmXMtq4R6oQPgf8tk9yVfjUn9GDSdnmcZlQdqJiY1bQwYxPI-boisYmgaPpjlzp3GEJ5DRNM6cbnAxQ/s1600/DSC01907.jpg" },
+        { "type": "image", "url": "https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEjorJH_oczjjO3PuSx_h7QS4g4ffthJyU1-ySSnvZjrNzM2p_n_Yu3U_NWR_hOwLtze0cQ0KFeB8xXMcUl00zslKJ8L81vUhWAb1u4rvy1TVWGsvhyA7fsLj6_eMl1nNmPE5nb6gPjP2Q/s1600/bernardobotafogo_28152215_342772286217990_2691797029654364160_n.jpg" }
+      ]
+    }
+  ],
+  "curriculum": {
+    "name": "Bernardo Botafogo",
+    "role": "Fotógrafo e Editor",
+    "photo": "https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEgisBTlbze9Ny8Mj_uQPylqNOxCLMrVzPbf-B3_OCJ5CTWOipVuMp0KvetCU-Am5zv1vDCDNUwCiangy8tu03SERJaaT3IR_TBsVR5KglXS7-eg4CmZvdtIxM5RhtXRVJrOjyWnEb157qVrsiw0vTxQxlsNwHy8ATWB2ahYAH1HQ2R8EGyf9sZnBcMccA/s1600/eu.png",
+    "personalInfo": "Profissional de audiovisual com 14 anos de experiência em cinema e fotografia. Expertise na condução de projetos completos (end-to-end), desde o roteiro, produção e filmagem até a pós-produção (edição e efeitos especiais). Atua também como consultor para produtores de conteúdo iniciantes (YouTube, cinema, publicidade) e possui experiência em design gráfico e criação de conteúdo para redes sociais.",
+    "contacts": {
+      "email": "bmbotafogo86@gmail.com",
+      "phone": "(24) 97405-6483",
+      "website": "http://www.bernardobotafogo.com.br"
+    },
+    "experience": [
+      {
+        "title": "Editor de vídeo, gerente de mídias sociais e design",
+        "company": "Medo e Delírio em Brasília",
+        "date": "Novembro de 2020 - Dezembro 2024",
+        "description": "Cuidava de toda a produção de conteúdo para as redes desde imagens para posts e vídeos para o Canal do youtube, tiktok, instagram e telegram."
+      },
+      {
+        "title": "Fotografo, cameraman e editor",
+        "company": "Ovnipix conteúdo WEB LTDA",
+        "date": "Setembro de 2014 - Outubro de 2017",
+        "description": "Fiz a captação e edição de coberturas para eventos, canais do youtube como (Reynold Romão e David Mafra), Locução de comerciais para rádio, e drops de conteúdo para redes sociais do portal."
+      },
+      {
+        "title": "Editor de Video, Cameraman e redes sociais",
+        "company": "Nerdice.com",
+        "date": "Março de 2010 - Agosto de 2017",
+        "description": "Fiz a captação e edição de todo o material audiovisual dos canais do portal Nerdice.com. Fiz também a alimentação com drops de conteúdo nas redes sociais do portal."
+      }
+    ],
+    "education": [
+      {
+        "degree": "Tecnólogo de WEB (Superior incompleto)",
+        "institution": "CEFET-RJ",
+        "date": "2008 - 2010"
+      },
+      {
+        "degree": "Técnico em Informática",
+        "institution": "Liceu São José de Itaipava",
+        "date": "2004"
+      }
+    ],
+    "skills": [
+      "Fotografia",
+      "Edição de Fotos",
+      "Filmagem",
+      "Edição de Vídeo",
+      "Edição de Áudio"
+    ],
+    "tools": [
+      "Premiere Pro",
+      "Final Cut",
+      "Photoshop",
+      "Audition",
+      "Lightroom",
+      "Ilustrator",
+      "Redes Sociais"
+    ],
+    "courses": [
+      {
+        "name": "Ruby on Rails - Desenvolvimento Ágil para Web 2.0",
+        "institution": "Caelum (2013)"
+      },
+      {
+        "name": "Autocad Básico e 3D",
+        "institution": "SENAI (2005)"
+      },
+      {
+        "name": "Cursos diversos de fotografia, filmagem, edição e montagem",
+        "institution": "Internet"
+      }
+    ],
+    "hobbies": [
+      "Vloger e Podcast"
+    ]
+  }
+}
