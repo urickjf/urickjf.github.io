@@ -20,7 +20,8 @@
         }
         /* Efeito de brilho para títulos */
         .text-glow {
-            text-shadow: 0 0 8px rgba(99, 102, 241, 0.5), 0 0 20px rgba(99, 102, 241, 0.3);
+            /* MUDADO: Ajustado para teal */
+            text-shadow: 0 0 8px rgba(13, 148, 136, 0.5), 0 0 20px rgba(13, 148, 136, 0.3); 
         }
         /* Animação de fade-in */
         .fade-in {
@@ -233,15 +234,15 @@
 
                     this.elements.sidebarBioContainer.innerHTML = `
                         <div class="flex flex-col items-center text-center">
-                            <img src="${photoUrl}" alt="Foto de ${name}" class="w-32 h-32 rounded-full object-cover border-4 border-indigo-600 shadow-lg mb-4">
+                            <img src="${photoUrl}" alt="Foto de ${name}" class="w-32 h-32 rounded-full object-cover border-4 border-teal-600 shadow-lg mb-4"> <!-- MUDADO -->
                             <div>
                                 <h3 class="text-xl font-bold text-white">${jobTitle}</h3>
                                 <p class="mt-4 text-base text-gray-300">${bio}</p>
                                 <div class="flex flex-col items-center gap-2 mt-6">
-                                    <a href="mailto:${contacts.email}" class="w-full flex items-center justify-center gap-2 bg-gray-800 hover:bg-indigo-600 text-white font-bold py-2 px-3 rounded-lg transition-colors duration-300 text-sm">
+                                    <a href="mailto:${contacts.email}" class="w-full flex items-center justify-center gap-2 bg-gray-800 hover:bg-teal-600 text-white font-bold py-2 px-3 rounded-lg transition-colors duration-300 text-sm"> <!-- MUDADO -->
                                         <i data-feather="mail" class="w-4 h-4"></i> E-mail
                                     </a>
-                                    <a href="https://wa.me/${contacts.whatsapp}" target="_blank" class="w-full flex items-center justify-center gap-2 bg-gray-800 hover:bg-green-500 text-white font-bold py-2 px-3 rounded-lg transition-colors duration-300 text-sm">
+                                    <a href="https://wa.me/${contacts.whatsapp}" target="_blank" class="w-full flex items-center justify-center gap-2 bg-gray-800 hover:bg-green-500 text-white font-bold py-2 px-3 rounded-lg transition-colors duration-300 text-sm"> <!-- WhatsApp mantido verde -->
                                         <i data-feather="message-circle" class="w-4 h-4"></i> WhatsApp
                                     </a>
                                 </div>
@@ -260,7 +261,7 @@
                                 <a href="#" class="project-thumb aspect-square w-full h-full block group overflow-hidden" data-index="${index}">
                                     <img src="${project.thumbnail}" 
                                          alt="Thumbnail ${project.title}" 
-                                         class="w-full h-full object-cover rounded-md transition-all duration-300 ease-in-out group-hover:opacity-75 group-hover:shadow-2xl group-hover:shadow-indigo-500/30">
+                                         class="w-full h-full object-cover rounded-md transition-all duration-300 ease-in-out group-hover:opacity-75 group-hover:shadow-2xl group-hover:shadow-teal-500/30"> <!-- MUDADO -->
                                 </a>
                             `).join('')}
                         </div>
@@ -280,12 +281,15 @@
                 renderCurriculumView() {
                     if (!this.data.curriculum) return;
                     const cv = this.data.curriculum;
+                    
+                    // Verificação para garantir que cv.contacts exista
+                    const contacts = cv.contacts || {};
 
                     const renderList = (title, items) => {
                         if (!items || items.length === 0) return '';
                         return `
                             <div class="mb-8">
-                                <h3 class="text-2xl font-bold text-white border-b-2 border-indigo-600 pb-2 mb-4">${title}</h3>
+                                <h3 class="text-2xl font-bold text-white border-b-2 border-teal-600 pb-2 mb-4">${title}</h3> <!-- MUDADO -->
                                 <ul class="list-disc list-inside space-y-2 text-gray-300">
                                     ${items.map(item => `<li>${item}</li>`).join('')}
                                 </ul>
@@ -295,14 +299,12 @@
 
                     this.elements.curriculumView.innerHTML = `
                         <div class="bg-gray-800 p-6 sm:p-10 rounded-lg border border-gray-700 max-w-4xl mx-auto">
-                            <!-- CABEÇALHO E RESUMO REMOVIDOS CONFORME SOLICITADO -->
-
                             <!-- Experiência --><div class="mb-8">
-                                <h3 class="text-2xl font-bold text-white border-b-2 border-indigo-600 pb-2 mb-4">Experiência Profissional</h3>
+                                <h3 class="text-2xl font-bold text-white border-b-2 border-teal-600 pb-2 mb-4">Experiência Profissional</h3> <!-- MUDADO -->
                                 <div class="space-y-6">
                                     ${(cv.experience || []).map(exp => `
                                         <div>
-                                            <h4 class="text-xl font-semibold text-indigo-300">${exp.title}</h4>
+                                            <h4 class="text-xl font-semibold text-teal-300">${exp.title}</h4> <!-- MUDADO -->
                                             <p class="font-medium text-gray-200">${exp.company} <span class="text-gray-400 text-sm ml-2">(${exp.date})</span></p>
                                             <p class="text-gray-400 mt-1">${exp.description}</p>
                                         </div>
@@ -311,11 +313,11 @@
                             </div>
                             
                             <!-- Formação --><div class="mb-8">
-                                <h3 class="text-2xl font-bold text-white border-b-2 border-indigo-600 pb-2 mb-4">Formação Acadêmica</h3>
+                                <h3 class="text-2xl font-bold text-white border-b-2 border-teal-600 pb-2 mb-4">Formação Acadêmica</h3> <!-- MUDADO -->
                                 <div class="space-y-4">
                                     ${(cv.education || []).map(edu => `
                                         <div>
-                                            <h4 class="text-xl font-semibold text-indigo-300">${edu.degree}</h4>
+                                            <h4 class="text-xl font-semibold text-teal-300">${edu.degree}</h4> <!-- MUDADO -->
                                             <p class="font-medium text-gray-200">${edu.institution} <span class="text-gray-400 text-sm ml-2">(${edu.date})</span></p>
                                         </div>
                                     `).join('')}
@@ -328,11 +330,11 @@
                             </div>
 
                             <!-- Cursos --><div class="mb-8">
-                                <h3 class="text-2xl font-bold text-white border-b-2 border-indigo-600 pb-2 mb-4">Cursos e Certificações</h3>
+                                <h3 class="text-2xl font-bold text-white border-b-2 border-teal-600 pb-2 mb-4">Cursos e Certificações</h3> <!-- MUDADO -->
                                 <div class="space-y-4">
                                     ${(cv.courses || []).map(course => `
                                         <div>
-                                            <h4 class="text-xl font-semibold text-indigo-300">${course.name}</h4>
+                                            <h4 class="text-xl font-semibold text-teal-300">${course.name}</h4> <!-- MUDADO -->
                                             <p class="font-medium text-gray-200">${course.institution}</p>
                                         </div>
                                     `).join('')}
@@ -451,7 +453,7 @@
                                         <h4 class="text-sm font-semibold text-gray-400 uppercase mb-3">Mídia</h4>
                                         <div class="grid grid-cols-3 gap-2">
                                             ${project.media.map((m, index) => `
-                                                <button class="media-thumb-btn aspect-square rounded-md overflow-hidden border-2 ${index === this.state.currentMediaIndex ? 'border-indigo-500' : 'border-transparent hover:border-gray-500'}" data-index="${index}">
+                                                <button class="media-thumb-btn aspect-square rounded-md overflow-hidden border-2 ${index === this.state.currentMediaIndex ? 'border-teal-500' : 'border-transparent hover:border-gray-500'}" data-index="${index}"> <!-- MUDADO -->
                                                     <img src="${m.thumbnail || (m.type === 'image' ? m.url : project.thumbnail)}" alt="Mídia ${index + 1}" class="w-full h-full object-cover">
                                                 </button>
                                             `).join('')}
@@ -528,3 +530,4 @@
 
 </body>
 </html>
+
