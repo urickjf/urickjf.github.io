@@ -68,10 +68,10 @@
         }
     </style>
 </head>
-<body class="antialiased md:pl-64"> <!-- CORREÇÃO: Aplicado padding no body em desktop -->
+<body class="antialiased md:pl-80"> <!-- AJUSTE: Aumentado padding do body para 80 -->
 
     <div class="flex flex-col min-h-screen"> <!-- Removido md:flex-row daqui -->
-        <!-- Sidebar (Bio) --><aside class="w-full md:w-64 md:min-h-screen md:fixed md:left-0 md:top-0 md:flex flex-col p-6 bg-gray-900 border-b md:border-b-0 md:border-r border-gray-700 z-10">
+        <!-- Sidebar (Bio) --><aside class="w-full md:w-80 md:min-h-screen md:fixed md:left-0 md:top-0 md:flex flex-col p-6 bg-gray-900 border-b md:border-b-0 md:border-r border-gray-700 z-10"> <!-- AJUSTE: Aumentado largura da sidebar para 80 -->
             <div id="sidebar-header" class="flex-grow">
                 <!-- Nome será inserido aqui --><h1 class="text-3xl font-bold text-white leading-tight animate-pulse bg-gray-700 rounded w-3/4 h-10"></h1>
             </div>
@@ -523,3 +523,4 @@
 
 </body>
 </html>
+
