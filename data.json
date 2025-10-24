@@ -13,9 +13,9 @@
   "projects": [
     {
       "enabled": true,
-      "title": "Canais do YouTube",
+      "title": "Medo e Delírio em Brasília",
       "description": "Produção de conteúdo para diversos canais do YouTube, incluindo roteiro, pesquisa, artes, edição, animações e locução.",
-      "thumbnail": "https://i.ytimg.com/vi/Cq4IOx-FAPE/hqdefault.jpg",
+      "thumbnail": "https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEiDRbanV876s2tF_AU3DQxpAJaqzo_iAFty4il6lM73BAZKcycxxkU8WiBhKOmKA5RDeo_0s1Ty8M3rvwI6Tm8XxG97F2yyi4S69AoDK8iCNH6LJqxMBu7tyfvfylaHzzUUdpOyfQlLy1LNCVQ2VuW_eNgefDuHIfWJOsx7r4m2BsdGdBDbijc4678F2g/s16000/Logo-Medebra.png",
       "media": [
         { "type": "video", "url": "https://www.youtube.com/embed/Cq4IOx-FAPE", "thumbnail": "https://i.ytimg.com/vi/Cq4IOx-FAPE/hqdefault.jpg" },
         { "type": "video", "url": "https://www.youtube.com/embed/193bNKiKQGc", "thumbnail": "https://i.ytimg.com/vi/193bNKiKQGc/hqdefault.jpg" },
@@ -139,3 +139,4 @@
     ]
   }
 }
+
