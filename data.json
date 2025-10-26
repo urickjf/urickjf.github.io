@@ -42,6 +42,22 @@
     },
     {
       "enabled": true,
+      "title": "Propaganda",
+      "description": "aqui",
+      "thumbnail": "https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEiDRbanV876s2tF_AU3DQxpAJaqzo_iAFty4il6lM73BAZKcycxxkU8WiBhKOmKA5RDeo_0s1Ty8M3rvwI6Tm8XxG97F2yyi4S69AoDK8iCNH6LJqxMBu7tyfvfylaHzzUUdpOyfQlLy1LNCVQ2VuW_eNgefDuHIfWJOsx7r4m2BsdGdBDbijc4678F2g/s16000/Logo-Medebra.png",
+      "media": [
+        { "type": "video", "url": "https://www.youtube.com/embed/Cq4IOx-FAPE", "thumbnail": "https://i.ytimg.com/vi/Cq4IOx-FAPE/hqdefault.jpg" },
+        { "type": "video", "url": "https://www.youtube.com/embed/193bNKiKQGc", "thumbnail": "https://i.ytimg.com/vi/193bNKiKQGc/hqdefault.jpg" },
+        { "type": "video", "url": "https://www.youtube.com/embed/ytAdKLAPzGU", "thumbnail": "https://i.ytimg.com/vi/ytAdKLAPzGU/hqdefault.jpg" },
+        { "type": "video", "url": "https://www.youtube.com/embed/PZ3YYWKlDmE", "thumbnail": "https://i.ytimg.com/vi/PZ3YYWKlDmE/hqdefault.jpg" },
+        { "type": "video", "url": "https://www.youtube.com/embed/MJN8DCs-seM", "thumbnail": "https://i.ytimg.com/vi/MJN8DCs-seM/hqdefault.jpg" },
+        { "type": "video", "url": "https://www.youtube.com/embed/bJ25ebDopBQ", "thumbnail": "https://i.ytimg.com/vi/bJ25ebDopBQ/hqdefault.jpg" },
+        { "type": "video", "url": "https://www.youtube.com/embed/O0XUtU_0GoM", "thumbnail": "https://i.ytimg.com/vi/O0XUtU_0GoM/hqdefault.jpg" },
+        { "type": "video", "url": "https://www.youtube.com/embed/xAc0dH7_s20", "thumbnail": "https://i.ytimg.com/vi/xAc0dH7_s20/hqdefault.jpg" }
+      ]
+    },
+    {
+      "enabled": true,
       "title": "Eventos",
       "description": "Cobertura audiovisual de eventos, com especialidade em vídeos que capturam a transformação e a energia do momento.",
       "thumbnail": "https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEjSyE4ZjnlOygUTPSkHyrFGDRtYg15F-Al8o51uPx4CfyzLwE4kcOGtcWbyPYoXZUvrzHhFwSgJDPHbvwcEtHBqYjX1qEPFwdbVJgw4xUQuKwAvsY4pxVWpGGTuRJm4F6TCZEnoM2HfPQ/s1600/DSC00702.jpeg",
@@ -142,6 +158,7 @@
     ]
   }
 }
+
 
 
 
