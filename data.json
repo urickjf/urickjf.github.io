@@ -41,8 +41,8 @@
     {
       "enabled": true,
       "title": "Propaganda",
-      "description": "aqui",
-      "thumbnail": "https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEiDRbanV876s2tF_AU3DQxpAJaqzo_iAFty4il6lM73BAZKcycxxkU8WiBhKOmKA5RDeo_0s1Ty8M3rvwI6Tm8XxG97F2yyi4S69AoDK8iCNH6LJqxMBu7tyfvfylaHzzUUdpOyfQlLy1LNCVQ2VuW_eNgefDuHIfWJOsx7r4m2BsdGdBDbijc4678F2g/s16000/Logo-Medebra.png",
+      "description": "Uma das coisas que mais produzi foram as propagadas, ",
+      "thumbnail": "https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEjXp2iWThs9hb6sdvI2W2SBEI53n6rKOj7MVYgaPqiG2iIaDEPXUa25PRF-V5Q3hhH9T7o-ambkwa1TOctsDe_B1y19MEqnEF6_KmTrxjJSp6B4quvj3iqc9niBrz2V8NNf0LIxjCHyphIMH6a4Z-sIVNGQCaYtZAEv_2mn-lCTjsGMp4Z6dR3iOtHWmA/s1024/Gemini_Generated_Image_vand4vand4vand4v.png",
       "media": [
         { "type": "video", "url": "https://www.youtube.com/embed/4T_bBmkbIWE", "thumbnail": "https://i.ytimg.com/vi/4T_bBmkbIWE/hqdefault.jpg" },
         { "type": "video", "url": "https://www.youtube.com/embed/nyttZnPQrWE", "thumbnail": "https://i.ytimg.com/vi/nyttZnPQrWE/hqdefault.jpg" },
@@ -152,6 +152,7 @@
     ]
   }
 }
+
 
 
 
