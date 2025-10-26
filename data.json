@@ -42,7 +42,19 @@
       "enabled": true,
       "title": "Propaganda",
       "description": "Uma das coisas que mais produzi foram as propagadas, ",
-      "thumbnail": "https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEjXp2iWThs9hb6sdvI2W2SBEI53n6rKOj7MVYgaPqiG2iIaDEPXUa25PRF-V5Q3hhH9T7o-ambkwa1TOctsDe_B1y19MEqnEF6_KmTrxjJSp6B4quvj3iqc9niBrz2V8NNf0LIxjCHyphIMH6a4Z-sIVNGQCaYtZAEv_2mn-lCTjsGMp4Z6dR3iOtHWmA/s1024/Gemini_Generated_Image_vand4vand4vand4v.png",
+      "thumbnail": "https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEhMSEB6ZQR3ByrDDRyNHImvnk4yw2UHoRRGjbxiLGj8pvulEm4X0eBa0LK1SH-k8Tocse0dNjgKZcEyTI-yhZyTqs_KM5Xk0kRuNyPBO1ASYV86GDdvEbEyBt0s9qBQ-1uY9A2uH_5P3xC4I9mU5bZ3BFJspGl-GJLEPg3myWLpYmI3W8fSj2Pcx7SpWQ/s1024/Gemini_Generated_Image_vand4vand4vand4v.jpg",
+      "media": [
+        { "type": "video", "url": "https://www.youtube.com/embed/4T_bBmkbIWE", "thumbnail": "https://i.ytimg.com/vi/4T_bBmkbIWE/hqdefault.jpg" },
+        { "type": "video", "url": "https://www.youtube.com/embed/nyttZnPQrWE", "thumbnail": "https://i.ytimg.com/vi/nyttZnPQrWE/hqdefault.jpg" },
+        { "type": "video", "url": "https://www.youtube.com/embed/gxHxaNM6r8s", "thumbnail": "https://i.ytimg.com/vi/gxHxaNM6r8s/hqdefault.jpg" },
+        { "type": "video", "url": "https://www.youtube.com/embed/eOhgGvFGfy8", "thumbnail": "https://i.ytimg.com/vi/eOhgGvFGfy8/hqdefault.jpg" }
+      ]
+    },
+   {
+      "enabled": true,
+      "title": "Clips Musicais",
+      "description": "Uma das coisas que mais produzi foram as propagadas, ",
+      "thumbnail": "https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEgaThtR8x4oxa9PJfOBoO5WBmMADu-NENkTTa7KnH8WTKGpVuGWLVzLdVUzcVaCXkGIS6IdUoKkurTcxoyAIt5AoADACdVTnKiLsAJTGVHnGYRBfzzrSv7jctlyxxDA7KSNpjf0zk4JfPlaBqdLvQTgyULZvoK4cPPiudLECXfy67lB9ORFMG1-V644LA/s1024/Gemini_Generated_Image_z2lzs2z2lzs2z2lz.jpg",
       "media": [
         { "type": "video", "url": "https://www.youtube.com/embed/4T_bBmkbIWE", "thumbnail": "https://i.ytimg.com/vi/4T_bBmkbIWE/hqdefault.jpg" },
         { "type": "video", "url": "https://www.youtube.com/embed/nyttZnPQrWE", "thumbnail": "https://i.ytimg.com/vi/nyttZnPQrWE/hqdefault.jpg" },
@@ -53,8 +65,8 @@
     {
       "enabled": true,
       "title": "Eventos",
-      "description": "Cobertura audiovisual de eventos, com especialidade em vídeos que capturam a transformação e a energia do momento.",
-      "thumbnail": "https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEjSyE4ZjnlOygUTPSkHyrFGDRtYg15F-Al8o51uPx4CfyzLwE4kcOGtcWbyPYoXZUvrzHhFwSgJDPHbvwcEtHBqYjX1qEPFwdbVJgw4xUQuKwAvsY4pxVWpGGTuRJm4F6TCZEnoM2HfPQ/s1600/DSC00702.jpeg",
+      "description": "Comecei minha vida profissional cobrindo eventos .",
+      "thumbnail": "https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEggtoLLbiQdKkAkro6o4M0GyWSkdUwHMLDV0_MyEtqXIQ5JeOFN0uHpGTh9kZW7S3JvzCJfDZ8SpnRF7hVImBHq8D4pwYpuGsvJGb_yEVlH54E8ruk0RCkF5mXH5ynfaUYCE0FIMctLCf7fLzE-8V-jREZVcLAs_D-us7JH8x_2jC3wPNe4O0qvBH0wJg/s1024/Gemini_Generated_Image_vand4vand4vand4v2.jpg",
       "media": [
         { "type": "video", "url": "https://www.youtube.com/embed/eOhgGvFGfy8", "thumbnail": "https://i.ytimg.com/vi/eOhgGvFGfy8/hqdefault.jpg" },
         { "type": "video", "url": "https://www.youtube.com/embed/vG-zQPAqT6A", "thumbnail": "https://i.ytimg.com/vi/vG-zQPAqT6A/hqdefault.jpg" }
@@ -64,7 +76,7 @@
       "enabled": true,
       "title": "Fotografia de Produto (Still)",
       "description": "Fotografia de produtos (Still) para diversas finalidades, desde alimentos até peças de cerâmica, com foco em destacar os detalhes e a qualidade.",
-      "thumbnail": "https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEgz509eNvZ19wUwVuWqr2he8mWBFUdZWXYxc93-ynTMMReh7b46wCdlU-OXbdancRZdNoKV8Z2mzc6I6lmVJ1adL9IBefQEetG8UklGsY3ul-o2_IniOEES8klthmIfqpu7vcDJM3APAQ/s1600/jubolinha.cadernos_27582150_280261919171533_2056272342362882048_n.jpg",
+      "thumbnail": "https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEhv2FYkw3o05_UhGJdBw4D2noUcpuPqAhCLjOETTSqzc_E-fgifiyxdt3_cOPTKVqUs1CERDrOdnDyRO5Fl9LHmU3PnmLHRWFBmA9Lfw3GiG1HdBoQaER1zSYLfDli1Lgepkb7ytzs6wxcXOu-6fVvdTMZ72n17HuYgrv-j351MrKYmHFDMQkEYSgcYMQ/s1024/Gemini_Generated_Image_vand4vand4vand4v3.jpg",
       "media": [
         { "type": "image", "url": "https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEgz509eNvZ19wUwVuWqr2he8mWBFUdZWXYxc93-ynTMMReh7b46wCdlU-OXbdancRZdNoKV8Z2mzc6I6lmVJ1adL9IBefQEetG8UklGsY3ul-o2_IniOEES8klthmIfqpu7vcDJM3APAQ/s1600/jubolinha.cadernos_27582150_280261919171533_2056272342362882048_n.jpg" },
         { "type": "image", "url": "https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEhCz1GdL5pnc0S1hB0tTvBpKqwe2f2zBXsexLa57UgNNHcx1L0bCzzokjcyk5it7o0EM8jUFKXtvJJxe_0_j_Qy6EaaOql1JIwJE1ddVWbMHX4FzBn22_fM9gEZBg2uLq2bBSD3b0ZeEQ/s1600/WhatsApp+Image+2018-12-20+at+17.22.39.jpeg" },
@@ -152,6 +164,7 @@
     ]
   }
 }
+
 
 
 
