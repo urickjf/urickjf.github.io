@@ -33,6 +33,9 @@
       "description": "STec é uma empresa que projeta e cria equipamentos de segurança. Fui contratado para criar vídeos que mostrassem a inovação dessas peças",
       "thumbnail": "https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEhnPp9qUx1Gp2yn75YAa_qsDkFtyMa_wXgLdDkOj3VPjndmBwNIuA4HYYqjkXWQja2prH6ICA_8zXPo1eUfIzgoox-bPxzq4h4NG18B6sN0_8Zn2qH7872doGtjp9aloP-bQ22LaLeBE_o_kR4ktNIBMLsdQ_7BdxxSrdJEQQrpvC4Z4F7Bi0IhAFBz3w/s1079/STEC.png",
       "media": [
+        { "type": "video", "url": "https://www.youtube.com/embed/BSUd2tcTCQg", "thumbnail": "https://i.ytimg.com/vi/BSUd2tcTCQg/hqdefault.jpg" },
+        { "type": "video", "url": "https://www.youtube.com/embed/mrc0Yu-1sdI", "thumbnail": "https://i.ytimg.com/vi/mrc0Yu-1sdI/hqdefault.jpg" },
+        { "type": "video", "url": "https://www.youtube.com/embed/FOxfU9Vdv14", "thumbnail": "https://i.ytimg.com/vi/FOxfU9Vdv14/hqdefault.jpg" },
         { "type": "video", "url": "https://www.youtube.com/embed/gxHxaNM6r8s", "thumbnail": "https://i.ytimg.com/vi/gxHxaNM6r8s/hqdefault.jpg" },
         { "type": "video", "url": "https://www.youtube.com/embed/eOhgGvFGfy8", "thumbnail": "https://i.ytimg.com/vi/eOhgGvFGfy8/hqdefault.jpg" }
       ]
@@ -139,6 +142,7 @@
     ]
   }
 }
+
 
 
 
