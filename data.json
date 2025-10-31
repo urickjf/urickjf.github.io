@@ -50,6 +50,19 @@
         { "type": "video", "url": "https://www.youtube.com/embed/eOhgGvFGfy8", "thumbnail": "https://i.ytimg.com/vi/eOhgGvFGfy8/hqdefault.jpg" }
       ]
     },
+    {
+      "enabled": true,
+      "title": "Curtas-metragens",
+      "description": "Uma das coisas que mais produzi foram as propagadas, ",
+      "thumbnail": "https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEhhG06OZ8l10fXMK5Usm6FA68GkdJWqq8K5yu1BnfUDaEEsQbWQQGXkFs4cMFI1NWAvPnNSookL-U4Y_3h52Elt0fI_-drEMv7HXxVEEUwH8c4WGktFfBAjeK7KY6TvcU5ok9ASUO8kN6iV_dvTfCA-4ZZvku3XhlacPTP5Y303OCaJWi5kw1maqcsonA/s1024/curt-metragem.png",
+      "media": [
+        { "type": "video", "url": "https://www.youtube.com/embed/UuyW0lMN46o", "thumbnail": "https://i.ytimg.com/vi/UuyW0lMN46o/hqdefault.jpg" },
+        { "type": "video", "url": "https://www.youtube.com/embed/1usWEcUsdKQ", "thumbnail": "https://i.ytimg.com/vi/1usWEcUsdKQ/hqdefault.jpg" },
+        { "type": "video", "url": "https://www.youtube.com/embed/bJ25ebDopBQ", "thumbnail": "https://i.ytimg.com/vi/bJ25ebDopBQ/hqdefault.jpg" },
+        { "type": "video", "url": "https://www.youtube.com/embed/O0XUtU_0GoM", "thumbnail": "https://i.ytimg.com/vi/O0XUtU_0GoM/hqdefault.jpg" },
+        { "type": "video", "url": "https://www.youtube.com/embed/nOtKH5ZlsI4", "thumbnail": "https://i.ytimg.com/vi/nOtKH5ZlsI4/hqdefault.jpg" }
+      ]
+    },
    {
       "enabled": true,
       "title": "Clips Musicais",
@@ -171,6 +184,7 @@
     ]
   }
 }
+
 
 
 
