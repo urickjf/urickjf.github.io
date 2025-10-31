@@ -20,11 +20,10 @@
         { "type": "video", "url": "https://www.youtube.com/embed/Cq4IOx-FAPE", "thumbnail": "https://i.ytimg.com/vi/Cq4IOx-FAPE/hqdefault.jpg" },
         { "type": "video", "url": "https://www.youtube.com/embed/193bNKiKQGc", "thumbnail": "https://i.ytimg.com/vi/193bNKiKQGc/hqdefault.jpg" },
         { "type": "video", "url": "https://www.youtube.com/embed/ytAdKLAPzGU", "thumbnail": "https://i.ytimg.com/vi/ytAdKLAPzGU/hqdefault.jpg" },
-        { "type": "video", "url": "https://www.youtube.com/embed/PZ3YYWKlDmE", "thumbnail": "https://i.ytimg.com/vi/PZ3YYWKlDmE/hqdefault.jpg" },
-        { "type": "video", "url": "https://www.youtube.com/embed/MJN8DCs-seM", "thumbnail": "https://i.ytimg.com/vi/MJN8DCs-seM/hqdefault.jpg" },
-        { "type": "video", "url": "https://www.youtube.com/embed/bJ25ebDopBQ", "thumbnail": "https://i.ytimg.com/vi/bJ25ebDopBQ/hqdefault.jpg" },
-        { "type": "video", "url": "https://www.youtube.com/embed/O0XUtU_0GoM", "thumbnail": "https://i.ytimg.com/vi/O0XUtU_0GoM/hqdefault.jpg" },
-        { "type": "video", "url": "https://www.youtube.com/embed/xAc0dH7_s20", "thumbnail": "https://i.ytimg.com/vi/xAc0dH7_s20/hqdefault.jpg" }
+        { "type": "video", "url": "https://www.youtube.com/embed/4o1aqBoXa8E", "thumbnail": "https://i.ytimg.com/vi/4o1aqBoXa8E/hqdefault.jpg" },
+        { "type": "video", "url": "https://www.youtube.com/embed/Cq4IOx-FAPE", "thumbnail": "https://i.ytimg.com/vi/Cq4IOx-FAPE/hqdefault.jpg" },
+        { "type": "video", "url": "https://www.youtube.com/embed/DNWK3nkZ0Ck", "thumbnail": "https://i.ytimg.com/vi/DNWK3nkZ0Ck/hqdefault.jpg" },
+        { "type": "video", "url": "https://www.youtube.com/embed/uw4DRMO3ZvQ", "thumbnail": "https://i.ytimg.com/vi/uw4DRMO3ZvQ/hqdefault.jpg" }
       ]
     },
     {
@@ -70,9 +69,7 @@
       "thumbnail": "https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEhF6QKMgzfvhSbEapYjfJFpJlwvSM1yOVTOlxMEFTHB8DZWqFCDoMNTSwPt9IHmiTjdJxo20C3zoNERi3IheTS35Z3phaOSl-OrRnlmBmhB3GmaKisdkn0fv61ROlz32ORky8JJvtAFseP-iBSONj2aaS44crivbQF7VksqEMsv-TXlYWrygbaLbSoYLQ/s1024/clipmus.png",
       "media": [
         { "type": "video", "url": "https://www.youtube.com/embed/xAc0dH7_s20", "thumbnail": "https://i.ytimg.com/vi/xAc0dH7_s20/hqdefault.jpg" },
-        { "type": "video", "url": "https://www.youtube.com/embed/L6xwN1ZBA3Q", "thumbnail": "https://i.ytimg.com/vi/L6xwN1ZBA3Q/hqdefault.jpg" },
-        { "type": "video", "url": "https://www.youtube.com/embed/gxHxaNM6r8s", "thumbnail": "https://i.ytimg.com/vi/gxHxaNM6r8s/hqdefault.jpg" },
-        { "type": "video", "url": "https://www.youtube.com/embed/eOhgGvFGfy8", "thumbnail": "https://i.ytimg.com/vi/eOhgGvFGfy8/hqdefault.jpg" }
+        { "type": "video", "url": "https://www.youtube.com/embed/L6xwN1ZBA3Q", "thumbnail": "https://i.ytimg.com/vi/L6xwN1ZBA3Q/hqdefault.jpg" }
       ]
     },
     {
@@ -185,3 +182,4 @@
     ]
   }
 }
+
