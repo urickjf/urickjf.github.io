@@ -82,6 +82,7 @@
       "thumbnail": "https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEgKjvf9UfMA1gCoh7hE-cJedO75t0NTZccc5GjhGaioufC6fAww5DRw1YG1Ber3tzg9AgiBFi0QWR_YR3xJgwlLclku2p7Chg2ZU_T_XQgK8nOYNkQUihcJjob8wP3OB3j4MBePDZHj9uhtuS3O-8H3fCPeVxCJCye4P-bZ2ERUSK_pU0IIT_-eNtHjyg/s1024/event.pngg",
       "media": [
         { "type": "video", "url": "https://www.youtube.com/embed/eOhgGvFGfy8", "thumbnail": "https://i.ytimg.com/vi/eOhgGvFGfy8/hqdefault.jpg" },
+        { "type": "video", "url": "https://www.youtube.com/embed/kAZjDBAuuI0", "thumbnail": "https://i.ytimg.com/vi/kAZjDBAuuI0/hqdefault.jpg" },
         { "type": "video", "url": "https://www.youtube.com/embed/vG-zQPAqT6A", "thumbnail": "https://i.ytimg.com/vi/vG-zQPAqT6A/hqdefault.jpg" }
       ]
     },
@@ -184,6 +185,7 @@
     ]
   }
 }
+
 
 
 
